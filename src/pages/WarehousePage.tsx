@@ -10,7 +10,7 @@ import {
   Layers,
   Sparkles
 } from 'lucide-react';
-import { WAREHOUSE_CATEGORIES, SHARED_WAREHOUSE_IMAGE } from '../data/warehouseData';
+import { WAREHOUSE_CATEGORIES, OPEN_WAREHOUSE_IMAGE, SHADED_WAREHOUSE_IMAGE } from '../data/warehouseData';
 
 export const WarehousePage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'open' | 'shaded'>('open');
@@ -60,8 +60,8 @@ export const WarehousePage: React.FC = () => {
                   : 'bg-[#F5F5F3] text-[#52627A] hover:bg-[#E8E8E8] hover:text-[#173F70]'
               }`}
             >
-              <SunMedium className="w-4 h-4 text-amber-400" />
-              <span>Open Warehouse (Natural Daylight)</span>
+              <SunMedium className="w-4 h-4 text-amber-500" />
+              <span>Open Warehouse (Open-Air Sky)</span>
             </button>
 
             <button
@@ -74,7 +74,7 @@ export const WarehousePage: React.FC = () => {
               }`}
             >
               <Umbrella className="w-4 h-4 text-sky-400" />
-              <span>Shaded Warehouse (Canopy Overlay)</span>
+              <span>Shaded Warehouse (Canopy Shelter)</span>
             </button>
           </div>
 
@@ -119,38 +119,31 @@ export const WarehousePage: React.FC = () => {
             <div className="space-y-3">
               <div className="flex items-center justify-between text-xs font-mono text-[#64748B]">
                 <span className="uppercase tracking-wider">
-                  Facility Representation ({isShaded ? 'Shaded Canopy Filter' : 'Natural Ambient Daylight'})
+                  Facility Representation ({isShaded ? 'Original Covered Warehouse with Metal Roof' : 'Natural Daylight & Unobstructed Open Sky'})
                 </span>
                 <span className="text-[#173F70] font-semibold">
-                  Source: Standard Industrial Staging Bay
+                  Environment: {isShaded ? 'Covered Staging Bay' : 'Open-Air Staging Ground'}
                 </span>
               </div>
 
               <div className="relative rounded-2xl overflow-hidden border border-[#E2E2E2] bg-neutral-950 aspect-[16/9] max-h-[520px] shadow-md group">
-                {/* Single Underlying Base Image — never changes source */}
+                {/* 1. Base Layer: Open-Air Warehouse (Natural Daylight Sky, Stacked Cartons, Zero Roof) */}
                 <img
-                  src={SHARED_WAREHOUSE_IMAGE}
+                  src={OPEN_WAREHOUSE_IMAGE}
                   alt={selectedCategory.imageAlt}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
                 />
 
-                {/* CSS Pseudo / Layered Shading Overlay for Shaded Mode */}
-                <div
-                  className={`absolute inset-0 bg-gradient-to-t from-[#0F2D52]/65 via-[#173F70]/40 to-[#1E293B]/35 transition-opacity duration-500 ease-in-out pointer-events-none ${
-                    isShaded ? 'opacity-100' : 'opacity-0'
+                {/* 2. Top Layer: Shaded Warehouse with Original Metal Roof Structure */}
+                <img
+                  src={SHADED_WAREHOUSE_IMAGE}
+                  alt="Covered warehouse facility with original overhead metal roof structure"
+                  className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ease-in-out group-hover:scale-[1.02] ${
+                    isShaded ? 'opacity-100' : 'opacity-0 pointer-events-none'
                   }`}
-                  aria-hidden="true"
                 />
 
-                {/* Additional Charcoal Ambient Filter for realism in shaded mode */}
-                <div
-                  className={`absolute inset-0 bg-black/25 transition-opacity duration-500 ease-in-out pointer-events-none ${
-                    isShaded ? 'opacity-100' : 'opacity-0'
-                  }`}
-                  aria-hidden="true"
-                />
-
-                {/* MSK Logo Watermark Tag (Only Logo) */}
+                {/* MSK Logo Watermark Tag */}
                 <div className="absolute bottom-4 right-4 z-20 pointer-events-none select-none">
                   <div className="flex items-center bg-white/95 backdrop-blur-md px-2.5 py-1.5 rounded-md shadow-md border border-neutral-200">
                     <img
@@ -168,14 +161,14 @@ export const WarehousePage: React.FC = () => {
                       ? 'bg-[#173F70]/90 text-white border border-white/20'
                       : 'bg-white/90 text-[#173F70] border border-neutral-200'
                   }`}>
-                    {isShaded ? 'MODE: SHADED WAREHOUSE CANOPY' : 'MODE: OPEN WAREHOUSE AMBIENT'}
+                    {isShaded ? 'MODE: SHADED WAREHOUSE (COVERED ROOF)' : 'MODE: OPEN WAREHOUSE (OPEN-AIR SKY)'}
                   </div>
                 </div>
 
                 {/* Bottom Caption Pill */}
-                <div className="absolute bottom-4 left-4 right-20 z-20 pointer-events-none">
-                  <div className="bg-black/60 backdrop-blur-md text-white text-xs px-3.5 py-2 rounded-lg max-w-lg border border-white/10">
-                    <span className="font-mono font-semibold text-white/90">
+                <div className="absolute bottom-4 left-4 right-24 z-20 pointer-events-none">
+                  <div className="bg-black/65 backdrop-blur-md text-white text-xs px-3.5 py-2 rounded-lg max-w-xl border border-white/10 shadow-sm">
+                    <span className="font-mono font-semibold text-white/95">
                       {selectedCategory.imageCaption}
                     </span>
                   </div>

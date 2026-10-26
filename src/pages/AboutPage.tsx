@@ -16,30 +16,34 @@ export const AboutPage: React.FC = () => {
   return (
     <div className="space-y-0">
       {/* 1. About Us Hero Section */}
-      <section className="bg-[#1E242D] text-white py-16 sm:py-20 border-b border-neutral-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-4">
+      <section className="bg-[#173F70] text-white py-14 sm:py-16 border-b border-[#0F2D52] relative overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-gradient-to-r from-[#173F70] via-[#1A457D] to-[#173F70] opacity-95 pointer-events-none" 
+          aria-hidden="true" 
+        />
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-4 relative z-10">
           <div className="flex flex-wrap items-center gap-3">
             <span className="editorial-badge bg-white/10 text-white border-white/20">
               ABOUT MSK LOGISTICS
             </span>
-            <span className="text-xs font-mono text-neutral-400">
+            <span className="text-xs font-mono text-blue-200">
               JNPT • NHAVA SHEVA MARITIME CORRIDOR
             </span>
           </div>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading text-white">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading text-white tracking-tight">
             Industrial Logistics Engineered for Export Operations
           </h1>
-          <p className="text-neutral-300 text-[16px] sm:text-[18px] max-w-3xl font-body leading-relaxed">
+          <p className="text-blue-100 text-[15px] sm:text-[17px] max-w-3xl font-body leading-relaxed">
             Specialized export packaging, systematic container stuffing, and high-tensile cargo lashing based at Western India’s maritime export gateway at Nhava Sheva (JNPT).
           </p>
-          <div className="pt-2 flex flex-wrap items-center gap-4 text-xs font-mono text-neutral-400">
+          <div className="pt-2 flex flex-wrap items-center gap-4 text-xs font-mono text-blue-200">
             <div className="flex items-center gap-1.5">
-              <MapPin className="w-3.5 h-3.5 text-red-400" />
+              <MapPin className="w-3.5 h-3.5 text-[#B62825]" />
               <span>Navi Mumbai, Maharashtra</span>
             </div>
             <span>•</span>
             <div className="flex items-center gap-1.5">
-              <Anchor className="w-3.5 h-3.5 text-blue-400" />
+              <Anchor className="w-3.5 h-3.5 text-blue-300" />
               <span>Primary Gateway: Nhava Sheva Port (JNPT)</span>
             </div>
           </div>

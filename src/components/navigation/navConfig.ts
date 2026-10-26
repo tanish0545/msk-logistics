@@ -23,9 +23,8 @@ export interface NavItem {
  */
 export const VESSEL_SCHEDULE_CONFIG = {
   label: 'Vessel Schedule',
-  // Client-approved external vessel-tracking or terminal schedule URL
-  // Temporary configuration: JNPT / Nhava Sheva official port terminal directory
-  externalUrl: 'https://www.jnport.gov.in/',
+  // Official live vessel tracking website
+  externalUrl: 'https://www.marinetraffic.com/',
   fallbackPath: '/vessel-schedule',
   isExternal: false,
   openInNewTab: true,
@@ -88,10 +87,8 @@ export const NAV_ITEMS: NavItem[] = [
   {
     id: 'vessel-schedule',
     label: 'Vessel Schedule',
-    path: VESSEL_SCHEDULE_CONFIG.externalUrl || VESSEL_SCHEDULE_CONFIG.fallbackPath,
-    isExternal: Boolean(VESSEL_SCHEDULE_CONFIG.externalUrl),
-    externalUrl: VESSEL_SCHEDULE_CONFIG.externalUrl,
-    target: VESSEL_SCHEDULE_CONFIG.externalUrl ? '_blank' : undefined,
+    path: '/vessel-schedule',
+    isExternal: false,
   },
   {
     id: 'operations',

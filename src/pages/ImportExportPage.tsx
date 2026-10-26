@@ -60,7 +60,7 @@ export const ImportExportPage: React.FC = () => {
       {/* ------------------------------------------------------------- */}
       {/* 1. PAGE HEADING & INTRODUCTION                                */}
       {/* ------------------------------------------------------------- */}
-      <section className="bg-[#173F70] text-white py-16 sm:py-20 border-b border-[#0F2D52] relative overflow-hidden">
+      <section className="bg-[#173F70] text-white py-14 sm:py-16 border-b border-[#0F2D52] relative overflow-hidden">
         <div 
           className="absolute inset-0 bg-gradient-to-r from-[#173F70] via-[#1B4B85] to-[#173F70] opacity-90 pointer-events-none" 
           aria-hidden="true" 

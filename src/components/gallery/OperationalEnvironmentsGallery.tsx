@@ -1,22 +1,17 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  Maximize2, 
-  X, 
-  ChevronLeft, 
-  ChevronRight, 
-  Pause, 
-  Play, 
-  ArrowRight,
-  ShieldCheck,
-  CheckCircle2
+import {
+  Maximize2,
+  X,
+  ChevronLeft,
+  ChevronRight,
+  ArrowRight
 } from 'lucide-react';
 import { HOMEPAGE_OPERATIONAL_GALLERY, type ClientImageAsset } from '../../data/imageAssets';
 import { BrandedImage } from './BrandedImage';
 
 export const OperationalEnvironmentsGallery: React.FC = () => {
   const [hoveredCardId, setHoveredCardId] = useState<string | null>(null);
-  const [isPausedManually, setIsPausedManually] = useState<boolean>(false);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const marqueeContainerRef = useRef<HTMLDivElement>(null);
 
@@ -55,8 +50,8 @@ export const OperationalEnvironmentsGallery: React.FC = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [lightboxIndex, prevLightboxImage, nextLightboxImage]);
 
-  // Determine if marquee animation should be paused
-  const isAnimationPaused = isPausedManually || hoveredCardId !== null;
+  // Determine if marquee animation should be paused on card hover
+  const isAnimationPaused = hoveredCardId !== null;
 
   // Helper for category label
   const getCategoryLabel = (subcategory: ClientImageAsset['subcategory']) => {
@@ -76,9 +71,9 @@ export const OperationalEnvironmentsGallery: React.FC = () => {
   return (
     <section className="py-20 sm:py-24 bg-[#12161E] text-white border-y border-neutral-800 relative overflow-hidden select-none">
       {/* Background Decorative Ambient Radial Glow */}
-      <div 
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-gradient-to-b from-[#1E293B]/40 to-transparent pointer-events-none" 
-        aria-hidden="true" 
+      <div
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-gradient-to-b from-[#1E293B]/40 to-transparent pointer-events-none"
+        aria-hidden="true"
       />
 
       {/* 1. Header & Context */}
@@ -103,20 +98,6 @@ export const OperationalEnvironmentsGallery: React.FC = () => {
 
           {/* Discreet Controls & Full Directory Link */}
           <div className="flex items-center gap-3">
-            <button
-              type="button"
-              onClick={() => setIsPausedManually(!isPausedManually)}
-              className="p-2.5 rounded-lg bg-white/10 hover:bg-white/20 text-neutral-300 hover:text-white transition-colors border border-white/15 focus:outline-none focus:ring-2 focus:ring-[#B62825]"
-              aria-label={isPausedManually ? "Resume gallery scroll" : "Pause gallery scroll"}
-              title={isPausedManually ? "Resume continuous scroll" : "Pause continuous scroll"}
-            >
-              {isPausedManually ? (
-                <Play className="w-4 h-4 fill-current" />
-              ) : (
-                <Pause className="w-4 h-4" />
-              )}
-            </button>
-
             <Link
               to="/import-export"
               className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-[#B62825] hover:bg-[#9E2220] text-white text-xs font-semibold font-mono transition-all shadow-md"
@@ -129,12 +110,12 @@ export const OperationalEnvironmentsGallery: React.FC = () => {
       </div>
 
       {/* 2. Horizontal Infinite Marquee Track */}
-      <div 
+      <div
         ref={marqueeContainerRef}
         className="relative w-full overflow-hidden py-4"
         style={{ maskImage: 'linear-gradient(to right, transparent, black 4%, black 96%, transparent)' }}
       >
-        <div 
+        <div
           className="animate-marquee-slow flex items-center gap-6"
           style={{
             animationPlayState: isAnimationPaused ? 'paused' : 'running',
@@ -169,11 +150,10 @@ export const OperationalEnvironmentsGallery: React.FC = () => {
                 aria-label={`View ${item.title}`}
               >
                 {/* Image Card Container */}
-                <div className={`relative rounded-xl overflow-hidden bg-neutral-900 border transition-all duration-300 shadow-lg ${
-                  isHovered 
-                    ? 'border-red-500 shadow-2xl ring-2 ring-red-500/20' 
+                <div className={`relative rounded-xl overflow-hidden bg-neutral-900 border transition-all duration-300 shadow-lg ${isHovered
+                    ? 'border-red-500 shadow-2xl ring-2 ring-red-500/20'
                     : 'border-white/10 hover:border-white/30'
-                }`}>
+                  }`}>
                   <BrandedImage
                     src={item.localPath}
                     alt={item.alt}
@@ -185,9 +165,8 @@ export const OperationalEnvironmentsGallery: React.FC = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
 
                   {/* Default Baseline Title (always visible when not hovered) */}
-                  <div className={`p-4 absolute bottom-0 left-0 right-0 z-20 transition-opacity duration-200 ${
-                    isHovered ? 'opacity-0 pointer-events-none' : 'opacity-100'
-                  }`}>
+                  <div className={`p-4 absolute bottom-0 left-0 right-0 z-20 transition-opacity duration-200 ${isHovered ? 'opacity-0 pointer-events-none' : 'opacity-100'
+                    }`}>
                     <h3 className="text-sm sm:text-base font-bold text-white tracking-tight truncate drop-shadow">
                       {item.title}
                     </h3>
@@ -197,11 +176,10 @@ export const OperationalEnvironmentsGallery: React.FC = () => {
                   </div>
 
                   {/* Hover Floating Information Card Overlay */}
-                  <div className={`absolute inset-x-3 bottom-3 z-30 p-4 rounded-xl bg-neutral-950/95 backdrop-blur-md border border-white/20 text-white shadow-2xl transition-all duration-300 ${
-                    isHovered 
-                      ? 'opacity-100 translate-y-0 pointer-events-auto' 
+                  <div className={`absolute inset-x-3 bottom-3 z-30 p-4 rounded-xl bg-neutral-950/95 backdrop-blur-md border border-white/20 text-white shadow-2xl transition-all duration-300 ${isHovered
+                      ? 'opacity-100 translate-y-0 pointer-events-auto'
                       : 'opacity-0 translate-y-2 pointer-events-none'
-                  }`}>
+                    }`}>
                     <div className="flex items-center justify-between mb-1.5">
                       <span className="text-[10px] font-mono font-bold tracking-wider uppercase text-red-400">
                         {getCategoryLabel(item.subcategory)}
@@ -264,11 +242,10 @@ export const OperationalEnvironmentsGallery: React.FC = () => {
                 onMouseLeave={() => setHoveredCardId(null)}
                 onClick={() => openLightbox(index)}
               >
-                <div className={`relative rounded-xl overflow-hidden bg-neutral-900 border transition-all duration-300 shadow-lg ${
-                  isHovered 
-                    ? 'border-red-500 shadow-2xl ring-2 ring-red-500/20' 
+                <div className={`relative rounded-xl overflow-hidden bg-neutral-900 border transition-all duration-300 shadow-lg ${isHovered
+                    ? 'border-red-500 shadow-2xl ring-2 ring-red-500/20'
                     : 'border-white/10 hover:border-white/30'
-                }`}>
+                  }`}>
                   <BrandedImage
                     src={item.localPath}
                     alt=""
@@ -278,9 +255,8 @@ export const OperationalEnvironmentsGallery: React.FC = () => {
 
                   <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
 
-                  <div className={`p-4 absolute bottom-0 left-0 right-0 z-20 transition-opacity duration-200 ${
-                    isHovered ? 'opacity-0 pointer-events-none' : 'opacity-100'
-                  }`}>
+                  <div className={`p-4 absolute bottom-0 left-0 right-0 z-20 transition-opacity duration-200 ${isHovered ? 'opacity-0 pointer-events-none' : 'opacity-100'
+                    }`}>
                     <h3 className="text-sm sm:text-base font-bold text-white tracking-tight truncate drop-shadow">
                       {item.title}
                     </h3>
@@ -289,11 +265,10 @@ export const OperationalEnvironmentsGallery: React.FC = () => {
                     </p>
                   </div>
 
-                  <div className={`absolute inset-x-3 bottom-3 z-30 p-4 rounded-xl bg-neutral-950/95 backdrop-blur-md border border-white/20 text-white shadow-2xl transition-all duration-300 ${
-                    isHovered 
-                      ? 'opacity-100 translate-y-0 pointer-events-auto' 
+                  <div className={`absolute inset-x-3 bottom-3 z-30 p-4 rounded-xl bg-neutral-950/95 backdrop-blur-md border border-white/20 text-white shadow-2xl transition-all duration-300 ${isHovered
+                      ? 'opacity-100 translate-y-0 pointer-events-auto'
                       : 'opacity-0 translate-y-2 pointer-events-none'
-                  }`}>
+                    }`}>
                     <div className="flex items-center justify-between mb-1.5">
                       <span className="text-[10px] font-mono font-bold tracking-wider uppercase text-red-400">
                         {getCategoryLabel(item.subcategory)}
@@ -335,14 +310,14 @@ export const OperationalEnvironmentsGallery: React.FC = () => {
 
       {/* 3. Accessible Lightbox Modal */}
       {lightboxIndex !== null && (
-        <div 
+        <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-md p-4 animate-in fade-in duration-200"
           onClick={closeLightbox}
           role="dialog"
           aria-modal="true"
           aria-label="Operational photograph details"
         >
-          <div 
+          <div
             className="relative max-w-5xl w-full max-h-[95vh] flex flex-col items-center justify-center"
             onClick={(e) => e.stopPropagation()}
           >

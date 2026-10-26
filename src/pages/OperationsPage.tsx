@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Wrench, Camera, MapPin, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, Wrench, Camera, MapPin } from 'lucide-react';
 import { BrandedImage } from '../components/gallery/BrandedImage';
 
 export const OperationsPage: React.FC = () => {

@@ -5,107 +5,198 @@ import { COMPANY_DETAILS, CORE_SERVICES } from '../../data/company';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="bg-[#343434] text-white border-t border-neutral-700 pt-16 pb-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-8">
-        {/* Top Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 pb-14 border-b border-neutral-700/80">
+    <footer className="relative bg-[#0B1728] text-white border-t border-[#1E2E48] pt-16 pb-12 select-none overflow-hidden">
+      {/* Decorative World Maritime Route Map Accent Background */}
+      <div 
+        className="absolute inset-0 pointer-events-none overflow-hidden opacity-[0.06] flex items-center justify-end"
+        aria-hidden="true"
+      >
+        <svg 
+          viewBox="0 0 1000 500" 
+          className="w-full sm:w-[1200px] h-auto max-h-[480px] object-cover object-right translate-x-12 sm:translate-x-24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          {/* Subtle World Map Continents Outline Paths */}
+          <path 
+            d="M150,120 Q180,80 230,100 T300,130 T280,220 T210,250 T160,200 Z" 
+            fill="currentColor" 
+          />
+          <path 
+            d="M240,280 Q270,300 280,360 T250,440 T210,380 T220,300 Z" 
+            fill="currentColor" 
+          />
+          <path 
+            d="M480,90 Q540,70 600,110 T580,180 T520,190 T470,140 Z" 
+            fill="currentColor" 
+          />
+          <path 
+            d="M480,210 Q540,200 570,260 T560,380 T500,400 T460,300 T470,220 Z" 
+            fill="currentColor" 
+          />
+          <path 
+            d="M620,110 Q700,90 820,120 T860,240 T780,280 T680,240 T610,180 Z" 
+            fill="currentColor" 
+          />
+          <path 
+            d="M690,230 Q720,220 750,250 T730,300 T680,270 Z" 
+            fill="#B62825" 
+            fillOpacity="0.5"
+          />
+          <path 
+            d="M780,330 Q840,320 860,370 T820,430 T750,400 Z" 
+            fill="currentColor" 
+          />
+
+          {/* Maritime Shipping Route Arcs (Connecting JNPT / India Hub to Global Ports) */}
+          <path 
+            d="M695,245 Q620,180 540,150 T480,130" 
+            stroke="currentColor" 
+            strokeWidth="1.5" 
+            strokeDasharray="4 6" 
+          />
+          <path 
+            d="M695,245 Q640,250 560,260 T480,320" 
+            stroke="currentColor" 
+            strokeWidth="1.5" 
+            strokeDasharray="4 6" 
+          />
+          <path 
+            d="M695,245 Q750,260 810,240 T880,180" 
+            stroke="currentColor" 
+            strokeWidth="1.5" 
+            strokeDasharray="4 6" 
+          />
+          <path 
+            d="M695,245 Q600,210 300,140" 
+            stroke="#B62825" 
+            strokeWidth="1.8" 
+            strokeDasharray="3 5" 
+            strokeOpacity="0.8" 
+          />
+
+          {/* Nhava Sheva (INNSA) Port Hub Node */}
+          <circle cx="695" cy="245" r="7" fill="#B62825" fillOpacity="0.8" />
+          <circle cx="695" cy="245" r="14" stroke="#B62825" strokeWidth="1.5" strokeDasharray="2 2" strokeOpacity="0.6" />
+          
+          {/* Global Destination Hub Nodes */}
+          <circle cx="530" cy="140" r="4" fill="currentColor" />
+          <circle cx="820" cy="230" r="4" fill="currentColor" />
+          <circle cx="260" cy="130" r="4" fill="currentColor" />
+        </svg>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 relative z-10">
+        {/* Top Grid: 4 Clean Columns on Desktop */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 pb-14 border-b border-[#1E2E48]">
+          
           {/* Col 1: Brand & Overview (4 cols) */}
           <div className="lg:col-span-4 space-y-4">
             <Link to="/" className="inline-block" aria-label="MSK Logistics Homepage">
-              <div className="bg-white p-2.5 rounded inline-block">
+              <div className="bg-white px-3 py-2 rounded-lg inline-block shadow-sm">
                 <img 
                   src="/images/logo/msk-logistics-logo.png" 
                   alt="MSK Logistics Pvt. Ltd." 
-                  className="h-10 w-auto object-contain"
+                  className="h-9 w-auto object-contain"
+                  width="90"
+                  height="36"
                 />
               </div>
             </Link>
 
-            <p className="text-neutral-300 text-[14px] leading-relaxed max-w-sm">
-              MSK Logistics Pvt. Ltd. is a specialized logistics provider based in Navi Mumbai, offering industrial export packaging, container stuffing, and heavy cargo lashing and securing services.
+            <p className="text-slate-300 text-[14px] leading-relaxed max-w-sm font-body">
+              MSK Logistics Pvt. Ltd. provides specialized industrial export packaging, container stuffing, and heavy cargo securing services operating from Western India's premier container gateway at Nhava Sheva (JNPT).
             </p>
 
-            <div className="pt-2 text-[12px] font-mono-code text-neutral-400 space-y-1">
-              <div>LOC: {COMPANY_DETAILS.operationalCoordinates}</div>
-              <div>PORT: NHAVA SHEVA (JNPT) CORRIDORS</div>
+            <div className="pt-2 text-[12px] font-mono text-slate-400 space-y-1">
+              <div className="flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#B62825]" />
+                <span>PORT: NHAVA SHEVA (JNPT) • PORT CODE: INNSA</span>
+              </div>
+              <div className="text-slate-500 pl-3.5">CORRIDOR: NAVI MUMBAI & RAIGAD TERMINALS</div>
             </div>
           </div>
 
-          {/* Col 2: Core Services (3 cols) */}
-          <div className="lg:col-span-3 space-y-3">
-            <div className="text-[12px] font-mono-code uppercase tracking-wider text-[#B62825] font-semibold">
+          {/* Col 2: Core Capabilities (3 cols) */}
+          <div className="lg:col-span-3 space-y-3.5">
+            <div className="text-[12px] font-mono uppercase tracking-wider text-[#B62825] font-bold">
               Core Capabilities
             </div>
-            <ul className="space-y-2 text-[14px]">
+            <ul className="space-y-2.5 text-[14px] font-body">
               {CORE_SERVICES.map((service) => (
                 <li key={service.id}>
                   <Link 
                     to={`/services/${service.slug}`} 
-                    className="text-neutral-300 hover:text-white transition-colors inline-flex items-center gap-1 group"
+                    className="text-slate-300 hover:text-white transition-colors duration-200 inline-flex items-center gap-1.5 group"
                   >
                     <span>{service.title}</span>
-                    <ArrowUpRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity text-[#B62825]" />
+                    <ArrowUpRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-[#B62825]" />
                   </Link>
                 </li>
               ))}
-              <li className="pt-2">
+              <li className="pt-1.5">
                 <Link 
                   to="/export-packing-solutions" 
-                  className="text-white font-medium hover:text-[#B62825] transition-colors inline-flex items-center gap-1"
+                  className="text-white font-medium hover:text-[#B62825] transition-colors duration-200 inline-flex items-center gap-1.5 group"
                 >
                   <span>Two Export Solutions</span>
-                  <ArrowUpRight className="w-3.5 h-3.5 text-[#B62825]" />
+                  <ArrowUpRight className="w-3.5 h-3.5 text-[#B62825] transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </Link>
               </li>
             </ul>
           </div>
 
           {/* Col 3: Navigation (2 cols) */}
-          <div className="lg:col-span-2 space-y-3">
-            <div className="text-[12px] font-mono-code uppercase tracking-wider text-neutral-400 font-semibold">
-              Company
+          <div className="lg:col-span-2 space-y-3.5">
+            <div className="text-[12px] font-mono uppercase tracking-wider text-slate-400 font-bold">
+              Navigation
             </div>
-            <ul className="space-y-2 text-[14px]">
+            <ul className="space-y-2 text-[14px] font-body">
               <li>
-                <Link to="/" className="text-neutral-300 hover:text-white transition-colors">
+                <Link to="/" className="text-slate-300 hover:text-white transition-colors duration-200">
                   Home
                 </Link>
               </li>
               <li>
-                <Link to="/about" className="text-neutral-300 hover:text-white transition-colors">
+                <Link to="/about" className="text-slate-300 hover:text-white transition-colors duration-200">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link to="/services" className="text-neutral-300 hover:text-white transition-colors">
-                  Services Directory
+                <Link to="/services" className="text-slate-300 hover:text-white transition-colors duration-200">
+                  Services
                 </Link>
               </li>
               <li>
-                <Link to="/how-it-works" className="text-neutral-300 hover:text-white transition-colors">
-                  How It Works
+                <Link to="/container-guide" className="text-slate-300 hover:text-white transition-colors duration-200">
+                  Container Guide
                 </Link>
               </li>
               <li>
-                <Link to="/request-quote" className="text-neutral-300 hover:text-white transition-colors">
-                  Request a Quote
+                <Link to="/warehouse" className="text-slate-300 hover:text-white transition-colors duration-200">
+                  Warehouse
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="text-neutral-300 hover:text-white transition-colors">
+                <Link to="/vessel-schedule" className="text-slate-300 hover:text-white transition-colors duration-200">
+                  Vessel Schedule
+                </Link>
+              </li>
+              <li>
+                <Link to="/contact" className="text-slate-300 hover:text-white transition-colors duration-200">
                   Contact Office
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Col 4: Verified Contact & Desk (3 cols) */}
-          <div className="lg:col-span-3 space-y-3">
-            <div className="text-[12px] font-mono-code uppercase tracking-wider text-neutral-400 font-semibold">
+          {/* Col 4: Registered Office & Contact (3 cols) */}
+          <div className="lg:col-span-3 space-y-3.5">
+            <div className="text-[12px] font-mono uppercase tracking-wider text-slate-400 font-bold">
               Registered Office
             </div>
 
-            <div className="space-y-3 text-[13px] text-neutral-300">
+            <div className="space-y-3 text-[13px] text-slate-300 font-body">
               <div className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-[#B62825] shrink-0 mt-0.5" />
                 <span className="leading-snug">{COMPANY_DETAILS.address}</span>
@@ -135,21 +226,21 @@ export const Footer: React.FC = () => {
             <div className="pt-2">
               <Link 
                 to="/request-quote"
-                className="inline-block w-full text-center bg-[#B62825] hover:bg-[#9E2220] text-white text-[13px] font-semibold py-2.5 px-4 rounded transition-colors"
+                className="inline-block w-full text-center bg-[#B62825] hover:bg-[#9E2220] text-white text-[13px] font-semibold py-2.5 px-4 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md hover:-translate-y-0.5"
               >
-                Start Quote Request
+                Request a Quote
               </Link>
             </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[12px] text-neutral-400 font-mono-code">
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[12px] text-slate-400 font-mono">
           <div>
             &copy; {new Date().getFullYear()} {COMPANY_DETAILS.publicName}. All rights reserved.
           </div>
 
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-4 text-xs">
             <span>Navi Mumbai, Maharashtra, India</span>
             <span>•</span>
             <span>Export Logistics Desk</span>
@@ -159,3 +250,4 @@ export const Footer: React.FC = () => {
     </footer>
   );
 };
+

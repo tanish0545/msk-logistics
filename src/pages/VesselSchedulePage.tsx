@@ -4,17 +4,17 @@ import { ArrowRight, ExternalLink, Ship, Calendar, Clock, Anchor } from 'lucide-
 import { VESSEL_SCHEDULE_CONFIG } from '../components/navigation/navConfig';
 
 export const VesselSchedulePage: React.FC = () => {
-  const trackingUrl = VESSEL_SCHEDULE_CONFIG.externalUrl || 'https://www.jnport.gov.in/';
+  const trackingUrl = VESSEL_SCHEDULE_CONFIG.externalUrl || 'https://www.marinetraffic.com/';
 
   return (
     <div className="space-y-0 bg-white">
-      {/* 1. Page Header — Clean & Modern */}
+      {/* 1. Page Header — Clean, Modern & Action-Oriented */}
       <section className="bg-[#173F70] text-white py-14 sm:py-16 border-b border-[#0F2D52] relative overflow-hidden">
         <div 
           className="absolute inset-0 bg-gradient-to-r from-[#173F70] via-[#1A457D] to-[#173F70] opacity-95 pointer-events-none" 
           aria-hidden="true" 
         />
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-4 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-5 relative z-10">
           <div className="flex flex-wrap items-center gap-3">
             <span className="editorial-badge bg-white/10 text-white border-white/20">
               PORT TERMINAL COORDINATION
@@ -23,42 +23,67 @@ export const VesselSchedulePage: React.FC = () => {
               NHAVA SHEVA (JNPT) • PORT CODE: INNSA
             </span>
           </div>
+
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading text-white tracking-tight">
             Vessel Schedule & Cut-Off Coordination
           </h1>
+
           <p className="text-blue-100 text-[15px] sm:text-[17px] max-w-3xl font-body leading-relaxed">
             Coordinating export packaging, container stuffing, and dynamic cargo securing to align seamlessly with carrier gate-in windows and vessel cut-off dates at Nhava Sheva (JNPT).
           </p>
+
+          {/* Prominent MarineTraffic Track a Vessel CTA in Hero */}
+          <div className="pt-2 sm:pt-4 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-5">
+            <a
+              href={trackingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-lg bg-[#B62825] hover:bg-[#9E2220] text-white font-nav text-[15px] font-semibold tracking-wide shadow-md hover:shadow-lg transition-all duration-200 group focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#B62825] self-start"
+              aria-label="Track a Vessel on MarineTraffic (opens in a new tab)"
+            >
+              <span>Track a Vessel</span>
+              <ExternalLink className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </a>
+
+            <p className="text-xs sm:text-sm text-blue-100/90 font-body flex items-center gap-2">
+              <Ship className="w-4 h-4 text-blue-300 shrink-0" />
+              <span>Track vessel movements and view maritime traffic on MarineTraffic.</span>
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* 2. Customer-Facing Clean Tracking Section (Replaces the former internal warning banner) */}
+      {/* 2. Customer-Facing Clean Tracking Section */}
       <section className="bg-[#F8FAFC] border-b border-[#E2E8F0] py-10 sm:py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-8">
           <div className="bg-white rounded-2xl border border-[#E2E8F0] p-6 sm:p-8 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div className="space-y-2 max-w-2xl">
               <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-[#B62825]">
                 <Ship className="w-4 h-4" />
-                <span>EXTERNAL CARRIER PORTAL ACCESS</span>
+                <span>LIVE MARITIME RADAR & AIS TRACKING</span>
               </div>
               <h2 className="text-2xl sm:text-3xl font-bold font-heading text-[#1E293B]">
-                Vessel Schedule & Tracking
+                Live Vessel Movements & Schedules
               </h2>
               <p className="text-[15px] text-[#475569] leading-relaxed">
-                Access the relevant carrier or vessel-tracking service to review shipment schedules, vessel movements, and port gate-in timetables.
+                Track vessel movements and view maritime traffic on MarineTraffic. Review real-time AIS vessel coordinates, port arrivals, departures, and estimated berthing timetables worldwide before dispatching export cargo.
+              </p>
+              <p className="text-xs text-[#64748B] pt-1">
+                Notice: Live AIS vessel tracking and maritime radar data are provided by the external MarineTraffic platform.
               </p>
             </div>
 
-            <div className="flex-shrink-0">
+            <div className="flex-shrink-0 flex flex-col items-start md:items-end gap-2">
               <a
                 href={trackingUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-primary text-sm py-3.5 px-6 inline-flex items-center gap-2 shadow-md whitespace-nowrap"
+                className="btn-primary text-sm sm:text-base py-3.5 px-7 inline-flex items-center gap-2.5 shadow-md whitespace-nowrap group hover:bg-[#9E2220] transition-all"
               >
-                <span>Open Vessel Tracking</span>
-                <ExternalLink className="w-4 h-4" />
+                <span>Track a Vessel</span>
+                <ExternalLink className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
+              <span className="text-[12px] text-[#64748B]">Opens MarineTraffic in new window</span>
             </div>
           </div>
         </div>

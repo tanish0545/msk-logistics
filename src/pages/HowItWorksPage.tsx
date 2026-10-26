@@ -7,8 +7,8 @@ export const HowItWorksPage: React.FC = () => {
     {
       step: '01',
       title: 'Choose the Service Arrangement',
-      summary: 'Select between Complete Export Packing Solution (Option A) or Client-Arranged Container (Option B).',
-      detail: 'Determine whether you need MSK Logistics to arrange the container subject to quotation and availability, or if you already have a container booking through your shipping line or freight forwarder.',
+      summary: 'Select between Option 01 (Client-Arranged Container & Cargo) or Option 02 (Client Cargo, Container Arranged by Client).',
+      detail: 'Identify your container arrangement. Under both options, MSK Logistics performs the agreed export packaging, container stuffing, and heavy cargo lashing work.',
       deliverable: 'Selected arrangement recorded on your enquiry'
     },
     {
@@ -29,7 +29,7 @@ export const HowItWorksPage: React.FC = () => {
       step: '04',
       title: 'Quotation & Scope Confirmation',
       summary: 'Receive a transparent formal quotation detailing all agreed deliverables.',
-      detail: 'The quote itemizes packaging materials, container sourcing costs (if Option A is selected), stuffing labor, lashing hardware, operational schedule, and clear exclusions.',
+      detail: 'The quote itemizes packaging materials, stuffing labor, lashing hardware, operational schedule, and clear exclusions.',
       deliverable: 'Written quotation and formal work scope'
     },
     {
@@ -58,15 +58,24 @@ export const HowItWorksPage: React.FC = () => {
   return (
     <div className="space-y-0">
       {/* Page Header */}
-      <section className="bg-[#343434] text-white py-16 sm:py-20 border-b border-neutral-700">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-4">
-          <span className="editorial-badge bg-white/10 text-white border-white/20">
-            STRUCTURED WORKFLOW
-          </span>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading text-white">
+      <section className="bg-[#173F70] text-white py-14 sm:py-16 border-b border-[#0F2D52] relative overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-gradient-to-r from-[#173F70] via-[#1A457D] to-[#173F70] opacity-95 pointer-events-none" 
+          aria-hidden="true" 
+        />
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-3.5 relative z-10">
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="editorial-badge bg-white/10 text-white border-white/20">
+              STRUCTURED WORKFLOW
+            </span>
+            <span className="text-xs font-mono text-blue-200">
+              NHAVA SHEVA (JNPT) • MARITIME S.O.P.
+            </span>
+          </div>
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading text-white tracking-tight">
             How It Works: Our 7-Step Export Process
           </h1>
-          <p className="text-neutral-300 text-[16px] sm:text-[18px] max-w-3xl font-body leading-relaxed">
+          <p className="text-blue-100 text-[15px] sm:text-base max-w-3xl font-body leading-relaxed">
             From initial shipment review to final container lashing handover, explore our structured, quote-based workflow.
           </p>
         </div>

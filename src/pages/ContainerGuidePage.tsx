@@ -15,7 +15,6 @@ import {
   Camera,
   Box,
   Compass,
-  Sparkles,
   ChevronDown
 } from 'lucide-react';
 import { CONTAINER_LIST, type ContainerDetail } from '../data/containerGuideData';
