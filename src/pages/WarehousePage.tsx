@@ -47,38 +47,44 @@ export const WarehousePage: React.FC = () => {
       {/* 2. Interactive Mode Switcher Sticky Bar */}
       <section className="bg-white border-b border-[#E2E2E2] sticky top-[68px] sm:top-[72px] z-30 shadow-xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-8 py-3 flex flex-wrap items-center justify-between gap-4">
-          <div className="flex items-center gap-2.5">
-            <span className="text-xs font-mono font-bold text-[#64748B] uppercase tracking-wider hidden sm:inline mr-1">
+          <div className="flex items-center gap-2.5 p-1 bg-[#F1F5F9] rounded-xl border border-neutral-200/80">
+            <span className="text-xs font-mono font-bold text-[#64748B] uppercase tracking-wider hidden sm:inline ml-2 mr-1">
               Select Mode:
             </span>
             <button
               type="button"
               onClick={() => setActiveTab('open')}
-              className={`py-2 px-4 rounded-lg text-xs sm:text-sm font-medium transition-all duration-200 inline-flex items-center gap-2 ${
+              aria-pressed={!isShaded}
+              className={`relative py-2 px-4 rounded-lg text-xs sm:text-sm font-medium transition-all duration-300 inline-flex items-center gap-2 select-none ${
                 !isShaded
                   ? 'bg-[#173F70] text-white shadow-sm font-semibold'
-                  : 'bg-[#F5F5F3] text-[#52627A] hover:bg-[#E8E8E8] hover:text-[#173F70]'
+                  : 'bg-transparent text-[#52627A] hover:text-[#173F70] hover:bg-white/60'
               }`}
             >
-              <SunMedium className="w-4 h-4 text-amber-500" />
+              <SunMedium className={`w-4 h-4 transition-transform duration-300 motion-reduce:transform-none ${
+                !isShaded ? 'text-amber-400 scale-110 rotate-12' : 'text-amber-500/70 scale-95'
+              }`} />
               <span>Open Warehouse (Open-Air Sky)</span>
             </button>
 
             <button
               type="button"
               onClick={() => setActiveTab('shaded')}
-              className={`py-2 px-4 rounded-lg text-xs sm:text-sm font-medium transition-all duration-200 inline-flex items-center gap-2 ${
+              aria-pressed={isShaded}
+              className={`relative py-2 px-4 rounded-lg text-xs sm:text-sm font-medium transition-all duration-300 inline-flex items-center gap-2 select-none ${
                 isShaded
                   ? 'bg-[#173F70] text-white shadow-sm font-semibold'
-                  : 'bg-[#F5F5F3] text-[#52627A] hover:bg-[#E8E8E8] hover:text-[#173F70]'
+                  : 'bg-transparent text-[#52627A] hover:text-[#173F70] hover:bg-white/60'
               }`}
             >
-              <Umbrella className="w-4 h-4 text-sky-400" />
+              <Umbrella className={`w-4 h-4 transition-transform duration-300 motion-reduce:transform-none ${
+                isShaded ? 'text-sky-300 scale-110 -rotate-12' : 'text-sky-500/70 scale-95'
+              }`} />
               <span>Shaded Warehouse (Canopy Shelter)</span>
             </button>
           </div>
 
-          <div className="inline-flex items-center gap-1.5 text-xs font-mono text-[#173F70] bg-blue-50/80 px-3 py-1 rounded-md border border-blue-200/80">
+          <div className="inline-flex items-center gap-1.5 text-xs font-mono text-[#173F70] bg-blue-50/80 px-3 py-1.5 rounded-lg border border-blue-200/80">
             <Sparkles className="w-3.5 h-3.5 text-[#B62825]" />
             <span>Interactive Lighting Simulation</span>
           </div>
@@ -131,14 +137,14 @@ export const WarehousePage: React.FC = () => {
                 <img
                   src={OPEN_WAREHOUSE_IMAGE}
                   alt={selectedCategory.imageAlt}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02] motion-reduce:transition-none motion-reduce:transform-none"
                 />
 
                 {/* 2. Top Layer: Shaded Warehouse with Original Metal Roof Structure */}
                 <img
                   src={SHADED_WAREHOUSE_IMAGE}
                   alt="Covered warehouse facility with original overhead metal roof structure"
-                  className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ease-in-out group-hover:scale-[1.02] ${
+                  className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-400 ease-in-out group-hover:scale-[1.02] motion-reduce:transition-none motion-reduce:transform-none ${
                     isShaded ? 'opacity-100' : 'opacity-0 pointer-events-none'
                   }`}
                 />

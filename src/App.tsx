@@ -33,6 +33,17 @@ const ScrollToTop: React.FC = () => {
   return null;
 };
 
+// Subtle page entrance transition wrapper (short fade + 6px vertical lift)
+const PageEntranceWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { pathname } = useLocation();
+
+  return (
+    <div key={pathname} className="animate-page-entrance">
+      {children}
+    </div>
+  );
+};
+
 export const App: React.FC = () => {
   return (
     <Router>
@@ -40,26 +51,28 @@ export const App: React.FC = () => {
       <div className="min-h-screen flex flex-col bg-[#FFFFFF] text-[#343434] selection:bg-[#B62825] selection:text-white">
         <Navbar />
         <main className="flex-1">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/services" element={<ServicesPage />} />
-            <Route path="/services/export-packaging" element={<ExportPackagingPage />} />
-            <Route path="/services/container-stuffing" element={<ContainerStuffingPage />} />
-            <Route path="/services/cargo-lashing" element={<CargoLashingPage />} />
-            <Route path="/export-packing-solutions" element={<ExportPackingSolutionsPage />} />
-            <Route path="/how-it-works" element={<HowItWorksPage />} />
-            <Route path="/import-export" element={<ImportExportPage />} />
-            <Route path="/container-guide" element={<ContainerGuidePage />} />
-            <Route path="/warehouse" element={<WarehousePage />} />
-            <Route path="/warehousing" element={<WarehousePage />} />
-            <Route path="/vessel-schedule" element={<VesselSchedulePage />} />
-            <Route path="/operations" element={<OperationsPage />} />
-            <Route path="/knowledge" element={<KnowledgePage />} />
-            <Route path="/request-quote" element={<QuoteRequestPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
+          <PageEntranceWrapper>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/services" element={<ServicesPage />} />
+              <Route path="/services/export-packaging" element={<ExportPackagingPage />} />
+              <Route path="/services/container-stuffing" element={<ContainerStuffingPage />} />
+              <Route path="/services/cargo-lashing" element={<CargoLashingPage />} />
+              <Route path="/export-packing-solutions" element={<ExportPackingSolutionsPage />} />
+              <Route path="/how-it-works" element={<HowItWorksPage />} />
+              <Route path="/import-export" element={<ImportExportPage />} />
+              <Route path="/container-guide" element={<ContainerGuidePage />} />
+              <Route path="/warehouse" element={<WarehousePage />} />
+              <Route path="/warehousing" element={<WarehousePage />} />
+              <Route path="/vessel-schedule" element={<VesselSchedulePage />} />
+              <Route path="/operations" element={<OperationsPage />} />
+              <Route path="/knowledge" element={<KnowledgePage />} />
+              <Route path="/request-quote" element={<QuoteRequestPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+              <Route path="*" element={<NotFoundPage />} />
+            </Routes>
+          </PageEntranceWrapper>
         </main>
         <Footer />
       </div>

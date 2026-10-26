@@ -100,10 +100,10 @@ export const OperationalEnvironmentsGallery: React.FC = () => {
           <div className="flex items-center gap-3">
             <Link
               to="/import-export"
-              className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-[#B62825] hover:bg-[#9E2220] text-white text-xs font-semibold font-mono transition-all shadow-md"
+              className="group/btn inline-flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-[#B62825] hover:bg-[#9E2220] text-white text-xs font-semibold font-mono transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5 active:scale-[0.98]"
             >
               <span>Explore All Shipments</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+              <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover/btn:translate-x-1" />
             </Link>
           </div>
         </div>
@@ -129,12 +129,17 @@ export const OperationalEnvironmentsGallery: React.FC = () => {
             return (
               <div
                 key={`primary-${item.id}`}
-                className="relative flex-shrink-0 transition-all duration-300 ease-out"
+                className="group relative flex-shrink-0 transition-all duration-300 ease-out motion-reduce:transform-none motion-reduce:transition-none"
                 style={{
                   width: 'clamp(300px, 32vw, 450px)',
-                  transform: isHovered ? 'scale(1.04) translateY(-6px)' : 'scale(1) translateY(0)',
+                  transform: isHovered
+                    ? 'scale(1.03) translateY(-5px)'
+                    : isOtherHovered
+                    ? 'scale(0.985) translateY(0)'
+                    : 'scale(1) translateY(0)',
                   zIndex: isHovered ? 40 : 10,
-                  filter: isOtherHovered ? 'blur(2.5px) opacity(0.55)' : 'none',
+                  opacity: isOtherHovered ? 0.65 : 1,
+                  transition: 'transform 300ms cubic-bezier(0.16, 1, 0.3, 1), opacity 300ms ease',
                 }}
                 onMouseEnter={() => setHoveredCardId(item.id)}
                 onMouseLeave={() => setHoveredCardId(null)}
@@ -150,23 +155,27 @@ export const OperationalEnvironmentsGallery: React.FC = () => {
                 aria-label={`View ${item.title}`}
               >
                 {/* Image Card Container */}
-                <div className={`relative rounded-xl overflow-hidden bg-neutral-900 border transition-all duration-300 shadow-lg ${isHovered
-                    ? 'border-red-500 shadow-2xl ring-2 ring-red-500/20'
-                    : 'border-white/10 hover:border-white/30'
-                  }`}>
+                <div className={`relative rounded-xl overflow-hidden bg-neutral-900 border transition-all duration-300 ${
+                  isHovered
+                    ? 'border-[#B62825] shadow-[0_16px_36px_-6px_rgba(182,40,37,0.35),0_6px_16px_-4px_rgba(0,0,0,0.5)] ring-1 ring-[#B62825]/40'
+                    : 'border-white/10 hover:border-white/25 shadow-lg'
+                }`}>
                   <BrandedImage
                     src={item.localPath}
                     alt={item.alt}
                     aspectRatio="aspect-[16/10]"
-                    imageClassName="w-full h-full object-cover transition-transform duration-500"
+                    imageClassName={`w-full h-full object-cover transition-transform duration-500 ease-out motion-reduce:transform-none ${
+                      isHovered ? 'scale-105' : 'scale-100'
+                    }`}
                   />
 
                   {/* Gradient bottom shadow for readability */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
 
                   {/* Default Baseline Title (always visible when not hovered) */}
-                  <div className={`p-4 absolute bottom-0 left-0 right-0 z-20 transition-opacity duration-200 ${isHovered ? 'opacity-0 pointer-events-none' : 'opacity-100'
-                    }`}>
+                  <div className={`p-4 absolute bottom-0 left-0 right-0 z-20 transition-opacity duration-200 ${
+                    isHovered ? 'opacity-0 pointer-events-none' : 'opacity-100'
+                  }`}>
                     <h3 className="text-sm sm:text-base font-bold text-white tracking-tight truncate drop-shadow">
                       {item.title}
                     </h3>
@@ -176,10 +185,11 @@ export const OperationalEnvironmentsGallery: React.FC = () => {
                   </div>
 
                   {/* Hover Floating Information Card Overlay */}
-                  <div className={`absolute inset-x-3 bottom-3 z-30 p-4 rounded-xl bg-neutral-950/95 backdrop-blur-md border border-white/20 text-white shadow-2xl transition-all duration-300 ${isHovered
+                  <div className={`absolute inset-x-3 bottom-3 z-30 p-4 rounded-xl bg-neutral-950/95 backdrop-blur-md border border-white/20 text-white shadow-2xl transition-all duration-300 motion-reduce:transform-none ${
+                    isHovered
                       ? 'opacity-100 translate-y-0 pointer-events-auto'
                       : 'opacity-0 translate-y-2 pointer-events-none'
-                    }`}>
+                  }`}>
                     <div className="flex items-center justify-between mb-1.5">
                       <span className="text-[10px] font-mono font-bold tracking-wider uppercase text-red-400">
                         {getCategoryLabel(item.subcategory)}
@@ -210,9 +220,10 @@ export const OperationalEnvironmentsGallery: React.FC = () => {
                       <Link
                         to="/request-quote"
                         onClick={(e) => e.stopPropagation()}
-                        className="text-[11px] font-mono text-neutral-300 hover:text-white transition-colors"
+                        className="group/quote text-[11px] font-mono text-neutral-300 hover:text-white transition-colors inline-flex items-center gap-1"
                       >
-                        Request Quote &rarr;
+                        <span>Request Quote</span>
+                        <ArrowRight className="w-3 h-3 text-red-400 transition-transform duration-200 group-hover/quote:translate-x-1" />
                       </Link>
                     </div>
                   </div>
@@ -231,32 +242,41 @@ export const OperationalEnvironmentsGallery: React.FC = () => {
                 key={`duplicate-${item.id}`}
                 aria-hidden="true"
                 tabIndex={-1}
-                className="relative flex-shrink-0 transition-all duration-300 ease-out"
+                className="group relative flex-shrink-0 transition-all duration-300 ease-out motion-reduce:transform-none motion-reduce:transition-none"
                 style={{
                   width: 'clamp(300px, 32vw, 450px)',
-                  transform: isHovered ? 'scale(1.04) translateY(-6px)' : 'scale(1) translateY(0)',
+                  transform: isHovered
+                    ? 'scale(1.03) translateY(-5px)'
+                    : isOtherHovered
+                    ? 'scale(0.985) translateY(0)'
+                    : 'scale(1) translateY(0)',
                   zIndex: isHovered ? 40 : 10,
-                  filter: isOtherHovered ? 'blur(2.5px) opacity(0.55)' : 'none',
+                  opacity: isOtherHovered ? 0.65 : 1,
+                  transition: 'transform 300ms cubic-bezier(0.16, 1, 0.3, 1), opacity 300ms ease',
                 }}
                 onMouseEnter={() => setHoveredCardId(`duplicate-${item.id}`)}
                 onMouseLeave={() => setHoveredCardId(null)}
                 onClick={() => openLightbox(index)}
               >
-                <div className={`relative rounded-xl overflow-hidden bg-neutral-900 border transition-all duration-300 shadow-lg ${isHovered
-                    ? 'border-red-500 shadow-2xl ring-2 ring-red-500/20'
-                    : 'border-white/10 hover:border-white/30'
-                  }`}>
+                <div className={`relative rounded-xl overflow-hidden bg-neutral-900 border transition-all duration-300 ${
+                  isHovered
+                    ? 'border-[#B62825] shadow-[0_16px_36px_-6px_rgba(182,40,37,0.35),0_6px_16px_-4px_rgba(0,0,0,0.5)] ring-1 ring-[#B62825]/40'
+                    : 'border-white/10 hover:border-white/25 shadow-lg'
+                }`}>
                   <BrandedImage
                     src={item.localPath}
                     alt=""
                     aspectRatio="aspect-[16/10]"
-                    imageClassName="w-full h-full object-cover transition-transform duration-500"
+                    imageClassName={`w-full h-full object-cover transition-transform duration-500 ease-out motion-reduce:transform-none ${
+                      isHovered ? 'scale-105' : 'scale-100'
+                    }`}
                   />
 
                   <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
 
-                  <div className={`p-4 absolute bottom-0 left-0 right-0 z-20 transition-opacity duration-200 ${isHovered ? 'opacity-0 pointer-events-none' : 'opacity-100'
-                    }`}>
+                  <div className={`p-4 absolute bottom-0 left-0 right-0 z-20 transition-opacity duration-200 ${
+                    isHovered ? 'opacity-0 pointer-events-none' : 'opacity-100'
+                  }`}>
                     <h3 className="text-sm sm:text-base font-bold text-white tracking-tight truncate drop-shadow">
                       {item.title}
                     </h3>
@@ -265,10 +285,11 @@ export const OperationalEnvironmentsGallery: React.FC = () => {
                     </p>
                   </div>
 
-                  <div className={`absolute inset-x-3 bottom-3 z-30 p-4 rounded-xl bg-neutral-950/95 backdrop-blur-md border border-white/20 text-white shadow-2xl transition-all duration-300 ${isHovered
+                  <div className={`absolute inset-x-3 bottom-3 z-30 p-4 rounded-xl bg-neutral-950/95 backdrop-blur-md border border-white/20 text-white shadow-2xl transition-all duration-300 motion-reduce:transform-none ${
+                    isHovered
                       ? 'opacity-100 translate-y-0 pointer-events-auto'
                       : 'opacity-0 translate-y-2 pointer-events-none'
-                    }`}>
+                  }`}>
                     <div className="flex items-center justify-between mb-1.5">
                       <span className="text-[10px] font-mono font-bold tracking-wider uppercase text-red-400">
                         {getCategoryLabel(item.subcategory)}
@@ -296,9 +317,14 @@ export const OperationalEnvironmentsGallery: React.FC = () => {
                         <span>Enlarge Photograph</span>
                       </button>
 
-                      <span className="text-[11px] font-mono text-neutral-300">
-                        JNPT Operations
-                      </span>
+                      <Link
+                        to="/request-quote"
+                        onClick={(e) => e.stopPropagation()}
+                        className="group/quote text-[11px] font-mono text-neutral-300 hover:text-white transition-colors inline-flex items-center gap-1"
+                      >
+                        <span>Request Quote</span>
+                        <ArrowRight className="w-3 h-3 text-red-400 transition-transform duration-200 group-hover/quote:translate-x-1" />
+                      </Link>
                     </div>
                   </div>
                 </div>

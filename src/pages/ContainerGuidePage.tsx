@@ -248,9 +248,10 @@ export const ContainerGuidePage: React.FC = () => {
                     el.scrollIntoView({ behavior: 'smooth', block: 'start' });
                   }
                 }}
-                className={`py-2 px-3.5 rounded-lg text-xs sm:text-sm font-medium transition-all duration-150 whitespace-nowrap flex items-center gap-1.5 ${
+                aria-selected={selectedContainerId === container.id}
+                className={`py-2 px-3.5 rounded-lg text-xs sm:text-sm font-medium transition-all duration-200 whitespace-nowrap flex items-center gap-1.5 ${
                   selectedContainerId === container.id
-                    ? 'bg-[#173F70] text-white shadow-sm font-semibold'
+                    ? 'bg-[#173F70] text-white shadow-sm font-semibold ring-2 ring-[#173F70]/30'
                     : 'bg-[#F5F5F3] text-[#52627A] hover:bg-[#E8E8E8] hover:text-[#173F70]'
                 }`}
               >
@@ -390,7 +391,8 @@ export const ContainerGuidePage: React.FC = () => {
 
                 {/* Main Image Viewer */}
                 <div 
-                  className="relative group rounded-xl overflow-hidden border border-[#E2E8F0] bg-neutral-950 shadow-inner cursor-pointer"
+                  key={`${selectedContainer.id}-${showcaseViewMode}`}
+                  className="relative group rounded-xl overflow-hidden border border-[#E2E8F0] bg-neutral-950 shadow-inner cursor-pointer animate-fade-in-up motion-reduce:animate-none"
                   onClick={() => openLightboxFor(selectedContainer.id, showcaseViewMode)}
                   title="Click to open full-resolution viewer"
                 >
@@ -399,6 +401,7 @@ export const ContainerGuidePage: React.FC = () => {
                     alt={showcaseImg.alt}
                     aspectRatio="aspect-[16/11]"
                     tagSubtitle="MSK ASSET"
+                    imageClassName="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 motion-reduce:transform-none"
                   />
 
                   {/* Click to Enlarge Hover Badge */}
@@ -451,8 +454,11 @@ export const ContainerGuidePage: React.FC = () => {
                 </div>
               </div>
 
-              {/* Right Column: Verified ISO Dimensions & Clearances (7 cols) */}
-              <div className="lg:col-span-7 space-y-6">
+              {/* Right Column: Verified ISO Dimensions & Clearances (7 cols) with smooth key transition */}
+              <div 
+                key={`specs-${selectedContainer.id}`}
+                className="lg:col-span-7 space-y-6 animate-fade-in-up motion-reduce:animate-none"
+              >
                 {/* 1. External Dimensions */}
                 <div className="bg-[#F8FAFC] p-5 rounded-xl border border-[#E2E8F0] space-y-3">
                   <div className="flex items-center justify-between">

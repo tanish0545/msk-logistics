@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ChevronDown, ArrowUpRight, Menu, X } from 'lucide-react';
 import { NAV_ITEMS, QUOTE_CTA, type NavItem } from './navConfig';
+import { MagneticButton } from '../common/MagneticButton';
 
 export const Navbar: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -243,21 +244,23 @@ export const Navbar: React.FC = () => {
 
         {/* 3. Get a Quote CTA Button (Far Right) - Height approx 52-54px */}
         <div className="hidden sm:flex items-center flex-shrink-0">
-          <Link
-            to={QUOTE_CTA.path}
-            className="w-[136px] sm:w-[142px] h-[52px] sm:h-[54px] rounded-lg bg-[#B62825] hover:bg-[#9E2220] text-white flex items-center justify-between px-3.5 sm:px-4 shadow-sm hover:shadow-md transition-all duration-200 ease-out group focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#B62825]"
-            aria-label="Request a logistics quote"
-          >
-            <div className="flex flex-col text-left leading-[1.12]">
-              <span className="text-[11px] font-bold tracking-wider uppercase text-white/95 font-nav">
-                {QUOTE_CTA.line1}
-              </span>
-              <span className="text-[15px] font-extrabold tracking-wider uppercase text-white font-nav">
-                {QUOTE_CTA.line2}
-              </span>
-            </div>
-            <ArrowUpRight className="w-4.5 h-4.5 text-white stroke-[2.4] transition-transform duration-200 ease-out group-hover:translate-x-1 group-hover:-translate-y-1 flex-shrink-0 ml-1.5" />
-          </Link>
+          <MagneticButton maxPull={3}>
+            <Link
+              to={QUOTE_CTA.path}
+              className="w-[136px] sm:w-[142px] h-[52px] sm:h-[54px] rounded-lg bg-[#B62825] hover:bg-[#9E2220] text-white flex items-center justify-between px-3.5 sm:px-4 shadow-sm hover:shadow-md hover:brightness-105 active:scale-[0.98] transition-all duration-200 ease-out group focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#B62825] motion-reduce:transform-none"
+              aria-label="Request a logistics quote"
+            >
+              <div className="flex flex-col text-left leading-[1.12]">
+                <span className="text-[11px] font-bold tracking-wider uppercase text-white/95 font-nav">
+                  {QUOTE_CTA.line1}
+                </span>
+                <span className="text-[15px] font-extrabold tracking-wider uppercase text-white font-nav">
+                  {QUOTE_CTA.line2}
+                </span>
+              </div>
+              <ArrowUpRight className="w-4.5 h-4.5 text-white stroke-[2.4] transition-transform duration-200 ease-out group-hover:translate-x-1 group-hover:-translate-y-1 flex-shrink-0 ml-1.5 motion-reduce:transform-none" />
+            </Link>
+          </MagneticButton>
         </div>
 
         {/* 4. Mobile & Tablet Menu Toggle Button */}
