@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="otSky2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#1E293B"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="350" fill="url(#otSky2)"/>
+  <rect y="350" width="800" height="150" fill="#0B1329"/>
+
+  <!-- Open Top Container with Open Roof (Overhead View perspective) -->
+  <rect x="120" y="220" width="560" height="150" fill="#0284C7" stroke="#0369A1" stroke-width="3"/>
+  <!-- Swing-out Door Header Shown Open -->
+  <line x1="680" y1="220" x2="710" y2="190" stroke="#F8FAFC" stroke-width="4"/>
+
+  <!-- Industrial Machinery Being Lowered by Mobile Crane -->
+  <rect x="250" y="120" width="300" height="140" rx="6" fill="#F59E0B" stroke="#B45309" stroke-width="3"/>
+  <rect x="300" y="90" width="200" height="30" rx="4" fill="#D97706"/>
+
+  <!-- Heavy Crane Rigging Wire Slings & Spreader Bar -->
+  <rect x="220" y="50" width="360" height="10" rx="2" fill="#E2E8F0"/>
+  <line x1="400" y1="0" x2="400" y2="50" stroke="#94A3B8" stroke-width="4"/>
+  <line x1="240" y1="50" x2="270" y2="120" stroke="#E2E8F0" stroke-width="3"/>
+  <line x1="560" y1="50" x2="530" y2="120" stroke="#E2E8F0" stroke-width="3"/>
+
+  <!-- Internal Shoring Timber Ready on Floor -->
+  <rect x="180" y="325" width="440" height="20" fill="#B45309"/>
+
+  <!-- Header Info -->
+  <rect x="25" y="25" width="310" height="48" rx="6" fill="#0F172A" opacity="0.85" stroke="#334155" stroke-width="1"/>
+  <text x="40" y="45" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" fill="#F87171">OPEN TOP SHIPMENT</text>
+  <text x="40" y="62" font-family="monospace" font-size="10" fill="#94A3B8">Top Overhead Crane Loading & Swing-Out Header</text>
+</svg>

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="multiDeck" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#334155"/>
+      <stop offset="100%" stop-color="#1E293B"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="340" fill="#0F172A"/>
+  <rect y="340" width="800" height="160" fill="url(#multiDeck)"/>
+
+  <!-- Multi-Axle Heavy Transporter Platform -->
+  <rect x="60" y="315" width="680" height="35" rx="4" fill="#3B82F6"/>
+  <!-- Transporter Wheels -->
+  <circle cx="120" cy="370" r="18" fill="#0F172A" stroke="#64748B" stroke-width="4"/>
+  <circle cx="180" cy="370" r="18" fill="#0F172A" stroke="#64748B" stroke-width="4"/>
+  <circle cx="240" cy="370" r="18" fill="#0F172A" stroke="#64748B" stroke-width="4"/>
+  <circle cx="560" cy="370" r="18" fill="#0F172A" stroke="#64748B" stroke-width="4"/>
+  <circle cx="620" cy="370" r="18" fill="#0F172A" stroke="#64748B" stroke-width="4"/>
+  <circle cx="680" cy="370" r="18" fill="#0F172A" stroke="#64748B" stroke-width="4"/>
+
+  <!-- High-Value Electrical Power Transformer Unit -->
+  <rect x="180" y="120" width="440" height="195" rx="6" fill="#475569" stroke="#1E293B" stroke-width="3"/>
+  <rect x="220" y="90" width="80" height="30" rx="4" fill="#64748B"/>
+  <rect x="360" y="90" width="80" height="30" rx="4" fill="#64748B"/>
+  <rect x="500" y="90" width="80" height="30" rx="4" fill="#64748B"/>
+
+  <!-- Bushings / High Voltage Terminals -->
+  <polygon points="260,40 245,90 275,90" fill="#D97706"/>
+  <polygon points="400,40 385,90 415,90" fill="#D97706"/>
+  <polygon points="540,40 525,90 555,90" fill="#D97706"/>
+
+  <!-- Heavy Duty Ratchet Tie-Downs to Chassis Eyelets -->
+  <line x1="80" y1="315" x2="260" y2="120" stroke="#EF4444" stroke-width="5"/>
+  <line x1="140" y1="315" x2="320" y2="120" stroke="#FBBF24" stroke-width="4"/>
+  <line x1="720" y1="315" x2="540" y2="120" stroke="#EF4444" stroke-width="5"/>
+  <line x1="660" y1="315" x2="480" y2="120" stroke="#FBBF24" stroke-width="4"/>
+
+  <!-- Header Info -->
+  <rect x="25" y="25" width="310" height="48" rx="6" fill="#0F172A" opacity="0.85" stroke="#334155" stroke-width="1"/>
+  <text x="40" y="45" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" fill="#F87171">BREAKBULK SHIPMENT</text>
+  <text x="40" y="62" font-family="monospace" font-size="10" fill="#94A3B8">Power Transformer Unit on Multi-Axle Transporter</text>
+</svg>

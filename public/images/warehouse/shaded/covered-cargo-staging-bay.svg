@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bayLight" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#334155"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="500" fill="url(#bayLight)"/>
+
+  <!-- High-Roof Covered Canopy Structure -->
+  <line x1="50" y1="120" x2="750" y2="120" stroke="#CBD5E1" stroke-width="8"/>
+  <rect x="80" y="120" width="24" height="280" fill="#94A3B8"/>
+  <rect x="696" y="120" width="24" height="280" fill="#94A3B8"/>
+
+  <!-- Floor Level -->
+  <rect x="50" y="400" width="700" height="60" fill="#1E293B"/>
+
+  <!-- Weather-Vulnerable Precision Machinery Staged under Canopy -->
+  <rect x="170" y="240" width="460" height="160" rx="4" fill="#3B82F6" stroke="#1D4ED8" stroke-width="2"/>
+  <!-- Silver VCI Foil Protective Vacuum Wrap -->
+  <rect x="190" y="220" width="420" height="180" rx="6" fill="#F1F5F9" opacity="0.6" stroke="#94A3B8" stroke-width="2"/>
+  <text x="400" y="320" font-family="monospace" font-size="14" font-weight="bold" fill="#0F172A" text-anchor="middle">VCI BARRIER FOIL WRAPPED</text>
+
+  <!-- Timber Base Skids Under Machinery -->
+  <rect x="150" y="390" width="500" height="15" fill="#B45309"/>
+
+  <!-- Overhead Warning Light and Moisture Control Tags -->
+  <circle cx="400" cy="120" r="12" fill="#EAB308"/>
+
+  <!-- Header Info -->
+  <rect x="25" y="25" width="310" height="48" rx="6" fill="#0F172A" opacity="0.85" stroke="#334155" stroke-width="1"/>
+  <text x="40" y="45" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" fill="#F87171">SHADED WAREHOUSE</text>
+  <text x="40" y="62" font-family="monospace" font-size="10" fill="#94A3B8">High-Canopy Staging Bay for Sensitive Equipment</text>
+</svg>

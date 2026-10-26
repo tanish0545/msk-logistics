@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bbSky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#1E293B"/>
+    </linearGradient>
+    <linearGradient id="bbMach" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EAB308"/>
+      <stop offset="100%" stop-color="#CA8A04"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="350" fill="url(#bbSky)"/>
+  <rect y="350" width="800" height="150" fill="#0B1329"/>
+
+  <!-- Ship Weather Deck / Hatch Cover Surface -->
+  <rect x="50" y="335" width="700" height="25" fill="#334155" stroke="#475569" stroke-width="2"/>
+  
+  <!-- Heavy Duty Spreader Beams / Timber Dunnage Bed -->
+  <rect x="120" y="315" width="560" height="20" fill="#92400E" stroke="#78350F" stroke-width="2"/>
+  <rect x="150" y="300" width="500" height="15" fill="#B45309"/>
+
+  <!-- Breakbulk Heavy Excavator / Industrial Assembly -->
+  <rect x="200" y="150" width="400" height="150" rx="8" fill="url(#bbMach)" stroke="#A16207" stroke-width="3"/>
+  <rect x="170" y="180" width="60" height="120" rx="4" fill="#475569"/>
+  <rect x="570" y="180" width="60" height="120" rx="4" fill="#475569"/>
+  <rect x="260" y="110" width="160" height="40" rx="6" fill="#A16207"/>
+
+  <!-- Heavy Lifting Crane Hook & Rigging Slings -->
+  <path d="M 400,0 L 400,60 L 370,80 L 430,80 Z" fill="#94A3B8"/>
+  <line x1="400" y1="80" x2="250" y2="150" stroke="#E2E8F0" stroke-width="4" stroke-dasharray="6,2"/>
+  <line x1="400" y1="80" x2="550" y2="150" stroke="#E2E8F0" stroke-width="4" stroke-dasharray="6,2"/>
+
+  <!-- High-Tensile Heavy Chain Lashings to Deck Pad-Eyes -->
+  <!-- Left Deck Pad-Eye Lashings -->
+  <line x1="100" y1="335" x2="220" y2="170" stroke="#F59E0B" stroke-width="5"/>
+  <line x1="100" y1="335" x2="300" y2="170" stroke="#EF4444" stroke-width="4"/>
+  <!-- Right Deck Pad-Eye Lashings -->
+  <line x1="700" y1="335" x2="580" y2="170" stroke="#F59E0B" stroke-width="5"/>
+  <line x1="700" y1="335" x2="500" y2="170" stroke="#EF4444" stroke-width="4"/>
+
+  <!-- Pad-Eyes / Deck D-Rings -->
+  <circle cx="100" cy="335" r="8" fill="#F8FAFC" stroke="#0F172A" stroke-width="3"/>
+  <circle cx="700" cy="335" r="8" fill="#F8FAFC" stroke="#0F172A" stroke-width="3"/>
+
+  <!-- Header Info -->
+  <rect x="25" y="25" width="310" height="48" rx="6" fill="#0F172A" opacity="0.85" stroke="#334155" stroke-width="1"/>
+  <text x="40" y="45" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" fill="#F87171">BREAKBULK SHIPMENT</text>
+  <text x="40" y="62" font-family="monospace" font-size="10" fill="#94A3B8">Heavy Project Cargo Deck Rigging & Lashings</text>
+</svg>

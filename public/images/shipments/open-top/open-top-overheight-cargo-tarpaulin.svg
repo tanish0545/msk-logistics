@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="otBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B"/>
+      <stop offset="100%" stop-color="#334155"/>
+    </linearGradient>
+    <linearGradient id="tarpGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1E3A8A"/>
+      <stop offset="50%" stop-color="#2563EB"/>
+      <stop offset="100%" stop-color="#1D4ED8"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="350" fill="url(#otBg)"/>
+  <rect y="350" width="800" height="150" fill="#0F172A"/>
+
+  <!-- Open Top Container Steel Box Body (Green / Blue Maritime Container) -->
+  <rect x="110" y="210" width="580" height="150" fill="#047857" stroke="#065F46" stroke-width="3"/>
+  <!-- Container Vertical Corrugation Panels -->
+  <line x1="160" y1="210" x2="160" y2="360" stroke="#064E3B" stroke-width="3"/>
+  <line x1="220" y1="210" x2="220" y2="360" stroke="#064E3B" stroke-width="3"/>
+  <line x1="280" y1="210" x2="280" y2="360" stroke="#064E3B" stroke-width="3"/>
+  <line x1="340" y1="210" x2="340" y2="360" stroke="#064E3B" stroke-width="3"/>
+  <line x1="400" y1="210" x2="400" y2="360" stroke="#064E3B" stroke-width="3"/>
+  <line x1="460" y1="210" x2="460" y2="360" stroke="#064E3B" stroke-width="3"/>
+  <line x1="520" y1="210" x2="520" y2="360" stroke="#064E3B" stroke-width="3"/>
+  <line x1="580" y1="210" x2="580" y2="360" stroke="#064E3B" stroke-width="3"/>
+  <line x1="640" y1="210" x2="640" y2="360" stroke="#064E3B" stroke-width="3"/>
+
+  <!-- Over-Height Cargo Protruding Above Container Top Rail -->
+  <path d="M 190,210 L 230,130 L 570,130 L 610,210 Z" fill="#D97706" stroke="#92400E" stroke-width="2"/>
+  
+  <!-- Weatherproof Heavy-Duty Blue Tarpaulin (TIR Approved) Covering Top -->
+  <path d="M 170,215 Q 400,100 630,215 L 635,225 L 165,225 Z" fill="url(#tarpGrad)" opacity="0.9" stroke="#1D4ED8" stroke-width="2"/>
+  
+  <!-- Tarpaulin Lashing Cable & Eyelets (TIR Cord Zig-Zag Pattern) -->
+  <polyline points="170,225 190,245 220,225 250,245 280,225 310,245 340,225 370,245 400,225 430,245 460,225 490,245 520,225 550,245 580,225 610,245 630,225" 
+            fill="none" stroke="#FBBF24" stroke-width="2.5"/>
+
+  <!-- Removable Roof Bows Visible Detail Callout -->
+  <line x1="280" y1="170" x2="280" y2="210" stroke="#E2E8F0" stroke-width="3" stroke-dasharray="4,2"/>
+  <line x1="520" y1="170" x2="520" y2="210" stroke="#E2E8F0" stroke-width="3" stroke-dasharray="4,2"/>
+
+  <!-- Header Info -->
+  <rect x="25" y="25" width="310" height="48" rx="6" fill="#0F172A" opacity="0.85" stroke="#334155" stroke-width="1"/>
+  <text x="40" y="45" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" fill="#F87171">OPEN TOP SHIPMENT</text>
+  <text x="40" y="62" font-family="monospace" font-size="10" fill="#94A3B8">Over-Height Equipment with Weatherproof Tarpaulin</text>
+</svg>

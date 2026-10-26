@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="yardSky2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B"/>
+      <stop offset="100%" stop-color="#475569"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="280" fill="url(#yardSky2)"/>
+  <rect y="280" width="800" height="220" fill="#334155"/>
+
+  <!-- Open Yard Low-Bed Trailer Staging Container -->
+  <rect x="80" y="320" width="640" height="40" rx="4" fill="#EAB308"/>
+  <!-- Trailer Wheels -->
+  <circle cx="160" cy="380" r="16" fill="#0F172A" stroke="#94A3B8" stroke-width="4"/>
+  <circle cx="210" cy="380" r="16" fill="#0F172A" stroke="#94A3B8" stroke-width="4"/>
+  <circle cx="590" cy="380" r="16" fill="#0F172A" stroke="#94A3B8" stroke-width="4"/>
+  <circle cx="640" cy="380" r="16" fill="#0F172A" stroke="#94A3B8" stroke-width="4"/>
+
+  <!-- 40ft High Cube Container on Trailer -->
+  <rect x="120" y="160" width="560" height="160" rx="4" fill="#0284C7" stroke="#0369A1" stroke-width="3"/>
+  <g stroke="#0369A1" stroke-width="2.5">
+    <line x1="180" y1="160" x2="180" y2="320"/>
+    <line x1="240" y1="160" x2="240" y2="320"/>
+    <line x1="300" y1="160" x2="300" y2="320"/>
+    <line x1="360" y1="160" x2="360" y2="320"/>
+    <line x1="420" y1="160" x2="420" y2="320"/>
+    <line x1="480" y1="160" x2="480" y2="320"/>
+    <line x1="540" y1="160" x2="540" y2="320"/>
+    <line x1="600" y1="160" x2="600" y2="320"/>
+  </g>
+
+  <!-- Header Info -->
+  <rect x="25" y="25" width="310" height="48" rx="6" fill="#0F172A" opacity="0.85" stroke="#334155" stroke-width="1"/>
+  <text x="40" y="45" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" fill="#F87171">OPEN WAREHOUSE & YARD</text>
+  <text x="40" y="62" font-family="monospace" font-size="10" fill="#94A3B8">Container Gate-In Holding & Truck Staging</text>
+</svg>

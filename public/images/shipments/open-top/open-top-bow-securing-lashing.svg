@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="otSky3" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="350" fill="url(#otSky3)"/>
+  <rect y="350" width="800" height="150" fill="#0B1329"/>
+
+  <!-- Open Top Container -->
+  <rect x="110" y="210" width="580" height="150" fill="#047857" stroke="#065F46" stroke-width="3"/>
+  
+  <!-- Internal Cross Lashings Visible from Top -->
+  <line x1="140" y1="210" x2="350" y2="340" stroke="#FBBF24" stroke-width="4"/>
+  <line x1="350" y1="210" x2="140" y2="340" stroke="#FBBF24" stroke-width="4"/>
+  <line x1="450" y1="210" x2="660" y2="340" stroke="#EF4444" stroke-width="4"/>
+  <line x1="660" y1="210" x2="450" y2="340" stroke="#EF4444" stroke-width="4"/>
+
+  <!-- Steel Roof Bows Positioned Across Upper Side Rails -->
+  <rect x="180" y="198" width="8" height="24" rx="2" fill="#F8FAFC"/>
+  <rect x="280" y="198" width="8" height="24" rx="2" fill="#F8FAFC"/>
+  <rect x="380" y="198" width="8" height="24" rx="2" fill="#F8FAFC"/>
+  <rect x="480" y="198" width="8" height="24" rx="2" fill="#F8FAFC"/>
+  <rect x="580" y="198" width="8" height="24" rx="2" fill="#F8FAFC"/>
+
+  <!-- Internal Cargo Crate Skids -->
+  <rect x="220" y="235" width="360" height="100" rx="4" fill="#D97706" opacity="0.85" stroke="#B45309" stroke-width="2"/>
+
+  <!-- Header Info -->
+  <rect x="25" y="25" width="310" height="48" rx="6" fill="#0F172A" opacity="0.85" stroke="#334155" stroke-width="1"/>
+  <text x="40" y="45" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" fill="#F87171">OPEN TOP SHIPMENT</text>
+  <text x="40" y="62" font-family="monospace" font-size="10" fill="#94A3B8">Removable Roof Bows & Internal Cross Lashings</text>
+</svg>
