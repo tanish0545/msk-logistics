@@ -122,6 +122,8 @@ export const WarehousePage: React.FC = () => {
                 <img
                   src={OPEN_WAREHOUSE_IMAGE}
                   alt={selectedCategory.imageAlt}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02] motion-reduce:transition-none motion-reduce:transform-none"
                 />
 
@@ -129,6 +131,8 @@ export const WarehousePage: React.FC = () => {
                 <img
                   src={SHADED_WAREHOUSE_IMAGE}
                   alt="Covered warehouse facility with original overhead metal roof structure"
+                  loading="lazy"
+                  decoding="async"
                   className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-400 ease-in-out group-hover:scale-[1.02] motion-reduce:transition-none motion-reduce:transform-none ${
                     isShaded ? 'opacity-100' : 'opacity-0 pointer-events-none'
                   }`}
@@ -141,6 +145,8 @@ export const WarehousePage: React.FC = () => {
                       src="/images/logo/msk-logistics-logo.png"
                       alt="MSK Logistics"
                       className="h-4.5 w-auto object-contain"
+                      loading="lazy"
+                      decoding="async"
                     />
                   </div>
                 </div>

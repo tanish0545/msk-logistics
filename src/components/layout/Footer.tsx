@@ -105,6 +105,8 @@ export const Footer: React.FC = () => {
                   className="h-9 w-auto object-contain"
                   width="90"
                   height="36"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
             </Link>

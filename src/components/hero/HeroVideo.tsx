@@ -86,14 +86,23 @@ export const HeroVideo: React.FC = () => {
     motionQuery.addEventListener('change', motionListener);
 
     let ticking = false;
+    let lastProgress = 0;
     const handleScroll = () => {
       if (motionQuery.matches) return;
       if (!ticking) {
         window.requestAnimationFrame(() => {
           const heroHeight = heroRef.current?.offsetHeight || 720;
           const currentY = window.scrollY;
+          // When scrolled past the hero, avoid unnecessary state updates
+          if (currentY > heroHeight && lastProgress === 1) {
+            ticking = false;
+            return;
+          }
           const progress = Math.min(Math.max(currentY / heroHeight, 0), 1);
-          setScrollProgress(progress);
+          if (progress !== lastProgress) {
+            lastProgress = progress;
+            setScrollProgress(progress);
+          }
           ticking = false;
         });
         ticking = true;
@@ -215,7 +224,7 @@ export const HeroVideo: React.FC = () => {
             muted
             autoPlay
             playsInline
-            preload="auto"
+            preload={activeSlot === 'A' ? 'auto' : 'metadata'}
             onError={() => setVideoError(true)}
             className={`absolute inset-0 w-full h-full object-cover object-[72%_center] sm:object-center transition-opacity duration-1000 ease-in-out ${activeSlot === 'A' ? 'opacity-100 z-10' : 'opacity-0 z-0'
               }`}
@@ -231,7 +240,7 @@ export const HeroVideo: React.FC = () => {
             poster={clipB.poster}
             muted
             playsInline
-            preload="metadata"
+            preload={activeSlot === 'B' ? 'auto' : 'metadata'}
             onError={() => setVideoError(true)}
             className={`absolute inset-0 w-full h-full object-cover object-[72%_center] sm:object-center transition-opacity duration-1000 ease-in-out ${activeSlot === 'B' ? 'opacity-100 z-10' : 'opacity-0 z-0'
               }`}

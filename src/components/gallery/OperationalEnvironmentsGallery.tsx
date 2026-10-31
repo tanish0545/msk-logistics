@@ -374,6 +374,8 @@ export const OperationalEnvironmentsGallery: React.FC = () => {
               <img
                 src={images[lightboxIndex].localPath}
                 alt={images[lightboxIndex].alt}
+                loading="lazy"
+                decoding="async"
                 className="max-h-[72vh] max-w-full w-auto object-contain"
               />
 
@@ -384,6 +386,8 @@ export const OperationalEnvironmentsGallery: React.FC = () => {
                     src="/images/logo/msk-logistics-logo.png"
                     alt="MSK Logistics"
                     className="h-5 w-auto object-contain"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
               </div>

@@ -634,6 +634,8 @@ export const HomePage: React.FC = () => {
                 <img
                   src={OPEN_WAREHOUSE_IMAGE}
                   alt="MSK Logistics Open-Air Warehouse Staging with Natural Daylight Sky"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 motion-reduce:transition-none motion-reduce:transform-none"
                 />
 
@@ -641,6 +643,8 @@ export const HomePage: React.FC = () => {
                 <img
                   src={SHADED_WAREHOUSE_IMAGE}
                   alt="MSK Logistics Covered Warehouse Facility with Metal Roof"
+                  loading="lazy"
+                  decoding="async"
                   className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-400 group-hover:scale-105 motion-reduce:transition-none motion-reduce:transform-none ${
                     isShaded ? 'opacity-100' : 'opacity-0 pointer-events-none'
                   }`}
@@ -663,6 +667,8 @@ export const HomePage: React.FC = () => {
                       src="/images/logo/msk-logistics-logo.png"
                       alt="MSK Logistics"
                       className="h-4 w-auto object-contain"
+                      loading="lazy"
+                      decoding="async"
                     />
                   </div>
                 </div>
@@ -993,6 +999,8 @@ export const HomePage: React.FC = () => {
           <img
             src="/images/operations/container-loading/vessel-stowage-cell-guides.jpg"
             alt="Port terminal vessel stowage operations"
+            loading="lazy"
+            decoding="async"
             className="w-full h-full object-cover object-center opacity-30 transform scale-100 group-hover:scale-105 transition-transform duration-1000 ease-out pointer-events-none"
           />
           {/* Deep Navy/Charcoal Vignette Gradients */}

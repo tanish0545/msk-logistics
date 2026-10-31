@@ -79,6 +79,7 @@ export const BrandedImage: React.FC<BrandedImageProps> = ({
           src={imgSrc}
           alt={alt}
           loading="lazy"
+          decoding="async"
           onError={handleError}
           className={`w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.03] ${imageClassName}`}
         />
@@ -97,6 +98,8 @@ export const BrandedImage: React.FC<BrandedImageProps> = ({
               className="h-4 sm:h-4.5 w-auto object-contain flex-shrink-0"
               width="42"
               height="20"
+              loading="lazy"
+              decoding="async"
               onError={(e) => {
                 // If logo itself fails, hide the badge quietly
                 e.currentTarget.parentElement?.remove();

@@ -573,6 +573,7 @@ export const AboutPage: React.FC = () => {
                     alt="MSK Logistics team standing together inside a warehouse."
                     className="w-full h-auto object-cover max-h-[640px] transition-transform duration-500 ease-out group-hover:scale-[1.02]"
                     loading="lazy"
+                    decoding="async"
                     width="768"
                     height="1024"
                   />
@@ -585,6 +586,8 @@ export const AboutPage: React.FC = () => {
                       src="/images/logo/msk-logistics-logo.png"
                       alt="MSK Logistics"
                       className="h-4 sm:h-5 w-auto object-contain flex-shrink-0"
+                      loading="lazy"
+                      decoding="async"
                     />
                   </div>
                 </div>

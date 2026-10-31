@@ -713,6 +713,8 @@ export const ImportExportPage: React.FC = () => {
               <img
                 src={lightboxItem.image}
                 alt={lightboxItem.altText}
+                loading="lazy"
+                decoding="async"
                 className="w-full h-auto max-h-[55vh] object-contain"
               />
 
@@ -723,6 +725,8 @@ export const ImportExportPage: React.FC = () => {
                     src="/images/logo/msk-logistics-logo.png"
                     alt="MSK Logistics"
                     className="h-5 w-auto object-contain"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
               </div>

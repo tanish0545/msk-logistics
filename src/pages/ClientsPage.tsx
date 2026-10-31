@@ -183,6 +183,7 @@ const ClientCard: React.FC<{ client: ClientCompany }> = ({ client }) => (
           alt={`${client.name} official logo`}
           className="max-h-full max-w-full object-contain filter group-hover/card:contrast-105 transition-all duration-200 pointer-events-none"
           loading="lazy"
+          decoding="async"
         />
       ) : (
         <div className="w-full h-full flex flex-col items-center justify-center rounded-md bg-neutral-100/70 border border-neutral-200/50 p-1.5 text-center group-hover/card:border-[#B62825]/30 group-hover/card:bg-red-50/20 transition-all">

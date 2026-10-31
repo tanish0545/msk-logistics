@@ -122,6 +122,8 @@ export const Navbar: React.FC = () => {
               className="w-[120px] sm:w-[135px] lg:w-[150px] xl:w-[140px] h-auto object-contain"
               width="155"
               height="60"
+              loading="eager"
+              decoding="async"
             />
           </Link>
         </div>
@@ -142,8 +144,14 @@ export const Navbar: React.FC = () => {
               const onEnter = isServices ? handleServicesEnter : handleCompanyEnter;
               const onLeave = isServices ? handleServicesLeave : handleCompanyLeave;
               const onToggle = () => {
-                if (isServices) setServicesDropdownOpen(!servicesDropdownOpen);
-                if (isCompany) setCompanyDropdownOpen(!companyDropdownOpen);
+                if (isServices) {
+                  setServicesDropdownOpen(!servicesDropdownOpen);
+                  setCompanyDropdownOpen(false);
+                }
+                if (isCompany) {
+                  setCompanyDropdownOpen(!companyDropdownOpen);
+                  setServicesDropdownOpen(false);
+                }
               };
 
               return (
@@ -155,41 +163,75 @@ export const Navbar: React.FC = () => {
                   onMouseLeave={onLeave}
                 >
                   <div className="group relative h-full flex items-center">
-                    <Link
-                      to={item.path}
-                      className={`relative h-full flex items-center gap-1 px-2 xl:px-2.5 py-1 text-[13px] 2xl:text-[14px] 3xl:text-[14.5px] font-nav transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#173F70] rounded-sm whitespace-nowrap ${active
-                        ? 'text-[#173F70] font-semibold'
-                        : 'text-[#475569] font-normal hover:text-[#173F70]'
-                        }`}
-                      aria-haspopup="true"
-                      aria-expanded={isOpen}
-                    >
-                      <span>{item.label}</span>
+                    {isCompany ? (
+                      /* Company Nav Item: Button trigger that opens/closes dropdown on click without navigating */
                       <button
                         type="button"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          onToggle();
+                        onClick={() => {
+                          setCompanyDropdownOpen(!companyDropdownOpen);
+                          setServicesDropdownOpen(false);
                         }}
-                        className="p-0.5 rounded hover:bg-neutral-100 transition-colors focus:outline-none"
-                        aria-label={`Toggle ${item.label} submenu`}
+                        className={`relative h-full flex items-center gap-1 px-2 xl:px-2.5 py-1 text-[13px] 2xl:text-[14px] 3xl:text-[14.5px] font-nav transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#173F70] rounded-sm whitespace-nowrap cursor-pointer ${active
+                          ? 'text-[#173F70] font-semibold'
+                          : 'text-[#475569] font-normal hover:text-[#173F70]'
+                          }`}
+                        aria-haspopup="true"
+                        aria-expanded={isOpen}
+                        aria-label="Toggle Company menu"
                       >
+                        <span>{item.label}</span>
                         <ChevronDown
                           className={`w-3.5 h-3.5 transition-transform duration-200 stroke-[2.2] ${isOpen ? 'rotate-180 text-[#173F70]' : 'text-current group-hover:text-[#173F70]'
                             }`}
                         />
-                      </button>
 
-                      {/* Smooth Animated Red Underline Bar */}
-                      <span
-                        className={`absolute bottom-0 left-2 right-2 h-[2px] bg-[#B62825] rounded-t-full transition-all duration-200 ease-out origin-left pointer-events-none ${active
-                          ? 'scale-x-100 opacity-100'
-                          : 'scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-100'
+                        {/* Smooth Animated Red Underline Bar */}
+                        <span
+                          className={`absolute bottom-0 left-2 right-2 h-[2px] bg-[#B62825] rounded-t-full transition-all duration-200 ease-out origin-left pointer-events-none ${active
+                            ? 'scale-x-100 opacity-100'
+                            : 'scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-100'
+                            }`}
+                          aria-hidden="true"
+                        />
+                      </button>
+                    ) : (
+                      /* Services Nav Item: Preserved exactly as before */
+                      <Link
+                        to={item.path}
+                        className={`relative h-full flex items-center gap-1 px-2 xl:px-2.5 py-1 text-[13px] 2xl:text-[14px] 3xl:text-[14.5px] font-nav transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#173F70] rounded-sm whitespace-nowrap ${active
+                          ? 'text-[#173F70] font-semibold'
+                          : 'text-[#475569] font-normal hover:text-[#173F70]'
                           }`}
-                        aria-hidden="true"
-                      />
-                    </Link>
+                        aria-haspopup="true"
+                        aria-expanded={isOpen}
+                      >
+                        <span>{item.label}</span>
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            onToggle();
+                          }}
+                          className="p-0.5 rounded hover:bg-neutral-100 transition-colors focus:outline-none"
+                          aria-label={`Toggle ${item.label} submenu`}
+                        >
+                          <ChevronDown
+                            className={`w-3.5 h-3.5 transition-transform duration-200 stroke-[2.2] ${isOpen ? 'rotate-180 text-[#173F70]' : 'text-current group-hover:text-[#173F70]'
+                              }`}
+                          />
+                        </button>
+
+                        {/* Smooth Animated Red Underline Bar */}
+                        <span
+                          className={`absolute bottom-0 left-2 right-2 h-[2px] bg-[#B62825] rounded-t-full transition-all duration-200 ease-out origin-left pointer-events-none ${active
+                            ? 'scale-x-100 opacity-100'
+                            : 'scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-100'
+                            }`}
+                          aria-hidden="true"
+                        />
+                      </Link>
+                    )}
                   </div>
 
                   {/* Dropdown Menu */}
@@ -503,25 +545,46 @@ export const Navbar: React.FC = () => {
                 return (
                   <div key={item.id} className="py-1">
                     <div className="flex items-center justify-between py-2 px-3 rounded-lg hover:bg-[#F8F9FA]">
-                      <Link
-                        to={item.path}
-                        className={`text-[15px] font-medium ${active ? 'text-[#173F70] font-semibold' : 'text-[#52627A]'
-                          }`}
-                        onClick={() => setMobileMenuOpen(false)}
-                      >
-                        {item.label}
-                      </Link>
-                      <button
-                        type="button"
-                        onClick={toggleSub}
-                        className="p-1.5 text-[#52627A] hover:text-[#173F70]"
-                        aria-label={`Expand ${item.label} list`}
-                      >
-                        <ChevronDown
-                          className={`w-4 h-4 transition-transform ${isSubOpen ? 'rotate-180 text-[#173F70]' : ''
+                      {isCompany ? (
+                        /* Mobile Company: Toggles dropdown on click without navigating to Branches */
+                        <button
+                          type="button"
+                          className={`w-full flex items-center justify-between text-left text-[15px] font-medium ${active ? 'text-[#173F70] font-semibold' : 'text-[#52627A]'
                             }`}
-                        />
-                      </button>
+                          onClick={() => setMobileCompanyOpen(!mobileCompanyOpen)}
+                          aria-expanded={isSubOpen}
+                          aria-label="Toggle Company submenu"
+                        >
+                          <span>{item.label}</span>
+                          <ChevronDown
+                            className={`w-4 h-4 transition-transform ${isSubOpen ? 'rotate-180 text-[#173F70]' : ''
+                              }`}
+                          />
+                        </button>
+                      ) : (
+                        /* Mobile Services: Preserved exactly as before */
+                        <>
+                          <Link
+                            to={item.path}
+                            className={`text-[15px] font-medium ${active ? 'text-[#173F70] font-semibold' : 'text-[#52627A]'
+                              }`}
+                            onClick={() => setMobileMenuOpen(false)}
+                          >
+                            {item.label}
+                          </Link>
+                          <button
+                            type="button"
+                            onClick={toggleSub}
+                            className="p-1.5 text-[#52627A] hover:text-[#173F70]"
+                            aria-label={`Expand ${item.label} list`}
+                          >
+                            <ChevronDown
+                              className={`w-4 h-4 transition-transform ${isSubOpen ? 'rotate-180 text-[#173F70]' : ''
+                                }`}
+                            />
+                          </button>
+                        </>
+                      )}
                     </div>
 
                     {isSubOpen && (

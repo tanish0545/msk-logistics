@@ -937,6 +937,8 @@ export const ContainerGuidePage: React.FC = () => {
               <img
                 src={currentLightboxItem.url}
                 alt={currentLightboxItem.alt}
+                loading="lazy"
+                decoding="async"
                 className="max-h-[72vh] max-w-full w-auto object-contain"
               />
               {/* MSK Corner Badge Overlay */}
@@ -946,6 +948,8 @@ export const ContainerGuidePage: React.FC = () => {
                     src="/images/logo/msk-logistics-logo.png"
                     alt="MSK Logistics"
                     className="h-5 w-auto object-contain"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <span className="text-[10px] font-mono font-bold tracking-wider uppercase text-[#173F70] pl-1.5 border-l border-neutral-300">
                     CONTAINER GUIDE
