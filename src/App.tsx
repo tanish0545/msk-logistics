@@ -20,15 +20,25 @@ import { WarehousePage } from './pages/WarehousePage';
 import { VesselSchedulePage } from './pages/VesselSchedulePage';
 import { OperationsPage } from './pages/OperationsPage';
 import { KnowledgePage } from './pages/KnowledgePage';
+import { ClientsPage } from './pages/ClientsPage';
+import { StaffPage } from './pages/StaffPage';
+import { BranchesPage } from './pages/BranchesPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 
-// Scroll to top on route navigation
+// Scroll to top or anchor on route navigation
 const ScrollToTop: React.FC = () => {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
 
   useEffect(() => {
+    if (hash) {
+      const el = document.getElementById(hash.replace('#', ''));
+      if (el) {
+        el.scrollIntoView({ behavior: 'instant' as ScrollBehavior });
+        return;
+      }
+    }
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' as ScrollBehavior });
-  }, [pathname]);
+  }, [pathname, hash]);
 
   return null;
 };
@@ -68,6 +78,12 @@ export const App: React.FC = () => {
               <Route path="/vessel-schedule" element={<VesselSchedulePage />} />
               <Route path="/operations" element={<OperationsPage />} />
               <Route path="/knowledge" element={<KnowledgePage />} />
+              <Route path="/company/clients" element={<ClientsPage />} />
+              <Route path="/clients" element={<ClientsPage />} />
+              <Route path="/company/staff" element={<StaffPage />} />
+              <Route path="/staff" element={<StaffPage />} />
+              <Route path="/company/branches" element={<BranchesPage />} />
+              <Route path="/branches" element={<BranchesPage />} />
               <Route path="/request-quote" element={<QuoteRequestPage />} />
               <Route path="/contact" element={<ContactPage />} />
               <Route path="*" element={<NotFoundPage />} />

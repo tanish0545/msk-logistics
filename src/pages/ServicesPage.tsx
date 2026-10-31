@@ -3,33 +3,19 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Box, Anchor, ShieldCheck } from 'lucide-react';
 import { CORE_SERVICES } from '../data/company';
 import { ServiceCard } from '../components/services/ServiceCard';
+import { CartingTreeDiagram } from '../components/services/CartingTreeDiagram';
+import { InnerPageBanner } from '../components/layout/InnerPageBanner';
 
 export const ServicesPage: React.FC = () => {
   return (
     <div className="space-y-0">
       {/* Services Banner */}
-      <section className="bg-[#173F70] text-white py-14 sm:py-16 border-b border-[#0F2D52] relative overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-gradient-to-r from-[#173F70] via-[#1A457D] to-[#173F70] opacity-95 pointer-events-none" 
-          aria-hidden="true" 
-        />
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-3.5 relative z-10">
-          <div className="flex flex-wrap items-center gap-3">
-            <span className="editorial-badge bg-white/10 text-white border-white/20">
-              SERVICE DIRECTORY
-            </span>
-            <span className="text-xs font-mono text-blue-200">
-              NHAVA SHEVA (JNPT) EXPORT DISCIPLINES
-            </span>
-          </div>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading text-white tracking-tight">
-            Export Packaging, Container Stuffing & Cargo Lashing
-          </h1>
-          <p className="text-blue-100 text-[15px] sm:text-base max-w-3xl font-body leading-relaxed">
-            Engineered cargo preparation services designed to ensure structural integrity and maritime transport safety.
-          </p>
-        </div>
-      </section>
+      <InnerPageBanner
+        badge="SERVICE DIRECTORY"
+        badgeSubtext="NHAVA SHEVA (JNPT) EXPORT DISCIPLINES"
+        title="Export Packaging, Container Stuffing & Cargo Lashing"
+        description="Engineered cargo preparation services designed to ensure structural integrity and maritime transport safety."
+      />
 
       {/* Services Grid */}
       <section className="py-20 bg-white border-b border-[#E2E2E2]">
@@ -96,6 +82,27 @@ export const ServicesPage: React.FC = () => {
               </Link>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Carting Section: Operational Relationship Tree (Point 03) */}
+      <section className="py-20 bg-[#F5F5F3] border-b border-[#E2E2E2]" id="carting">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-12">
+          {/* Section Header */}
+          <div className="max-w-3xl mx-auto text-center space-y-3">
+            <span className="editorial-badge bg-white text-[#B62825] border-red-200">
+              OPERATIONAL STRUCTURE
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#343434] font-heading tracking-tight">
+              Carting Hierarchy &amp; Facility Network
+            </h2>
+            <p className="text-[15px] sm:text-base text-[#666666] leading-relaxed">
+              Clear organizational hierarchy illustrating the relationship between Carting operations and our three associated facility companies at Nhava Sheva.
+            </p>
+          </div>
+
+          {/* Interactive Tree Diagram */}
+          <CartingTreeDiagram />
         </div>
       </section>
     </div>

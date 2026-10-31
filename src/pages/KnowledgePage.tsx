@@ -1,33 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { BookOpen, ShieldCheck, CheckCircle2, ArrowRight, FileText, Anchor } from 'lucide-react';
+import { InnerPageBanner } from '../components/layout/InnerPageBanner';
 
 export const KnowledgePage: React.FC = () => {
   return (
     <div className="space-y-0">
-      {/* Page Header — Clean & Modern Brand Navy */}
-      <section className="bg-[#173F70] text-white py-14 sm:py-16 border-b border-[#0F2D52] relative overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-gradient-to-r from-[#173F70] via-[#1A457D] to-[#173F70] opacity-95 pointer-events-none" 
-          aria-hidden="true" 
-        />
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-4 relative z-10 animate-fade-in-up">
-          <div className="flex flex-wrap items-center gap-3">
-            <span className="editorial-badge bg-white/10 text-white border-white/20">
-              TECHNICAL KNOWLEDGE BASE
-            </span>
-            <span className="text-xs font-mono text-blue-200">
-              MARITIME & EXPORT GUIDELINES
-            </span>
-          </div>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading text-white tracking-tight">
-            Export Packaging & Marine Securing Knowledge
-          </h1>
-          <p className="text-blue-100 text-[15px] sm:text-[17px] max-w-3xl font-body leading-relaxed">
-            Essential guidelines on international phytosanitary compliance, CTU Code cargo securing standards, moisture mitigation, and ocean freight packaging best practices.
-          </p>
-        </div>
-      </section>
+      {/* Page Header — Dark Graphite Refined Banner */}
+      <InnerPageBanner
+        badge="TECHNICAL KNOWLEDGE BASE"
+        badgeSubtext="MARITIME & EXPORT GUIDELINES"
+        title="Export Packaging & Marine Securing Knowledge"
+        description="Essential guidelines on international phytosanitary compliance, CTU Code cargo securing standards, moisture mitigation, and ocean freight packaging best practices."
+      />
 
       {/* Main Knowledge Articles */}
       <section className="py-16 sm:py-20 bg-white border-b border-[#E2E2E2]">

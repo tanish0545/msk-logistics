@@ -1,7 +1,14 @@
+export interface SubmenuItem {
+  label: string;
+  path: string;
+  description?: string;
+}
+
 export interface DropdownItem {
   label: string;
   path: string;
   description: string;
+  subItems?: SubmenuItem[];
 }
 
 export interface NavItem {
@@ -96,14 +103,44 @@ export const NAV_ITEMS: NavItem[] = [
     path: '/operations',
   },
   {
-    id: 'knowledge',
-    label: 'Knowledge',
-    path: '/knowledge',
-  },
-  {
     id: 'contact',
     label: 'Contact',
     path: '/contact',
+  },
+  {
+    id: 'company',
+    label: 'Company',
+    path: '/company/branches',
+    hasDropdown: true,
+    dropdownItems: [
+      {
+        label: 'Our Clients',
+        path: '/company/clients',
+        description: 'Exporters, manufacturers & logistics partnerships',
+      },
+      {
+        label: 'Our Staff',
+        path: '/company/staff',
+        description: 'Field rigging crews & operational specialists',
+      },
+      {
+        label: 'Our Branches',
+        path: '/company/branches',
+        description: 'Main registered branch & port staging facilities',
+        subItems: [
+          {
+            label: 'Main Branch (Belapur)',
+            path: '/company/branches#main-branch',
+            description: 'Balaji Bhawan, Sector 11, CBD Belapur, Navi Mumbai',
+          },
+          {
+            label: 'Second Branch (JNPT)',
+            path: '/company/branches#second-branch',
+            description: 'JNPT Township Colony, Sector - 3, Navi Mumbai',
+          },
+        ],
+      },
+    ],
   },
 ];
 

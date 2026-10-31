@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle2, AlertCircle, ChevronRight } from 'lucide-react';
 import { CORE_SERVICES } from '../data/company';
-
 import { BrandedImage } from '../components/common/BrandedImage';
+import { InnerPageBanner } from '../components/layout/InnerPageBanner';
 
 export const ContainerStuffingPage: React.FC = () => {
   const service = CORE_SERVICES.find(s => s.id === 'container-stuffing')!;
@@ -11,29 +11,20 @@ export const ContainerStuffingPage: React.FC = () => {
   return (
     <div className="space-y-0">
       {/* Breadcrumb & Hero */}
-      <section className="bg-[#343434] text-white py-16 sm:py-20 border-b border-neutral-700">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-4">
-          <div className="flex items-center gap-2 text-[12px] font-mono-code text-neutral-400">
-            <Link to="/" className="hover:text-white">Home</Link>
-            <ChevronRight className="w-3.5 h-3.5" />
-            <Link to="/services" className="hover:text-white">Services</Link>
-            <ChevronRight className="w-3.5 h-3.5" />
-            <span className="text-[#B62825]">{service.title}</span>
-          </div>
-
-          <span className="editorial-badge bg-white/10 text-white border-white/20">
-            {service.tag}
-          </span>
-
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading text-white">
-            {service.title} & Weight Balance Planning
-          </h1>
-
-          <p className="text-neutral-300 text-[16px] sm:text-[18px] max-w-3xl font-body leading-relaxed">
-            {service.shortDescription}
-          </p>
-        </div>
-      </section>
+      <InnerPageBanner
+        breadcrumb={
+          <>
+            <Link to="/" className="hover:text-white transition-colors">Home</Link>
+            <ChevronRight className="w-3.5 h-3.5 text-[#AEB6C2]" />
+            <Link to="/services" className="hover:text-white transition-colors">Services</Link>
+            <ChevronRight className="w-3.5 h-3.5 text-[#AEB6C2]" />
+            <span className="text-[#B62825] font-semibold">{service.title}</span>
+          </>
+        }
+        badge={service.tag}
+        title={`${service.title} & Weight Balance Planning`}
+        description={service.shortDescription}
+      />
 
       {/* Main Content */}
       <section className="py-16 sm:py-20 bg-white border-b border-[#E2E2E2]">

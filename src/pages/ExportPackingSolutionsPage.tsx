@@ -3,33 +3,18 @@ import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { SolutionCards } from '../components/export-solutions/SolutionCards';
 import { ComparisonTable } from '../components/export-solutions/ComparisonTable';
+import { InnerPageBanner } from '../components/layout/InnerPageBanner';
 
 export const ExportPackingSolutionsPage: React.FC = () => {
   return (
     <div className="space-y-0">
       {/* Page Header */}
-      <section className="bg-[#173F70] text-white py-14 sm:py-16 border-b border-[#0F2D52] relative overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-gradient-to-r from-[#173F70] via-[#1A457D] to-[#173F70] opacity-95 pointer-events-none" 
-          aria-hidden="true" 
-        />
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-3.5 relative z-10">
-          <div className="flex flex-wrap items-center gap-3">
-            <span className="editorial-badge bg-white/10 text-white border-white/20">
-              SERVICE ARRANGEMENTS
-            </span>
-            <span className="text-xs font-mono text-blue-200">
-              NHAVA SHEVA (JNPT) • OPERATIONAL MODELS
-            </span>
-          </div>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading text-white tracking-tight">
-            Two Transparent Export Packing Arrangements
-          </h1>
-          <p className="text-blue-100 text-[15px] sm:text-base max-w-3xl font-body leading-relaxed">
-            Choose the operational model that matches your export shipment. Both arrangements feature our dedicated packaging, stuffing, and cargo lashing execution.
-          </p>
-        </div>
-      </section>
+      <InnerPageBanner
+        badge="SERVICE ARRANGEMENTS"
+        badgeSubtext="NHAVA SHEVA (JNPT) • OPERATIONAL MODELS"
+        title="Two Transparent Export Packing Arrangements"
+        description="Choose the operational model that matches your export shipment. Both arrangements feature our dedicated packaging, stuffing, and cargo lashing execution."
+      />
 
       {/* Overview & Solution Cards */}
       <section className="py-16 sm:py-20 bg-white border-b border-[#E2E2E2]">

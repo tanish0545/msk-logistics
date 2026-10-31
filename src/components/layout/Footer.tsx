@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { MapPin, Phone, Mail, ArrowUpRight, ArrowRight } from 'lucide-react';
 import { COMPANY_DETAILS, CORE_SERVICES } from '../../data/company';
 import { MagneticButton } from '../common/MagneticButton';
+import { IsoCertificationBadge } from '../common/IsoCertificationBadge';
 
 export const Footer: React.FC = () => {
   return (
@@ -117,7 +118,12 @@ export const Footer: React.FC = () => {
                 <span className="w-1.5 h-1.5 rounded-full bg-[#B62825]" />
                 <span>PORT: NHAVA SHEVA (JNPT) • PORT CODE: INNSA</span>
               </div>
-              <div className="text-slate-500 pl-3.5">CORRIDOR: NAVI MUMBAI & RAIGAD TERMINALS</div>
+              <div className="text-slate-500 pl-3.5">CORRIDOR: NAVI MUMBAI &amp; RAIGAD TERMINALS</div>
+            </div>
+
+            {/* Dedicated ISO Certification Area */}
+            <div className="pt-2">
+              <IsoCertificationBadge size="sm" theme="dark" />
             </div>
           </div>
 
@@ -226,10 +232,22 @@ export const Footer: React.FC = () => {
               <div className="flex items-center gap-2.5">
                 <Mail className="w-4 h-4 text-[#B62825] shrink-0" />
                 <a 
-                  href={COMPANY_DETAILS.emailHref}
+                  href={COMPANY_DETAILS.infoEmailHref}
                   className="hover:text-white transition-colors break-all"
+                  title="General Inquiries"
                 >
-                  {COMPANY_DETAILS.email}
+                  {COMPANY_DETAILS.infoEmail}
+                </a>
+              </div>
+
+              <div className="flex items-center gap-2.5">
+                <Mail className="w-4 h-4 text-[#B62825] shrink-0" />
+                <a 
+                  href={COMPANY_DETAILS.accountsEmailHref}
+                  className="hover:text-white transition-colors break-all"
+                  title="Accounts &amp; Invoicing"
+                >
+                  {COMPANY_DETAILS.accountsEmail}
                 </a>
               </div>
             </div>

@@ -7,57 +7,332 @@ import {
   Anchor, 
   Phone, 
   MapPin, 
-  Users
+  Users,
+  Calendar,
+  Building2,
+  PackageCheck,
+  Handshake,
+  UserCheck
 } from 'lucide-react';
 import { COMPANY_DETAILS } from '../data/company';
 import { BrandedImage } from '../components/common/BrandedImage';
+import { ScrollReveal } from '../components/common/ScrollReveal';
+import { InnerPageBanner } from '../components/layout/InnerPageBanner';
 
 export const AboutPage: React.FC = () => {
   return (
-    <div className="space-y-0">
-      {/* 1. About Us Hero Section */}
-      <section className="bg-[#173F70] text-white py-14 sm:py-16 border-b border-[#0F2D52] relative overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-gradient-to-r from-[#173F70] via-[#1A457D] to-[#173F70] opacity-95 pointer-events-none" 
-          aria-hidden="true" 
-        />
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-4 relative z-10">
-          <div className="flex flex-wrap items-center gap-3">
-            <span className="editorial-badge bg-white/10 text-white border-white/20">
-              ABOUT MSK LOGISTICS
-            </span>
-            <span className="text-xs font-mono text-blue-200">
-              JNPT • NHAVA SHEVA MARITIME CORRIDOR
-            </span>
-          </div>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading text-white tracking-tight">
-            Industrial Logistics Engineered for Export Operations
-          </h1>
-          <p className="text-blue-100 text-[15px] sm:text-[17px] max-w-3xl font-body leading-relaxed">
-            Specialized export packaging, systematic container stuffing, and high-tensile cargo lashing based at Western India’s maritime export gateway at Nhava Sheva (JNPT).
-          </p>
-          <div className="pt-2 flex flex-wrap items-center gap-4 text-xs font-mono text-blue-200">
+    <div className="space-y-0 bg-white">
+      {/* ========================================================================= */}
+      {/* 1. ABOUT US HERO SECTION                                                  */}
+      {/* ========================================================================= */}
+      <InnerPageBanner
+        badge="ABOUT MSK LOGISTICS"
+        badgeSubtext="JNPT • NHAVA SHEVA MARITIME CORRIDOR"
+        title="Industrial Logistics Engineered for Export Operations"
+        description="Specialized export packaging, systematic container stuffing, and high-tensile cargo lashing based at Western India’s maritime export gateway at Nhava Sheva (JNPT)."
+        meta={
+          <div className="flex flex-wrap items-center gap-4">
             <div className="flex items-center gap-1.5">
               <MapPin className="w-3.5 h-3.5 text-[#B62825]" />
               <span>Navi Mumbai, Maharashtra</span>
             </div>
             <span>•</span>
             <div className="flex items-center gap-1.5">
-              <Anchor className="w-3.5 h-3.5 text-blue-300" />
+              <Anchor className="w-3.5 h-3.5 text-[#D9DEE5]" />
               <span>Primary Gateway: Nhava Sheva Port (JNPT)</span>
             </div>
+          </div>
+        }
+      />
+
+      {/* ========================================================================= */}
+      {/* 2. HISTORY & PHILOSOPHY SECTION (Point 02 Enhancement)                     */}
+      {/* ========================================================================= */}
+      <section className="py-16 sm:py-24 bg-white border-b border-[#E2E2E2] overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+            
+            {/* Left Column: Polished Editorial Storytelling */}
+            <ScrollReveal direction="left" delay={0} className="lg:col-span-7 space-y-6">
+              <div className="space-y-3">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#173F70]/10 border border-[#173F70]/20 text-[#173F70] text-xs font-mono font-semibold uppercase tracking-wider">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#B62825]" />
+                  <span>FOUNDED MAY 2019 • NHAVA SHEVA</span>
+                </div>
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1E293B] font-heading tracking-tight leading-tight">
+                  History &amp; Philosophy
+                </h2>
+                <div className="w-16 h-1 bg-[#B62825]" />
+              </div>
+
+              <div className="space-y-4 text-base sm:text-[17px] text-[#52627A] font-body leading-relaxed">
+                <p>
+                  <strong className="text-[#1E293B] font-semibold">MSK Logistics Solution</strong> was established in <strong>May 2019</strong> to provide dedicated cargo handling and transportation, lashing and choking, palletisation, packing, and specialized export-related activities from Western India’s maritime export hub at Nhava Sheva (JNPT).
+                </p>
+                <p>
+                  In its foundational phase, the company worked in close collaboration with <strong>Speedy Multimodes Limited</strong>, one of the prominent Container Freight Station (CFS) operators in India. This operational association reinforced our ground-level discipline, container terminal protocol, and marine-standard handling procedures.
+                </p>
+                <p>
+                  Our operational philosophy centers strictly on the quality of logistics execution, packaging materials, and client-tailored services. Rather than applying standard uniform packaging, every solution is carefully customized according to specific product requirements and cargo sensitivities. Rigorous adherence to schedules and maintaining strong, dependable client relationships remain our steadfast priorities across every assignment.
+                </p>
+              </div>
+
+              {/* Verified Competency Tags */}
+              <div className="pt-2 flex flex-wrap gap-2 text-[11px] sm:text-xs font-mono">
+                <span className="px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0] text-[#334155] font-medium">
+                  Cargo Handling &amp; Transportation
+                </span>
+                <span className="px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0] text-[#334155] font-medium">
+                  Industrial Packing &amp; Palletisation
+                </span>
+                <span className="px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0] text-[#334155] font-medium">
+                  Marine Lashing &amp; Choking
+                </span>
+                <span className="px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0] text-[#334155] font-medium">
+                  CFS-Aligned Operational Rigor
+                </span>
+              </div>
+            </ScrollReveal>
+
+            {/* Right Column: Editorial Structured Pillars */}
+            <ScrollReveal direction="right" delay={120} className="lg:col-span-5 space-y-4">
+              <div className="bg-[#F8FAFC] p-6 sm:p-8 rounded-2xl border border-[#E2E8F0] space-y-5 shadow-sm">
+                <div className="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-[#E2E8F0]">
+                  <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#173F70]">
+                    Verified Company Profile
+                  </span>
+                  <span className="text-[11px] font-mono text-[#94A3B8]">
+                    MAY 2019 • JNPT
+                  </span>
+                </div>
+
+                <div className="space-y-4">
+                  {/* Item 1: Inception */}
+                  <div className="flex items-start gap-3.5">
+                    <div className="p-2.5 rounded-xl bg-white border border-[#E2E8F0] text-[#B62825] shadow-xs shrink-0">
+                      <Calendar className="w-4 h-4" />
+                    </div>
+                    <div className="space-y-1">
+                      <h4 className="text-sm font-bold text-[#1E293B] font-heading">
+                        Established in May 2019
+                      </h4>
+                      <p className="text-xs text-[#64748B] leading-relaxed">
+                        Formed as an export-readiness specialist handling cargo transportation, packaging, palletisation, and containerized lashing.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Item 2: CFS Background */}
+                  <div className="flex items-start gap-3.5">
+                    <div className="p-2.5 rounded-xl bg-white border border-[#E2E8F0] text-[#173F70] shadow-xs shrink-0">
+                      <Building2 className="w-4 h-4" />
+                    </div>
+                    <div className="space-y-1">
+                      <h4 className="text-sm font-bold text-[#1E293B] font-heading">
+                        Speedy Multimodes Limited Collaboration
+                      </h4>
+                      <p className="text-xs text-[#64748B] leading-relaxed">
+                        Initially worked alongside Speedy Multimodes Limited, one of India&apos;s recognized CFS operators, executing terminal-compliant packing work.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Item 3: Custom Packaging Philosophy */}
+                  <div className="flex items-start gap-3.5">
+                    <div className="p-2.5 rounded-xl bg-white border border-[#E2E8F0] text-emerald-700 shadow-xs shrink-0">
+                      <PackageCheck className="w-4 h-4" />
+                    </div>
+                    <div className="space-y-1">
+                      <h4 className="text-sm font-bold text-[#1E293B] font-heading">
+                        Customized Material &amp; Service Standards
+                      </h4>
+                      <p className="text-xs text-[#64748B] leading-relaxed">
+                        Dedicated focus on high-quality packaging materials and customized packing configurations matched to cargo dimensions and transit mode.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Item 4: Schedule & Client Trust */}
+                  <div className="flex items-start gap-3.5">
+                    <div className="p-2.5 rounded-xl bg-white border border-[#E2E8F0] text-[#B62825] shadow-xs shrink-0">
+                      <Handshake className="w-4 h-4" />
+                    </div>
+                    <div className="space-y-1">
+                      <h4 className="text-sm font-bold text-[#1E293B] font-heading">
+                        Schedule Adherence &amp; Client Relationships
+                      </h4>
+                      <p className="text-xs text-[#64748B] leading-relaxed">
+                        Prioritizing punctual execution schedules and sustaining long-term, transparent working partnerships with exporters and logistics coordinators.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ScrollReveal>
+
           </div>
         </div>
       </section>
 
-      {/* 2. Company Introduction */}
+      {/* ========================================================================= */}
+      {/* 3. MONTHLY BUSINESS VOLUME METRIC (Point 02 Enhancement)                  */}
+      {/* ========================================================================= */}
+      <section className="py-14 sm:py-18 bg-[#173F70] text-white relative overflow-hidden border-b border-[#0F2D52]">
+        {/* Subtle Diagonal Technical Lines Accent */}
+        <div 
+          className="absolute inset-0 pointer-events-none opacity-20"
+          style={{
+            backgroundImage: 'repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.05) 0px, rgba(255, 255, 255, 0.05) 1px, transparent 1px, transparent 24px)',
+          }}
+          aria-hidden="true"
+        />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 relative z-10">
+          <ScrollReveal direction="up" delay={0}>
+            <div className="bg-white/5 backdrop-blur-md rounded-2xl border border-white/15 p-8 sm:p-12 lg:p-14 shadow-xl">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                
+                {/* Metric Display Column */}
+                <div className="lg:col-span-6 space-y-3 text-center lg:text-left">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-blue-200 text-xs font-mono font-medium uppercase tracking-wider">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#B62825]" />
+                    <span>MONTHLY BUSINESS VOLUME</span>
+                  </div>
+                  
+                  <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4 pt-2">
+                    <span className="text-5xl sm:text-6xl lg:text-7xl font-bold font-heading text-white tracking-tight drop-shadow-sm">
+                      350–400
+                    </span>
+                    <div className="flex flex-col items-center sm:items-start">
+                      <span className="text-2xl sm:text-3xl font-bold font-heading text-[#B62825] tracking-wide">
+                        TEUs
+                      </span>
+                      <span className="text-xs sm:text-sm font-mono uppercase tracking-widest text-blue-200 font-semibold">
+                        Per Month
+                      </span>
+                    </div>
+                  </div>
+                  
+                  <div className="w-16 h-1 bg-[#B62825] mx-auto lg:mx-0 mt-3" />
+                </div>
+
+                {/* Supporting Editorial Column */}
+                <div className="lg:col-span-6 space-y-4 text-center lg:text-left border-t lg:border-t-0 lg:border-l border-white/15 pt-6 lg:pt-0 lg:pl-10">
+                  <h3 className="text-xl sm:text-2xl font-bold font-heading text-white tracking-tight">
+                    Consistent Container Handling Capacity
+                  </h3>
+                  <p className="text-sm sm:text-base text-blue-100 font-body leading-relaxed">
+                    MSK Logistics manages a sustained throughput of <strong className="text-white font-semibold">350–400 TEUs per month</strong> across technical export packaging, container stuffing, and heavy maritime securing operations, supporting continuous movement through Western India&apos;s primary ocean gateways.
+                  </p>
+                  <div className="pt-1 flex flex-wrap items-center justify-center lg:justify-start gap-4 text-xs font-mono text-blue-200">
+                    <span className="flex items-center gap-1.5">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-[#B62825]" />
+                      <span>Twenty-Foot Equivalent Units</span>
+                    </span>
+                    <span>•</span>
+                    <span className="flex items-center gap-1.5">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-[#B62825]" />
+                      <span>Nhava Sheva (JNPT) Hub</span>
+                    </span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 4. OWNERSHIP & LEADERSHIP SECTION (Point 02 Enhancement)                  */}
+      {/* ========================================================================= */}
+      <section className="py-16 sm:py-24 bg-[#F8FAFC] border-b border-[#E2E2E2] overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-10 sm:space-y-12">
+          
+          {/* Section Header */}
+          <ScrollReveal direction="up" delay={0} className="max-w-2xl space-y-3">
+            <span className="editorial-badge bg-white text-[#173F70] border-neutral-300">
+              GOVERNANCE &amp; LEADERSHIP
+            </span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1E293B] font-heading tracking-tight">
+              Ownership &amp; Leadership
+            </h2>
+            <div className="w-16 h-1 bg-[#B62825]" />
+            <p className="text-sm sm:text-base text-[#64748B] font-body leading-relaxed">
+              Direct commercial stewardship and hands-on operational leadership guiding every client engagement and project commitment.
+            </p>
+          </ScrollReveal>
+
+          {/* Premium Profile Card */}
+          <ScrollReveal direction="up" delay={80}>
+            <div className="bg-white rounded-2xl border border-[#E2E8F0] p-7 sm:p-10 shadow-sm max-w-4xl hover:shadow-md transition-shadow">
+              <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 sm:gap-8">
+                
+                {/* Replaceable Avatar Container */}
+                <div 
+                  className="w-28 h-28 sm:w-32 sm:h-32 rounded-2xl bg-gradient-to-br from-[#173F70] via-[#1E293B] to-[#0F2D52] flex items-center justify-center border-2 border-white/20 shadow-md text-white font-heading font-bold text-3xl sm:text-4xl tracking-wider select-none shrink-0 relative overflow-hidden group"
+                  title="Sunil Naresh Kadu — Proprietor (Replaceable image container for future photograph)"
+                >
+                  {/* Future photograph drop-in container */}
+                  {/* <img src="/images/team/sunil-naresh-kadu.jpg" alt="Sunil Naresh Kadu, Proprietor" className="w-full h-full object-cover" /> */}
+                  <span className="text-[#F4F5F7] group-hover:scale-105 transition-transform duration-300">
+                    SNK
+                  </span>
+                  
+                  {/* Subtle Corner Designation Ribbon */}
+                  <div className="absolute bottom-1.5 inset-x-1.5 py-0.5 bg-black/40 backdrop-blur-xs rounded text-[9px] font-mono text-center text-white/90 uppercase tracking-widest">
+                    PROPRIETOR
+                  </div>
+                </div>
+
+                {/* Profile Details */}
+                <div className="space-y-4 text-center sm:text-left flex-1">
+                  <div className="space-y-1">
+                    <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-[#B62825]/10 border border-[#B62825]/20 text-[#B62825] text-xs font-mono font-bold uppercase tracking-wider">
+                      <UserCheck className="w-3.5 h-3.5" />
+                      <span>Commercial Stewardship</span>
+                    </div>
+                    <h3 className="text-2xl sm:text-3xl font-bold text-[#1E293B] font-heading tracking-tight pt-1">
+                      Sunil Naresh Kadu
+                    </h3>
+                    <p className="text-base sm:text-lg font-mono font-bold text-[#B62825] tracking-wide">
+                      Proprietor
+                    </p>
+                  </div>
+
+                  <p className="text-sm sm:text-base text-[#52627A] font-body leading-relaxed">
+                    Under the direct leadership of <strong className="text-[#1E293B]">Sunil Naresh Kadu</strong>, MSK Logistics Solution maintains hands-on executive accountability across all commercial contracts, quality standards, and export packaging executions.
+                  </p>
+
+                  <div className="pt-2 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono text-[#334155] border-t border-[#E2E8F0]">
+                    <div className="flex items-center gap-2 pt-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#173F70]" />
+                      <span>Commercial Entity: <strong>MSK Logistics Solution</strong></span>
+                    </div>
+                    <div className="flex items-center gap-2 pt-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#B62825]" />
+                      <span>Confirmed Designation: <strong>Proprietor</strong></span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </ScrollReveal>
+
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 5. OPERATIONAL FOCUS & PHILOSOPHY (Preserved Existing Section)            */}
+      {/* ========================================================================= */}
       <section className="py-16 sm:py-20 bg-white border-b border-[#E2E2E2]">
         <div className="max-w-7xl mx-auto px-4 sm:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             <div className="lg:col-span-7 space-y-6 text-[15px] sm:text-[16px] text-[#52627A] leading-relaxed">
               <div className="space-y-2">
                 <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#B62825]">
-                  Operational Focus & Philosophy
+                  Operational Disciplines
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-bold text-[#1E293B] font-heading">
                   Physical Cargo Preparation Built for Ocean Transit
@@ -73,7 +348,7 @@ export const AboutPage: React.FC = () => {
               </p>
 
               <h3 className="text-xl font-bold text-[#1E293B] font-heading pt-2">
-                Clear Communication & Defined Scope of Responsibility
+                Clear Communication &amp; Defined Scope of Responsibility
               </h3>
               <p>
                 We believe that reliable logistics begins with clear communication and unambiguous definitions of responsibility. Our client engagements operate on shipment-specific requirements and clearly agreed operational work—whether coordinating container sourcing alongside packaging or packing client-arranged shipping line containers. Every assignment is backed by transparent quotation scopes, itemized material specifications, and rigorous pre-door sealing checks.
@@ -83,7 +358,7 @@ export const AboutPage: React.FC = () => {
               <div className="pt-4 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs font-mono">
                 <div className="p-3 bg-[#F8FAFC] rounded-lg border border-[#E2E8F0] space-y-1">
                   <span className="text-[#B62825] font-bold block">01 / PACKAGING</span>
-                  <span className="text-[#334155] font-semibold">Custom Wooden Crating & Barrier Prep</span>
+                  <span className="text-[#334155] font-semibold">Custom Wooden Crating &amp; Barrier Prep</span>
                 </div>
                 <div className="p-3 bg-[#F8FAFC] rounded-lg border border-[#E2E8F0] space-y-1">
                   <span className="text-[#173F70] font-bold block">02 / STUFFING</span>
@@ -91,7 +366,7 @@ export const AboutPage: React.FC = () => {
                 </div>
                 <div className="p-3 bg-[#F8FAFC] rounded-lg border border-[#E2E8F0] space-y-1">
                   <span className="text-emerald-700 font-bold block">03 / LASHING</span>
-                  <span className="text-[#334155] font-semibold">High-Tensile Ratchet & Wire Securing</span>
+                  <span className="text-[#334155] font-semibold">High-Tensile Ratchet &amp; Wire Securing</span>
                 </div>
               </div>
             </div>
@@ -123,9 +398,9 @@ export const AboutPage: React.FC = () => {
                 <div className="p-3 bg-white rounded-lg border border-[#E2E8F0]">
                   <span className="text-[#64748B] block font-mono text-[11px] uppercase">Operational Focus</span>
                   <ul className="list-disc list-inside mt-1 space-y-1 text-[#475569]">
-                    <li>Export Wooden Crating & Vacuum Packing</li>
-                    <li>Container Stuffing & Center of Gravity Calculation</li>
-                    <li>Heavy Machinery Lashing, Chocking & Securing</li>
+                    <li>Export Wooden Crating &amp; Vacuum Packing</li>
+                    <li>Container Stuffing &amp; Center of Gravity Calculation</li>
+                    <li>Heavy Machinery Lashing, Chocking &amp; Securing</li>
                   </ul>
                 </div>
               </div>
@@ -143,7 +418,9 @@ export const AboutPage: React.FC = () => {
         </div>
       </section>
 
-      {/* 3. Our Services Overview */}
+      {/* ========================================================================= */}
+      {/* 6. OUR SERVICES OVERVIEW (Preserved Existing Section)                      */}
+      {/* ========================================================================= */}
       <section className="py-16 sm:py-20 bg-[#F5F5F3] border-b border-[#E2E2E2]">
         <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-10">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
@@ -249,7 +526,7 @@ export const AboutPage: React.FC = () => {
               <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
                 <div className="space-y-2">
                   <h3 className="text-xl font-bold text-[#1E293B] group-hover:text-[#B62825] transition-colors">
-                    Cargo Lashing & Securing
+                    Cargo Lashing &amp; Securing
                   </h3>
                   <p className="text-xs sm:text-sm text-[#64748B] leading-relaxed">
                     Certified high-tensile polyester webbing, ratchet belts, steel wire ropes, turnbuckles, and timber chocking engineered to prevent in-transit movement.
@@ -268,7 +545,9 @@ export const AboutPage: React.FC = () => {
         </div>
       </section>
 
-      {/* 4. Our Team Section — Featuring the Authentic Client Photograph */}
+      {/* ========================================================================= */}
+      {/* 7. OUR TEAM SECTION (Preserved Authentic Client Photograph)               */}
+      {/* ========================================================================= */}
       <section className="py-20 sm:py-24 bg-white border-b border-[#E2E2E2]">
         <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-10">
           <div className="space-y-3">
@@ -299,7 +578,7 @@ export const AboutPage: React.FC = () => {
                   />
                 </picture>
 
-                {/* Corner MSK Logo Watermark Overlay (Only Logo) */}
+                {/* Corner MSK Logo Watermark Overlay */}
                 <div className="absolute bottom-4 right-4 z-10 pointer-events-none select-none">
                   <div className="flex items-center bg-white/95 backdrop-blur-md px-2.5 py-1.5 rounded-md shadow-md border border-neutral-200">
                     <img
@@ -347,7 +626,7 @@ export const AboutPage: React.FC = () => {
                   </div>
                   <div className="space-y-0.5">
                     <h4 className="font-bold text-sm text-[#1E293B]">
-                      Careful Handling & Rigging
+                      Careful Handling &amp; Rigging
                     </h4>
                     <p className="text-xs text-[#64748B] leading-relaxed">
                       Application of proper timber blocking, high-capacity ratchet belts, and certified lashing gear suitable for heavy cargo.
@@ -374,7 +653,9 @@ export const AboutPage: React.FC = () => {
         </div>
       </section>
 
-      {/* 5. Our Working Approach */}
+      {/* ========================================================================= */}
+      {/* 8. OUR WORKING APPROACH (Preserved Existing Section)                      */}
+      {/* ========================================================================= */}
       <section className="py-16 sm:py-20 bg-[#F5F5F3] border-b border-[#E2E2E2]">
         <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-12">
           <div className="max-w-2xl space-y-3">
@@ -469,7 +750,7 @@ export const AboutPage: React.FC = () => {
                   05
                 </div>
                 <h3 className="text-sm font-bold text-[#1E293B] font-heading">
-                  Complete & Document
+                  Complete &amp; Document
                 </h3>
                 <p className="text-xs text-[#64748B] leading-relaxed">
                   Complete the agreed work, final checklist inspection, and visual documentation.
@@ -483,7 +764,9 @@ export const AboutPage: React.FC = () => {
         </div>
       </section>
 
-      {/* 6. Request a Quote Call to Action */}
+      {/* ========================================================================= */}
+      {/* 9. REQUEST A QUOTE CALL TO ACTION (Preserved Existing Section)             */}
+      {/* ========================================================================= */}
       <section className="py-16 sm:py-20 bg-[#173F70] text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
@@ -492,7 +775,7 @@ export const AboutPage: React.FC = () => {
                 OPERATIONAL QUOTATION
               </span>
               <h2 className="text-3xl sm:text-4xl font-bold font-heading">
-                Let's Discuss Your Shipment Requirements
+                Let&apos;s Discuss Your Shipment Requirements
               </h2>
               <p className="text-blue-100 text-sm sm:text-base leading-relaxed">
                 Share your cargo details and requirements with our team to request a quotation.

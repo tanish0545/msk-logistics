@@ -179,8 +179,50 @@
   will-change: transform;
 }
 
+/* Continuous Two-Way Client Marquee Animations */
+@keyframes marquee-left {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes marquee-right {
+  0% {
+    transform: translate3d(-50%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate-marquee-left {
+  display: flex;
+  width: max-content;
+  animation: marquee-left 38s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-right {
+  display: flex;
+  width: max-content;
+  animation: marquee-right 38s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-left:hover,
+.animate-marquee-right:hover,
+.group-marquee:hover .animate-marquee-left,
+.group-marquee:hover .animate-marquee-right {
+  animation-play-state: paused;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-marquee-slow,
+  .animate-marquee-left,
+  .animate-marquee-right,
   .animate-fade-in-up {
     animation: none !important;
     transform: none !important;
@@ -210,6 +252,91 @@
 
 .animate-page-entrance {
   animation: pageEntrance 220ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Industrial Titanium Hero Custom Animations */
+@keyframes heroEntrance {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes heroMontageEntrance {
+  0% {
+    opacity: 0;
+    transform: translate3d(12px, 8px, 0) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes heroFloat {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes heroGlowPulse {
+  0%, 100% {
+    opacity: 0.12;
+  }
+  50% {
+    opacity: 0.18;
+  }
+}
+
+.animate-hero-entrance {
+  animation: heroEntrance 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-hero-montage-in {
+  animation: heroMontageEntrance 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-hero-float {
+  animation: heroFloat 7s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+.animate-hero-glow {
+  animation: heroGlowPulse 8s ease-in-out infinite alternate;
+}
+
+.hero-delay-1 {
+  animation-delay: 100ms;
+}
+
+.hero-delay-2 {
+  animation-delay: 200ms;
+}
+
+.hero-delay-3 {
+  animation-delay: 300ms;
+}
+
+.hero-delay-4 {
+  animation-delay: 450ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-hero-entrance,
+  .animate-hero-montage-in,
+  .animate-hero-float,
+  .animate-hero-glow {
+    animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
 }
 
 /* Micro-animations and Transitions */
@@ -334,6 +461,141 @@
   }
 }
 
+/* ========================================================================= */
+/* Carting Tree Diagram Custom Animations (Point 03)                         */
+/* ========================================================================= */
+@keyframes treeNodeFadeIn {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes treeLineGrowY {
+  0% {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+@keyframes treeBranchGrowX {
+  0% {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+.animate-tree-parent {
+  animation: treeNodeFadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-tree-stem {
+  animation: treeLineGrowY 0.35s cubic-bezier(0.16, 1, 0.3, 1) 0.22s both;
+  transform-origin: top;
+}
+
+.animate-tree-branch {
+  animation: treeBranchGrowX 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.32s both;
+  transform-origin: center;
+}
+
+.animate-tree-child-1 {
+  animation: treeNodeFadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.42s both;
+}
+
+.animate-tree-child-2 {
+  animation: treeNodeFadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.52s both;
+}
+
+.animate-tree-child-3 {
+  animation: treeNodeFadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.62s both;
+}
+
+/* ========================================================================= */
+/* HANGING CONTAINER GET A QUOTE PENDULUM ANIMATION                          */
+/* ========================================================================= */
+
+@keyframes containerPendulum {
+  0% {
+    transform: rotate(-1.1deg);
+  }
+  50% {
+    transform: rotate(1.1deg);
+  }
+  100% {
+    transform: rotate(-1.1deg);
+  }
+}
+
+@keyframes containerPendulumHover {
+  0% {
+    transform: rotate(-1.6deg) translateY(-0.5px);
+  }
+  50% {
+    transform: rotate(1.6deg) translateY(-0.5px);
+  }
+  100% {
+    transform: rotate(-1.6deg) translateY(-0.5px);
+  }
+}
+
+.animate-container-pendulum {
+  transform-origin: 50% 0%;
+  animation: containerPendulum 5.4s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite;
+  will-change: transform;
+  transition: transform 0.4s ease-out;
+}
+
+.group:hover .animate-container-pendulum {
+  animation: containerPendulumHover 3.6s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite;
+}
+
+/* ========================================================================= */
+/* MINIMAL CIRCULAR CERTIFICATION MARK - 25s CONTINUOUS ROTATION             */
+/* ========================================================================= */
+
+@keyframes isoOuterAssemblyRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-iso-outer-spin {
+  animation: isoOuterAssemblyRotate 25s linear infinite;
+  transform-origin: center center;
+  will-change: transform;
+}
+
+@keyframes isoSealRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-iso-seal-spin {
+  animation: isoSealRotate 24s linear infinite;
+  transform-origin: center center;
+  will-change: transform;
+}
+
 /* Global Prefers-Reduced-Motion Compliance */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -345,6 +607,10 @@
     scroll-behavior: auto !important;
   }
 
+  .animate-iso-outer-spin,
+  .animate-iso-seal-spin,
+  .animate-container-pendulum,
+  .group:hover .animate-container-pendulum,
   .animate-marquee-slow,
   .animate-page-entrance,
   .animate-fade-in-up,

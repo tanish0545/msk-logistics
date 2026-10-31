@@ -24,6 +24,7 @@ import {
 } from '../data/shipmentGalleryData';
 import { EXPORT_SOLUTIONS } from '../data/company';
 import { BrandedImage } from '../components/common/BrandedImage';
+import { InnerPageBanner } from '../components/layout/InnerPageBanner';
 
 export const ImportExportPage: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<ShipmentCategory | 'all'>('all');
@@ -60,30 +61,12 @@ export const ImportExportPage: React.FC = () => {
       {/* ------------------------------------------------------------- */}
       {/* 1. PAGE HEADING & INTRODUCTION                                */}
       {/* ------------------------------------------------------------- */}
-      <section className="bg-[#173F70] text-white py-14 sm:py-16 border-b border-[#0F2D52] relative overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-gradient-to-r from-[#173F70] via-[#1B4B85] to-[#173F70] opacity-90 pointer-events-none" 
-          aria-hidden="true" 
-        />
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-5 relative z-10">
-          <div className="flex flex-wrap items-center gap-3">
-            <span className="editorial-badge bg-white/10 text-white border-white/20">
-              INDUSTRIAL EXPORT OPERATIONS
-            </span>
-            <span className="text-xs font-mono text-blue-200 tracking-wider">
-              PORT OF NHAVA SHEVA • JNPT GATEWAY
-            </span>
-          </div>
-
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold font-heading text-white tracking-tight">
-            Import & Export Operations
-          </h1>
-
-          <p className="text-blue-100 text-base sm:text-lg max-w-3xl font-body leading-relaxed">
-            Professional export packaging, methodical container stuffing, and maritime cargo lashing engineered for sea-freight consignments. Review our service arrangements, compare shipment loading concepts, and explore verified shipment records.
-          </p>
-        </div>
-      </section>
+      <InnerPageBanner
+        badge="INDUSTRIAL EXPORT OPERATIONS"
+        badgeSubtext="PORT OF NHAVA SHEVA • JNPT GATEWAY"
+        title="Import & Export Operations"
+        description="Professional export packaging, methodical container stuffing, and maritime cargo lashing engineered for sea-freight consignments. Review our service arrangements, compare shipment loading concepts, and explore verified shipment records."
+      />
 
       {/* ------------------------------------------------------------- */}
       {/* 2. SECTION A — TWO MSK EXPORT-PACKING SERVICE OPTIONS          */}

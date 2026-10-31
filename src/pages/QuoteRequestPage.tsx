@@ -2,24 +2,17 @@ import React from 'react';
 import { Phone, Mail, Info } from 'lucide-react';
 import { QuoteRequestForm } from '../components/forms/QuoteRequestForm';
 import { COMPANY_DETAILS } from '../data/company';
+import { InnerPageBanner } from '../components/layout/InnerPageBanner';
 
 export const QuoteRequestPage: React.FC = () => {
   return (
     <div className="space-y-0">
       {/* Page Header */}
-      <section className="bg-[#343434] text-white py-14 sm:py-16 border-b border-neutral-700">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-3">
-          <span className="editorial-badge bg-white/10 text-white border-white/20">
-            QUOTATION DESK
-          </span>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading text-white">
-            Request an Export Packing Quotation
-          </h1>
-          <p className="text-neutral-300 text-[15px] sm:text-[17px] max-w-2xl font-body leading-relaxed">
-            Submit your cargo parameters and preferred container arrangement for an itemized quotation from our Navi Mumbai operations desk.
-          </p>
-        </div>
-      </section>
+      <InnerPageBanner
+        badge="QUOTATION DESK"
+        title="Request an Export Packing Quotation"
+        description="Submit your cargo parameters and preferred container arrangement for an itemized quotation from our Navi Mumbai operations desk."
+      />
 
       {/* Main Form Section */}
       <section className="py-16 sm:py-20 bg-[#F5F5F3] border-b border-[#E2E2E2]">

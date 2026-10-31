@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ExternalLink, Ship, Calendar, Clock, Anchor } from 'lucide-react';
 import { VESSEL_SCHEDULE_CONFIG } from '../components/navigation/navConfig';
+import { InnerPageBanner } from '../components/layout/InnerPageBanner';
 
 export const VesselSchedulePage: React.FC = () => {
   const trackingUrl = VESSEL_SCHEDULE_CONFIG.externalUrl || 'https://www.marinetraffic.com/';
@@ -9,49 +10,31 @@ export const VesselSchedulePage: React.FC = () => {
   return (
     <div className="space-y-0 bg-white">
       {/* 1. Page Header — Clean, Modern & Action-Oriented */}
-      <section className="bg-[#173F70] text-white py-14 sm:py-16 border-b border-[#0F2D52] relative overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-gradient-to-r from-[#173F70] via-[#1A457D] to-[#173F70] opacity-95 pointer-events-none" 
-          aria-hidden="true" 
-        />
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-5 relative z-10">
-          <div className="flex flex-wrap items-center gap-3">
-            <span className="editorial-badge bg-white/10 text-white border-white/20">
-              PORT TERMINAL COORDINATION
-            </span>
-            <span className="text-xs font-mono text-blue-200">
-              NHAVA SHEVA (JNPT) • PORT CODE: INNSA
-            </span>
-          </div>
+      <InnerPageBanner
+        badge="PORT TERMINAL COORDINATION"
+        badgeSubtext="NHAVA SHEVA (JNPT) • PORT CODE: INNSA"
+        title="Vessel Schedule & Cut-Off Coordination"
+        description="Coordinating export packaging, container stuffing, and dynamic cargo securing to align seamlessly with carrier gate-in windows and vessel cut-off dates at Nhava Sheva (JNPT)."
+      >
+        {/* Prominent MarineTraffic Track a Vessel CTA in Hero */}
+        <div className="pt-2 sm:pt-3 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5">
+          <a
+            href={trackingUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-lg bg-[#B62825] hover:bg-[#9E2220] text-white font-nav text-sm font-semibold tracking-wide shadow-md hover:shadow-lg transition-all duration-200 group focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#B62825] self-start"
+            aria-label="Track a Vessel on MarineTraffic (opens in a new tab)"
+          >
+            <span>Track a Vessel</span>
+            <ExternalLink className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </a>
 
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading text-white tracking-tight">
-            Vessel Schedule & Cut-Off Coordination
-          </h1>
-
-          <p className="text-blue-100 text-[15px] sm:text-[17px] max-w-3xl font-body leading-relaxed">
-            Coordinating export packaging, container stuffing, and dynamic cargo securing to align seamlessly with carrier gate-in windows and vessel cut-off dates at Nhava Sheva (JNPT).
+          <p className="text-xs sm:text-[13px] text-[#D9DEE5]/90 font-body flex items-center gap-2">
+            <Ship className="w-4 h-4 text-[#AEB6C2] shrink-0" />
+            <span>Track vessel movements and view maritime traffic on MarineTraffic.</span>
           </p>
-
-          {/* Prominent MarineTraffic Track a Vessel CTA in Hero */}
-          <div className="pt-2 sm:pt-4 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-5">
-            <a
-              href={trackingUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-lg bg-[#B62825] hover:bg-[#9E2220] text-white font-nav text-[15px] font-semibold tracking-wide shadow-md hover:shadow-lg transition-all duration-200 group focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#B62825] self-start"
-              aria-label="Track a Vessel on MarineTraffic (opens in a new tab)"
-            >
-              <span>Track a Vessel</span>
-              <ExternalLink className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </a>
-
-            <p className="text-xs sm:text-sm text-blue-100/90 font-body flex items-center gap-2">
-              <Ship className="w-4 h-4 text-blue-300 shrink-0" />
-              <span>Track vessel movements and view maritime traffic on MarineTraffic.</span>
-            </p>
-          </div>
         </div>
-      </section>
+      </InnerPageBanner>
 
       {/* 2. Customer-Facing Clean Tracking Section */}
       <section className="bg-[#F8FAFC] border-b border-[#E2E8F0] py-10 sm:py-12">

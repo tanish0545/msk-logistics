@@ -2,24 +2,17 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Warehouse, ArrowRight, AlertCircle, Clock, MapPin, Truck } from 'lucide-react';
 import { COMPANY_DETAILS } from '../data/company';
+import { InnerPageBanner } from '../components/layout/InnerPageBanner';
 
 export const WarehousingPage: React.FC = () => {
   return (
     <div className="space-y-0">
       {/* Page Header */}
-      <section className="bg-[#343434] text-white py-16 sm:py-20 border-b border-neutral-700">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-4">
-          <span className="editorial-badge bg-white/10 text-white border-white/20">
-            CARGO STAGING & YARD CAPABILITIES
-          </span>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading text-white">
-            Cargo Staging & Stuffing Facilities
-          </h1>
-          <p className="text-neutral-300 text-[16px] sm:text-[18px] max-w-3xl font-body leading-relaxed">
-            Operational staging grounds and stuffing buffer yards positioned in the Nhava Sheva (JNPT) corridor to facilitate organized export packing and seamless container handover.
-          </p>
-        </div>
-      </section>
+      <InnerPageBanner
+        badge="CARGO STAGING & YARD CAPABILITIES"
+        title="Cargo Staging & Stuffing Facilities"
+        description="Operational staging grounds and stuffing buffer yards positioned in the Nhava Sheva (JNPT) corridor to facilitate organized export packing and seamless container handover."
+      />
 
       {/* Scope Disclaimer / Transparent Boundary Notice */}
       <section className="bg-[#FFF8F0] border-b border-[#FEE2C7] py-6">

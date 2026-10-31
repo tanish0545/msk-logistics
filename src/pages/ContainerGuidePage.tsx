@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import { CONTAINER_LIST, type ContainerDetail } from '../data/containerGuideData';
 import { BrandedImage } from '../components/gallery/BrandedImage';
+import { InnerPageBanner } from '../components/layout/InnerPageBanner';
 
 interface LightboxItem {
   containerId: string;
@@ -208,29 +209,13 @@ export const ContainerGuidePage: React.FC = () => {
 
   return (
     <div className="space-y-0 bg-[#F9FAFB]">
-      {/* 1. Page Header — Clean, Modern & Reduced Height */}
-      <section className="bg-[#173F70] text-white py-12 sm:py-14 border-b border-[#0F2D52] relative overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-gradient-to-r from-[#173F70] via-[#1A457D] to-[#173F70] opacity-95 pointer-events-none" 
-          aria-hidden="true" 
-        />
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-3.5 relative z-10">
-          <div className="flex flex-wrap items-center gap-3">
-            <span className="editorial-badge bg-white/10 text-white border-white/20">
-              EQUIPMENT REFERENCE
-            </span>
-            <span className="text-xs font-mono text-blue-200">
-              ISO STANDARDS • OCEAN FREIGHT SPECIFICATIONS
-            </span>
-          </div>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading text-white tracking-tight">
-            Container Guide: Types, Dimensions & Equipment
-          </h1>
-          <p className="text-blue-100 text-[15px] sm:text-base max-w-3xl font-body leading-relaxed">
-            Explore standard ocean container types, dedicated interior and exterior structural views, indicative dimensions, door clearances, and payload capacities for export cargo planning.
-          </p>
-        </div>
-      </section>
+      {/* 1. Page Header — Dark Graphite Refined Banner */}
+      <InnerPageBanner
+        badge="EQUIPMENT REFERENCE"
+        badgeSubtext="ISO STANDARDS • OCEAN FREIGHT SPECIFICATIONS"
+        title="Container Guide: Types, Dimensions & Equipment"
+        description="Explore standard ocean container types, dedicated interior and exterior structural views, indicative dimensions, door clearances, and payload capacities for export cargo planning."
+      />
 
       {/* 2. Sticky Container Quick-Bar & Measurement Unit Controls */}
       <section className="bg-white border-b border-[#E8E8E8] sticky top-[68px] sm:top-[72px] z-30 shadow-xs">
@@ -251,8 +236,8 @@ export const ContainerGuidePage: React.FC = () => {
                 aria-selected={selectedContainerId === container.id}
                 className={`py-2 px-3.5 rounded-lg text-xs sm:text-sm font-medium transition-all duration-200 whitespace-nowrap flex items-center gap-1.5 ${
                   selectedContainerId === container.id
-                    ? 'bg-[#173F70] text-white shadow-sm font-semibold ring-2 ring-[#173F70]/30'
-                    : 'bg-[#F5F5F3] text-[#52627A] hover:bg-[#E8E8E8] hover:text-[#173F70]'
+                    ? 'bg-[#B62825] text-white shadow-xs font-semibold ring-2 ring-[#B62825]/30'
+                    : 'bg-[#F5F5F3] text-[#52627A] hover:bg-[#E8E8E8] hover:text-[#B62825]'
                 }`}
               >
                 <span>{container.code}</span>
@@ -876,7 +861,7 @@ export const ContainerGuidePage: React.FC = () => {
       </section>
 
       {/* 5. Engineering Advisory CTA Banner */}
-      <section className="py-12 sm:py-16 bg-[#173F70] text-white">
+      <section className="py-12 sm:py-16 bg-[#1A1C23] border-t border-[#2D3139] text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="space-y-3 max-w-2xl">
@@ -884,10 +869,10 @@ export const ContainerGuidePage: React.FC = () => {
                 <HelpCircle className="w-4 h-4" />
                 <span>MARITIME CARGO PLANNING & STUFFING</span>
               </div>
-              <h3 className="text-2xl sm:text-3xl font-bold font-heading">
+              <h3 className="text-2xl sm:text-3xl font-bold font-heading text-[#F4F5F7]">
                 Need Help Selecting or Stuffing a Container?
               </h3>
-              <p className="text-blue-100 text-sm leading-relaxed">
+              <p className="text-[#D9DEE5]/80 text-sm leading-relaxed">
                 Provide your cargo weight distribution, crating dimensions, and destination port. Our technical engineers calculate floor load ratings, specify lashing arrangements, and recommend the most economical container configuration.
               </p>
             </div>

@@ -11,6 +11,7 @@ import {
   Sparkles
 } from 'lucide-react';
 import { WAREHOUSE_CATEGORIES, OPEN_WAREHOUSE_IMAGE, SHADED_WAREHOUSE_IMAGE } from '../data/warehouseData';
+import { InnerPageBanner } from '../components/layout/InnerPageBanner';
 
 export const WarehousePage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'open' | 'shaded'>('open');
@@ -21,28 +22,12 @@ export const WarehousePage: React.FC = () => {
   return (
     <div className="space-y-0 bg-[#FAFAFA]">
       {/* 1. Page Header — Modern & Cinematic, not an oversized block */}
-      <section className="bg-[#173F70] text-white py-14 sm:py-16 border-b border-[#0F2D52] relative overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-gradient-to-r from-[#173F70] via-[#1A457D] to-[#173F70] opacity-95 pointer-events-none" 
-          aria-hidden="true" 
-        />
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-4 relative z-10">
-          <div className="flex flex-wrap items-center gap-3">
-            <span className="editorial-badge bg-white/10 text-white border-white/20">
-              FACILITY & STAGING ARRANGEMENTS
-            </span>
-            <span className="text-xs font-mono text-blue-200">
-              NHAVA SHEVA (JNPT) LOGISTICS CORRIDOR
-            </span>
-          </div>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading text-white tracking-tight">
-            Warehouse & Staging Environments
-          </h1>
-          <p className="text-blue-100 text-[15px] sm:text-[17px] max-w-3xl font-body leading-relaxed">
-            Indicative staging environments for export cargo preparation: Open Yard Staging for weather-resistant heavy equipment and Shaded Packing Bays for moisture-sensitive export crating.
-          </p>
-        </div>
-      </section>
+      <InnerPageBanner
+        badge="FACILITY & STAGING ARRANGEMENTS"
+        badgeSubtext="NHAVA SHEVA (JNPT) LOGISTICS CORRIDOR"
+        title="Warehouse & Staging Environments"
+        description="Indicative staging environments for export cargo preparation: Open Yard Staging for weather-resistant heavy equipment and Shaded Packing Bays for moisture-sensitive export crating."
+      />
 
       {/* 2. Interactive Mode Switcher Sticky Bar */}
       <section className="bg-white border-b border-[#E2E2E2] sticky top-[68px] sm:top-[72px] z-30 shadow-xs">
@@ -57,12 +42,12 @@ export const WarehousePage: React.FC = () => {
               aria-pressed={!isShaded}
               className={`relative py-2 px-4 rounded-lg text-xs sm:text-sm font-medium transition-all duration-300 inline-flex items-center gap-2 select-none ${
                 !isShaded
-                  ? 'bg-[#173F70] text-white shadow-sm font-semibold'
-                  : 'bg-transparent text-[#52627A] hover:text-[#173F70] hover:bg-white/60'
+                  ? 'bg-[#B62825] text-white shadow-sm font-semibold'
+                  : 'bg-transparent text-[#52627A] hover:text-[#B62825] hover:bg-white/60'
               }`}
             >
               <SunMedium className={`w-4 h-4 transition-transform duration-300 motion-reduce:transform-none ${
-                !isShaded ? 'text-amber-400 scale-110 rotate-12' : 'text-amber-500/70 scale-95'
+                !isShaded ? 'text-amber-300 scale-110 rotate-12' : 'text-amber-500/70 scale-95'
               }`} />
               <span>Open Warehouse (Open-Air Sky)</span>
             </button>
@@ -73,8 +58,8 @@ export const WarehousePage: React.FC = () => {
               aria-pressed={isShaded}
               className={`relative py-2 px-4 rounded-lg text-xs sm:text-sm font-medium transition-all duration-300 inline-flex items-center gap-2 select-none ${
                 isShaded
-                  ? 'bg-[#173F70] text-white shadow-sm font-semibold'
-                  : 'bg-transparent text-[#52627A] hover:text-[#173F70] hover:bg-white/60'
+                  ? 'bg-[#B62825] text-white shadow-sm font-semibold'
+                  : 'bg-transparent text-[#52627A] hover:text-[#B62825] hover:bg-white/60'
               }`}
             >
               <Umbrella className={`w-4 h-4 transition-transform duration-300 motion-reduce:transform-none ${
