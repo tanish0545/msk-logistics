@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Box, Anchor, ShieldCheck } from 'lucide-react';
 import { CORE_SERVICES } from '../data/company';
 import { ServiceCard } from '../components/services/ServiceCard';
-import { CartingTreeDiagram } from '../components/services/CartingTreeDiagram';
 import { InnerPageBanner } from '../components/layout/InnerPageBanner';
 
 export const ServicesPage: React.FC = () => {
@@ -82,27 +81,6 @@ export const ServicesPage: React.FC = () => {
               </Link>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Carting Section: Operational Relationship Tree (Point 03) */}
-      <section className="py-20 bg-[#F5F5F3] border-b border-[#E2E2E2]" id="carting">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-12">
-          {/* Section Header */}
-          <div className="max-w-3xl mx-auto text-center space-y-3">
-            <span className="editorial-badge bg-white text-[#B62825] border-red-200">
-              OPERATIONAL STRUCTURE
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-bold text-[#343434] font-heading tracking-tight">
-              Carting Hierarchy &amp; Facility Network
-            </h2>
-            <p className="text-[15px] sm:text-base text-[#666666] leading-relaxed">
-              Clear organizational hierarchy illustrating the relationship between Carting operations and our three associated facility companies at Nhava Sheva.
-            </p>
-          </div>
-
-          {/* Interactive Tree Diagram */}
-          <CartingTreeDiagram />
         </div>
       </section>
     </div>

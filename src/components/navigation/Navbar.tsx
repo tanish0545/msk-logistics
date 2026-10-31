@@ -201,19 +201,19 @@ export const Navbar: React.FC = () => {
                       aria-orientation="vertical"
                     >
                       {isServices ? (
-                        /* SERVICES DROPDOWN — INDUSTRIAL TITANIUM WITH CARTING TREE */
-                        <div className="bg-[#0B0D14] rounded-xl shadow-2xl border border-neutral-800/90 py-3 overflow-hidden text-left">
+                        /* SERVICES DROPDOWN — PREMIUM LIGHT THEME WITH INTEGRATED CARTING TREE */
+                        <div className="bg-white rounded-xl shadow-xl shadow-black/8 border border-[#E2E2E2] py-2.5 overflow-hidden text-left w-[340px]">
                           {/* 1. Header */}
-                          <div className="px-4 pb-1.5 pt-0.5 text-[10.5px] font-mono uppercase tracking-[0.14em] text-[#94A3B8] font-semibold">
+                          <div className="px-4 pb-1.5 pt-0.5 text-[10.5px] font-mono uppercase tracking-[0.14em] text-[#64748B] font-semibold border-b border-[#F0F0F0]">
                             Specialized Services
                           </div>
 
                           {/* 2. Specialized Services (Clean Direct Links) */}
-                          <div className="py-0.5 space-y-0.5">
+                          <div className="py-1 px-1.5 space-y-0.5">
                             <Link
                               to="/services/export-packaging"
                               role="menuitem"
-                              className="block px-4 py-1.5 text-[13.5px] font-medium text-[#F1F5F9] hover:text-[#B62825] hover:bg-white/[0.04] transition-colors"
+                              className="block px-3 py-1.5 rounded-md text-[13.5px] font-medium text-[#202124] hover:text-[#B62825] hover:bg-[#F8F9FA] transition-colors"
                               onClick={() => setServicesDropdownOpen(false)}
                             >
                               Export Packaging
@@ -221,7 +221,7 @@ export const Navbar: React.FC = () => {
                             <Link
                               to="/services/container-stuffing"
                               role="menuitem"
-                              className="block px-4 py-1.5 text-[13.5px] font-medium text-[#F1F5F9] hover:text-[#B62825] hover:bg-white/[0.04] transition-colors"
+                              className="block px-3 py-1.5 rounded-md text-[13.5px] font-medium text-[#202124] hover:text-[#B62825] hover:bg-[#F8F9FA] transition-colors"
                               onClick={() => setServicesDropdownOpen(false)}
                             >
                               Container Stuffing
@@ -229,7 +229,7 @@ export const Navbar: React.FC = () => {
                             <Link
                               to="/services/cargo-lashing"
                               role="menuitem"
-                              className="block px-4 py-1.5 text-[13.5px] font-medium text-[#F1F5F9] hover:text-[#B62825] hover:bg-white/[0.04] transition-colors"
+                              className="block px-3 py-1.5 rounded-md text-[13.5px] font-medium text-[#202124] hover:text-[#B62825] hover:bg-[#F8F9FA] transition-colors"
                               onClick={() => setServicesDropdownOpen(false)}
                             >
                               Cargo Lashing &amp; Securing
@@ -237,7 +237,7 @@ export const Navbar: React.FC = () => {
                             <Link
                               to="/export-packing-solutions"
                               role="menuitem"
-                              className="block px-4 py-1.5 text-[13.5px] font-medium text-[#F1F5F9] hover:text-[#B62825] hover:bg-white/[0.04] transition-colors"
+                              className="block px-3 py-1.5 rounded-md text-[13.5px] font-medium text-[#202124] hover:text-[#B62825] hover:bg-[#F8F9FA] transition-colors"
                               onClick={() => setServicesDropdownOpen(false)}
                             >
                               Export Packing Solutions
@@ -245,86 +245,74 @@ export const Navbar: React.FC = () => {
                           </div>
 
                           {/* 3. Divider */}
-                          <div className="border-t border-neutral-800/80 my-2.5 mx-4" />
+                          <div className="border-t border-[#F0F0F0] my-1.5 mx-4" />
 
-                          {/* 4. Carting Hierarchical Tree Diagram (Point 10) */}
-                          <div className="px-4 py-1">
-                            {/* Centered Parent Node: CARTING */}
-                            <div className="flex justify-center">
-                              <Link
-                                to="/services#carting"
-                                className="group/parent inline-flex items-center gap-1.5 px-3 py-1 rounded bg-[#161922] border border-[#B62825]/70 hover:border-[#B62825] transition-all shadow-xs"
-                                onClick={() => setServicesDropdownOpen(false)}
-                                title="View Carting Hierarchy"
-                              >
-                                <span className="w-1.5 h-1.5 rounded-full bg-[#B62825] shadow-[0_0_6px_rgba(182,40,37,0.85)]" />
-                                <span className="font-heading font-extrabold text-[12px] text-white tracking-widest uppercase group-hover/parent:text-[#B62825] transition-colors">
-                                  CARTING
-                                </span>
-                              </Link>
-                            </div>
+                          {/* 4. Carting Hierarchical Tree (Display-Only, Non-Clickable) */}
+                          <div className="px-3.5 py-1">
+                            <div className="p-2.5 rounded-lg bg-[#F8F9FA] border border-[#E9ECEF]">
+                              {/* Centered Parent Node: CARTING (Display-only, non-clickable) */}
+                              <div className="flex justify-center">
+                                <div
+                                  className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-md bg-white border border-[#B62825]/40 shadow-2xs select-none cursor-default pointer-events-none"
+                                  title="Carting Operations"
+                                >
+                                  <span className="w-1.5 h-1.5 rounded-full bg-[#B62825] shadow-[0_0_4px_rgba(182,40,37,0.5)]" />
+                                  <span className="font-heading font-bold text-[11px] text-[#202124] tracking-widest uppercase">
+                                    CARTING
+                                  </span>
+                                </div>
+                              </div>
 
-                            {/* Tree Connector Lines (SVG with MSK-red accents) */}
-                            <div className="relative w-full h-5 my-0.5">
-                              <svg className="w-full h-full" viewBox="0 0 300 20" fill="none" preserveAspectRatio="none">
-                                {/* Central vertical stem from parent */}
-                                <path d="M 150 0 L 150 10" stroke="#B62825" strokeWidth="1.5" />
-                                {/* Horizontal connector bar spanning across all 3 child columns */}
-                                <path d="M 50 10 L 250 10" stroke="#B62825" strokeWidth="1.5" />
-                                {/* Left drop to Speedy */}
-                                <path d="M 50 10 L 50 20" stroke="#B62825" strokeWidth="1.5" />
-                                {/* Center drop to Punjab */}
-                                <path d="M 150 10 L 150 20" stroke="#B62825" strokeWidth="1.5" />
-                                {/* Right drop to Pollaris */}
-                                <path d="M 250 10 L 250 20" stroke="#B62825" strokeWidth="1.5" />
-                                {/* Junction & Terminal Dots */}
-                                <circle cx="150" cy="10" r="2" fill="#B62825" />
-                                <circle cx="50" cy="19" r="1.75" fill="#B62825" />
-                                <circle cx="150" cy="19" r="1.75" fill="#B62825" />
-                                <circle cx="250" cy="19" r="1.75" fill="#B62825" />
-                              </svg>
-                            </div>
+                              {/* Tree Connector Lines (SVG with MSK-red accents) */}
+                              <div className="relative w-full h-4 my-0.5 select-none pointer-events-none" aria-hidden="true">
+                                <svg className="w-full h-full" viewBox="0 0 300 20" fill="none" preserveAspectRatio="none">
+                                  {/* Central vertical stem from parent */}
+                                  <path d="M 150 0 L 150 10" stroke="#B62825" strokeWidth="1.2" />
+                                  {/* Horizontal connector bar spanning across all 3 child columns */}
+                                  <path d="M 50 10 L 250 10" stroke="#B62825" strokeWidth="1.2" />
+                                  {/* Left drop to Speedy */}
+                                  <path d="M 50 10 L 50 20" stroke="#B62825" strokeWidth="1.2" />
+                                  {/* Center drop to Punjab */}
+                                  <path d="M 150 10 L 150 20" stroke="#B62825" strokeWidth="1.2" />
+                                  {/* Right drop to Pollaris */}
+                                  <path d="M 250 10 L 250 20" stroke="#B62825" strokeWidth="1.2" />
+                                  {/* Junction & Terminal Dots */}
+                                  <circle cx="150" cy="10" r="1.75" fill="#B62825" />
+                                  <circle cx="50" cy="18" r="1.5" fill="#B62825" />
+                                  <circle cx="150" cy="18" r="1.5" fill="#B62825" />
+                                  <circle cx="250" cy="18" r="1.5" fill="#B62825" />
+                                </svg>
+                              </div>
 
-                            {/* 3 Child Company Nodes Horizontally Aligned */}
-                            <div className="grid grid-cols-3 gap-2">
-                              <Link
-                                to="/services#carting"
-                                className="group/child flex flex-col items-center justify-center py-1.5 px-1 rounded bg-[#13161F] hover:bg-[#1A1E2B] border border-white/[0.08] hover:border-[#B62825] transition-all text-center"
-                                onClick={() => setServicesDropdownOpen(false)}
-                              >
-                                <span className="text-[12.5px] font-semibold text-[#F1F5F9] group-hover/child:text-[#B62825] transition-colors">
-                                  Speedy
-                                </span>
-                              </Link>
-                              <Link
-                                to="/services#carting"
-                                className="group/child flex flex-col items-center justify-center py-1.5 px-1 rounded bg-[#13161F] hover:bg-[#1A1E2B] border border-white/[0.08] hover:border-[#B62825] transition-all text-center"
-                                onClick={() => setServicesDropdownOpen(false)}
-                              >
-                                <span className="text-[12.5px] font-semibold text-[#F1F5F9] group-hover/child:text-[#B62825] transition-colors">
-                                  Punjab
-                                </span>
-                              </Link>
-                              <Link
-                                to="/services#carting"
-                                className="group/child flex flex-col items-center justify-center py-1.5 px-1 rounded bg-[#13161F] hover:bg-[#1A1E2B] border border-white/[0.08] hover:border-[#B62825] transition-all text-center"
-                                onClick={() => setServicesDropdownOpen(false)}
-                              >
-                                <span className="text-[12.5px] font-semibold text-[#F1F5F9] group-hover/child:text-[#B62825] transition-colors">
-                                  Pollaris
-                                </span>
-                              </Link>
+                              {/* 3 Child Company Nodes Horizontally Aligned (Display-only, non-clickable) */}
+                              <div className="grid grid-cols-3 gap-1.5 select-none">
+                                <div className="flex flex-col items-center justify-center py-1 px-1 rounded-md bg-white border border-[#E2E8F0] shadow-2xs text-center cursor-default pointer-events-none">
+                                  <span className="text-[12px] font-semibold text-[#202124]">
+                                    Speedy
+                                  </span>
+                                </div>
+                                <div className="flex flex-col items-center justify-center py-1 px-1 rounded-md bg-white border border-[#E2E8F0] shadow-2xs text-center cursor-default pointer-events-none">
+                                  <span className="text-[12px] font-semibold text-[#202124]">
+                                    Punjab
+                                  </span>
+                                </div>
+                                <div className="flex flex-col items-center justify-center py-1 px-1 rounded-md bg-white border border-[#E2E8F0] shadow-2xs text-center cursor-default pointer-events-none">
+                                  <span className="text-[12px] font-semibold text-[#202124]">
+                                    Pollaris
+                                  </span>
+                                </div>
+                              </div>
                             </div>
                           </div>
 
                           {/* 5. Divider */}
-                          <div className="border-t border-neutral-800/80 my-2.5 mx-4" />
+                          <div className="border-t border-[#F0F0F0] my-1.5 mx-4" />
 
                           {/* 6. View All Services Directory Link */}
-                          <div className="px-4 pt-0.5">
+                          <div className="px-4 pt-0.5 pb-0.5">
                             <Link
                               to="/services"
-                              className="text-[12.5px] font-semibold text-[#B62825] hover:text-[#DC2626] inline-flex items-center gap-1.5 transition-colors group/viewall"
+                              className="text-[12.5px] font-semibold text-[#B62825] hover:text-[#9E2220] inline-flex items-center gap-1.5 transition-colors group/viewall"
                               onClick={() => setServicesDropdownOpen(false)}
                             >
                               <span>View All Services Directory</span>
@@ -578,56 +566,42 @@ export const Navbar: React.FC = () => {
                             {/* Divider */}
                             <div className="border-t border-[#E2E2E2] my-2" />
 
-                            {/* Mobile Carting Tree */}
-                            <div className="bg-white p-2.5 rounded-lg border border-[#E2E2E2]">
+                            {/* Mobile Carting Tree (Light Theme, Display-Only, Non-Clickable) */}
+                            <div className="bg-[#F8F9FA] p-2.5 rounded-lg border border-[#E9ECEF]">
                               <div className="flex justify-center">
-                                <Link
-                                  to="/services#carting"
-                                  className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-[#0B0D14] text-white text-[11px] font-extrabold uppercase tracking-wider border border-[#B62825]"
-                                  onClick={() => setMobileMenuOpen(false)}
+                                <div
+                                  className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-white text-[#202124] text-[11px] font-bold uppercase tracking-wider border border-[#B62825]/40 shadow-2xs select-none cursor-default pointer-events-none"
                                 >
                                   <span className="w-1.5 h-1.5 rounded-full bg-[#B62825]" />
                                   <span>CARTING</span>
-                                </Link>
+                                </div>
                               </div>
 
                               {/* SVG Tree Connector */}
-                              <div className="relative w-full h-4 my-0.5">
+                              <div className="relative w-full h-4 my-0.5 select-none pointer-events-none" aria-hidden="true">
                                 <svg className="w-full h-full" viewBox="0 0 300 20" fill="none" preserveAspectRatio="none">
-                                  <path d="M 150 0 L 150 10" stroke="#B62825" strokeWidth="1.5" />
-                                  <path d="M 50 10 L 250 10" stroke="#B62825" strokeWidth="1.5" />
-                                  <path d="M 50 10 L 50 20" stroke="#B62825" strokeWidth="1.5" />
-                                  <path d="M 150 10 L 150 20" stroke="#B62825" strokeWidth="1.5" />
-                                  <path d="M 250 10 L 250 20" stroke="#B62825" strokeWidth="1.5" />
-                                  <circle cx="150" cy="10" r="2" fill="#B62825" />
-                                  <circle cx="50" cy="19" r="1.75" fill="#B62825" />
-                                  <circle cx="150" cy="19" r="1.75" fill="#B62825" />
-                                  <circle cx="250" cy="19" r="1.75" fill="#B62825" />
+                                  <path d="M 150 0 L 150 10" stroke="#B62825" strokeWidth="1.2" />
+                                  <path d="M 50 10 L 250 10" stroke="#B62825" strokeWidth="1.2" />
+                                  <path d="M 50 10 L 50 20" stroke="#B62825" strokeWidth="1.2" />
+                                  <path d="M 150 10 L 150 20" stroke="#B62825" strokeWidth="1.2" />
+                                  <path d="M 250 10 L 250 20" stroke="#B62825" strokeWidth="1.2" />
+                                  <circle cx="150" cy="10" r="1.75" fill="#B62825" />
+                                  <circle cx="50" cy="18" r="1.5" fill="#B62825" />
+                                  <circle cx="150" cy="18" r="1.5" fill="#B62825" />
+                                  <circle cx="250" cy="18" r="1.5" fill="#B62825" />
                                 </svg>
                               </div>
 
-                              <div className="grid grid-cols-3 gap-1.5 text-center">
-                                <Link
-                                  to="/services#carting"
-                                  className="py-1 px-1 rounded bg-[#F8FAFC] border border-[#E2E8F0] hover:border-[#B62825] text-[11.5px] font-semibold text-[#1E293B]"
-                                  onClick={() => setMobileMenuOpen(false)}
-                                >
+                              <div className="grid grid-cols-3 gap-1.5 text-center select-none">
+                                <div className="py-1 px-1 rounded-md bg-white border border-[#E2E8F0] shadow-2xs text-[11.5px] font-semibold text-[#34343A] cursor-default pointer-events-none">
                                   Speedy
-                                </Link>
-                                <Link
-                                  to="/services#carting"
-                                  className="py-1 px-1 rounded bg-[#F8FAFC] border border-[#E2E8F0] hover:border-[#B62825] text-[11.5px] font-semibold text-[#1E293B]"
-                                  onClick={() => setMobileMenuOpen(false)}
-                                >
+                                </div>
+                                <div className="py-1 px-1 rounded-md bg-white border border-[#E2E8F0] shadow-2xs text-[11.5px] font-semibold text-[#34343A] cursor-default pointer-events-none">
                                   Punjab
-                                </Link>
-                                <Link
-                                  to="/services#carting"
-                                  className="py-1 px-1 rounded bg-[#F8FAFC] border border-[#E2E8F0] hover:border-[#B62825] text-[11.5px] font-semibold text-[#1E293B]"
-                                  onClick={() => setMobileMenuOpen(false)}
-                                >
+                                </div>
+                                <div className="py-1 px-1 rounded-md bg-white border border-[#E2E8F0] shadow-2xs text-[11.5px] font-semibold text-[#34343A] cursor-default pointer-events-none">
                                   Pollaris
-                                </Link>
+                                </div>
                               </div>
                             </div>
 
@@ -636,10 +610,10 @@ export const Navbar: React.FC = () => {
 
                             <Link
                               to="/services"
-                              className="block py-1 px-2 text-[13px] font-semibold text-[#B62825]"
+                              className="block py-1 px-2 text-[13px] font-semibold text-[#B62825] hover:text-[#9E2220]"
                               onClick={() => setMobileMenuOpen(false)}
                             >
-                              All Services Directory &rarr;
+                              View All Services Directory &rarr;
                             </Link>
                           </div>
                         ) : (
