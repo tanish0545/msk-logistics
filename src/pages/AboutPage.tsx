@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  ArrowRight, 
-  CheckCircle2, 
-  ShieldCheck, 
-  Anchor, 
-  Phone, 
-  MapPin, 
+import {
+  ArrowRight,
+  CheckCircle2,
+  ShieldCheck,
+  Anchor,
+  Phone,
+  MapPin,
   Users,
   Calendar,
   Building2,
@@ -51,7 +51,7 @@ export const AboutPage: React.FC = () => {
       <section className="py-16 sm:py-24 bg-white border-b border-[#E2E2E2] overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-            
+
             {/* Left Column: Polished Editorial Storytelling */}
             <ScrollReveal direction="left" delay={0} className="lg:col-span-7 space-y-6">
               <div className="space-y-3">
@@ -70,7 +70,7 @@ export const AboutPage: React.FC = () => {
                   <strong className="text-[#1E293B] font-semibold">MSK Logistics Solution</strong> was established in <strong>May 2019</strong> to provide dedicated cargo handling and transportation, lashing and choking, palletisation, packing, and specialized export-related activities from Western India’s maritime export hub at Nhava Sheva (JNPT).
                 </p>
                 <p>
-                  In its foundational phase, the company worked in close collaboration with <strong>Speedy Multimodes Limited</strong>, one of the prominent Container Freight Station (CFS) operators in India. This operational association reinforced our ground-level discipline, container terminal protocol, and marine-standard handling procedures.
+                  In its foundational phase, the company worked in close collaboration with <strong>Speedy, Pollaris,Punjab</strong>, one of the prominent Container Freight Station (CFS) operators in India. This operational association reinforced our ground-level discipline, container terminal protocol, and marine-standard handling procedures.
                 </p>
                 <p>
                   Our operational philosophy centers strictly on the quality of logistics execution, packaging materials, and client-tailored services. Rather than applying standard uniform packaging, every solution is carefully customized according to specific product requirements and cargo sensitivities. Rigorous adherence to schedules and maintaining strong, dependable client relationships remain our steadfast priorities across every assignment.
@@ -179,7 +179,7 @@ export const AboutPage: React.FC = () => {
       {/* ========================================================================= */}
       <section className="py-14 sm:py-18 bg-[#173F70] text-white relative overflow-hidden border-b border-[#0F2D52]">
         {/* Subtle Diagonal Technical Lines Accent */}
-        <div 
+        <div
           className="absolute inset-0 pointer-events-none opacity-20"
           style={{
             backgroundImage: 'repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.05) 0px, rgba(255, 255, 255, 0.05) 1px, transparent 1px, transparent 24px)',
@@ -191,14 +191,14 @@ export const AboutPage: React.FC = () => {
           <ScrollReveal direction="up" delay={0}>
             <div className="bg-white/5 backdrop-blur-md rounded-2xl border border-white/15 p-8 sm:p-12 lg:p-14 shadow-xl">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-                
+
                 {/* Metric Display Column */}
                 <div className="lg:col-span-6 space-y-3 text-center lg:text-left">
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-blue-200 text-xs font-mono font-medium uppercase tracking-wider">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#B62825]" />
                     <span>MONTHLY BUSINESS VOLUME</span>
                   </div>
-                  
+
                   <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4 pt-2">
                     <span className="text-5xl sm:text-6xl lg:text-7xl font-bold font-heading text-white tracking-tight drop-shadow-sm">
                       350–400
@@ -212,7 +212,7 @@ export const AboutPage: React.FC = () => {
                       </span>
                     </div>
                   </div>
-                  
+
                   <div className="w-16 h-1 bg-[#B62825] mx-auto lg:mx-0 mt-3" />
                 </div>
 
@@ -248,7 +248,7 @@ export const AboutPage: React.FC = () => {
       {/* ========================================================================= */}
       <section className="py-16 sm:py-24 bg-[#F8FAFC] border-b border-[#E2E2E2] overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-10 sm:space-y-12">
-          
+
           {/* Section Header */}
           <ScrollReveal direction="up" delay={0} className="max-w-2xl space-y-3">
             <span className="editorial-badge bg-white text-[#173F70] border-neutral-300">
@@ -267,9 +267,9 @@ export const AboutPage: React.FC = () => {
           <ScrollReveal direction="up" delay={80}>
             <div className="bg-white rounded-2xl border border-[#E2E8F0] p-7 sm:p-10 shadow-sm max-w-4xl hover:shadow-md transition-shadow">
               <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 sm:gap-8">
-                
+
                 {/* Replaceable Avatar Container */}
-                <div 
+                <div
                   className="w-28 h-28 sm:w-32 sm:h-32 rounded-2xl bg-gradient-to-br from-[#173F70] via-[#1E293B] to-[#0F2D52] flex items-center justify-center border-2 border-white/20 shadow-md text-white font-heading font-bold text-3xl sm:text-4xl tracking-wider select-none shrink-0 relative overflow-hidden group"
                   title="Sunil Naresh Kadu — Proprietor (Replaceable image container for future photograph)"
                 >
@@ -278,7 +278,7 @@ export const AboutPage: React.FC = () => {
                   <span className="text-[#F4F5F7] group-hover:scale-105 transition-transform duration-300">
                     SNK
                   </span>
-                  
+
                   {/* Subtle Corner Designation Ribbon */}
                   <div className="absolute bottom-1.5 inset-x-1.5 py-0.5 bg-black/40 backdrop-blur-xs rounded text-[9px] font-mono text-center text-white/90 uppercase tracking-widest">
                     PROPRIETOR
@@ -406,7 +406,7 @@ export const AboutPage: React.FC = () => {
               </div>
 
               <div className="pt-2">
-                <Link 
+                <Link
                   to="/request-quote"
                   className="btn-primary w-full text-center py-3 text-xs uppercase font-mono tracking-wider"
                 >
@@ -436,8 +436,8 @@ export const AboutPage: React.FC = () => {
               </p>
             </div>
 
-            <Link 
-              to="/services" 
+            <Link
+              to="/services"
               className="btn-secondary text-xs font-mono uppercase tracking-wider self-start md:self-auto"
             >
               <span>Explore All Services</span>
@@ -449,8 +449,8 @@ export const AboutPage: React.FC = () => {
             {/* Service 1 */}
             <div className="bg-white rounded-xl border border-[#E2E2E2] overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 flex flex-col group">
               <div className="relative h-48 w-full overflow-hidden bg-neutral-100">
-                <BrandedImage 
-                  src="/images/services/export-packaging.webp" 
+                <BrandedImage
+                  src="/images/services/export-packaging.webp"
                   alt="Export Packaging and Industrial Crating"
                   aspectRatio="h-full w-full"
                   imageClassName="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
@@ -468,7 +468,7 @@ export const AboutPage: React.FC = () => {
                     Custom-built heavy-duty wooden boxes, skids, crates, and vacuum barrier foil wrapping to protect industrial machinery against maritime humidity and corrosion.
                   </p>
                 </div>
-                <Link 
+                <Link
                   to="/services/export-packaging"
                   className="text-xs font-bold text-[#173F70] hover:text-[#B62825] inline-flex items-center gap-1 transition-colors"
                 >
@@ -481,8 +481,8 @@ export const AboutPage: React.FC = () => {
             {/* Service 2 */}
             <div className="bg-white rounded-xl border border-[#E2E2E2] overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 flex flex-col group">
               <div className="relative h-48 w-full overflow-hidden bg-neutral-100">
-                <BrandedImage 
-                  src="/images/services/container-stuffing.webp" 
+                <BrandedImage
+                  src="/images/services/container-stuffing.webp"
                   alt="Container Stuffing and Loading Operations"
                   aspectRatio="h-full w-full"
                   imageClassName="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
@@ -500,7 +500,7 @@ export const AboutPage: React.FC = () => {
                     Systematic cargo positioning and weight distribution planning inside Standard Dry, High Cube, Open Top, and Flat Rack containers.
                   </p>
                 </div>
-                <Link 
+                <Link
                   to="/services/container-stuffing"
                   className="text-xs font-bold text-[#173F70] hover:text-[#B62825] inline-flex items-center gap-1 transition-colors"
                 >
@@ -513,8 +513,8 @@ export const AboutPage: React.FC = () => {
             {/* Service 3 */}
             <div className="bg-white rounded-xl border border-[#E2E2E2] overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 flex flex-col group">
               <div className="relative h-48 w-full overflow-hidden bg-neutral-100">
-                <BrandedImage 
-                  src="/images/services/cargo-lashing.webp" 
+                <BrandedImage
+                  src="/images/services/cargo-lashing.webp"
                   alt="Cargo Lashing and Securing"
                   aspectRatio="h-full w-full"
                   imageClassName="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
@@ -532,7 +532,7 @@ export const AboutPage: React.FC = () => {
                     Certified high-tensile polyester webbing, ratchet belts, steel wire ropes, turnbuckles, and timber chocking engineered to prevent in-transit movement.
                   </p>
                 </div>
-                <Link 
+                <Link
                   to="/services/cargo-lashing"
                   className="text-xs font-bold text-[#173F70] hover:text-[#B62825] inline-flex items-center gap-1 transition-colors"
                 >
