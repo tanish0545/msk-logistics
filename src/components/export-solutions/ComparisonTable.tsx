@@ -58,7 +58,7 @@ export const ComparisonTable: React.FC = () => {
               <th className="p-4 sm:p-5 font-heading font-semibold text-[15px] w-1/4">
                 Operational Scope & Division
               </th>
-              <th className="p-4 sm:p-5 font-heading font-semibold text-[15px] w-3/8 bg-[#173F70]">
+              <th className="p-4 sm:p-5 font-heading font-semibold text-[15px] w-3/8 bg-[#000000]">
                 <div className="flex items-center justify-between">
                   <span>Option 01: Client Container & Cargo Ready</span>
                   <span className="text-[10px] font-mono bg-white/20 text-white px-2 py-0.5 rounded font-bold">
@@ -87,9 +87,9 @@ export const ComparisonTable: React.FC = () => {
                   <div className="text-[11px] text-[#666666] mt-0.5">{row.notes}</div>
                 </td>
 
-                <td className="p-4 sm:p-5 text-[#343434] bg-blue-50/20 font-medium">
+                <td className="p-4 sm:p-5 text-[#343434] bg-neutral-50 font-medium">
                   <div className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-[#173F70] shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-4 h-4 text-[#000000] shrink-0 mt-0.5" />
                     <span>{row.option01}</span>
                   </div>
                 </td>
@@ -108,10 +108,10 @@ export const ComparisonTable: React.FC = () => {
               <td className="p-4 sm:p-5 font-semibold text-[#343434]">
                 Quotation Request
               </td>
-              <td className="p-4 sm:p-5 bg-blue-50/30">
+              <td className="p-4 sm:p-5 bg-neutral-50">
                 <Link 
                   to="/request-quote?solution=client_container_and_cargo"
-                  className="w-full bg-[#173F70] hover:bg-[#0F2D52] text-white font-bold py-2.5 px-4 rounded-lg text-xs sm:text-sm text-center inline-block transition-all shadow"
+                  className="w-full bg-[#000000] hover:bg-[#0B0B0D] text-white font-bold py-2.5 px-4 rounded-lg text-xs sm:text-sm text-center inline-block transition-all shadow"
                 >
                   Request Quote for Option 01 &rarr;
                 </Link>
@@ -138,8 +138,8 @@ export const ComparisonTable: React.FC = () => {
             </div>
 
             <div className="space-y-2 text-[13px]">
-              <div className="p-3.5 bg-blue-50/50 rounded-lg border border-blue-100">
-                <div className="text-[11px] font-mono font-bold text-[#173F70] uppercase mb-1">
+              <div className="p-3.5 bg-neutral-50 rounded-lg border border-neutral-200">
+                <div className="text-[11px] font-mono font-bold text-[#000000] uppercase mb-1">
                   Option 01 — Container & Cargo Ready
                 </div>
                 <div className="text-[#343434] font-medium">{row.option01}</div>
@@ -162,7 +162,7 @@ export const ComparisonTable: React.FC = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-3">
           <Link 
             to="/request-quote?solution=client_container_and_cargo"
-            className="w-full bg-[#173F70] text-white font-bold py-3 px-4 rounded-xl text-center text-sm shadow"
+            className="w-full bg-[#000000] hover:bg-[#0B0B0D] text-white font-bold py-3 px-4 rounded-xl text-center text-sm shadow"
           >
             Select Option 01 &rarr;
           </Link>

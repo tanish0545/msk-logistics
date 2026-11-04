@@ -1,0 +1,156 @@
+const { spawn } = require('child_process');
+const http = require('http');
+const fs = require('fs');
+const path = require('path');
+const os = require('os');
+
+const ARTIFACT_DIR = 'C:\\Users\\tanis\\.gemini\\antigravity\\brain\\c0b2c763-e918-4c9e-b8e6-bd7de1b3a74d';
+const TARGET_HOST = 'http://127.0.0.1:5173';
+
+const BROWSERS = {
+  edge: 'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe',
+  brave: 'C:\\Users\\tanis\\AppData\\Local\\BraveSoftware\\Brave-Browser\\Application\\brave.exe',
+  chrome: 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
+};
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function fetchJson(url) {
+  return new Promise((resolve, reject) => {
+    http.get(url, (res) => {
+      let data = '';
+      res.on('data', chunk => data += chunk);
+      res.on('end', () => {
+        try { resolve(JSON.parse(data)); } catch (e) { reject(e); }
+      });
+    }).on('error', reject);
+  });
+}
+
+async function inspectBrowser(browserName, browserExe, port, viewports) {
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), `diag-${browserName}-`));
+  console.log(`\n===========================================================`);
+  console.log(`DIAGNOSING ${browserName.toUpperCase()} ON PORT ${port}`);
+  console.log(`===========================================================`);
+
+  const proc = spawn(browserExe, [
+    '--headless=new',
+    `--remote-debugging-port=${port}`,
+    `--user-data-dir=${tmpDir}`,
+    '--disable-gpu',
+    '--no-sandbox',
+    'about:blank'
+  ]);
+
+  let wsUrl = null;
+  for (let i = 0; i < 40; i++) {
+    await sleep(300);
+    try {
+      const version = await fetchJson(`http://127.0.0.1:${port}/json/version`);
+      if (version && version.webSocketDebuggerUrl) {
+        wsUrl = version.webSocketDebuggerUrl;
+        break;
+      }
+    } catch (e) {}
+  }
+
+  if (!wsUrl) {
+    console.error(`Failed to connect to ${browserName}`);
+    proc.kill();
+    return;
+  }
+
+  try {
+    const targets = await fetchJson(`http://127.0.0.1:${port}/json`);
+    const pageTarget = targets.find(t => t.type === 'page');
+    const targetWs = pageTarget ? pageTarget.webSocketDebuggerUrl : wsUrl;
+
+    const ws = new globalThis.WebSocket(targetWs);
+    await new Promise(resolve => {
+      if (ws.readyState === 1) resolve();
+      else ws.addEventListener('open', resolve, { once: true });
+    });
+
+    let msgId = 1;
+    function send(method, params = {}) {
+      return new Promise((resolve, reject) => {
+        const id = msgId++;
+        const handler = (evt) => {
+          const msg = JSON.parse(evt.data);
+          if (msg.id === id) {
+            ws.removeEventListener('message', handler);
+            if (msg.error) reject(msg.error);
+            else resolve(msg.result);
+          }
+        };
+        ws.addEventListener('message', handler);
+        ws.send(JSON.stringify({ id, method, params }));
+      });
+    }
+
+    await send('Page.enable');
+    await send('Runtime.enable');
+
+    for (const vp of viewports) {
+      await send('Emulation.setDeviceMetricsOverride', {
+        width: vp.width,
+        height: vp.height,
+        deviceScaleFactor: 1,
+        mobile: vp.width < 600,
+      });
+
+      await send('Page.navigate', { url: TARGET_HOST + '/' });
+      await sleep(3000);
+
+      const res = await send('Runtime.evaluate', {
+        expression: `(() => {
+          const img = document.querySelector('img[src*="msk-cinematic-port"]');
+          if (!img) return { error: 'Image not found' };
+          const rect = img.getBoundingClientRect();
+          const parentRect = img.parentElement.getBoundingClientRect();
+          const cs = getComputedStyle(img);
+          return {
+            windowWidth: window.innerWidth,
+            windowHeight: window.innerHeight,
+            objectFit: cs.objectFit,
+            objectPosition: cs.objectPosition,
+            transform: cs.transform,
+            imageRect: { left: rect.left, top: rect.top, width: rect.width, height: rect.height },
+            parentRect: { left: parentRect.left, top: parentRect.top, width: parentRect.width, height: parentRect.height }
+          };
+        })()`,
+        returnByValue: true
+      });
+
+      console.log(`[${browserName}] ${vp.name} (${vp.width}x${vp.height}):`, res.result.value);
+
+      if (vp.saveScreenshot) {
+        const { data } = await send('Page.captureScreenshot', { format: 'png' });
+        const outName = `${browserName}_${vp.name}.png`;
+        const outPath = path.join(ARTIFACT_DIR, outName);
+        fs.writeFileSync(outPath, Buffer.from(data, 'base64'));
+        console.log(`  -> Saved ${outName} (${fs.statSync(outPath).size} bytes)`);
+      }
+    }
+
+    ws.close();
+  } finally {
+    proc.kill();
+    try { fs.rmSync(tmpDir, { recursive: true, force: true }); } catch (e) {}
+  }
+}
+
+async function main() {
+  const viewports = [
+    { name: '1536px', width: 1536, height: 864, saveScreenshot: true },
+    { name: '1440px', width: 1440, height: 800, saveScreenshot: true },
+    { name: '1366px', width: 1366, height: 768, saveScreenshot: true },
+  ];
+
+  await inspectBrowser('edge', BROWSERS.edge, 9231, viewports);
+  await inspectBrowser('brave', BROWSERS.brave, 9232, viewports);
+}
+
+main().catch(console.error);

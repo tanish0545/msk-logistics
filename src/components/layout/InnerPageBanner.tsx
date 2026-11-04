@@ -22,10 +22,10 @@ export const InnerPageBanner: React.FC<InnerPageBannerProps> = ({
   className = '',
 }) => {
   return (
-    <section className={`bg-[#1A1C23] text-white py-6 sm:py-8 lg:py-8.5 border-b border-[#2D3139] relative overflow-hidden ${className}`}>
-      {/* Background Gradient — Dark Graphite to Deep Charcoal */}
+    <section className={`bg-[#000000] text-white py-6 sm:py-8 lg:py-8.5 border-b border-white/10 relative overflow-hidden ${className}`}>
+      {/* Background Gradient — Pure Black to Near Black */}
       <div 
-        className="absolute inset-0 bg-gradient-to-r from-[#14161D] via-[#1E212B] to-[#14161D] opacity-95 pointer-events-none" 
+        className="absolute inset-0 bg-gradient-to-r from-[#000000] via-[#0B0B0D] to-[#000000] opacity-95 pointer-events-none" 
         aria-hidden="true" 
       />
 
@@ -54,14 +54,14 @@ export const InnerPageBanner: React.FC<InnerPageBannerProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-2.5 sm:space-y-3 relative z-10">
         {/* Optional Breadcrumb */}
         {breadcrumb && (
-          <div className="flex flex-wrap items-center gap-1.5 text-[11.5px] sm:text-[12px] font-mono-code text-[#AEB6C2]">
+          <div className="flex flex-wrap items-center gap-1.5 text-[11.5px] sm:text-[12px] font-mono-code text-[#AEB6C2] animate-fade-in-up">
             {breadcrumb}
           </div>
         )}
 
         {/* Badge + Subtext Row */}
         {(badge || badgeSubtext) && (
-          <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
+          <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 animate-fade-in-up stagger-1">
             {badge && (
               typeof badge === 'string' ? (
                 <span className="editorial-badge bg-white/[0.06] text-[#D9DEE5] border border-white/15 shadow-2xs">
@@ -80,20 +80,20 @@ export const InnerPageBanner: React.FC<InnerPageBannerProps> = ({
         )}
 
         {/* Title */}
-        <h1 className="text-2xl sm:text-3xl lg:text-[34px] font-bold font-heading text-[#F4F5F7] tracking-tight leading-tight">
+        <h1 className="text-2xl sm:text-3xl lg:text-[34px] font-bold font-heading text-[#F4F5F7] tracking-tight leading-tight animate-fade-in-up stagger-2">
           {title}
         </h1>
 
         {/* Description */}
         {description && (
-          <p className="text-[#D9DEE5]/80 text-[13.5px] sm:text-[14.5px] max-w-3xl font-body leading-relaxed">
+          <p className="text-[#D9DEE5]/80 text-[13.5px] sm:text-[14.5px] max-w-3xl font-body leading-relaxed animate-fade-in-up stagger-3">
             {description}
           </p>
         )}
 
         {/* Optional Metadata Row */}
         {meta && (
-          <div className="pt-0.5 text-xs font-mono text-[#AEB6C2]">
+          <div className="pt-0.5 text-xs font-mono text-[#AEB6C2] animate-fade-in-up stagger-4">
             {meta}
           </div>
         )}

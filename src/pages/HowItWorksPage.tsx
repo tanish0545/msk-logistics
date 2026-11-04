@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle2, AlertCircle } from 'lucide-react';
 import { MagneticButton } from '../components/common/MagneticButton';
 import { InnerPageBanner } from '../components/layout/InnerPageBanner';
+import { ScrollReveal } from '../components/common/ScrollReveal';
 
 export const HowItWorksPage: React.FC = () => {
   const stepDetails = [
@@ -70,75 +71,86 @@ export const HowItWorksPage: React.FC = () => {
       {/* Stepped Timeline */}
       <section className="py-20 bg-white border-b border-[#E2E2E2]">
         <div className="max-w-5xl mx-auto px-4 sm:px-8 space-y-12">
-          <div className="space-y-4">
-            <h2 className="text-2xl sm:text-3xl font-bold text-[#343434] font-heading">
-              Operational Sequence from Enquiry to Handover
-            </h2>
-            <p className="text-[15px] text-[#666666] leading-relaxed">
-              Every export cargo assignment follows this verified seven-stage workflow. Note that work commences only upon formal written agreement and schedule confirmation.
-            </p>
-          </div>
+          <ScrollReveal direction="up">
+            <div className="space-y-4">
+              <h2 className="text-2xl sm:text-3xl font-bold text-[#343434] font-heading">
+                Operational Sequence from Enquiry to Handover
+              </h2>
+              <p className="text-[15px] text-[#666666] leading-relaxed">
+                Every export cargo assignment follows this verified seven-stage workflow. Note that work commences only upon formal written agreement and schedule confirmation.
+              </p>
+            </div>
+          </ScrollReveal>
 
           <div className="space-y-8 relative before:absolute before:inset-0 before:left-6 sm:before:left-8 before:w-0.5 before:bg-gradient-to-b before:from-[#B62825] before:via-[#B62825]/60 before:to-[#173F70]/20 before:hidden sm:before:block">
             {stepDetails.map((s, idx) => (
-              <div 
+              <ScrollReveal 
                 key={s.step}
-                className="group relative bg-[#F5F5F3] hover:bg-white rounded-xl border border-[#E2E2E2] hover:border-[#173F70]/40 p-6 sm:p-8 sm:ml-12 space-y-4 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 motion-reduce:transform-none motion-reduce:transition-none"
+                direction="left"
+                delay={(idx % 3) * 60}
               >
-                {/* Step Marker Badge */}
-                <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#E2E2E2] pb-3">
-                  <div className="flex items-center gap-3">
-                    <span className="w-8 h-8 rounded-full bg-[#B62825] group-hover:scale-110 text-white font-mono-code font-bold text-[13px] flex items-center justify-center shrink-0 transition-transform duration-300 motion-reduce:transform-none shadow-xs">
-                      {s.step}
+                <div 
+                  className="group relative bg-[#F5F5F3] hover:bg-white rounded-xl border border-[#E2E2E2] hover:border-black/40 p-6 sm:p-8 sm:ml-12 space-y-4 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 motion-reduce:transform-none motion-reduce:transition-none"
+                >
+                  {/* Step Marker Badge */}
+                  <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#E2E2E2] pb-3">
+                    <div className="flex items-center gap-3">
+                      <span className="w-8 h-8 rounded-full bg-[#B62825] group-hover:scale-110 text-white font-mono-code font-bold text-[13px] flex items-center justify-center shrink-0 transition-transform duration-300 motion-reduce:transform-none shadow-xs">
+                        {s.step}
+                      </span>
+                      <h3 className="text-xl sm:text-2xl font-bold text-[#343434] group-hover:text-[#173F70] transition-colors font-heading">
+                        {s.title}
+                      </h3>
+                    </div>
+
+                    <span className="text-[11px] font-mono-code text-neutral-500 uppercase">
+                      STAGE 0{idx + 1}
                     </span>
-                    <h3 className="text-xl sm:text-2xl font-bold text-[#343434] group-hover:text-[#173F70] transition-colors font-heading">
-                      {s.title}
-                    </h3>
                   </div>
 
-                  <span className="text-[11px] font-mono-code text-neutral-500 uppercase">
-                    STAGE 0{idx + 1}
-                  </span>
+                  <p className="text-[14px] font-medium text-[#343434]">
+                    {s.summary}
+                  </p>
+
+                  <p className="text-[14px] text-[#666666] leading-relaxed">
+                    {s.detail}
+                  </p>
+
+                  <div className="pt-3 border-t border-[#E2E2E2] flex items-center gap-2 text-[12px] font-mono-code text-[#B62825]">
+                    <CheckCircle2 className="w-4 h-4 shrink-0" />
+                    <span>Deliverable: {s.deliverable}</span>
+                  </div>
                 </div>
-
-                <p className="text-[14px] font-medium text-[#343434]">
-                  {s.summary}
-                </p>
-
-                <p className="text-[14px] text-[#666666] leading-relaxed">
-                  {s.detail}
-                </p>
-
-                <div className="pt-3 border-t border-[#E2E2E2] flex items-center gap-2 text-[12px] font-mono-code text-[#B62825]">
-                  <CheckCircle2 className="w-4 h-4 shrink-0" />
-                  <span>Deliverable: {s.deliverable}</span>
-                </div>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
 
           {/* Process Integrity Notice */}
-          <div className="p-6 rounded-lg bg-neutral-100 border border-neutral-300 text-[13px] text-neutral-700 space-y-2">
-            <div className="font-bold flex items-center gap-2 text-[#343434]">
-              <AlertCircle className="w-4 h-4 text-[#B62825]" />
-              <span>Operational Clarity Notice</span>
+          <ScrollReveal direction="up" delay={50}>
+            <div className="p-6 rounded-lg bg-neutral-100 border border-neutral-300 text-[13px] text-neutral-700 space-y-2">
+              <div className="font-bold flex items-center gap-2 text-[#343434]">
+                <AlertCircle className="w-4 h-4 text-[#B62825]" />
+                <span>Operational Clarity Notice</span>
+              </div>
+              <p>
+                This structured sequence is a managed operational workflow conducted by logistics specialists. MSK Logistics does not offer automatic self-booking or automated real-time GPS tracking tools. All execution steps are coordinated directly by our operations desk in Navi Mumbai.
+              </p>
             </div>
-            <p>
-              This structured sequence is a managed operational workflow conducted by logistics specialists. MSK Logistics does not offer automatic self-booking or automated real-time GPS tracking tools. All execution steps are coordinated directly by our operations desk in Navi Mumbai.
-            </p>
-          </div>
+          </ScrollReveal>
 
-          <div className="pt-6 text-center">
-            <MagneticButton maxPull={4}>
-              <Link 
-                to="/request-quote"
-                className="btn-primary py-3.5 px-8 text-[15px] group/btn active:scale-[0.98] transition-all motion-reduce:transform-none"
-              >
-                <span>Begin Step 1: Submit Your Shipment Details</span>
-                <ArrowRight className="w-4 h-4 ml-1 transition-transform duration-200 group-hover/btn:translate-x-1.5 motion-reduce:transform-none" />
-              </Link>
-            </MagneticButton>
-          </div>
+          <ScrollReveal direction="up" delay={100}>
+            <div className="pt-6 text-center">
+              <MagneticButton maxPull={4}>
+                <Link 
+                  to="/request-quote"
+                  className="btn-primary py-3.5 px-8 text-[15px] group/btn active:scale-[0.98] transition-all motion-reduce:transform-none"
+                >
+                  <span>Begin Step 1: Submit Your Shipment Details</span>
+                  <ArrowRight className="w-4 h-4 ml-1 transition-transform duration-200 group-hover/btn:translate-x-1.5 motion-reduce:transform-none" />
+                </Link>
+              </MagneticButton>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
     </div>

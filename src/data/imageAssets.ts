@@ -20,6 +20,8 @@ export interface ClientImageAsset {
   verifiedDetails: string;
   websiteSections: ('homepage-gallery' | 'container-guide' | 'import-export' | 'services' | 'operations')[];
   isoCode?: string;
+  projectReference?: string;
+  consigneeOrPartner?: string;
 }
 
 /**
@@ -57,6 +59,8 @@ export const CLIENT_IMAGE_ASSETS: ClientImageAsset[] = [
     verifiedDetails: "Container ID MSDU 380109 2, ISO code 25P3, 2.9m/9'6\" corner posts, MSC equipment.",
     websiteSections: ['container-guide', 'homepage-gallery', 'import-export'],
     isoCode: '25P3',
+    projectReference: 'Heavy Industrial Machinery Export Packaging & Flat Rack Securing',
+    consigneeOrPartner: 'Heavy Export Machinery',
   },
   {
     id: 'img-40ft-fr-lashed',
@@ -71,6 +75,8 @@ export const CLIENT_IMAGE_ASSETS: ClientImageAsset[] = [
     verifiedDetails: "Container ID MSDU 998398 6, ISO code 45P3, 9'6\" corner posts, MSC platform.",
     websiteSections: ['container-guide', 'homepage-gallery', 'import-export'],
     isoCode: '45P3',
+    projectReference: 'Dual Industrial Machinery Assemblies on 40ft Flat Rack Platform',
+    consigneeOrPartner: 'ODC Machinery Export',
   },
   {
     id: 'img-fr-dual-stowage',
@@ -84,6 +90,8 @@ export const CLIENT_IMAGE_ASSETS: ClientImageAsset[] = [
     shortDescription: "Overhead view of dual 40ft Flat Racks secured with multi-point ratchet webbings in vessel hold.",
     verifiedDetails: "Direct aerial view looking down into container vessel cell guide alongside MSC boxes.",
     websiteSections: ['container-guide', 'homepage-gallery', 'import-export'],
+    projectReference: 'Cellular Marine Guide Stowage: Dual 40ft Flat Racks in Vessel Hold',
+    consigneeOrPartner: 'Marine Cell Guide Stowage',
   },
 
   // 2. Shipments - Flat Rack
@@ -99,6 +107,8 @@ export const CLIENT_IMAGE_ASSETS: ClientImageAsset[] = [
     shortDescription: "Trained ground rigging crew guiding heavy machinery onto flat rack platform under crane hook.",
     verifiedDetails: "Ground crew in safety helmets and high-vis vests guiding heavy spreader sling.",
     websiteSections: ['homepage-gallery', 'import-export', 'operations'],
+    projectReference: 'Heavy Lift Rigging & Vessel Hold Crane Lowering Operations',
+    consigneeOrPartner: 'Heavy Lift Crane Rigging',
   },
   {
     id: 'img-fr-vessel-cell',
@@ -125,6 +135,8 @@ export const CLIENT_IMAGE_ASSETS: ClientImageAsset[] = [
     shortDescription: "Heavy mobile crane transfer from multi-axle trailer onto heavy-duty flat rack platform.",
     verifiedDetails: "Crane lifting from Ashok Leyland trailer onto yellow Flat Rack MSDU 995998 0.",
     websiteSections: ['homepage-gallery', 'import-export', 'operations'],
+    projectReference: 'Heavy Lift Mobile Crane Transfer to Flat Rack Platform (MSDU 995998 0)',
+    consigneeOrPartner: 'Mobile Crane Heavy Lift',
   },
   {
     id: 'img-fr-night-lashing',
@@ -153,6 +165,8 @@ export const CLIENT_IMAGE_ASSETS: ClientImageAsset[] = [
     shortDescription: "Multi-axle low-bed transport with timber spreaders and certified heavy ratchet binders.",
     verifiedDetails: "Container terminal yard with COSCO and HMM container stacks in background.",
     websiteSections: ['homepage-gallery', 'import-export', 'operations'],
+    projectReference: 'Breakbulk & ODC Movement: Low-Bed Trailer Highway & Port Haulage',
+    consigneeOrPartner: 'Low-Bed Heavy Haulage',
   },
   {
     id: 'img-bb-heavy-rigging',
@@ -166,6 +180,8 @@ export const CLIENT_IMAGE_ASSETS: ClientImageAsset[] = [
     shortDescription: "Turnkey project cargo securing for non-containerized heavy industrial units.",
     verifiedDetails: "Trailer connected to prime mover labeled 'LOGISTICS PVT' with Triton/OOCL boxes.",
     websiteSections: ['homepage-gallery', 'import-export'],
+    projectReference: 'Project Cargo Rigging & Multi-Axle Trailer Highway Transport',
+    consigneeOrPartner: 'Multi-Axle Project Transport',
   },
   {
     id: 'img-bb-cylindrical-haulage',
@@ -179,6 +195,8 @@ export const CLIENT_IMAGE_ASSETS: ClientImageAsset[] = [
     shortDescription: "Specialized road transport of wrapped cylindrical pressure vessel under mobile crane.",
     verifiedDetails: "Jai Malhar Transport truck with Ashtavinayak crane boom and Maersk containers.",
     websiteSections: ['homepage-gallery', 'import-export'],
+    projectReference: 'ODC Cylindrical Vessel Haulage: Multi-Axle Prime Mover Port Transport',
+    consigneeOrPartner: 'Multi-Axle Heavy Haulage',
   },
   {
     id: 'img-bb-vessel-hold',
@@ -261,6 +279,8 @@ export const CLIENT_IMAGE_ASSETS: ClientImageAsset[] = [
     shortDescription: "Engineered criss-cross webbing configuration countering roll, pitch, and heave at sea.",
     verifiedDetails: "Vessel cargo hold bulkheads with overhead floodlights and paired yellow ratchet straps.",
     websiteSections: ['homepage-gallery', 'services', 'operations'],
+    projectReference: 'Marine Vessel Hold Cross-Lashing & Night Floodlight Securing',
+    consigneeOrPartner: 'Marine Hold Cross-Lashing',
   },
   {
     id: 'img-lash-flat-rack-orange',
@@ -274,6 +294,8 @@ export const CLIENT_IMAGE_ASSETS: ClientImageAsset[] = [
     shortDescription: "Precision tensioning with heavy-duty ratchet assemblies bolted to container stake pockets.",
     verifiedDetails: "Left 3/4 angle showing 20ft Flat Rack bed lashing points and timber dunnage blocks.",
     websiteSections: ['homepage-gallery', 'operations'],
+    projectReference: 'ODC Flat Rack Perimeter Ratchet Securing with Heavy Timber Dunnage',
+    consigneeOrPartner: 'Flat Rack Perimeter Lashing',
   },
 
   // 6. Operations - Shaded Warehouse

@@ -348,6 +348,12 @@ export const HeroVideo: React.FC = () => {
             </span>
           </h1>
 
+          {/* Official Brand Motto / Tagline Badge */}
+          <div className="animate-hero-entrance hero-delay-1 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.08] border border-white/15 text-white text-xs font-mono font-medium backdrop-blur-md">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#B62825] animate-pulse" />
+            <span className="text-[#F4F5F7] font-semibold">Beyond Logistics, We Deliver Trust.</span>
+          </div>
+
           {/* Supporting Copy */}
           <p className="animate-hero-entrance hero-delay-1 text-[14px] sm:text-base lg:text-[17px] text-[#AEB6C2] leading-relaxed max-w-xl font-body">
             Reliable export packing solutions designed around your cargo, container arrangements, and shipment requirements.

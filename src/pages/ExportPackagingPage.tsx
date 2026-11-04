@@ -4,9 +4,10 @@ import { ArrowRight, CheckCircle2, AlertCircle, ChevronRight } from 'lucide-reac
 import { CORE_SERVICES } from '../data/company';
 import { BrandedImage } from '../components/common/BrandedImage';
 import { InnerPageBanner } from '../components/layout/InnerPageBanner';
+import { ScrollReveal } from '../components/common/ScrollReveal';
 
 export const ExportPackagingPage: React.FC = () => {
-  const service = CORE_SERVICES.find(s => s.id === 'export-packaging')!;
+  const service = CORE_SERVICES.find(s => s.id === 'export-packaging' || s.id === 'cargo-handling') || CORE_SERVICES[0];
 
   return (
     <div className="space-y-0">
@@ -31,7 +32,7 @@ export const ExportPackagingPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             {/* Left Content */}
-            <div className="lg:col-span-7 space-y-8">
+            <ScrollReveal direction="left" delay={50} className="lg:col-span-7 space-y-8">
               <div className="space-y-4 text-[15px] sm:text-[16px] text-[#666666] leading-relaxed">
                 <h2 className="text-2xl sm:text-3xl font-bold text-[#343434] font-heading">
                   Service Overview & Engineering Approach
@@ -75,12 +76,12 @@ export const ExportPackagingPage: React.FC = () => {
                   ))}
                 </div>
               </div>
-            </div>
+            </ScrollReveal>
 
             {/* Right Sidebar */}
-            <div className="lg:col-span-5 space-y-8">
+            <ScrollReveal direction="right" delay={150} className="lg:col-span-5 space-y-8">
               {/* Media Card */}
-              <div className="rounded-xl overflow-hidden border border-[#E2E2E2] shadow-sm bg-white group">
+              <div className="rounded-xl overflow-hidden border border-[#E2E2E2] shadow-sm bg-white group hover-lift">
                 <BrandedImage 
                   src={service.image} 
                   alt={service.title}
@@ -104,7 +105,7 @@ export const ExportPackagingPage: React.FC = () => {
                 <div className="pt-2">
                   <Link 
                     to="/request-quote"
-                    className="btn-primary w-full text-center py-3 text-[14px]"
+                    className="btn-primary w-full text-center py-3 text-[14px] hover:scale-105 active:scale-95 transition-transform"
                   >
                     <span>Request Packaging Quotation</span>
                     <ArrowRight className="w-4 h-4 ml-1" />
@@ -119,6 +120,76 @@ export const ExportPackagingPage: React.FC = () => {
                   Note: Specific international regulatory treatments (such as phytosanitary heat treatment or hazardous goods certification) must be confirmed and agreed upon during quotation review.
                 </p>
               </div>
+            </ScrollReveal>
+          </div>
+
+          {/* Authentic Pallet Making & Packaging Showcase */}
+          <div className="pt-10 border-t border-[#E2E2E2] space-y-6">
+            <ScrollReveal direction="up" className="space-y-2">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 text-[#B62825] border border-red-200 text-xs font-mono font-bold uppercase">
+                <span>AUTHENTIC OPERATIONAL FIELD RECORDS</span>
+              </div>
+              <h3 className="text-xl sm:text-2xl font-bold font-heading text-[#343434]">
+                Export Packaging: Pallet Making, Industrial Crating &amp; Moisture Barrier Skidding
+              </h3>
+              <p className="text-xs sm:text-sm text-[#666666] max-w-3xl">
+                On-site carpentry, standard and Euro pallet fabrication, composite banding, and VCI barrier foil encapsulation at our JNPT staging bays.
+              </p>
+            </ScrollReveal>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {[
+                {
+                  img: '/images/services/export-pallets.jpg',
+                  alt: 'Pallet making and staging for export cargo',
+                  title: 'Pallet Fabrication & Making',
+                  desc: 'Custom Euro & standard timber pallets constructed to machinery load specs.'
+                },
+                {
+                  img: '/images/operations/warehouse/export-pallet-strapping-staging.jpg',
+                  alt: 'Export pallet strapping and banding',
+                  title: 'Pallet Strapping & Staging',
+                  desc: 'Composite polyester banding and stretch wrapping inside sheltered warehouse.'
+                },
+                {
+                  img: '/images/operations/export-packaging/sandvik-heavy-wooden-crate.jpg',
+                  alt: 'Heavy-duty wooden export crating',
+                  title: 'Engineered Timber Crating',
+                  desc: 'ISPM-15 treated wooden export crates for high-value machinery consignments.'
+                },
+                {
+                  img: '/images/operations/export-packaging/heavy-machinery-skid-wrapping.jpg',
+                  alt: 'VCI barrier skid packaging',
+                  title: 'VCI Moisture Barrier Skids',
+                  desc: 'Multi-layer protective film on heavy timber skids for maritime ocean transit.'
+                }
+              ].map((card, cIdx) => (
+                <ScrollReveal
+                  key={cIdx}
+                  direction="up"
+                  delay={cIdx * 60}
+                  className="h-full"
+                >
+                  <div className="rounded-xl overflow-hidden border border-[#E2E2E2] bg-white shadow-xs group h-full hover-lift">
+                    <div className="aspect-[4/3] overflow-hidden bg-neutral-100">
+                      <img
+                        src={card.img}
+                        alt={card.alt}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className="p-3.5 space-y-1">
+                      <span className="text-[11px] font-mono font-bold text-[#B62825] uppercase block">
+                        {card.title}
+                      </span>
+                      <p className="text-xs text-[#475569]">
+                        {card.desc}
+                      </p>
+                    </div>
+                  </div>
+                </ScrollReveal>
+              ))}
             </div>
           </div>
         </div>

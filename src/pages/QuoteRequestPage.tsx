@@ -3,6 +3,7 @@ import { Phone, Mail, Info } from 'lucide-react';
 import { QuoteRequestForm } from '../components/forms/QuoteRequestForm';
 import { COMPANY_DETAILS } from '../data/company';
 import { InnerPageBanner } from '../components/layout/InnerPageBanner';
+import { ScrollReveal } from '../components/common/ScrollReveal';
 
 export const QuoteRequestPage: React.FC = () => {
   return (
@@ -19,12 +20,12 @@ export const QuoteRequestPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
             {/* The 7-step Form (8 cols) */}
-            <div className="lg:col-span-8">
+            <ScrollReveal direction="left" delay={50} className="lg:col-span-8">
               <QuoteRequestForm />
-            </div>
+            </ScrollReveal>
 
             {/* Sidebar Guidance & Direct Contacts (4 cols) */}
-            <div className="lg:col-span-4 space-y-6">
+            <ScrollReveal direction="right" delay={150} className="lg:col-span-4 space-y-6">
               {/* Operational Arrangement Summary */}
               <div className="bg-white p-6 rounded-xl border border-[#E2E2E2] shadow-sm space-y-4 text-[13px]">
                 <div className="flex items-center gap-2 font-bold text-[#343434] text-[15px] font-heading border-b border-[#E2E2E2] pb-2">
@@ -83,7 +84,7 @@ export const QuoteRequestPage: React.FC = () => {
               <div className="p-4 rounded-lg bg-neutral-100 border border-neutral-300 text-[12px] text-neutral-600">
                 Quotes are evaluated individually based on verified cargo weights, packaging materials, and container positioning logistics. No automated algorithms or hidden fees.
               </div>
-            </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>

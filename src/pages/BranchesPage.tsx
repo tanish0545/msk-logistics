@@ -3,6 +3,7 @@ import { useLocation, Link } from 'react-router-dom';
 import { MapPin, Phone, Mail, ExternalLink, ArrowRight } from 'lucide-react';
 import { COMPANY_DETAILS } from '../data/company';
 import { InnerPageBanner } from '../components/layout/InnerPageBanner';
+import { ScrollReveal } from '../components/common/ScrollReveal';
 
 export const BELAPUR_BRANCH = {
   name: 'Main Branch — Belapur',
@@ -20,7 +21,7 @@ export const JNPT_BRANCH = {
   building: 'Building No. B/48, Office No. 3',
   plotSector: 'JNPT Township Colony, Sector - 3',
   cityState: 'Navi Mumbai 400702, Maharashtra, India',
-  fullAddress: COMPANY_DETAILS.address,
+  fullAddress: 'JNPT Township Colony, Sector - 3, Building No. B/48, Office No. 3, Navi Mumbai 400702, Maharashtra, India',
   mapQuery: 'JNPT Township Colony, Sector 3, Navi Mumbai 400702',
   mapEmbedUrl: 'https://maps.google.com/maps?q=JNPT+Township+Colony+Sector+3+Navi+Mumbai+400702&t=&z=15&ie=UTF8&iwloc=&output=embed',
   directionsUrl: 'https://www.google.com/maps/search/?api=1&query=JNPT+Township+Colony+Sector+3+Navi+Mumbai+400702',
@@ -54,28 +55,31 @@ export const BranchesPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-14">
           
           {/* Quick Branch Navigation Selector */}
-          <div className="flex flex-wrap items-center gap-3 p-1.5 bg-[#F1F5F9] rounded-xl border border-[#E2E8F0] max-w-lg">
-            <a 
-              href="#main-branch" 
-              className="flex-1 text-center py-2.5 px-4 rounded-lg text-[13px] font-semibold transition-all bg-white text-[#173F70] shadow-xs hover:text-[#B62825] hover:shadow-sm"
-            >
-              1. Main Branch — Belapur
-            </a>
-            <a 
-              href="#second-branch" 
-              className="flex-1 text-center py-2.5 px-4 rounded-lg text-[13px] font-semibold transition-all bg-white text-[#173F70] shadow-xs hover:text-[#B62825] hover:shadow-sm"
-            >
-              2. Second Branch — JNPT
-            </a>
-          </div>
+          <ScrollReveal direction="up" delay={50}>
+            <div className="flex flex-wrap items-center gap-3 p-1.5 bg-[#F1F5F9] rounded-xl border border-[#E2E8F0] max-w-lg">
+              <a 
+                href="#main-branch" 
+                className="flex-1 text-center py-2.5 px-4 rounded-lg text-[13px] font-semibold transition-all bg-white text-[#173F70] shadow-xs hover:text-[#B62825] hover:shadow-sm"
+              >
+                1. Main Branch — Belapur
+              </a>
+              <a 
+                href="#second-branch" 
+                className="flex-1 text-center py-2.5 px-4 rounded-lg text-[13px] font-semibold transition-all bg-white text-[#173F70] shadow-xs hover:text-[#B62825] hover:shadow-sm"
+              >
+                2. Second Branch — JNPT
+              </a>
+            </div>
+          </ScrollReveal>
 
           {/* =================================================================== */}
           {/* BRANCH 01: MAIN BRANCH — BELAPUR                                    */}
           {/* =================================================================== */}
-          <div 
-            id="main-branch" 
-            className="scroll-mt-24 p-8 sm:p-10 rounded-2xl bg-white border border-[#E2E8F0] space-y-8 shadow-xs"
-          >
+          <ScrollReveal direction="up" delay={80}>
+            <div 
+              id="main-branch" 
+              className="scroll-mt-24 p-8 sm:p-10 rounded-2xl bg-white border border-[#E2E8F0] space-y-8 shadow-xs"
+            >
             {/* Alias anchor for #belapur */}
             <span id="belapur" className="sr-only" aria-hidden="true" />
 
@@ -166,21 +170,23 @@ export const BranchesPage: React.FC = () => {
               </div>
             </div>
           </div>
+          </ScrollReveal>
 
           {/* =================================================================== */}
           {/* BRANCH 02: SECOND BRANCH — JNPT                                     */}
           {/* =================================================================== */}
-          <div 
-            id="second-branch" 
-            className="scroll-mt-24 p-8 sm:p-10 rounded-2xl bg-white border border-[#E2E8F0] space-y-8 shadow-xs"
-          >
+          <ScrollReveal direction="up" delay={80}>
+            <div 
+              id="second-branch" 
+              className="scroll-mt-24 p-8 sm:p-10 rounded-2xl bg-white border border-[#E2E8F0] space-y-8 shadow-xs"
+            >
             {/* Alias anchor for #jnpt */}
             <span id="jnpt" className="sr-only" aria-hidden="true" />
 
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-[#E2E8F0] pb-6">
               <div className="space-y-1.5">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-[#173F70] border border-blue-200 text-xs font-mono font-bold">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#173F70]" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#B62825]" />
                   <span>SECOND BRANCH</span>
                 </div>
                 <h2 className="text-2xl sm:text-3xl font-bold text-[#1E293B] font-heading">
@@ -191,7 +197,7 @@ export const BranchesPage: React.FC = () => {
                 </p>
               </div>
               <div className="px-3.5 py-1.5 rounded-full bg-blue-50 text-[#173F70] border border-blue-200 text-xs font-mono font-bold shrink-0 flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-[#173F70]" />
+                <span className="w-2 h-2 rounded-full bg-[#B62825]" />
                 <span>PORT DESK</span>
               </div>
             </div>
@@ -264,25 +270,28 @@ export const BranchesPage: React.FC = () => {
               </div>
             </div>
           </div>
+          </ScrollReveal>
 
           {/* Action Callout */}
-          <div className="bg-[#173F70] rounded-2xl p-8 sm:p-10 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-md">
-            <div className="space-y-1.5">
-              <h3 className="text-2xl font-bold font-heading">
-                Visit Our Offices or Request On-Site Coordination
-              </h3>
-              <p className="text-blue-100 text-sm max-w-xl font-body">
-                Contact either of our Navi Mumbai facilities to schedule container stuffing, timber crating, or port cargo securing.
-              </p>
+          <ScrollReveal direction="up" delay={100}>
+            <div className="bg-[#000000] rounded-2xl p-8 sm:p-10 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-md border border-white/10">
+              <div className="space-y-1.5">
+                <h3 className="text-2xl font-bold font-heading text-white">
+                  Visit Our Offices or Request On-Site Coordination
+                </h3>
+                <p className="text-[#94A3B8] text-sm max-w-xl font-body">
+                  Contact either of our Navi Mumbai facilities to schedule container stuffing, timber crating, or port cargo securing.
+                </p>
+              </div>
+              <Link
+                to="/contact"
+                className="bg-[#B62825] hover:bg-[#9E2220] text-white font-bold py-3.5 px-6 rounded-xl inline-flex items-center gap-2 shadow-lg transition-all flex-shrink-0"
+              >
+                <span>Contact Us</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
             </div>
-            <Link
-              to="/contact"
-              className="bg-[#B62825] hover:bg-[#9E2220] text-white font-bold py-3.5 px-6 rounded-xl inline-flex items-center gap-2 shadow-lg transition-all flex-shrink-0"
-            >
-              <span>Contact Us</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
+          </ScrollReveal>
 
         </div>
       </section>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { MapPin, Phone, Mail, ArrowUpRight, ArrowRight } from 'lucide-react';
+import { MapPin, Phone, Mail, ArrowUpRight, ArrowRight, PhoneCall } from 'lucide-react';
 import { COMPANY_DETAILS, CORE_SERVICES } from '../../data/company';
 import { MagneticButton } from '../common/MagneticButton';
 import { IsoCertificationBadge } from '../common/IsoCertificationBadge';
@@ -195,6 +195,12 @@ export const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
+                <Link to="/road-transport" className="group/link text-slate-300 hover:text-white transition-colors duration-200 inline-flex items-center gap-1.5">
+                  <span>Road Fleet &amp; Transport</span>
+                  <ArrowRight className="w-3 h-3 text-[#B62825] opacity-0 -translate-x-1 group-hover/link:opacity-100 group-hover/link:translate-x-0 transition-all duration-200 motion-reduce:transform-none" />
+                </Link>
+              </li>
+              <li>
                 <Link to="/vessel-schedule" className="group/link text-slate-300 hover:text-white transition-colors duration-200 inline-flex items-center gap-1.5">
                   <span>Vessel Schedule</span>
                   <ArrowRight className="w-3 h-3 text-[#B62825] opacity-0 -translate-x-1 group-hover/link:opacity-100 group-hover/link:translate-x-0 transition-all duration-200 motion-reduce:transform-none" />
@@ -228,6 +234,25 @@ export const Footer: React.FC = () => {
                   className="hover:text-white transition-colors font-medium"
                 >
                   {COMPANY_DETAILS.phone}
+                </a>
+              </div>
+
+              {/* 24×7 Emergency Dispatch */}
+              <div className="p-3 rounded-lg bg-red-950/40 border border-red-700/40 space-y-1">
+                <div className="flex items-center justify-between gap-1.5">
+                  <div className="flex items-center gap-1.5 text-xs font-mono font-bold text-red-300 uppercase">
+                    <PhoneCall className="w-3.5 h-3.5 text-[#B62825]" />
+                    <span>24×7 Emergency</span>
+                  </div>
+                  <span className="px-1.5 py-0.5 rounded text-[9px] font-mono font-bold uppercase tracking-wider bg-[#B62825] text-white">
+                    24×7
+                  </span>
+                </div>
+                <a 
+                  href={COMPANY_DETAILS.emergencyPhoneHref}
+                  className="text-base font-bold font-mono text-white hover:text-red-300 transition-colors block tracking-tight"
+                >
+                  {COMPANY_DETAILS.emergencyPhoneDisplay}
                 </a>
               </div>
 

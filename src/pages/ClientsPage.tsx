@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { InnerPageBanner } from '../components/layout/InnerPageBanner';
+import { ScrollReveal } from '../components/common/ScrollReveal';
 
 export interface ClientCompany {
   id: number;
@@ -229,113 +230,121 @@ export const ClientsPage: React.FC = () => {
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
           
           {/* Section Introduction */}
-          <div className="max-w-3xl space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 border border-red-200 text-[#B62825] text-xs font-mono font-semibold">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#B62825]" />
-              <span>OFFICIAL CLIENT DIRECTORY</span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold font-heading text-[#1E293B] tracking-tight">
-              Commercial Partners &amp; Shipping Alliances
-            </h2>
-            <p className="text-[15px] sm:text-base text-[#64748B] font-body leading-relaxed">
-              MSK Logistics Solution coordinates dedicated packaging, container stuffing, and maritime cargo lashing for leading forwarders, vessel agencies, and global freight handlers.
-            </p>
-          </div>
-
-          {/* TWO-WAY CONTINUOUS INFINITE CLIENT MARQUEES */}
-          <div className="space-y-6 sm:space-y-8 overflow-hidden py-2 -mx-4 sm:-mx-6 lg:-mx-8">
-            
-            {/* ROW 1: Moves RIGHT TO LEFT (Clients 1–10) */}
-            <div className="group-marquee relative w-full overflow-hidden">
-              {/* Subtle Gradient Edge Masks */}
-              <div 
-                className="pointer-events-none absolute inset-y-0 left-0 w-12 sm:w-24 bg-gradient-to-r from-[#FBFBFC] to-transparent z-10" 
-                aria-hidden="true" 
-              />
-              <div 
-                className="pointer-events-none absolute inset-y-0 right-0 w-12 sm:w-24 bg-gradient-to-l from-[#FBFBFC] to-transparent z-10" 
-                aria-hidden="true" 
-              />
-
-              <div className="animate-marquee-left flex gap-4 sm:gap-5 w-max py-2 px-4 hover:[animation-play-state:paused]">
-                {row1Items.map((client, idx) => (
-                  <ClientCard key={`row1-${client.id}-${idx}`} client={client} />
-                ))}
+          <ScrollReveal direction="up">
+            <div className="max-w-3xl space-y-3">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 border border-red-200 text-[#B62825] text-xs font-mono font-semibold">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#B62825]" />
+                <span>OFFICIAL CLIENT DIRECTORY</span>
               </div>
-            </div>
-
-            {/* ROW 2: Moves LEFT TO RIGHT (Clients 11–20) */}
-            <div className="group-marquee relative w-full overflow-hidden">
-              {/* Subtle Gradient Edge Masks */}
-              <div 
-                className="pointer-events-none absolute inset-y-0 left-0 w-12 sm:w-24 bg-gradient-to-r from-[#FBFBFC] to-transparent z-10" 
-                aria-hidden="true" 
-              />
-              <div 
-                className="pointer-events-none absolute inset-y-0 right-0 w-12 sm:w-24 bg-gradient-to-l from-[#FBFBFC] to-transparent z-10" 
-                aria-hidden="true" 
-              />
-
-              <div className="animate-marquee-right flex gap-4 sm:gap-5 w-max py-2 px-4 hover:[animation-play-state:paused]">
-                {row2Items.map((client, idx) => (
-                  <ClientCard key={`row2-${client.id}-${idx}`} client={client} />
-                ))}
-              </div>
-            </div>
-
-          </div>
-
-          {/* 3. Value Pillars / Commitment Bar */}
-          <div className="p-8 sm:p-10 rounded-2xl bg-white border border-[#E2E8F0] shadow-xs space-y-6">
-            <div className="space-y-1">
-              <span className="text-xs font-mono font-bold text-[#B62825] uppercase tracking-wider">
-                CORE COMMITMENT
-              </span>
-              <h3 className="text-xl sm:text-2xl font-bold text-[#1E293B] font-heading">
-                Operational Discipline Tailored to Every Client
-              </h3>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-[14px] text-[#475569]">
-              <div className="space-y-2">
-                <strong className="block text-[#1E293B] font-semibold">1. Tailored Specifications</strong>
-                <p className="text-[#64748B] leading-relaxed">
-                  Packaging materials and container stuffing sequences planned specifically around product dimensions and transport hazards.
-                </p>
-              </div>
-              <div className="space-y-2">
-                <strong className="block text-[#1E293B] font-semibold">2. Schedule Adherence</strong>
-                <p className="text-[#64748B] leading-relaxed">
-                  Punctual deployment across container freight stations and port corridors to maintain tight vessel cut-off schedules.
-                </p>
-              </div>
-              <div className="space-y-2">
-                <strong className="block text-[#1E293B] font-semibold">3. Verified Quality Assurance</strong>
-                <p className="text-[#64748B] leading-relaxed">
-                  Certified lashing hardware, ISPM-15 compliant timber, and complete photographic handover documentation for every assignment.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* 4. Action Banner */}
-          <div className="bg-[#173F70] rounded-2xl p-8 sm:p-10 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-md">
-            <div className="space-y-1.5">
-              <h3 className="text-2xl font-bold font-heading">
-                Partner with MSK Logistics for Certified Export Securing
-              </h3>
-              <p className="text-blue-100 text-sm max-w-xl font-body">
-                Discuss cargo specifications, on-site stuffing requirements, and container securing services with our team.
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold font-heading text-[#1E293B] tracking-tight">
+                Commercial Partners &amp; Shipping Alliances
+              </h2>
+              <p className="text-[15px] sm:text-base text-[#64748B] font-body leading-relaxed">
+                MSK Logistics Solution coordinates dedicated packaging, container stuffing, and maritime cargo lashing for leading forwarders, vessel agencies, and global freight handlers.
               </p>
             </div>
-            <Link
-              to="/request-quote"
-              className="bg-[#B62825] hover:bg-[#9E2220] text-white font-bold py-3.5 px-6 rounded-xl inline-flex items-center gap-2 shadow-lg transition-all flex-shrink-0"
-            >
-              <span>Request a Quote</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
+          </ScrollReveal>
+
+          {/* TWO-WAY CONTINUOUS INFINITE CLIENT MARQUEES */}
+          <ScrollReveal direction="up" delay={80}>
+            <div className="space-y-6 sm:space-y-8 overflow-hidden py-2 -mx-4 sm:-mx-6 lg:-mx-8">
+              
+              {/* ROW 1: Moves RIGHT TO LEFT (Clients 1–10) */}
+              <div className="group-marquee relative w-full overflow-hidden">
+                {/* Subtle Gradient Edge Masks */}
+                <div 
+                  className="pointer-events-none absolute inset-y-0 left-0 w-12 sm:w-24 bg-gradient-to-r from-[#FBFBFC] to-transparent z-10" 
+                  aria-hidden="true" 
+                />
+                <div 
+                  className="pointer-events-none absolute inset-y-0 right-0 w-12 sm:w-24 bg-gradient-to-l from-[#FBFBFC] to-transparent z-10" 
+                  aria-hidden="true" 
+                />
+
+                <div className="animate-marquee-left flex gap-4 sm:gap-5 w-max py-2 px-4 hover:[animation-play-state:paused]">
+                  {row1Items.map((client, idx) => (
+                    <ClientCard key={`row1-${client.id}-${idx}`} client={client} />
+                  ))}
+                </div>
+              </div>
+
+              {/* ROW 2: Moves LEFT TO RIGHT (Clients 11–20) */}
+              <div className="group-marquee relative w-full overflow-hidden">
+                {/* Subtle Gradient Edge Masks */}
+                <div 
+                  className="pointer-events-none absolute inset-y-0 left-0 w-12 sm:w-24 bg-gradient-to-r from-[#FBFBFC] to-transparent z-10" 
+                  aria-hidden="true" 
+                />
+                <div 
+                  className="pointer-events-none absolute inset-y-0 right-0 w-12 sm:w-24 bg-gradient-to-l from-[#FBFBFC] to-transparent z-10" 
+                  aria-hidden="true" 
+                />
+
+                <div className="animate-marquee-right flex gap-4 sm:gap-5 w-max py-2 px-4 hover:[animation-play-state:paused]">
+                  {row2Items.map((client, idx) => (
+                    <ClientCard key={`row2-${client.id}-${idx}`} client={client} />
+                  ))}
+                </div>
+              </div>
+
+            </div>
+          </ScrollReveal>
+
+          {/* 3. Value Pillars / Commitment Bar */}
+          <ScrollReveal direction="up" delay={100}>
+            <div className="p-8 sm:p-10 rounded-2xl bg-white border border-[#E2E8F0] shadow-xs space-y-6">
+              <div className="space-y-1">
+                <span className="text-xs font-mono font-bold text-[#B62825] uppercase tracking-wider">
+                  CORE COMMITMENT
+                </span>
+                <h3 className="text-xl sm:text-2xl font-bold text-[#1E293B] font-heading">
+                  Operational Discipline Tailored to Every Client
+                </h3>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-[14px] text-[#475569]">
+                <div className="space-y-2">
+                  <strong className="block text-[#1E293B] font-semibold">1. Tailored Specifications</strong>
+                  <p className="text-[#64748B] leading-relaxed">
+                    Packaging materials and container stuffing sequences planned specifically around product dimensions and transport hazards.
+                  </p>
+                </div>
+                <div className="space-y-2">
+                  <strong className="block text-[#1E293B] font-semibold">2. Schedule Adherence</strong>
+                  <p className="text-[#64748B] leading-relaxed">
+                    Punctual deployment across container freight stations and port corridors to maintain tight vessel cut-off schedules.
+                  </p>
+                </div>
+                <div className="space-y-2">
+                  <strong className="block text-[#1E293B] font-semibold">3. Verified Quality Assurance</strong>
+                  <p className="text-[#64748B] leading-relaxed">
+                    Certified lashing hardware, ISPM-15 compliant timber, and complete photographic handover documentation for every assignment.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </ScrollReveal>
+
+          {/* 4. Action Banner */}
+          <ScrollReveal direction="up" delay={120}>
+            <div className="bg-[#000000] rounded-2xl p-8 sm:p-10 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-md border border-white/10">
+              <div className="space-y-1.5">
+                <h3 className="text-2xl font-bold font-heading text-white">
+                  Partner with MSK Logistics for Certified Export Securing
+                </h3>
+                <p className="text-[#94A3B8] text-sm max-w-xl font-body">
+                  Discuss cargo specifications, on-site stuffing requirements, and container securing services with our team.
+                </p>
+              </div>
+              <Link
+                to="/request-quote"
+                className="bg-[#B62825] hover:bg-[#9E2220] text-white font-bold py-3.5 px-6 rounded-xl inline-flex items-center gap-2 shadow-lg transition-all flex-shrink-0"
+              >
+                <span>Request a Quote</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </ScrollReveal>
 
         </div>
       </section>

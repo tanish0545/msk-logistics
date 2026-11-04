@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { Navbar } from './components/navigation/Navbar';
 import { Footer } from './components/layout/Footer';
 
@@ -10,6 +10,7 @@ import { ServicesPage } from './pages/ServicesPage';
 import { ExportPackagingPage } from './pages/ExportPackagingPage';
 import { ContainerStuffingPage } from './pages/ContainerStuffingPage';
 import { CargoLashingPage } from './pages/CargoLashingPage';
+import { ServiceDetailPage } from './pages/ServiceDetailPage';
 import { ExportPackingSolutionsPage } from './pages/ExportPackingSolutionsPage';
 import { HowItWorksPage } from './pages/HowItWorksPage';
 import { QuoteRequestPage } from './pages/QuoteRequestPage';
@@ -23,7 +24,10 @@ import { KnowledgePage } from './pages/KnowledgePage';
 import { ClientsPage } from './pages/ClientsPage';
 import { StaffPage } from './pages/StaffPage';
 import { BranchesPage } from './pages/BranchesPage';
+import { RoadTransportPage } from './pages/RoadTransportPage';
+import { HazardousCargoPage } from './pages/HazardousCargoPage';
 import { NotFoundPage } from './pages/NotFoundPage';
+import { MskOrbitChatbot } from './components/orbit/MskOrbitChatbot';
 
 // Scroll to top or anchor on route navigation
 const ScrollToTop: React.FC = () => {
@@ -69,6 +73,10 @@ export const App: React.FC = () => {
               <Route path="/services/export-packaging" element={<ExportPackagingPage />} />
               <Route path="/services/container-stuffing" element={<ContainerStuffingPage />} />
               <Route path="/services/cargo-lashing" element={<CargoLashingPage />} />
+              <Route path="/services/hazardous-cargo" element={<HazardousCargoPage />} />
+              <Route path="/hazardous-cargo" element={<HazardousCargoPage />} />
+              <Route path="/services/warehouse" element={<Navigate to="/warehouse" replace />} />
+              <Route path="/services/:slug" element={<ServiceDetailPage />} />
               <Route path="/export-packing-solutions" element={<ExportPackingSolutionsPage />} />
               <Route path="/how-it-works" element={<HowItWorksPage />} />
               <Route path="/import-export" element={<ImportExportPage />} />
@@ -84,6 +92,9 @@ export const App: React.FC = () => {
               <Route path="/staff" element={<StaffPage />} />
               <Route path="/company/branches" element={<BranchesPage />} />
               <Route path="/branches" element={<BranchesPage />} />
+              <Route path="/road" element={<RoadTransportPage />} />
+              <Route path="/road-transport" element={<RoadTransportPage />} />
+              <Route path="/road-fleet" element={<RoadTransportPage />} />
               <Route path="/request-quote" element={<QuoteRequestPage />} />
               <Route path="/contact" element={<ContactPage />} />
               <Route path="*" element={<NotFoundPage />} />
@@ -91,6 +102,7 @@ export const App: React.FC = () => {
           </PageEntranceWrapper>
         </main>
         <Footer />
+        <MskOrbitChatbot />
       </div>
     </Router>
   );

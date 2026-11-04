@@ -55,24 +55,34 @@ export const NAV_ITEMS: NavItem[] = [
     hasDropdown: true,
     dropdownItems: [
       {
-        label: 'Export Packaging',
-        path: '/services/export-packaging',
-        description: 'Industrial timber crating, skidding & barrier foil wrapping',
+        label: 'Ocean Cargo',
+        path: '/services/ocean-cargo',
+        description: 'Vessel schedule alignment, port gate-in & FCL/LCL ocean freight handling',
       },
       {
-        label: 'Container Stuffing',
+        label: 'Air Cargo',
+        path: '/services/air-cargo',
+        description: 'Time-critical air freight transfers, ULD packing & airport cargo handling',
+      },
+      {
+        label: 'Container Stuffing Logistics',
         path: '/services/container-stuffing',
         description: 'Precision weight distribution & multi-axle loading plans',
       },
       {
-        label: 'Cargo Lashing & Securing',
+        label: 'Special Project Cargo Handling',
+        path: '/services/special-project',
+        description: 'ODC & breakbulk machinery rigging, flat rack securing & trailer transport',
+      },
+      {
+        label: 'Cargo Lashing',
         path: '/services/cargo-lashing',
         description: 'High-tensile straps, steel wire, turnbuckles & timber chocking',
       },
       {
-        label: 'Export Packing Solutions',
-        path: '/export-packing-solutions',
-        description: 'Complete container arrangement vs client-arranged container',
+        label: 'Hazardous Cargo',
+        path: '/services/hazardous-cargo',
+        description: 'DG freight packaging, IMDG/IATA compliant securing & regulatory coordination',
       },
     ],
   },
@@ -113,11 +123,6 @@ export const NAV_ITEMS: NavItem[] = [
     path: '/company/branches',
     hasDropdown: true,
     dropdownItems: [
-      {
-        label: 'Our Clients',
-        path: '/company/clients',
-        description: 'Exporters, manufacturers & logistics partnerships',
-      },
       {
         label: 'Our Staff',
         path: '/company/staff',

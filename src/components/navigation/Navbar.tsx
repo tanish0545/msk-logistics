@@ -113,7 +113,7 @@ export const Navbar: React.FC = () => {
         <div className="flex-shrink-0 flex items-center">
           <Link
             to="/"
-            className="flex items-center transition-opacity hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#173F70] rounded-sm py-0.5"
+            className="flex items-center transition-opacity hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B62825] rounded-sm py-0.5"
             aria-label="MSK Logistics Homepage"
           >
             <img
@@ -171,9 +171,9 @@ export const Navbar: React.FC = () => {
                           setCompanyDropdownOpen(!companyDropdownOpen);
                           setServicesDropdownOpen(false);
                         }}
-                        className={`relative h-full flex items-center gap-1 px-2 xl:px-2.5 py-1 text-[13px] 2xl:text-[14px] 3xl:text-[14.5px] font-nav transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#173F70] rounded-sm whitespace-nowrap cursor-pointer ${active
-                          ? 'text-[#173F70] font-semibold'
-                          : 'text-[#475569] font-normal hover:text-[#173F70]'
+                        className={`relative h-full flex items-center gap-1 px-2 xl:px-2.5 py-1 text-[13px] 2xl:text-[14px] 3xl:text-[14.5px] font-nav transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B62825] rounded-sm whitespace-nowrap cursor-pointer ${active
+                          ? 'text-[#B62825] font-semibold'
+                          : 'text-[#475569] font-normal hover:text-[#B62825]'
                           }`}
                         aria-haspopup="true"
                         aria-expanded={isOpen}
@@ -181,7 +181,7 @@ export const Navbar: React.FC = () => {
                       >
                         <span>{item.label}</span>
                         <ChevronDown
-                          className={`w-3.5 h-3.5 transition-transform duration-200 stroke-[2.2] ${isOpen ? 'rotate-180 text-[#173F70]' : 'text-current group-hover:text-[#173F70]'
+                          className={`w-3.5 h-3.5 transition-transform duration-200 stroke-[2.2] ${isOpen ? 'rotate-180 text-[#B62825]' : 'text-current group-hover:text-[#B62825]'
                             }`}
                         />
 
@@ -198,9 +198,9 @@ export const Navbar: React.FC = () => {
                       /* Services Nav Item: Preserved exactly as before */
                       <Link
                         to={item.path}
-                        className={`relative h-full flex items-center gap-1 px-2 xl:px-2.5 py-1 text-[13px] 2xl:text-[14px] 3xl:text-[14.5px] font-nav transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#173F70] rounded-sm whitespace-nowrap ${active
-                          ? 'text-[#173F70] font-semibold'
-                          : 'text-[#475569] font-normal hover:text-[#173F70]'
+                        className={`relative h-full flex items-center gap-1 px-2 xl:px-2.5 py-1 text-[13px] 2xl:text-[14px] 3xl:text-[14.5px] font-nav transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B62825] rounded-sm whitespace-nowrap ${active
+                          ? 'text-[#B62825] font-semibold'
+                          : 'text-[#475569] font-normal hover:text-[#B62825]'
                           }`}
                         aria-haspopup="true"
                         aria-expanded={isOpen}
@@ -217,7 +217,7 @@ export const Navbar: React.FC = () => {
                           aria-label={`Toggle ${item.label} submenu`}
                         >
                           <ChevronDown
-                            className={`w-3.5 h-3.5 transition-transform duration-200 stroke-[2.2] ${isOpen ? 'rotate-180 text-[#173F70]' : 'text-current group-hover:text-[#173F70]'
+                            className={`w-3.5 h-3.5 transition-transform duration-200 stroke-[2.2] ${isOpen ? 'rotate-180 text-[#B62825]' : 'text-current group-hover:text-[#B62825]'
                               }`}
                           />
                         </button>
@@ -253,12 +253,20 @@ export const Navbar: React.FC = () => {
                           {/* 2. Specialized Services (Clean Direct Links) */}
                           <div className="py-1 px-1.5 space-y-0.5">
                             <Link
-                              to="/services/export-packaging"
+                              to="/services/ocean-cargo"
                               role="menuitem"
                               className="block px-3 py-1.5 rounded-md text-[13.5px] font-medium text-[#202124] hover:text-[#B62825] hover:bg-[#F8F9FA] transition-colors"
                               onClick={() => setServicesDropdownOpen(false)}
                             >
-                              Export Packaging
+                              Ocean Cargo
+                            </Link>
+                            <Link
+                              to="/services/air-cargo"
+                              role="menuitem"
+                              className="block px-3 py-1.5 rounded-md text-[13.5px] font-medium text-[#202124] hover:text-[#B62825] hover:bg-[#F8F9FA] transition-colors"
+                              onClick={() => setServicesDropdownOpen(false)}
+                            >
+                              Air Cargo
                             </Link>
                             <Link
                               to="/services/container-stuffing"
@@ -266,7 +274,15 @@ export const Navbar: React.FC = () => {
                               className="block px-3 py-1.5 rounded-md text-[13.5px] font-medium text-[#202124] hover:text-[#B62825] hover:bg-[#F8F9FA] transition-colors"
                               onClick={() => setServicesDropdownOpen(false)}
                             >
-                              Container Stuffing
+                              Container Stuffing Logistics
+                            </Link>
+                            <Link
+                              to="/services/special-project"
+                              role="menuitem"
+                              className="block px-3 py-1.5 rounded-md text-[13.5px] font-medium text-[#202124] hover:text-[#B62825] hover:bg-[#F8F9FA] transition-colors"
+                              onClick={() => setServicesDropdownOpen(false)}
+                            >
+                              Special Project Cargo Handling
                             </Link>
                             <Link
                               to="/services/cargo-lashing"
@@ -274,15 +290,15 @@ export const Navbar: React.FC = () => {
                               className="block px-3 py-1.5 rounded-md text-[13.5px] font-medium text-[#202124] hover:text-[#B62825] hover:bg-[#F8F9FA] transition-colors"
                               onClick={() => setServicesDropdownOpen(false)}
                             >
-                              Cargo Lashing &amp; Securing
+                              Cargo Lashing
                             </Link>
                             <Link
-                              to="/export-packing-solutions"
+                              to="/services/hazardous-cargo"
                               role="menuitem"
                               className="block px-3 py-1.5 rounded-md text-[13.5px] font-medium text-[#202124] hover:text-[#B62825] hover:bg-[#F8F9FA] transition-colors"
                               onClick={() => setServicesDropdownOpen(false)}
                             >
-                              Export Packing Solutions
+                              Hazardous Cargo
                             </Link>
                           </div>
 
@@ -462,7 +478,7 @@ export const Navbar: React.FC = () => {
                     href={item.externalUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group relative h-full flex items-center px-2 xl:px-2.5 py-1 font-nav text-[13px] 2xl:text-[14px] 3xl:text-[14.5px] text-[#475569] font-normal hover:text-[#173F70] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#173F70] rounded-sm whitespace-nowrap"
+                    className="group relative h-full flex items-center px-2 xl:px-2.5 py-1 font-nav text-[13px] 2xl:text-[14px] 3xl:text-[14.5px] text-[#475569] font-normal hover:text-[#B62825] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B62825] rounded-sm whitespace-nowrap"
                   >
                     <span>{item.label}</span>
                     <span
@@ -478,9 +494,9 @@ export const Navbar: React.FC = () => {
               <div key={item.id} className="relative h-full flex items-center">
                 <Link
                   to={item.path}
-                  className={`group relative h-full flex items-center px-2 xl:px-2.5 py-1 font-nav text-[13px] 2xl:text-[14px] 3xl:text-[14.5px] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#173F70] rounded-sm whitespace-nowrap ${active
-                    ? 'text-[#173F70] font-semibold'
-                    : 'text-[#475569] font-normal hover:text-[#173F70]'
+                  className={`group relative h-full flex items-center px-2 xl:px-2.5 py-1 font-nav text-[13px] 2xl:text-[14px] 3xl:text-[14.5px] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B62825] rounded-sm whitespace-nowrap ${active
+                    ? 'text-[#B62825] font-semibold'
+                    : 'text-[#475569] font-normal hover:text-[#B62825]'
                     }`}
                 >
                   <span>{item.label}</span>
@@ -515,7 +531,7 @@ export const Navbar: React.FC = () => {
           <div className="flex xl:hidden items-center">
             <button
               type="button"
-              className="p-2 rounded-lg text-[#173F70] hover:bg-[#F5F5F3] focus:outline-none focus:ring-2 focus:ring-[#173F70] transition-colors"
+              className="p-2 rounded-lg text-[#B62825] hover:bg-[#F5F5F3] focus:outline-none focus:ring-2 focus:ring-[#B62825] transition-colors"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
               aria-expanded={mobileMenuOpen}
@@ -549,7 +565,7 @@ export const Navbar: React.FC = () => {
                         /* Mobile Company: Toggles dropdown on click without navigating to Branches */
                         <button
                           type="button"
-                          className={`w-full flex items-center justify-between text-left text-[15px] font-medium ${active ? 'text-[#173F70] font-semibold' : 'text-[#52627A]'
+                          className={`w-full flex items-center justify-between text-left text-[15px] font-medium ${active ? 'text-[#B62825] font-semibold' : 'text-[#52627A]'
                             }`}
                           onClick={() => setMobileCompanyOpen(!mobileCompanyOpen)}
                           aria-expanded={isSubOpen}
@@ -557,7 +573,7 @@ export const Navbar: React.FC = () => {
                         >
                           <span>{item.label}</span>
                           <ChevronDown
-                            className={`w-4 h-4 transition-transform ${isSubOpen ? 'rotate-180 text-[#173F70]' : ''
+                            className={`w-4 h-4 transition-transform ${isSubOpen ? 'rotate-180 text-[#B62825]' : ''
                               }`}
                           />
                         </button>
@@ -566,7 +582,7 @@ export const Navbar: React.FC = () => {
                         <>
                           <Link
                             to={item.path}
-                            className={`text-[15px] font-medium ${active ? 'text-[#173F70] font-semibold' : 'text-[#52627A]'
+                            className={`text-[15px] font-medium ${active ? 'text-[#B62825] font-semibold' : 'text-[#52627A]'
                               }`}
                             onClick={() => setMobileMenuOpen(false)}
                           >
@@ -575,11 +591,11 @@ export const Navbar: React.FC = () => {
                           <button
                             type="button"
                             onClick={toggleSub}
-                            className="p-1.5 text-[#52627A] hover:text-[#173F70]"
+                            className="p-1.5 text-[#52627A] hover:text-[#B62825]"
                             aria-label={`Expand ${item.label} list`}
                           >
                             <ChevronDown
-                              className={`w-4 h-4 transition-transform ${isSubOpen ? 'rotate-180 text-[#173F70]' : ''
+                              className={`w-4 h-4 transition-transform ${isSubOpen ? 'rotate-180 text-[#B62825]' : ''
                                 }`}
                             />
                           </button>
@@ -597,32 +613,46 @@ export const Navbar: React.FC = () => {
                             </div>
                             <div className="space-y-1">
                               <Link
-                                to="/services/export-packaging"
+                                to="/services/ocean-cargo"
                                 className="block py-1 px-2 text-[13.5px] text-[#52627A] hover:text-[#B62825] font-medium"
                                 onClick={() => setMobileMenuOpen(false)}
                               >
-                                Export Packaging
+                                Ocean Cargo
+                              </Link>
+                              <Link
+                                to="/services/air-cargo"
+                                className="block py-1 px-2 text-[13.5px] text-[#52627A] hover:text-[#B62825] font-medium"
+                                onClick={() => setMobileMenuOpen(false)}
+                              >
+                                Air Cargo
                               </Link>
                               <Link
                                 to="/services/container-stuffing"
                                 className="block py-1 px-2 text-[13.5px] text-[#52627A] hover:text-[#B62825] font-medium"
                                 onClick={() => setMobileMenuOpen(false)}
                               >
-                                Container Stuffing
+                                Container Stuffing Logistics
+                              </Link>
+                              <Link
+                                to="/services/special-project"
+                                className="block py-1 px-2 text-[13.5px] text-[#52627A] hover:text-[#B62825] font-medium"
+                                onClick={() => setMobileMenuOpen(false)}
+                              >
+                                Special Project Cargo Handling
                               </Link>
                               <Link
                                 to="/services/cargo-lashing"
                                 className="block py-1 px-2 text-[13.5px] text-[#52627A] hover:text-[#B62825] font-medium"
                                 onClick={() => setMobileMenuOpen(false)}
                               >
-                                Cargo Lashing &amp; Securing
+                                Cargo Lashing
                               </Link>
                               <Link
-                                to="/export-packing-solutions"
+                                to="/services/hazardous-cargo"
                                 className="block py-1 px-2 text-[13.5px] text-[#52627A] hover:text-[#B62825] font-medium"
                                 onClick={() => setMobileMenuOpen(false)}
                               >
-                                Export Packing Solutions
+                                Hazardous Cargo
                               </Link>
                             </div>
 
@@ -753,7 +783,7 @@ export const Navbar: React.FC = () => {
                     href={item.externalUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="py-2 px-3 rounded-lg text-[15px] font-medium text-[#52627A] hover:bg-[#F8F9FA] hover:text-[#173F70] transition-colors flex items-center justify-between"
+                    className="py-2 px-3 rounded-lg text-[15px] font-medium text-[#52627A] hover:bg-[#F8F9FA] hover:text-[#B62825] transition-colors flex items-center justify-between"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     <span>{item.label}</span>
@@ -767,8 +797,8 @@ export const Navbar: React.FC = () => {
                   key={item.id}
                   to={item.path}
                   className={`py-2 px-3 rounded-lg text-[15px] font-medium transition-colors flex items-center justify-between ${active
-                    ? 'text-[#173F70] bg-[#EEF2F6] font-semibold border-l-4 border-[#B62825]'
-                    : 'text-[#52627A] hover:bg-[#F8F9FA] hover:text-[#173F70]'
+                    ? 'text-[#B62825] bg-[#EEF2F6] font-semibold border-l-4 border-[#B62825]'
+                    : 'text-[#52627A] hover:bg-[#F8F9FA] hover:text-[#B62825]'
                     }`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
@@ -784,7 +814,7 @@ export const Navbar: React.FC = () => {
           </div>
 
           {/* Prominent Red Shipping Container Get a Quote CTA for Mobile Drawer */}
-          <div className="pt-4 border-t border-[#E2E2E2] space-y-3">
+          <div className="pt-3 border-t border-[#E2E2E2] space-y-3">
             <HangingContainerQuoteButton
               variant="drawer"
               onClick={() => setMobileMenuOpen(false)}

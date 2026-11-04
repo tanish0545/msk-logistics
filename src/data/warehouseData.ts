@@ -11,7 +11,7 @@ export interface WarehouseCategory {
   suitability: string[];
 }
 
-export const OPEN_WAREHOUSE_IMAGE = '/images/operations/warehouse/open-warehouse-yard-staging.jpg';
+export const OPEN_WAREHOUSE_IMAGE = '/images/operations/warehouse/open-yard-conex-staging.jpg';
 export const SHADED_WAREHOUSE_IMAGE = '/images/operations/warehouse/shaded-warehouse-main-bay.jpg';
 export const SHARED_WAREHOUSE_IMAGE = OPEN_WAREHOUSE_IMAGE;
 
@@ -21,8 +21,8 @@ export const WAREHOUSE_CATEGORIES: WarehouseCategory[] = [
     name: 'Open Warehouse & Yard Staging',
     badge: 'MODE 01 — OPEN WAREHOUSE',
     baseImage: OPEN_WAREHOUSE_IMAGE,
-    imageAlt: 'Open-air warehouse staging area with natural daylight sky above stacked cartons and wrapped cargo packages',
-    imageCaption: 'Open warehouse staging area: Unobstructed natural sky above stacked export cartons, wrapped packages, and concrete staging floor.',
+    imageAlt: 'Authentic open-air container yard staging at JNPT / Conex CFS corridor with natural daylight sky and container stacks',
+    imageCaption: 'Open yard staging: Hardstanding container buffer yard with natural daylight sky, container stacks, and heavy equipment access.',
     briefDescription: 'Open-air staging and yard environment under natural daylight sky, showing cargo staging for weather-resistant consignments, palletized crates, and transit buffer holding ahead of port gate-in.',
     intendedPurpose: [
       'Short-term container buffer holding prior to port terminal gate opening',

@@ -1,14 +1,14 @@
 // Serverless API endpoint for Vercel: /api/contact
-// Receives contact enquiries, validates payload, and sends email to info@msklogisticsolution.com via Resend.
+// Receives contact enquiries, validates payload, and dispatches:
+// 1. Internal MSK notification to info@msklogisticsolution.com (with customer Reply-To)
+// 2. Customer confirmation email to the user's submitted email address
 
-function sanitizeHtml(str: string): string {
-  return str
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#039;');
-}
+import type { EmailPayload } from './emailTemplates.ts';
+import { 
+  generateInternalEmailHtml, 
+  generateCustomerConfirmationEmailHtml, 
+  getFormattedDateIST 
+} from './emailTemplates.ts';
 
 const rateLimitMap = new Map<string, { count: number; expiresAt: number }>();
 
@@ -23,7 +23,7 @@ export default async function handler(req: any, res: any) {
     });
   }
 
-  // Rate Limiting (5 requests per 10 minutes per IP)
+  // Rate Limiting (6 requests per 10 minutes per IP)
   const clientIp = 
     (req.headers['x-forwarded-for'] as string)?.split(',')[0]?.trim() || 
     req.socket?.remoteAddress || 
@@ -32,7 +32,7 @@ export default async function handler(req: any, res: any) {
   const rateLimit = rateLimitMap.get(clientIp);
 
   if (rateLimit && now < rateLimit.expiresAt) {
-    if (rateLimit.count >= 5) {
+    if (rateLimit.count >= 6) {
       return res.status(429).json({
         success: false,
         error: 'Too Many Requests',
@@ -44,7 +44,7 @@ export default async function handler(req: any, res: any) {
     rateLimitMap.set(clientIp, { count: 1, expiresAt: now + 10 * 60 * 1000 });
   }
 
-  // Parse body
+  // Parse body safely
   let body = req.body;
   if (typeof body === 'string') {
     try {
@@ -116,85 +116,33 @@ export default async function handler(req: any, res: any) {
     return res.status(503).json({
       success: false,
       error: 'Service Unconfigured',
-      message: 'Email delivery service is currently awaiting RESEND_API_KEY configuration on the server. Please contact info@msklogisticsolution.com directly via email or telephone.',
+      message: 'Email delivery service is currently awaiting RESEND_API_KEY configuration on the server. Please contact info@msklogisticsolution.com directly via email or telephone at +91 81086 72929.',
     });
   }
 
-  // Sanitize fields for email body
-  const cleanName = sanitizeHtml(name.trim());
-  const cleanEmail = sanitizeHtml(email.trim());
-  const cleanPhone = phone ? sanitizeHtml(phone.trim()) : 'Not provided';
-  const cleanCompany = company ? sanitizeHtml(company.trim()) : 'Not provided';
-  const cleanSubject = sanitizeHtml(subject.trim());
-  const cleanMessage = sanitizeHtml(message.trim()).replace(/\n/g, '<br/>');
+  const referenceId = `MSK-ENQ-${Date.now().toString().slice(-6)}`;
 
-  const htmlContent = `
-    <!DOCTYPE html>
-    <html>
-      <head>
-        <meta charset="utf-8">
-        <style>
-          body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f8fafc; margin: 0; padding: 24px; color: #1e293b; }
-          .container { max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden; }
-          .header { background: #173f70; padding: 24px; color: #ffffff; }
-          .header h1 { margin: 0 0 6px 0; font-size: 20px; font-weight: 700; }
-          .header p { margin: 0; font-size: 13px; color: #cbd5e1; }
-          .content { padding: 24px; }
-          .meta-table { width: 100%; border-collapse: collapse; margin-bottom: 24px; font-size: 14px; }
-          .meta-table td { padding: 10px 12px; border-bottom: 1px solid #f1f5f9; }
-          .meta-label { font-weight: 600; color: #64748b; width: 35%; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
-          .meta-value { color: #0f172a; font-weight: 500; }
-          .message-box { background: #f8fafc; border-left: 4px solid #b62825; padding: 16px; border-radius: 4px; font-size: 14px; line-height: 1.6; color: #334155; }
-          .footer { background: #f1f5f9; padding: 16px 24px; font-size: 12px; color: #94a3b8; text-align: center; }
-        </style>
-      </head>
-      <body>
-        <div class="container">
-          <div class="header">
-            <h1>New Website Enquiry</h1>
-            <p>Received via MSK Logistics Contact Portal</p>
-          </div>
-          <div class="content">
-            <table class="meta-table">
-              <tr>
-                <td class="meta-label">Full Name</td>
-                <td class="meta-value">${cleanName}</td>
-              </tr>
-              <tr>
-                <td class="meta-label">Email Address</td>
-                <td class="meta-value"><a href="mailto:${cleanEmail}">${cleanEmail}</a></td>
-              </tr>
-              <tr>
-                <td class="meta-label">Phone Number</td>
-                <td class="meta-value">${cleanPhone}</td>
-              </tr>
-              <tr>
-                <td class="meta-label">Company</td>
-                <td class="meta-value">${cleanCompany}</td>
-              </tr>
-              <tr>
-                <td class="meta-label">Subject / Service</td>
-                <td class="meta-value"><strong>${cleanSubject}</strong></td>
-              </tr>
-            </table>
+  const emailPayload: EmailPayload = {
+    enquiryType: 'contact',
+    referenceId,
+    customerName: name.trim(),
+    companyName: company?.trim() || undefined,
+    email: email.trim(),
+    phone: phone?.trim() || undefined,
+    selectedService: subject.trim(),
+    message: message.trim(),
+    submissionDate: getFormattedDateIST(),
+  };
 
-            <div style="margin-bottom: 8px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; color: #64748b;">
-              Enquiry Details
-            </div>
-            <div class="message-box">
-              ${cleanMessage}
-            </div>
-          </div>
-          <div class="footer">
-            MSK Logistics Solution • Export Packaging, Container Stuffing &amp; Cargo Securing • Nhava Sheva (JNPT)
-          </div>
-        </div>
-      </body>
-    </html>
-  `;
+  const internalSubject = `New Contact Enquiry — ${emailPayload.customerName} — [${referenceId}]`;
+  const internalHtml = generateInternalEmailHtml(emailPayload);
+
+  // 1. Send Email 1 — Internal Notification
+  let internalResponse: Response;
+  let internalData: any = {};
 
   try {
-    const resendResponse = await fetch('https://api.resend.com/emails', {
+    internalResponse = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${apiKey}`,
@@ -203,35 +151,89 @@ export default async function handler(req: any, res: any) {
       body: JSON.stringify({
         from: fromEmail,
         to: [toEmail],
-        reply_to: cleanEmail,
-        subject: `[MSK Logistics Enquiry] ${cleanSubject} - ${cleanName}`,
-        html: htmlContent,
+        reply_to: emailPayload.email,
+        subject: internalSubject,
+        html: internalHtml,
       }),
     });
 
-    const resendData = await resendResponse.json();
-
-    if (!resendResponse.ok) {
-      console.error('Resend API Error:', resendData);
-      return res.status(resendResponse.status).json({
-        success: false,
-        error: 'Delivery Error',
-        message: resendData.message || 'Unable to deliver message through email service provider.',
-      });
-    }
-
-    return res.status(200).json({
-      success: true,
-      message: 'Thank you! Your enquiry has been delivered successfully to info@msklogisticsolution.com. Our team will contact you shortly.',
-      id: resendData.id,
-    });
+    internalData = (await internalResponse.json().catch(() => ({}))) as any;
   } catch (err: any) {
-    console.error('Server error during email send:', err);
+    console.error('[MSK Contact API] Network error during internal email dispatch:', {
+      referenceId,
+      error: err?.message,
+    });
     return res.status(500).json({
       success: false,
       error: 'Internal Server Error',
-      message: 'A network or server error occurred while sending your message. Please try again or reach out directly to info@msklogisticsolution.com.',
+      message: 'A network error occurred while transmitting your enquiry to MSK Logistics. Please email info@msklogisticsolution.com directly or call +91 81086 72929.',
     });
   }
-}
 
+  if (!internalResponse.ok) {
+    console.error('[MSK Contact API] Resend API Error on internal dispatch:', {
+      referenceId,
+      status: internalResponse.status,
+      error: internalData?.message || internalData,
+    });
+    return res.status(internalResponse.status).json({
+      success: false,
+      error: 'Delivery Error',
+      message: internalData?.message || 'Unable to deliver message through email service provider. Please reach out directly to info@msklogisticsolution.com.',
+    });
+  }
+
+  // 2. Send Email 2 — Customer Confirmation (Handled with partial failure tolerance)
+  const customerSubject = 'We Have Received Your Enquiry | MSK Logistics';
+  const customerHtml = generateCustomerConfirmationEmailHtml(emailPayload);
+  let customerDelivered = false;
+  let customerNotice: string | null = null;
+
+  try {
+    const customerResponse = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        from: fromEmail,
+        to: [emailPayload.email],
+        subject: customerSubject,
+        html: customerHtml,
+      }),
+    });
+
+    const custData = (await customerResponse.json().catch(() => ({}))) as any;
+    if (customerResponse.ok) {
+      customerDelivered = true;
+    } else {
+      console.warn('[MSK Contact API] Customer confirmation email notice:', {
+        referenceId,
+        status: customerResponse.status,
+        message: custData?.message,
+      });
+      customerNotice = custData?.message || 'Customer confirmation awaiting domain verification.';
+    }
+  } catch (custErr: any) {
+    console.warn('[MSK Contact API] Customer confirmation network error:', {
+      referenceId,
+      error: custErr?.message,
+    });
+    customerNotice = 'Network error sending customer confirmation copy.';
+  }
+
+  return res.status(200).json({
+    success: true,
+    referenceId,
+    message: customerDelivered
+      ? 'Thank you! Your enquiry has been delivered successfully to info@msklogisticsolution.com, and an acknowledgement has been sent to your inbox.'
+      : 'Thank you! Your enquiry has been delivered successfully to our operations desk at info@msklogisticsolution.com.',
+    id: internalData?.id || referenceId,
+    delivery: {
+      internal: true,
+      customer: customerDelivered,
+      notice: customerNotice,
+    },
+  });
+}

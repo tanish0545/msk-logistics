@@ -12,7 +12,9 @@ import {
   ExternalLink,
   ClipboardCheck
 } from 'lucide-react';
-import { HeroVideo } from '../components/hero/HeroVideo';
+import { HeroConcept09 } from '../components/hero/HeroConcept09';
+import { ContainerServicesSection } from '../components/services/ContainerServicesSection';
+import { IndustrialStickersShowcase } from '../components/common/IndustrialStickersShowcase';
 import { SolutionCards } from '../components/export-solutions/SolutionCards';
 import { OperationalEnvironmentsGallery } from '../components/gallery/OperationalEnvironmentsGallery';
 import { BrandedImage } from '../components/common/BrandedImage';
@@ -20,7 +22,6 @@ import { MagneticButton } from '../components/common/MagneticButton';
 import { ScrollReveal } from '../components/common/ScrollReveal';
 import { 
   COMPANY_DETAILS, 
-  CORE_SERVICES, 
   OPERATIONAL_COMMITMENTS 
 } from '../data/company';
 import { CONTAINER_LIST } from '../data/containerGuideData';
@@ -29,9 +30,6 @@ import { OPEN_WAREHOUSE_IMAGE, SHADED_WAREHOUSE_IMAGE } from '../data/warehouseD
 import { VESSEL_SCHEDULE_CONFIG } from '../components/navigation/navConfig';
 
 export const HomePage: React.FC = () => {
-  const exportPackaging = CORE_SERVICES.find(s => s.id === 'export-packaging') || CORE_SERVICES[0];
-  const containerStuffing = CORE_SERVICES.find(s => s.id === 'container-stuffing') || CORE_SERVICES[1];
-  const cargoLashing = CORE_SERVICES.find(s => s.id === 'cargo-lashing') || CORE_SERVICES[2];
 
   // Homepage Warehouse Preview state (exact same image, CSS overlay)
   const [warehouseMode, setWarehouseMode] = useState<'open' | 'shaded'>('open');
@@ -89,27 +87,30 @@ export const HomePage: React.FC = () => {
   return (
     <div className="space-y-0 bg-white">
       {/* ------------------------------------------------------------- */}
-      {/* 1. CINEMATIC HERO (3-video continuous sequence)                */}
+      {/* 1. CINEMATIC HERO: CONCEPT 09 (DARK PREMIUM | TRUST & SCALE)  */}
       {/* ------------------------------------------------------------- */}
-      <HeroVideo />
+      <HeroConcept09 />
 
       {/* ------------------------------------------------------------- */}
       {/* 2. COMPANY INTRODUCTION TO MSK LOGISTICS                       */}
       {/* ------------------------------------------------------------- */}
-      <section className="py-20 sm:py-24 bg-white border-b border-[#E2E2E2] overflow-hidden">
+      <section id="company-intro" className="py-20 sm:py-24 bg-white border-b border-[#E2E2E2] overflow-hidden scroll-mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             <ScrollReveal direction="left" delay={0} className="lg:col-span-5 space-y-4">
-              <span className="editorial-badge bg-[#173F70]/10 text-[#173F70] border-[#173F70]/20">
+              <span className="editorial-badge bg-black/5 text-[#000000] border-black/10">
                 INDUSTRIAL EXPORT CAPABILITY
               </span>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#173F70] tracking-tight font-heading leading-tight">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#000000] tracking-tight font-heading leading-tight">
                 Engineered Packaging & Container Stuffing for Maritime Export
               </h2>
               <div className="w-16 h-1 bg-[#B62825]" />
             </ScrollReveal>
 
             <ScrollReveal direction="right" delay={120} className="lg:col-span-7 space-y-5 text-base sm:text-lg text-[#666666] leading-relaxed font-body">
+              <p className="text-xl sm:text-2xl font-bold text-[#B62825] font-heading tracking-tight">
+                &ldquo;Beyond Logistics, We Deliver Trust.&rdquo;
+              </p>
               <p>
                 <strong className="text-[#343434] font-semibold">{COMPANY_DETAILS.publicName}</strong> operates directly from Western India's premier container hub at Nhava Sheva (JNPT). We specialize in technical export preparation for sea freight consignments, ensuring cargo is physically protected, systematically loaded, and immovably secured before ocean transit.
               </p>
@@ -117,7 +118,7 @@ export const HomePage: React.FC = () => {
                 Our operational disciplines are strictly focused on three core stages: industrial export packaging and crating, methodical container stuffing and weight balancing, and heavy-duty cargo lashing and timber shoring. Whether operating at your factory floor, CFS staging facility, or terminal yard, our rigging specialists execute agreed work scopes with marine safety rigor.
               </p>
               
-              <div className="pt-3 flex flex-wrap items-center gap-6 text-xs sm:text-sm font-mono text-[#173F70]">
+              <div className="pt-3 flex flex-wrap items-center gap-6 text-xs sm:text-sm font-mono text-[#000000]">
                 <div className="flex items-center gap-2">
                   <span className="w-2.5 h-2.5 rounded-full bg-[#B62825]" />
                   <span className="font-bold">EXPORT PACKAGING</span>
@@ -135,7 +136,7 @@ export const HomePage: React.FC = () => {
               <div className="pt-2">
                 <Link
                   to="/about"
-                  className="inline-flex items-center gap-2 text-sm font-bold text-[#173F70] hover:text-[#B62825] transition-colors"
+                  className="inline-flex items-center gap-2 text-sm font-bold text-[#000000] hover:text-[#B62825] transition-colors"
                 >
                   <span>Learn more about our company & team</span>
                   <ArrowRight className="w-4 h-4" />
@@ -147,213 +148,14 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* ------------------------------------------------------------- */}
-      {/* 3. CORE SERVICES — EDITORIAL INDUSTRIAL PRESENTATION           */}
+      {/* 3. CORE SERVICES — CONCEPT 02: 5 SHIPPING CONTAINER CARDS     */}
       {/* ------------------------------------------------------------- */}
-      <section className="py-20 sm:py-24 bg-[#F5F5F3] border-b border-[#E2E2E2] overflow-hidden" id="core-services">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-16">
-          {/* Section Header */}
-          <ScrollReveal direction="up" className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <div className="space-y-3 max-w-2xl">
-              <span className="editorial-badge bg-white text-[#B62825] border-red-200">
-                CORE DISCIPLINES
-              </span>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#173F70] font-heading tracking-tight">
-                Specialized Export Preparation Services
-              </h2>
-              <p className="text-base sm:text-lg text-[#666666]">
-                Each discipline is engineered to mitigate dynamic forces during ocean voyages, rail transfers, and heavy port handling.
-              </p>
-            </div>
+      <ContainerServicesSection />
 
-            <div>
-              <Link 
-                to="/services" 
-                className="btn-secondary text-sm inline-flex items-center gap-2 shadow-xs"
-              >
-                <span>Complete Services Directory</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
-          </ScrollReveal>
-
-          {/* Service 01: Export Packaging (Editorial Split) */}
-          <ScrollReveal direction="left" delay={0}>
-            <div className="bg-white rounded-2xl border border-[#E2E2E2] overflow-hidden shadow-sm hover-lift hover:shadow-md transition-all duration-300 grid grid-cols-1 lg:grid-cols-12 gap-0 items-center">
-              <div className="lg:col-span-6 relative h-full min-h-[340px] sm:min-h-[400px]">
-                <BrandedImage
-                  src={exportPackaging.image}
-                  alt={exportPackaging.title}
-                  aspectRatio="h-full w-full min-h-[340px] sm:min-h-[400px]"
-                  imageClassName="h-full w-full object-cover"
-                />
-                <div className="absolute top-4 left-4 z-10">
-                  <span className="editorial-badge bg-[#343434] text-white border-white/20">
-                    DISCIPLINE 01
-                  </span>
-                </div>
-              </div>
-
-              <div className="lg:col-span-6 p-8 sm:p-12 space-y-6">
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#B62825] uppercase tracking-wider">
-                    <Box className="w-4 h-4" />
-                    <span>CARGO PREPARATION & ISPM-15 COMPLIANCE</span>
-                  </div>
-                  <h3 className="text-2xl sm:text-3xl font-bold text-[#173F70] font-heading">
-                    {exportPackaging.title}
-                  </h3>
-                  <p className="text-sm sm:text-base text-[#666666] leading-relaxed">
-                    {exportPackaging.shortDescription}
-                  </p>
-                </div>
-
-                <div className="space-y-2.5 text-xs sm:text-sm text-[#475569]">
-                  {exportPackaging.keyActivities.slice(0, 3).map((act, idx) => (
-                    <div key={idx} className="flex items-start gap-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-[#B62825] shrink-0 mt-0.5" />
-                      <span>{act}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="pt-2 flex items-center gap-4">
-                  <Link
-                    to={`/services/${exportPackaging.slug}`}
-                    className="inline-flex items-center gap-2 text-sm font-bold text-[#173F70] hover:text-[#B62825] transition-colors"
-                  >
-                    <span>Explore Packaging Scope</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
-                  <Link
-                    to="/request-quote?category=general-export"
-                    className="text-xs font-semibold text-[#B62825] hover:underline"
-                  >
-                    Quote This Service &rarr;
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </ScrollReveal>
-
-          {/* Service 02: Container Stuffing (Inverted Split) */}
-          <ScrollReveal direction="right" delay={120}>
-            <div className="bg-white rounded-2xl border border-[#E2E2E2] overflow-hidden shadow-sm hover-lift hover:shadow-md transition-all duration-300 grid grid-cols-1 lg:grid-cols-12 gap-0 items-center">
-              <div className="lg:col-span-6 p-8 sm:p-12 space-y-6 order-2 lg:order-1">
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#173F70] uppercase tracking-wider">
-                    <Container className="w-4 h-4" />
-                    <span>PRECISION LOADING & WEIGHT DISTRIBUTION</span>
-                  </div>
-                  <h3 className="text-2xl sm:text-3xl font-bold text-[#173F70] font-heading">
-                    {containerStuffing.title}
-                  </h3>
-                  <p className="text-sm sm:text-base text-[#666666] leading-relaxed">
-                    {containerStuffing.shortDescription}
-                  </p>
-                </div>
-
-                <div className="space-y-2.5 text-xs sm:text-sm text-[#475569]">
-                  {containerStuffing.keyActivities.slice(0, 3).map((act, idx) => (
-                    <div key={idx} className="flex items-start gap-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-[#173F70] shrink-0 mt-0.5" />
-                      <span>{act}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="pt-2 flex items-center gap-4">
-                  <Link
-                    to={`/services/${containerStuffing.slug}`}
-                    className="inline-flex items-center gap-2 text-sm font-bold text-[#173F70] hover:text-[#B62825] transition-colors"
-                  >
-                    <span>Explore Stuffing Scope</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
-                  <Link
-                    to="/request-quote?category=container-selection"
-                    className="text-xs font-semibold text-[#B62825] hover:underline"
-                  >
-                    Quote This Service &rarr;
-                  </Link>
-                </div>
-              </div>
-
-              <div className="lg:col-span-6 relative h-full min-h-[340px] sm:min-h-[400px] order-1 lg:order-2">
-                <BrandedImage
-                  src={containerStuffing.image}
-                  alt={containerStuffing.title}
-                  aspectRatio="h-full w-full min-h-[340px] sm:min-h-[400px]"
-                  imageClassName="h-full w-full object-cover"
-                />
-                <div className="absolute top-4 right-4 z-10">
-                  <span className="editorial-badge bg-[#173F70] text-white border-white/20">
-                    DISCIPLINE 02
-                  </span>
-                </div>
-              </div>
-            </div>
-          </ScrollReveal>
-
-          {/* Service 03: Cargo Lashing & Securing (Editorial Split) */}
-          <ScrollReveal direction="left" delay={0}>
-            <div className="bg-white rounded-2xl border border-[#E2E2E2] overflow-hidden shadow-sm hover-lift hover:shadow-md transition-all duration-300 grid grid-cols-1 lg:grid-cols-12 gap-0 items-center">
-              <div className="lg:col-span-6 relative h-full min-h-[340px] sm:min-h-[400px]">
-                <BrandedImage
-                  src={cargoLashing.image}
-                  alt={cargoLashing.title}
-                  aspectRatio="h-full w-full min-h-[340px] sm:min-h-[400px]"
-                  imageClassName="h-full w-full object-cover"
-                />
-                <div className="absolute top-4 left-4 z-10">
-                  <span className="editorial-badge bg-[#B62825] text-white border-white/20">
-                    DISCIPLINE 03
-                  </span>
-                </div>
-              </div>
-
-              <div className="lg:col-span-6 p-8 sm:p-12 space-y-6">
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#B62825] uppercase tracking-wider">
-                    <Anchor className="w-4 h-4" />
-                    <span>DYNAMIC FORCE RESTRAINT & TIMBER SHORING</span>
-                  </div>
-                  <h3 className="text-2xl sm:text-3xl font-bold text-[#173F70] font-heading">
-                    {cargoLashing.title}
-                  </h3>
-                  <p className="text-sm sm:text-base text-[#666666] leading-relaxed">
-                    {cargoLashing.shortDescription}
-                  </p>
-                </div>
-
-                <div className="space-y-2.5 text-xs sm:text-sm text-[#475569]">
-                  {cargoLashing.keyActivities.slice(0, 3).map((act, idx) => (
-                    <div key={idx} className="flex items-start gap-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-[#B62825] shrink-0 mt-0.5" />
-                      <span>{act}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="pt-2 flex items-center gap-4">
-                  <Link
-                    to={`/services/${cargoLashing.slug}`}
-                    className="inline-flex items-center gap-2 text-sm font-bold text-[#173F70] hover:text-[#B62825] transition-colors"
-                  >
-                    <span>Explore Lashing Scope</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
-                  <Link
-                    to="/request-quote?category=flat-rack"
-                    className="text-xs font-semibold text-[#B62825] hover:underline"
-                  >
-                    Quote This Service &rarr;
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
+      {/* ------------------------------------------------------------- */}
+      {/* CONCEPT 03: INDUSTRIAL STICKERS & BADGES SHOWCASE             */}
+      {/* ------------------------------------------------------------- */}
+      <IndustrialStickersShowcase />
 
       {/* ------------------------------------------------------------- */}
       {/* 4. TWO EXPORT PACKING ARRANGEMENTS                             */}
@@ -361,10 +163,10 @@ export const HomePage: React.FC = () => {
       <section className="py-20 sm:py-24 bg-white border-b border-[#E2E2E2] overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-12">
           <ScrollReveal direction="up" className="text-center max-w-3xl mx-auto space-y-4">
-            <span className="editorial-badge bg-[#173F70]/10 text-[#173F70] border-[#173F70]/20">
+            <span className="editorial-badge bg-black/5 text-[#000000] border-black/10">
               SERVICE ARRANGEMENTS
             </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#173F70] font-heading tracking-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#000000] font-heading tracking-tight">
               Export Packing Solutions Designed Around Your Needs
             </h2>
             <p className="text-base sm:text-lg text-[#666666] leading-relaxed font-body">
@@ -378,7 +180,7 @@ export const HomePage: React.FC = () => {
           <ScrollReveal direction="up" delay={120} className="text-center pt-2">
             <Link 
               to="/export-packing-solutions"
-              className="inline-flex items-center gap-2 text-sm font-bold text-[#173F70] hover:text-[#B62825] transition-colors"
+              className="inline-flex items-center gap-2 text-sm font-bold text-[#000000] hover:text-[#B62825] transition-colors"
             >
               <span>Compare Both Export Arrangements in Full Detail</span>
               <ArrowRight className="w-4 h-4" />
@@ -394,10 +196,10 @@ export const HomePage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-12">
           <ScrollReveal direction="up" className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="space-y-3 max-w-2xl">
-              <span className="editorial-badge bg-white text-[#173F70] border-[#E2E8F0]">
+              <span className="editorial-badge bg-white text-[#000000] border-[#E2E8F0]">
                 SHIPPING LOAD CONCEPTS
               </span>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#173F70] font-heading tracking-tight">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#000000] font-heading tracking-tight">
                 Import & Export Overview: LCL vs FCL
               </h2>
               <p className="text-base sm:text-lg text-[#666666]">
@@ -421,7 +223,7 @@ export const HomePage: React.FC = () => {
             <ScrollReveal direction="left" delay={0} className="h-full">
               <div className="h-full bg-white p-7 sm:p-8 rounded-2xl border border-[#E2E8F0] shadow-xs space-y-5 hover:shadow-md transition-shadow">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-mono font-bold text-[#173F70] uppercase tracking-wider">
+                  <span className="text-xs font-mono font-bold text-[#000000] uppercase tracking-wider">
                     CONSOLIDATED FREIGHT
                   </span>
                   <span className="px-2.5 py-1 rounded bg-[#F1F5F9] text-xs font-mono text-[#475569]">
@@ -436,7 +238,7 @@ export const HomePage: React.FC = () => {
                 </p>
                 <div className="pt-2 border-t border-[#F1F5F9] flex items-center justify-between">
                   <span className="text-xs font-mono text-[#64748B]">Billed on volume (W/M)</span>
-                  <Link to="/import-export" className="text-xs font-bold text-[#173F70] hover:text-[#B62825]">
+                  <Link to="/import-export" className="text-xs font-bold text-[#000000] hover:text-[#B62825]">
                     Learn More &rarr;
                   </Link>
                 </div>
@@ -479,10 +281,10 @@ export const HomePage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-12">
           <ScrollReveal direction="up" className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="space-y-3 max-w-2xl">
-              <span className="editorial-badge bg-[#173F70]/10 text-[#173F70] border-[#173F70]/20">
+              <span className="editorial-badge bg-black/5 text-[#000000] border-black/10">
                 CONTAINER SPECIFICATIONS
               </span>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#173F70] font-heading tracking-tight">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#000000] font-heading tracking-tight">
                 Standard Shipping Container Types
               </h2>
               <p className="text-base sm:text-lg text-[#666666]">
@@ -526,14 +328,14 @@ export const HomePage: React.FC = () => {
                       </div>
 
                       <div className="p-5 space-y-3">
-                        <h3 className="font-bold text-base text-[#1E293B] group-hover:text-[#173F70] transition-colors leading-snug">
+                        <h3 className="font-bold text-base text-[#1E293B] group-hover:text-[#B62825] transition-colors leading-snug">
                           {container.name}
                         </h3>
                         
                         <div className="space-y-1.5 text-xs font-mono text-[#64748B]">
                           <div className="flex justify-between">
                             <span>Volume:</span>
-                            <strong className="text-[#173F70]">{container.cubicCapacity.cbm}</strong>
+                            <strong className="text-[#000000]">{container.cubicCapacity.cbm}</strong>
                           </div>
                           <div className="flex justify-between">
                             <span>Internal Length:</span>
@@ -550,7 +352,7 @@ export const HomePage: React.FC = () => {
                     <div className="p-5 pt-0">
                       <Link
                         to="/container-guide"
-                        className="w-full text-center block py-2 rounded-lg bg-white border border-[#E2E8F0] hover:bg-[#173F70] hover:text-white text-xs font-bold text-[#173F70] transition-colors shadow-2xs"
+                        className="w-full text-center block py-2 rounded-lg bg-white border border-[#E2E8F0] hover:bg-[#000000] hover:text-white text-xs font-bold text-[#000000] transition-colors shadow-2xs"
                       >
                         View Specs & Interior &rarr;
                       </Link>
@@ -575,10 +377,10 @@ export const HomePage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-12">
           <ScrollReveal direction="up" className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="space-y-3 max-w-2xl">
-              <span className="editorial-badge bg-[#173F70]/10 text-[#173F70] border-[#173F70]/20">
+              <span className="editorial-badge bg-black/5 text-[#000000] border-black/10">
                 STAGING & BUFFER FACILITIES
               </span>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#173F70] font-heading tracking-tight">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#000000] font-heading tracking-tight">
                 Warehouse & Staging Environments
               </h2>
               <p className="text-base sm:text-lg text-[#666666]">
@@ -593,7 +395,7 @@ export const HomePage: React.FC = () => {
                   onClick={() => setWarehouseMode('open')}
                   aria-pressed={!isShaded}
                   className={`py-1.5 px-3 rounded-lg transition-all duration-300 inline-flex items-center gap-1.5 ${
-                    !isShaded ? 'bg-white text-[#173F70] font-bold shadow-xs' : 'text-[#64748B] hover:text-[#173F70]'
+                    !isShaded ? 'bg-white text-[#000000] font-bold shadow-xs' : 'text-[#64748B] hover:text-[#000000]'
                   }`}
                 >
                   <SunMedium className={`w-3.5 h-3.5 transition-transform duration-300 motion-reduce:transform-none ${
@@ -606,7 +408,7 @@ export const HomePage: React.FC = () => {
                   onClick={() => setWarehouseMode('shaded')}
                   aria-pressed={isShaded}
                   className={`py-1.5 px-3 rounded-lg transition-all duration-300 inline-flex items-center gap-1.5 ${
-                    isShaded ? 'bg-[#173F70] text-white font-bold shadow-xs' : 'text-[#64748B] hover:text-[#173F70]'
+                    isShaded ? 'bg-[#000000] text-white font-bold shadow-xs' : 'text-[#64748B] hover:text-[#000000]'
                   }`}
                 >
                   <Umbrella className={`w-3.5 h-3.5 transition-transform duration-300 motion-reduce:transform-none ${
@@ -654,7 +456,7 @@ export const HomePage: React.FC = () => {
                 {/* Mode indicator badge */}
                 <div className="absolute top-4 left-4 z-10">
                   <span className={`px-3 py-1 rounded-md text-xs font-mono font-bold tracking-wider uppercase transition-all shadow-md ${
-                    isShaded ? 'bg-[#173F70] text-white' : 'bg-white text-[#173F70]'
+                    isShaded ? 'bg-[#000000] text-white' : 'bg-white text-[#000000]'
                   }`}>
                     {isShaded ? 'SHADED WAREHOUSE (COVERED ROOF)' : 'OPEN WAREHOUSE (OPEN-AIR SKY)'}
                   </span>
@@ -705,7 +507,7 @@ export const HomePage: React.FC = () => {
                 <div className="pt-2">
                   <Link
                     to="/warehouse"
-                    className="inline-flex items-center gap-2 text-sm font-bold text-[#173F70] hover:text-[#B62825] transition-colors"
+                    className="inline-flex items-center gap-2 text-sm font-bold text-[#000000] hover:text-[#B62825] transition-colors"
                   >
                     <span>Explore full facility capabilities</span>
                     <ArrowRight className="w-4 h-4" />
@@ -727,7 +529,7 @@ export const HomePage: React.FC = () => {
               <span className="editorial-badge bg-white text-[#343434] border-neutral-300">
                 STRUCTURED WORKFLOW
               </span>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#173F70] font-heading tracking-tight">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#000000] font-heading tracking-tight">
                 How It Works: From Scope Review to Handover
               </h2>
               <p className="text-base sm:text-lg text-[#666666]">
@@ -750,13 +552,13 @@ export const HomePage: React.FC = () => {
           <div className="relative">
             {/* Desktop Horizontal MSK-Red Progress Line */}
             <div 
-              className="hidden lg:block absolute top-7 left-14 right-14 h-[2px] bg-gradient-to-r from-[#B62825] via-[#B62825]/70 to-[#173F70]/30 z-0 pointer-events-none motion-reduce:opacity-50" 
+              className="hidden lg:block absolute top-7 left-14 right-14 h-[2px] bg-gradient-to-r from-[#B62825] via-[#B62825]/70 to-[#B62825]/30 z-0 pointer-events-none motion-reduce:opacity-50" 
               aria-hidden="true" 
             />
 
             {/* Mobile Vertical MSK-Red Progress Line */}
             <div 
-              className="lg:hidden absolute top-8 bottom-8 left-[31px] w-[2px] bg-gradient-to-b from-[#B62825] via-[#B62825]/60 to-[#173F70]/30 z-0 pointer-events-none motion-reduce:opacity-50" 
+              className="lg:hidden absolute top-8 bottom-8 left-[31px] w-[2px] bg-gradient-to-b from-[#B62825] via-[#B62825]/60 to-[#B62825]/30 z-0 pointer-events-none motion-reduce:opacity-50" 
               aria-hidden="true" 
             />
 
@@ -777,7 +579,7 @@ export const HomePage: React.FC = () => {
                       className={`group h-full bg-white rounded-2xl border p-6 sm:p-7 space-y-4 transition-all duration-300 relative focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B62825] motion-reduce:transform-none motion-reduce:transition-none cursor-default ${
                         isActive 
                           ? 'border-[#B62825] shadow-lg -translate-y-1.5 ring-1 ring-[#B62825]/30' 
-                          : 'border-[#E2E8F0] hover:border-[#173F70]/40 hover:-translate-y-1 shadow-xs'
+                          : 'border-[#E2E8F0] hover:border-black/40 hover:-translate-y-1 shadow-xs'
                       }`}
                     >
                       {/* Stage Header with Icon Badge */}
@@ -785,7 +587,7 @@ export const HomePage: React.FC = () => {
                         <div className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-300 motion-reduce:transform-none ${
                           isActive
                             ? 'bg-[#B62825] text-white shadow-md scale-105'
-                            : 'bg-[#F8FAFC] text-[#173F70] border border-[#E2E8F0] group-hover:scale-105 group-hover:text-[#B62825] group-hover:border-[#B62825]/40'
+                            : 'bg-[#F8FAFC] text-[#000000] border border-[#E2E8F0] group-hover:scale-105 group-hover:text-[#B62825] group-hover:border-[#B62825]/40'
                         }`}>
                           <IconComponent className="w-6 h-6 transition-transform duration-300 group-hover:scale-110" />
                         </div>
@@ -797,7 +599,7 @@ export const HomePage: React.FC = () => {
 
                       {/* Stage Details */}
                       <div className="space-y-1.5 pt-1">
-                        <div className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#173F70]">
+                        <div className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#000000]">
                           {stage.subtitle}
                         </div>
                         <h3 className="text-lg font-bold text-[#1E293B] font-heading leading-snug group-hover:text-[#B62825] transition-colors">
@@ -833,10 +635,10 @@ export const HomePage: React.FC = () => {
       <section className="py-20 sm:py-24 bg-white border-b border-[#E2E2E2] overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-12">
           <ScrollReveal direction="up" className="max-w-2xl space-y-3">
-            <span className="editorial-badge bg-[#F5F5F3] text-[#173F70] border-neutral-300">
+            <span className="editorial-badge bg-[#F5F5F3] text-[#000000] border-neutral-300">
               OPERATIONAL PRINCIPLES
             </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#173F70] font-heading tracking-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#000000] font-heading tracking-tight">
               Why Work With MSK Logistics?
             </h2>
             <p className="text-base sm:text-lg text-[#666666]">
@@ -851,11 +653,11 @@ export const HomePage: React.FC = () => {
 
               return (
                 <ScrollReveal key={idx} direction={direction} delay={delay} className="h-full">
-                  <div className="bg-[#F8FAFC] h-full p-7 sm:p-8 rounded-2xl border border-[#E2E8F0] space-y-4 transition-all duration-300 hover:border-[#173F70]/50 hover:shadow-md">
-                    <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#173F70] flex items-center justify-center font-mono font-bold text-sm border border-blue-100">
+                  <div className="bg-[#F8FAFC] h-full p-7 sm:p-8 rounded-2xl border border-[#E2E8F0] space-y-4 transition-all duration-300 hover:border-black/40 hover:shadow-md">
+                    <div className="w-10 h-10 rounded-xl bg-neutral-100 text-[#000000] flex items-center justify-center font-mono font-bold text-sm border border-neutral-200">
                       0{idx + 1}
                     </div>
-                    <h3 className="text-lg sm:text-xl font-bold text-[#173F70] font-heading">
+                    <h3 className="text-lg sm:text-xl font-bold text-[#000000] font-heading">
                       {item.title}
                     </h3>
                     <p className="text-sm text-[#666666] leading-relaxed font-body">
@@ -916,10 +718,10 @@ export const HomePage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-12">
           <ScrollReveal direction="up" className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="space-y-3 max-w-2xl">
-              <span className="editorial-badge bg-[#173F70]/10 text-[#173F70] border-[#173F70]/20">
+              <span className="editorial-badge bg-black/5 text-[#000000] border-black/10">
                 FIELD ARCHIVES
               </span>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#173F70] font-heading tracking-tight">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#000000] font-heading tracking-tight">
                 Latest Operational Shipments
               </h2>
               <p className="text-base sm:text-lg text-[#666666]">
@@ -955,7 +757,7 @@ export const HomePage: React.FC = () => {
                           imageClassName="group-hover:scale-105 transition-transform duration-300"
                         />
                         <div className="absolute top-3 left-3 z-10">
-                          <span className="px-2.5 py-1 rounded bg-[#173F70]/90 backdrop-blur-md text-white text-[11px] font-mono font-bold shadow">
+                          <span className="px-2.5 py-1 rounded bg-[#000000]/90 backdrop-blur-md text-white text-[11px] font-mono font-bold shadow">
                             {item.categoryLabel}
                           </span>
                         </div>
@@ -977,7 +779,7 @@ export const HomePage: React.FC = () => {
                       </span>
                       <Link
                         to="/import-export"
-                        className="text-xs font-bold text-[#173F70] hover:text-[#B62825]"
+                        className="text-xs font-bold text-[#000000] hover:text-[#B62825]"
                       >
                         View Record &rarr;
                       </Link>
@@ -993,7 +795,7 @@ export const HomePage: React.FC = () => {
       {/* ------------------------------------------------------------- */}
       {/* 13. PREMIUM CINEMATIC QUOTE CTA SECTION                       */}
       {/* ------------------------------------------------------------- */}
-      <section className="relative py-24 sm:py-32 bg-[#0B1E38] text-white overflow-hidden group">
+      <section className="relative py-24 sm:py-32 bg-[#000000] text-white overflow-hidden group border-t border-white/10">
         {/* Background Photograph with subtle zoom effect */}
         <div className="absolute inset-0 z-0 overflow-hidden">
           <img
@@ -1001,15 +803,15 @@ export const HomePage: React.FC = () => {
             alt="Port terminal vessel stowage operations"
             loading="lazy"
             decoding="async"
-            className="w-full h-full object-cover object-center opacity-30 transform scale-100 group-hover:scale-105 transition-transform duration-1000 ease-out pointer-events-none"
+            className="w-full h-full object-cover object-center opacity-25 transform scale-100 group-hover:scale-105 transition-transform duration-1000 ease-out pointer-events-none"
           />
-          {/* Deep Navy/Charcoal Vignette Gradients */}
+          {/* Pure Black Vignette Gradients */}
           <div 
-            className="absolute inset-0 bg-gradient-to-t from-[#0B1E38] via-[#0F2D52]/90 to-[#0B1E38]/95 pointer-events-none" 
+            className="absolute inset-0 bg-gradient-to-t from-[#000000] via-[#0B0B0D]/90 to-[#000000]/95 pointer-events-none" 
             aria-hidden="true" 
           />
           <div 
-            className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-[#0B1E38]/50 to-[#0B1E38] pointer-events-none"
+            className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-[#000000]/50 to-[#000000] pointer-events-none"
             aria-hidden="true"
           />
         </div>
@@ -1027,12 +829,12 @@ export const HomePage: React.FC = () => {
           </h2>
 
           {/* Description */}
-          <p className="text-base sm:text-lg text-blue-100/90 leading-relaxed font-body max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-[#94A3B8] leading-relaxed font-body max-w-2xl mx-auto">
             Tell us about your cargo, packaging requirements, and container arrangements. Our team can review your requirements and discuss the next steps.
           </p>
 
           {/* Capability Indicators / Micro Service Pills */}
-          <div className="pt-2 flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs text-blue-200/80 font-mono">
+          <div className="pt-2 flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs text-neutral-300 font-mono">
             <div className="flex items-center gap-1.5 bg-white/5 border border-white/10 px-3 py-1 rounded-md">
               <Box className="w-3.5 h-3.5 text-[#B62825]" />
               <span>Export Packaging</span>

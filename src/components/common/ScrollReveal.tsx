@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-export type RevealDirection = 'left' | 'right' | 'up' | 'down' | 'none';
+export type RevealDirection = 'left' | 'right' | 'up' | 'down' | 'zoom' | 'none';
 
 export interface UseScrollRevealOptions {
   threshold?: number;
@@ -79,6 +79,7 @@ export interface ScrollRevealProps extends React.HTMLAttributes<HTMLElement> {
   direction?: RevealDirection;
   delay?: number; // Milliseconds
   duration?: number; // Milliseconds
+  staggerIndex?: number; // Automatic staggered delay based on index
   distance?: number; // Horizontal offset in px
   distanceY?: number; // Vertical offset in px
   threshold?: number;
@@ -97,6 +98,7 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
   direction = 'up',
   delay = 0,
   duration = 620,
+  staggerIndex,
   distance,
   distanceY,
   threshold = 0.15,
@@ -113,9 +115,11 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
     once,
   });
 
+  const computedDelay = delay > 0 ? delay : (staggerIndex !== undefined ? (staggerIndex % 4) * 80 : 0);
+
   // Dynamic CSS variables for custom timing and distances
   const customStyles: React.CSSProperties = {
-    ...(delay > 0 ? ({ '--reveal-delay': `${delay}ms` } as React.CSSProperties) : {}),
+    ...(computedDelay > 0 ? ({ '--reveal-delay': `${computedDelay}ms` } as React.CSSProperties) : {}),
     ...(duration !== 620 ? ({ '--reveal-duration': `${duration}ms` } as React.CSSProperties) : {}),
     ...(distance !== undefined ? ({ '--reveal-dist-x': `${distance}px` } as React.CSSProperties) : {}),
     ...(distanceY !== undefined ? ({ '--reveal-dist-y': `${distanceY}px` } as React.CSSProperties) : {}),

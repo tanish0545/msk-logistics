@@ -55,7 +55,7 @@ export const AboutPage: React.FC = () => {
             {/* Left Column: Polished Editorial Storytelling */}
             <ScrollReveal direction="left" delay={0} className="lg:col-span-7 space-y-6">
               <div className="space-y-3">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#173F70]/10 border border-[#173F70]/20 text-[#173F70] text-xs font-mono font-semibold uppercase tracking-wider">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/5 border border-black/10 text-[#000000] text-xs font-mono font-semibold uppercase tracking-wider">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#B62825]" />
                   <span>FOUNDED MAY 2019 • NHAVA SHEVA</span>
                 </div>
@@ -70,7 +70,7 @@ export const AboutPage: React.FC = () => {
                   <strong className="text-[#1E293B] font-semibold">MSK Logistics Solution</strong> was established in <strong>May 2019</strong> to provide dedicated cargo handling and transportation, lashing and choking, palletisation, packing, and specialized export-related activities from Western India’s maritime export hub at Nhava Sheva (JNPT).
                 </p>
                 <p>
-                  In its foundational phase, the company worked in close collaboration with <strong>Speedy, Pollaris,Punjab</strong>, one of the prominent Container Freight Station (CFS) operators in India. This operational association reinforced our ground-level discipline, container terminal protocol, and marine-standard handling procedures.
+                  In its foundational phase, the company established its operational foundation in close collaboration with <strong>Polaris, Conex, Punjab, and Speedy</strong>—prominent Container Freight Station (CFS) operators in India. This operational association reinforced our ground-level discipline, container terminal protocol, and marine-standard handling procedures.
                 </p>
                 <p>
                   Our operational philosophy centers strictly on the quality of logistics execution, packaging materials, and client-tailored services. Rather than applying standard uniform packaging, every solution is carefully customized according to specific product requirements and cargo sensitivities. Rigorous adherence to schedules and maintaining strong, dependable client relationships remain our steadfast priorities across every assignment.
@@ -98,7 +98,7 @@ export const AboutPage: React.FC = () => {
             <ScrollReveal direction="right" delay={120} className="lg:col-span-5 space-y-4">
               <div className="bg-[#F8FAFC] p-6 sm:p-8 rounded-2xl border border-[#E2E8F0] space-y-5 shadow-sm">
                 <div className="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-[#E2E8F0]">
-                  <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#173F70]">
+                  <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#000000]">
                     Verified Company Profile
                   </span>
                   <span className="text-[11px] font-mono text-[#94A3B8]">
@@ -129,10 +129,10 @@ export const AboutPage: React.FC = () => {
                     </div>
                     <div className="space-y-1">
                       <h4 className="text-sm font-bold text-[#1E293B] font-heading">
-                        Speedy Multimodes Limited Collaboration
+                        Polaris, Conex, Punjab &amp; Speedy Collaboration
                       </h4>
                       <p className="text-xs text-[#64748B] leading-relaxed">
-                        Initially worked alongside Speedy Multimodes Limited, one of India&apos;s recognized CFS operators, executing terminal-compliant packing work.
+                        Worked in close operational association with prominent Container Freight Station (CFS) operators in India, executing terminal-compliant packing and container protocols.
                       </p>
                     </div>
                   </div>
@@ -171,13 +171,35 @@ export const AboutPage: React.FC = () => {
             </ScrollReveal>
 
           </div>
+
+          {/* Prominent Brand Tagline Callout */}
+          <div className="mt-12 sm:mt-16 p-6 sm:p-10 rounded-2xl bg-gradient-to-r from-[#000000] to-[#0B0B0D] text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-lg border border-white/10">
+            <div className="space-y-1.5 text-center md:text-left">
+              <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-red-300">
+                OFFICIAL COMPANY MOTTO
+              </span>
+              <h3 className="text-2xl sm:text-3xl font-bold font-heading text-white tracking-tight">
+                &ldquo;Beyond Logistics, We Deliver Trust.&rdquo;
+              </h3>
+              <p className="text-xs sm:text-sm text-[#94A3B8] max-w-xl font-body leading-relaxed">
+                Every container stuffed, every cargo lashed, and every export consignment handled reflects our absolute dedication to client trust, punctuality, and marine safety standards.
+              </p>
+            </div>
+            <Link
+              to="/contact"
+              className="btn-primary text-xs sm:text-sm py-3 px-6 shrink-0 bg-[#B62825] hover:bg-[#9E2220] text-white font-bold rounded-xl shadow-md transition-all inline-flex items-center gap-2"
+            >
+              <span>Connect With Us</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
         </div>
       </section>
 
       {/* ========================================================================= */}
       {/* 3. MONTHLY BUSINESS VOLUME METRIC (Point 02 Enhancement)                  */}
       {/* ========================================================================= */}
-      <section className="py-14 sm:py-18 bg-[#173F70] text-white relative overflow-hidden border-b border-[#0F2D52]">
+      <section className="py-14 sm:py-18 bg-[#000000] text-white relative overflow-hidden border-b border-white/10">
         {/* Subtle Diagonal Technical Lines Accent */}
         <div
           className="absolute inset-0 pointer-events-none opacity-20"
@@ -189,12 +211,12 @@ export const AboutPage: React.FC = () => {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-8 relative z-10">
           <ScrollReveal direction="up" delay={0}>
-            <div className="bg-white/5 backdrop-blur-md rounded-2xl border border-white/15 p-8 sm:p-12 lg:p-14 shadow-xl">
+            <div className="bg-[#0B0B0D] backdrop-blur-md rounded-2xl border border-white/15 p-8 sm:p-12 lg:p-14 shadow-xl">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
 
                 {/* Metric Display Column */}
                 <div className="lg:col-span-6 space-y-3 text-center lg:text-left">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-blue-200 text-xs font-mono font-medium uppercase tracking-wider">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-[#D9DEE5] text-xs font-mono font-medium uppercase tracking-wider">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#B62825]" />
                     <span>MONTHLY BUSINESS VOLUME</span>
                   </div>
@@ -306,7 +328,7 @@ export const AboutPage: React.FC = () => {
 
                   <div className="pt-2 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono text-[#334155] border-t border-[#E2E8F0]">
                     <div className="flex items-center gap-2 pt-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#173F70]" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#B62825]" />
                       <span>Commercial Entity: <strong>MSK Logistics Solution</strong></span>
                     </div>
                     <div className="flex items-center gap-2 pt-2">
@@ -455,7 +477,7 @@ export const AboutPage: React.FC = () => {
                   aspectRatio="h-full w-full"
                   imageClassName="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                <div className="absolute top-3 left-3 bg-[#173F70]/90 text-white text-[11px] font-mono uppercase px-2.5 py-1 rounded z-10">
+                <div className="absolute top-3 left-3 bg-[#000000]/90 text-white text-[11px] font-mono uppercase px-2.5 py-1 rounded border border-white/20 z-10">
                   Packaging
                 </div>
               </div>
@@ -470,7 +492,7 @@ export const AboutPage: React.FC = () => {
                 </div>
                 <Link
                   to="/services/export-packaging"
-                  className="text-xs font-bold text-[#173F70] hover:text-[#B62825] inline-flex items-center gap-1 transition-colors"
+                  className="text-xs font-bold text-[#1E293B] hover:text-[#B62825] inline-flex items-center gap-1 transition-colors"
                 >
                   <span>Learn More</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -487,7 +509,7 @@ export const AboutPage: React.FC = () => {
                   aspectRatio="h-full w-full"
                   imageClassName="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                <div className="absolute top-3 left-3 bg-[#173F70]/90 text-white text-[11px] font-mono uppercase px-2.5 py-1 rounded z-10">
+                <div className="absolute top-3 left-3 bg-[#000000]/90 text-white text-[11px] font-mono uppercase px-2.5 py-1 rounded border border-white/20 z-10">
                   Stuffing
                 </div>
               </div>
@@ -502,7 +524,7 @@ export const AboutPage: React.FC = () => {
                 </div>
                 <Link
                   to="/services/container-stuffing"
-                  className="text-xs font-bold text-[#173F70] hover:text-[#B62825] inline-flex items-center gap-1 transition-colors"
+                  className="text-xs font-bold text-[#1E293B] hover:text-[#B62825] inline-flex items-center gap-1 transition-colors"
                 >
                   <span>Learn More</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -519,7 +541,7 @@ export const AboutPage: React.FC = () => {
                   aspectRatio="h-full w-full"
                   imageClassName="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                <div className="absolute top-3 left-3 bg-[#173F70]/90 text-white text-[11px] font-mono uppercase px-2.5 py-1 rounded z-10">
+                <div className="absolute top-3 left-3 bg-[#000000]/90 text-white text-[11px] font-mono uppercase px-2.5 py-1 rounded border border-white/20 z-10">
                   Lashing
                 </div>
               </div>
@@ -534,7 +556,7 @@ export const AboutPage: React.FC = () => {
                 </div>
                 <Link
                   to="/services/cargo-lashing"
-                  className="text-xs font-bold text-[#173F70] hover:text-[#B62825] inline-flex items-center gap-1 transition-colors"
+                  className="text-xs font-bold text-[#1E293B] hover:text-[#B62825] inline-flex items-center gap-1 transition-colors"
                 >
                   <span>Learn More</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -677,7 +699,7 @@ export const AboutPage: React.FC = () => {
             {/* Step 1 */}
             <div className="bg-white p-5 rounded-xl border border-[#E2E2E2] space-y-3 relative flex flex-col justify-between hover:shadow-sm transition-shadow">
               <div className="space-y-2">
-                <div className="w-8 h-8 rounded-lg bg-[#173F70] text-white text-xs font-mono font-bold flex items-center justify-center">
+                <div className="w-8 h-8 rounded-lg bg-[#000000] text-white text-xs font-mono font-bold flex items-center justify-center">
                   01
                 </div>
                 <h3 className="text-sm font-bold text-[#1E293B] font-heading">
@@ -695,7 +717,7 @@ export const AboutPage: React.FC = () => {
             {/* Step 2 */}
             <div className="bg-white p-5 rounded-xl border border-[#E2E2E2] space-y-3 relative flex flex-col justify-between hover:shadow-sm transition-shadow">
               <div className="space-y-2">
-                <div className="w-8 h-8 rounded-lg bg-[#173F70] text-white text-xs font-mono font-bold flex items-center justify-center">
+                <div className="w-8 h-8 rounded-lg bg-[#000000] text-white text-xs font-mono font-bold flex items-center justify-center">
                   02
                 </div>
                 <h3 className="text-sm font-bold text-[#1E293B] font-heading">
@@ -713,7 +735,7 @@ export const AboutPage: React.FC = () => {
             {/* Step 3 */}
             <div className="bg-white p-5 rounded-xl border border-[#E2E2E2] space-y-3 relative flex flex-col justify-between hover:shadow-sm transition-shadow">
               <div className="space-y-2">
-                <div className="w-8 h-8 rounded-lg bg-[#173F70] text-white text-xs font-mono font-bold flex items-center justify-center">
+                <div className="w-8 h-8 rounded-lg bg-[#000000] text-white text-xs font-mono font-bold flex items-center justify-center">
                   03
                 </div>
                 <h3 className="text-sm font-bold text-[#1E293B] font-heading">
@@ -731,7 +753,7 @@ export const AboutPage: React.FC = () => {
             {/* Step 4 */}
             <div className="bg-white p-5 rounded-xl border border-[#E2E2E2] space-y-3 relative flex flex-col justify-between hover:shadow-sm transition-shadow">
               <div className="space-y-2">
-                <div className="w-8 h-8 rounded-lg bg-[#173F70] text-white text-xs font-mono font-bold flex items-center justify-center">
+                <div className="w-8 h-8 rounded-lg bg-[#000000] text-white text-xs font-mono font-bold flex items-center justify-center">
                   04
                 </div>
                 <h3 className="text-sm font-bold text-[#1E293B] font-heading">
@@ -749,7 +771,7 @@ export const AboutPage: React.FC = () => {
             {/* Step 5 */}
             <div className="bg-white p-5 rounded-xl border border-[#E2E2E2] space-y-3 relative flex flex-col justify-between hover:shadow-sm transition-shadow">
               <div className="space-y-2">
-                <div className="w-8 h-8 rounded-lg bg-[#173F70] text-white text-xs font-mono font-bold flex items-center justify-center">
+                <div className="w-8 h-8 rounded-lg bg-[#000000] text-white text-xs font-mono font-bold flex items-center justify-center">
                   05
                 </div>
                 <h3 className="text-sm font-bold text-[#1E293B] font-heading">
@@ -768,19 +790,19 @@ export const AboutPage: React.FC = () => {
       </section>
 
       {/* ========================================================================= */}
-      {/* 9. REQUEST A QUOTE CALL TO ACTION (Preserved Existing Section)             */}
+      {/* 9. REQUEST A QUOTE CALL TO ACTION                                          */}
       {/* ========================================================================= */}
-      <section className="py-16 sm:py-20 bg-[#173F70] text-white">
+      <section className="py-16 sm:py-20 bg-[#000000] text-white border-t border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="space-y-3 max-w-2xl">
               <span className="editorial-badge bg-white/10 text-white border-white/20 text-xs font-mono">
                 OPERATIONAL QUOTATION
               </span>
-              <h2 className="text-3xl sm:text-4xl font-bold font-heading">
+              <h2 className="text-3xl sm:text-4xl font-bold font-heading text-white">
                 Let&apos;s Discuss Your Shipment Requirements
               </h2>
-              <p className="text-blue-100 text-sm sm:text-base leading-relaxed">
+              <p className="text-[#94A3B8] text-sm sm:text-base leading-relaxed">
                 Share your cargo details and requirements with our team to request a quotation.
               </p>
             </div>

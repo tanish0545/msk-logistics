@@ -25,6 +25,7 @@ import {
 import { EXPORT_SOLUTIONS } from '../data/company';
 import { BrandedImage } from '../components/common/BrandedImage';
 import { InnerPageBanner } from '../components/layout/InnerPageBanner';
+import { ScrollReveal } from '../components/common/ScrollReveal';
 
 export const ImportExportPage: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<ShipmentCategory | 'all'>('all');
@@ -74,7 +75,7 @@ export const ImportExportPage: React.FC = () => {
       <section className="py-20 sm:py-24 bg-[#F5F5F3] border-b border-[#E2E2E2]">
         <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-12">
           {/* Section Header */}
-          <div className="max-w-3xl space-y-3">
+          <ScrollReveal direction="up" className="max-w-3xl space-y-3">
             <div className="flex items-center gap-2">
               <span className="w-2.5 h-2.5 rounded-full bg-[#B62825]" />
               <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#B62825]">
@@ -87,12 +88,13 @@ export const ImportExportPage: React.FC = () => {
             <p className="text-base sm:text-lg text-[#666666] leading-relaxed">
               Choose the arrangement that suits your cargo and container availability. MSK Logistics performs the agreed export packaging, container stuffing, and cargo lashing work.
             </p>
-          </div>
+          </ScrollReveal>
 
           {/* Two Large Service Panels */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
             {/* Option 01: Client-Arranged Container & Cargo */}
-            <div className="bg-white rounded-2xl border-2 border-[#173F70] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group">
+            <ScrollReveal direction="left" delay={50} className="h-full">
+              <div className="bg-white rounded-2xl border-2 border-black overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group h-full hover-lift">
               <div>
                 {/* Visual Header */}
                 <div className="relative">
@@ -103,7 +105,7 @@ export const ImportExportPage: React.FC = () => {
                     imageClassName="group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute top-4 left-4 z-10">
-                    <span className="editorial-badge bg-[#173F70] text-white border-white/20 shadow-md">
+                    <span className="editorial-badge bg-[#000000] text-white border-white/20 shadow-md">
                       {opt1.badge}
                     </span>
                   </div>
@@ -114,7 +116,7 @@ export const ImportExportPage: React.FC = () => {
                     <div className="text-xs font-mono font-bold text-[#B62825] uppercase tracking-wider mb-1">
                       OPTION 01
                     </div>
-                    <h3 className="text-2xl sm:text-3xl font-bold text-[#173F70] font-heading leading-tight">
+                    <h3 className="text-2xl sm:text-3xl font-bold text-[#000000] font-heading leading-tight">
                       {opt1.title}
                     </h3>
                     <p className="mt-2 text-sm sm:text-base font-semibold text-[#343434]">
@@ -127,12 +129,12 @@ export const ImportExportPage: React.FC = () => {
 
                   {/* Scope & Responsibilities Breakdown */}
                   <div className="space-y-3 bg-[#F5F5F3] p-5 rounded-xl border border-[#E2E2E2] text-xs sm:text-[13px]">
-                    <div className="font-mono font-bold uppercase text-[#173F70] text-[11px] tracking-wider mb-2">
+                    <div className="font-mono font-bold uppercase text-[#000000] text-[11px] tracking-wider mb-2">
                       Operational Responsibilities & Scope:
                     </div>
 
                     <div className="flex items-start gap-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-[#173F70] shrink-0 mt-0.5" />
+                      <CheckCircle2 className="w-4 h-4 text-[#000000] shrink-0 mt-0.5" />
                       <div>
                         <strong className="text-[#343434]">Cargo / Products:</strong>{' '}
                         <span className="text-[#666666]">{opt1.customerCargo}</span>
@@ -140,7 +142,7 @@ export const ImportExportPage: React.FC = () => {
                     </div>
 
                     <div className="flex items-start gap-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-[#173F70] shrink-0 mt-0.5" />
+                      <CheckCircle2 className="w-4 h-4 text-[#000000] shrink-0 mt-0.5" />
                       <div>
                         <strong className="text-[#343434]">Container:</strong>{' '}
                         <span className="text-[#666666]">{opt1.containerStatus}</span>
@@ -173,7 +175,7 @@ export const ImportExportPage: React.FC = () => {
 
                     <div className="pt-2 border-t border-[#E2E2E2] flex items-center justify-between text-[11px] font-mono text-[#666666]">
                       <span>Commercial Basis:</span>
-                      <strong className="text-[#173F70]">{opt1.pricingNote}</strong>
+                      <strong className="text-[#000000]">{opt1.pricingNote}</strong>
                     </div>
                   </div>
 
@@ -190,16 +192,18 @@ export const ImportExportPage: React.FC = () => {
               <div className="p-7 sm:p-9 pt-0">
                 <Link
                   to={`/request-quote?solution=${opt1.id}`}
-                  className="w-full bg-[#173F70] hover:bg-[#0F2D52] text-white font-bold py-3.5 px-6 rounded-xl text-sm transition-all shadow-md inline-flex items-center justify-center gap-2 group-hover:bg-[#B62825]"
+                  className="w-full bg-[#000000] hover:bg-[#0B0B0D] text-white font-bold py-3.5 px-6 rounded-xl text-sm transition-all shadow-md inline-flex items-center justify-center gap-2 group-hover:bg-[#B62825] hover:scale-105 active:scale-95"
                 >
                   <span>Select Option 01 & Request Quote</span>
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
             </div>
+          </ScrollReveal>
 
-            {/* Option 02: Client Cargo, Container to Be Arranged */}
-            <div className="bg-white rounded-2xl border-2 border-neutral-300 hover:border-[#B62825] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group">
+          {/* Option 02: Client Cargo, Container to Be Arranged */}
+          <ScrollReveal direction="right" delay={150} className="h-full">
+            <div className="bg-white rounded-2xl border-2 border-neutral-300 hover:border-[#B62825] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group h-full hover-lift">
               <div>
                 {/* Visual Header */}
                 <div className="relative">
@@ -305,13 +309,14 @@ export const ImportExportPage: React.FC = () => {
               <div className="p-7 sm:p-9 pt-0">
                 <Link
                   to={`/request-quote?solution=${opt2.id}`}
-                  className="w-full bg-[#B62825] hover:bg-[#9E2220] text-white font-bold py-3.5 px-6 rounded-xl text-sm transition-all shadow-md inline-flex items-center justify-center gap-2"
+                  className="w-full bg-[#B62825] hover:bg-[#9E2220] text-white font-bold py-3.5 px-6 rounded-xl text-sm transition-all shadow-md inline-flex items-center justify-center gap-2 hover:scale-105 active:scale-95"
                 >
                   <span>Select Option 02 & Request Quote</span>
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
             </div>
+          </ScrollReveal>
           </div>
         </div>
       </section>
@@ -322,9 +327,9 @@ export const ImportExportPage: React.FC = () => {
       <section className="py-20 sm:py-24 bg-white border-b border-[#E2E2E2]">
         <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-12">
           {/* Section Header */}
-          <div className="max-w-3xl space-y-3">
+          <ScrollReveal direction="up" className="max-w-3xl space-y-3">
             <div className="flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#173F70]" />
+              <span className="w-2.5 h-2.5 rounded-full bg-[#B62825]" />
               <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#173F70]">
                 SECTION B • SHIPPING CONCEPTS EXPLAINED
               </span>
@@ -335,12 +340,13 @@ export const ImportExportPage: React.FC = () => {
             <p className="text-base sm:text-lg text-[#666666] leading-relaxed">
               Before packaging and stuffing begin, understanding whether your consignment moves as consolidated cargo or a dedicated container helps determine packaging design and handling parameters.
             </p>
-          </div>
+          </ScrollReveal>
 
           {/* Two Spacious Comparison Cards */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
             {/* LCL Card */}
-            <div className="bg-[#F8F9FA] rounded-2xl border border-[#E2E2E2] overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between">
+            <ScrollReveal direction="left" delay={50} className="h-full">
+              <div className="bg-[#F8F9FA] rounded-2xl border border-[#E2E2E2] overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between h-full hover-lift">
               <div>
                 {/* Visual Header */}
                 <div className="relative">
@@ -407,14 +413,16 @@ export const ImportExportPage: React.FC = () => {
               </div>
 
               <div className="p-7 sm:p-9 pt-0">
-                <div className="p-3.5 bg-blue-50/70 rounded-lg text-xs text-[#173F70] border border-blue-200">
+                <div className="p-3.5 bg-neutral-100 rounded-lg text-xs text-neutral-800 border border-neutral-300">
                   <strong>MSK Export Packaging Focus:</strong> We build ISPM-15 wooden boxes and heavy-duty shrink-wrapped skids tailored to endure shared LCL handling.
                 </div>
               </div>
             </div>
+          </ScrollReveal>
 
-            {/* FCL Card */}
-            <div className="bg-[#F8F9FA] rounded-2xl border-2 border-[#173F70]/30 overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between">
+          {/* FCL Card */}
+          <ScrollReveal direction="right" delay={150} className="h-full">
+            <div className="bg-[#F8F9FA] rounded-2xl border-2 border-neutral-300 overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between h-full hover-lift">
               <div>
                 {/* Visual Header */}
                 <div className="relative">
@@ -424,7 +432,7 @@ export const ImportExportPage: React.FC = () => {
                     aspectRatio="aspect-[16/9]"
                   />
                   <div className="absolute top-4 left-4 z-10">
-                    <span className="editorial-badge bg-[#173F70] text-white border-white/20">
+                    <span className="editorial-badge bg-[#000000] text-white border-white/20">
                       DEDICATED FULL CONTAINER
                     </span>
                   </div>
@@ -435,7 +443,7 @@ export const ImportExportPage: React.FC = () => {
                     <div className="text-xs font-mono font-bold text-[#B62825] uppercase tracking-wider mb-1">
                       DEDICATED CONTAINER LOAD
                     </div>
-                    <h3 className="text-2xl sm:text-3xl font-bold text-[#173F70] font-heading">
+                    <h3 className="text-2xl sm:text-3xl font-bold text-[#000000] font-heading">
                       FCL — Full Container Load
                     </h3>
                     <p className="mt-3 text-sm sm:text-[15px] text-[#666666] leading-relaxed">
@@ -486,15 +494,16 @@ export const ImportExportPage: React.FC = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </ScrollReveal>
+        </div>
 
           {/* Operational Boundaries Notice */}
-          <div className="bg-[#F5F5F3] p-4 sm:p-5 rounded-xl border border-[#E2E2E2] flex items-start gap-3 text-xs sm:text-sm text-[#666666]">
-            <AlertCircle className="w-5 h-5 text-[#173F70] flex-shrink-0 mt-0.5" />
+          <ScrollReveal direction="up" delay={100} className="bg-[#F5F5F3] p-4 sm:p-5 rounded-xl border border-[#E2E2E2] flex items-start gap-3 text-xs sm:text-sm text-[#666666]">
+            <AlertCircle className="w-5 h-5 text-[#B62825] flex-shrink-0 mt-0.5" />
             <div>
               <strong>Note on Ocean Freight & Forwarding:</strong> MSK Logistics focuses strictly on export packaging, container stuffing, and certified cargo securing. We do not provide freight-forwarding or booking agent services unless formally confirmed. Ocean freight rates and shipping line bookings must be coordinated directly with your chosen carrier or freight forwarder.
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -504,20 +513,20 @@ export const ImportExportPage: React.FC = () => {
       <section className="py-20 sm:py-24 bg-[#FAFAFA] border-b border-[#E2E2E2]" id="shipment-gallery">
         <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-10">
           {/* Section Header */}
-          <div className="max-w-3xl space-y-3">
+          <ScrollReveal direction="up" className="max-w-3xl space-y-3">
             <div className="flex items-center gap-2">
               <span className="w-2.5 h-2.5 rounded-full bg-[#B62825]" />
               <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#B62825]">
                 SECTION C • FIELD GALLERY
               </span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#173F70] font-heading tracking-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#000000] font-heading tracking-tight">
               Shipment Gallery
             </h2>
             <p className="text-base sm:text-lg text-[#666666] leading-relaxed">
               Explore authentic shipment photographs across specialized export methods: Flat Rack platforms, Breakbulk haulage, and Open Top top-loading containers.
             </p>
-          </div>
+          </ScrollReveal>
 
           {/* Category Filter Tabs (Sticky bar aligned below navbar) */}
           <div className="sticky top-[68px] sm:top-[72px] z-30 bg-white/95 backdrop-blur-md border border-[#E2E2E2] rounded-2xl p-2.5 shadow-xs">
@@ -529,8 +538,8 @@ export const ImportExportPage: React.FC = () => {
                     onClick={() => setActiveCategory(category.id)}
                     className={`py-2 px-4 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 whitespace-nowrap ${
                       activeCategory === category.id
-                        ? 'bg-[#173F70] text-white shadow-md'
-                        : 'bg-[#F5F5F3] text-[#52627A] hover:bg-[#E8E8E8] hover:text-[#173F70]'
+                        ? 'bg-[#000000] text-white shadow-md'
+                        : 'bg-[#F5F5F3] text-[#52627A] hover:bg-[#E8E8E8] hover:text-[#000000]'
                     }`}
                   >
                     {category.label}
@@ -545,7 +554,7 @@ export const ImportExportPage: React.FC = () => {
 
               <div className="hidden lg:flex items-center gap-2 text-xs font-mono text-[#52627A]">
                 <span>Archive:</span>
-                <strong className="text-[#173F70]">
+                <strong className="text-[#000000]">
                   {filteredGallery.length} {filteredGallery.length === 1 ? 'Record' : 'Records'}
                 </strong>
               </div>
@@ -554,11 +563,16 @@ export const ImportExportPage: React.FC = () => {
 
           {/* Shipment Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredGallery.map(item => (
-              <article
+            {filteredGallery.map((item, index) => (
+              <ScrollReveal
                 key={item.id}
-                className="bg-white rounded-2xl border border-[#E2E2E2] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
+                direction="up"
+                delay={(index % 3) * 80}
+                className="h-full"
               >
+                <article
+                  className="bg-white rounded-2xl border border-[#E2E2E2] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group h-full hover-lift"
+                >
                 <div>
                   {/* Image Container — ONLY the MSK Logo watermark in corner, NO text overlays on image */}
                   <div
@@ -633,20 +647,21 @@ export const ImportExportPage: React.FC = () => {
                   </Link>
                 </div>
               </article>
-            ))}
-          </div>
+            </ScrollReveal>
+          ))}
         </div>
-      </section>
+      </div>
+    </section>
 
       {/* ------------------------------------------------------------- */}
       {/* 5. SECTION D — REQUEST A QUOTE CTA                             */}
       {/* ------------------------------------------------------------- */}
-      <section className="py-20 sm:py-24 bg-[#173F70] text-white relative overflow-hidden">
+      <section className="py-20 sm:py-24 bg-[#000000] text-white relative overflow-hidden border-t border-white/10">
         <div 
-          className="absolute inset-0 bg-gradient-to-br from-[#173F70] via-[#102C50] to-[#0D2340] opacity-95 pointer-events-none" 
+          className="absolute inset-0 bg-gradient-to-br from-[#000000] via-[#0B0B0D] to-[#141416] opacity-95 pointer-events-none" 
           aria-hidden="true" 
         />
-        <div className="max-w-4xl mx-auto px-4 sm:px-8 text-center space-y-6 relative z-10">
+        <ScrollReveal direction="up" className="max-w-4xl mx-auto px-4 sm:px-8 text-center space-y-6 relative z-10">
           <span className="editorial-badge bg-white/10 text-white border-white/20">
             EXPORT PACKAGING & CONTAINER STUFFING
           </span>
@@ -655,14 +670,14 @@ export const ImportExportPage: React.FC = () => {
             Planning Your Next Export Shipment?
           </h2>
 
-          <p className="text-base sm:text-lg text-blue-100 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg text-[#94A3B8] max-w-2xl mx-auto leading-relaxed">
             Share your cargo requirements and the container arrangement to request a quotation. Our operational specialists evaluate cargo drawings, center of gravity, and lashing plans.
           </p>
 
           <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               to="/request-quote"
-              className="w-full sm:w-auto bg-[#B62825] hover:bg-[#9E2220] text-white font-bold py-4 px-8 rounded-xl text-base transition-all shadow-xl inline-flex items-center justify-center gap-2"
+              className="w-full sm:w-auto bg-[#B62825] hover:bg-[#9E2220] text-white font-bold py-4 px-8 rounded-xl text-base transition-all shadow-xl inline-flex items-center justify-center gap-2 hover:scale-105 active:scale-95"
             >
               <span>Request a Quote</span>
               <ArrowRight className="w-5 h-5" />
@@ -670,12 +685,12 @@ export const ImportExportPage: React.FC = () => {
 
             <Link
               to="/container-guide"
-              className="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white font-semibold py-4 px-8 rounded-xl text-base transition-colors border border-white/20 inline-flex items-center justify-center gap-2"
+              className="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white font-semibold py-4 px-8 rounded-xl text-base transition-colors border border-white/20 inline-flex items-center justify-center gap-2 hover:scale-105 active:scale-95"
             >
               <span>Inspect Container Guide</span>
             </Link>
           </div>
-        </div>
+        </ScrollReveal>
       </section>
 
       {/* ------------------------------------------------------------- */}
@@ -683,13 +698,13 @@ export const ImportExportPage: React.FC = () => {
       {/* ------------------------------------------------------------- */}
       {lightboxItem && (
         <div
-          className="fixed inset-0 z-50 bg-[#0F172A]/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-y-auto animate-in fade-in duration-200"
+          className="fixed inset-0 z-50 bg-[#000000]/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-y-auto animate-in fade-in duration-200"
           role="dialog"
           aria-modal="true"
         >
           <div className="bg-white rounded-2xl max-w-4xl w-full overflow-hidden shadow-2xl border border-neutral-300 relative my-auto">
             {/* Modal Header Bar */}
-            <div className="bg-[#173F70] text-white px-6 py-4 flex items-center justify-between gap-4">
+            <div className="bg-[#000000] text-white px-6 py-4 flex items-center justify-between gap-4 border-b border-white/10">
               <div className="flex items-center gap-3">
                 <span className="bg-[#B62825] text-white text-[11px] font-mono uppercase px-2.5 py-0.5 rounded font-bold">
                   {lightboxItem.categoryLabel}

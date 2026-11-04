@@ -25,15 +25,18 @@ export const BrandedImage: React.FC<BrandedImageProps> = ({
   showBadge = true,
   onClick,
   aspectRatio = 'aspect-[16/10]',
+  priority = false,
 }) => {
   const [imgSrc, setImgSrc] = useState<string>(src);
   const [hasError, setHasError] = useState<boolean>(false);
+  const [isLoaded, setIsLoaded] = useState<boolean>(priority);
 
   // Sync if src changes
   React.useEffect(() => {
     setImgSrc(src);
     setHasError(false);
-  }, [src]);
+    setIsLoaded(priority);
+  }, [src, priority]);
 
   const handleError = () => {
     if (fallbackSrc && imgSrc !== fallbackSrc) {
@@ -78,10 +81,13 @@ export const BrandedImage: React.FC<BrandedImageProps> = ({
         <img
           src={imgSrc}
           alt={alt}
-          loading="lazy"
-          decoding="async"
+          loading={priority ? 'eager' : 'lazy'}
+          decoding={priority ? 'sync' : 'async'}
+          onLoad={() => setIsLoaded(true)}
           onError={handleError}
-          className={`w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.03] ${imageClassName}`}
+          className={`w-full h-full object-cover transition-all duration-500 ease-out group-hover:scale-[1.04] ${
+            isLoaded ? 'opacity-100' : 'opacity-0'
+          } ${imageClassName}`}
         />
       )}
 

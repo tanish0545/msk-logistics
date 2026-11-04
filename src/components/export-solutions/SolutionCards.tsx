@@ -13,7 +13,7 @@ export const SolutionCards: React.FC = () => {
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
       {/* Option 01: Client-Arranged Container & Cargo */}
       <ScrollReveal direction="left" delay={0} className="h-full">
-        <div className="h-full bg-white rounded-2xl border-2 border-[#173F70] overflow-hidden shadow-lg hover:shadow-[0_20px_35px_-8px_rgba(23,63,112,0.18)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group focus-within:ring-2 focus-within:ring-[#173F70] focus-within:ring-offset-2 motion-reduce:transform-none motion-reduce:transition-none">
+        <div className="h-full bg-white rounded-2xl border-2 border-black overflow-hidden shadow-lg hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group focus-within:ring-2 focus-within:ring-black focus-within:ring-offset-2 motion-reduce:transform-none motion-reduce:transition-none">
 
         <div>
           {/* Visual Header with Real Service Photo */}
@@ -25,7 +25,7 @@ export const SolutionCards: React.FC = () => {
               imageClassName="group-hover:scale-105 transition-transform duration-500 motion-reduce:transform-none"
             />
             <div className="absolute top-4 left-4 z-10">
-              <span className="editorial-badge bg-[#173F70] text-white border-white/20 shadow-md">
+              <span className="editorial-badge bg-[#000000] text-white border-white/20 shadow-md">
                 {opt1.badge}
               </span>
             </div>
@@ -36,7 +36,7 @@ export const SolutionCards: React.FC = () => {
               <div className="text-xs font-mono font-bold text-[#B62825] uppercase tracking-wider mb-1">
                 SERVICE ARRANGEMENT {opt1.optionNumber}
               </div>
-              <h3 className="text-2xl sm:text-3xl font-bold text-[#173F70] font-heading leading-tight">
+              <h3 className="text-2xl sm:text-3xl font-bold text-[#000000] font-heading leading-tight">
                 {opt1.title}
               </h3>
               <p className="mt-2 text-sm sm:text-[15px] font-semibold text-[#343434]">
@@ -49,12 +49,12 @@ export const SolutionCards: React.FC = () => {
 
             {/* Scope & Responsibilities Breakdown */}
             <div className="space-y-3 bg-[#F5F5F3] p-5 rounded-xl border border-[#E2E2E2] text-xs sm:text-[13px]">
-              <div className="font-mono font-bold uppercase text-[#173F70] text-[11px] tracking-wider mb-2">
+              <div className="font-mono font-bold uppercase text-[#000000] text-[11px] tracking-wider mb-2">
                 Operational Scope & Division:
               </div>
 
               <div className="flex items-start gap-2.5">
-                <CheckCircle2 className="w-4 h-4 text-[#173F70] shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-[#000000] shrink-0 mt-0.5" />
                 <div>
                   <strong className="text-[#343434]">Cargo / Products:</strong>{' '}
                   <span className="text-[#666666]">{opt1.customerCargo}</span>
@@ -62,7 +62,7 @@ export const SolutionCards: React.FC = () => {
               </div>
 
               <div className="flex items-start gap-2.5">
-                <CheckCircle2 className="w-4 h-4 text-[#173F70] shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-[#000000] shrink-0 mt-0.5" />
                 <div>
                   <strong className="text-[#343434]">Container:</strong>{' '}
                   <span className="text-[#666666]">{opt1.containerStatus}</span>
@@ -95,7 +95,7 @@ export const SolutionCards: React.FC = () => {
 
               <div className="pt-2 border-t border-[#E2E2E2] flex items-center justify-between text-[11px] font-mono text-[#666666]">
                 <span>Commercial Basis:</span>
-                <strong className="text-[#173F70]">{opt1.pricingNote}</strong>
+                <strong className="text-[#000000]">{opt1.pricingNote}</strong>
               </div>
             </div>
 
@@ -112,7 +112,7 @@ export const SolutionCards: React.FC = () => {
         <div className="p-7 sm:p-9 pt-0">
           <Link 
             to={`/request-quote?solution=${opt1.id}`}
-            className="w-full bg-[#173F70] hover:bg-[#0F2D52] text-white font-bold py-3.5 px-6 rounded-xl text-sm transition-all duration-200 shadow-md inline-flex items-center justify-center gap-2 group-hover:bg-[#B62825] group/btn"
+            className="w-full bg-[#000000] hover:bg-[#0B0B0D] text-white font-bold py-3.5 px-6 rounded-xl text-sm transition-all duration-200 shadow-md inline-flex items-center justify-center gap-2 group-hover:bg-[#B62825] group/btn"
           >
             <span>Request Quote for Option 01</span>
             <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover/btn:translate-x-1 motion-reduce:transform-none" />

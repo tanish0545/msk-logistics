@@ -4,6 +4,7 @@ import { ArrowRight } from 'lucide-react';
 import { SolutionCards } from '../components/export-solutions/SolutionCards';
 import { ComparisonTable } from '../components/export-solutions/ComparisonTable';
 import { InnerPageBanner } from '../components/layout/InnerPageBanner';
+import { ScrollReveal } from '../components/common/ScrollReveal';
 
 export const ExportPackingSolutionsPage: React.FC = () => {
   return (
@@ -19,35 +20,43 @@ export const ExportPackingSolutionsPage: React.FC = () => {
       {/* Overview & Solution Cards */}
       <section className="py-16 sm:py-20 bg-white border-b border-[#E2E2E2]">
         <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-12">
-          <div className="max-w-3xl space-y-4">
-            <h2 className="text-2xl sm:text-3xl font-bold text-[#343434] font-heading">
-              Select Your Operational Arrangement
-            </h2>
-            <p className="text-[15px] sm:text-[16px] text-[#666666] leading-relaxed">
-              These are not two unrelated logistics products; they represent two distinct operational methods to coordinate export packaging, stuffing, and lashing work. Select the option that aligns with your carrier contracts and facility logistics.
-            </p>
-          </div>
+          <ScrollReveal direction="up">
+            <div className="max-w-3xl space-y-4">
+              <h2 className="text-2xl sm:text-3xl font-bold text-[#343434] font-heading">
+                Select Your Operational Arrangement
+              </h2>
+              <p className="text-[15px] sm:text-[16px] text-[#666666] leading-relaxed">
+                These are not two unrelated logistics products; they represent two distinct operational methods to coordinate export packaging, stuffing, and lashing work. Select the option that aligns with your carrier contracts and facility logistics.
+              </p>
+            </div>
+          </ScrollReveal>
 
-          <SolutionCards />
+          <ScrollReveal direction="up" delay={80}>
+            <SolutionCards />
+          </ScrollReveal>
         </div>
       </section>
 
       {/* Detailed Comparison Matrix */}
       <section className="py-16 sm:py-20 bg-[#F5F5F3] border-b border-[#E2E2E2]">
         <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-10">
-          <div className="max-w-2xl space-y-3">
-            <span className="editorial-badge bg-white text-[#B62825] border-red-200">
-              RESPONSIBILITY MATRIX
-            </span>
-            <h2 className="text-3xl font-bold text-[#343434] font-heading">
-              Detailed Scope & Responsibility Comparison
-            </h2>
-            <p className="text-[15px] text-[#666666]">
-              A side-by-side breakdown clarifying who provides each element and how pricing is structured.
-            </p>
-          </div>
+          <ScrollReveal direction="up">
+            <div className="max-w-2xl space-y-3">
+              <span className="editorial-badge bg-white text-[#B62825] border-red-200">
+                RESPONSIBILITY MATRIX
+              </span>
+              <h2 className="text-3xl font-bold text-[#343434] font-heading">
+                Detailed Scope & Responsibility Comparison
+              </h2>
+              <p className="text-[15px] text-[#666666]">
+                A side-by-side breakdown clarifying who provides each element and how pricing is structured.
+              </p>
+            </div>
+          </ScrollReveal>
 
-          <ComparisonTable />
+          <ScrollReveal direction="up" delay={80}>
+            <ComparisonTable />
+          </ScrollReveal>
         </div>
       </section>
 
@@ -55,41 +64,49 @@ export const ExportPackingSolutionsPage: React.FC = () => {
       <section className="py-16 bg-white border-b border-[#E2E2E2]">
         <div className="max-w-7xl mx-auto px-4 sm:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="p-7 rounded-xl bg-red-50/40 border border-red-200 space-y-3">
-              <span className="editorial-badge bg-white text-[#B62825] border-red-200">
-                WHEN TO CHOOSE OPTION A
-              </span>
-              <h3 className="text-xl font-bold text-[#343434] font-heading">
-                Complete Export Packing Solution
-              </h3>
-              <p className="text-[14px] text-[#666666] leading-relaxed">
-                Choose this arrangement when you want MSK Logistics to coordinate both container positioning and all on-site packaging and securing. Ideal for manufacturers without direct shipping line container allocations who need a coordinated packing schedule.
-              </p>
-              <div className="pt-2">
-                <Link to="/request-quote?solution=complete" className="text-[13px] font-semibold text-[#B62825] hover:underline inline-flex items-center gap-1">
-                  <span>Start Quote for Option A</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
+            <ScrollReveal direction="left" delay={50} className="h-full">
+              <div className="p-7 rounded-xl bg-red-50/40 border border-red-200 space-y-3 h-full flex flex-col justify-between">
+                <div className="space-y-3">
+                  <span className="editorial-badge bg-white text-[#B62825] border-red-200">
+                    WHEN TO CHOOSE OPTION A
+                  </span>
+                  <h3 className="text-xl font-bold text-[#343434] font-heading">
+                    Complete Export Packing Solution
+                  </h3>
+                  <p className="text-[14px] text-[#666666] leading-relaxed">
+                    Choose this arrangement when you want MSK Logistics to coordinate both container positioning and all on-site packaging and securing. Ideal for manufacturers without direct shipping line container allocations who need a coordinated packing schedule.
+                  </p>
+                </div>
+                <div className="pt-2">
+                  <Link to="/request-quote?solution=complete" className="text-[13px] font-semibold text-[#B62825] hover:underline inline-flex items-center gap-1">
+                    <span>Start Quote for Option A</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
               </div>
-            </div>
+            </ScrollReveal>
 
-            <div className="p-7 rounded-xl bg-[#F5F5F3] border border-[#E2E2E2] space-y-3">
-              <span className="editorial-badge bg-white text-[#343434] border-neutral-300">
-                WHEN TO CHOOSE OPTION B
-              </span>
-              <h3 className="text-xl font-bold text-[#343434] font-heading">
-                Client-Arranged Container
-              </h3>
-              <p className="text-[14px] text-[#666666] leading-relaxed">
-                Choose this arrangement if your freight forwarder or shipping line already provides carrier-owned containers (COC) or shipper-owned containers (SOC). Our crew performs only the agreed packaging, stuffing, and lashing work on your supplied box.
-              </p>
-              <div className="pt-2">
-                <Link to="/request-quote?solution=client-arranged" className="text-[13px] font-semibold text-[#343434] hover:underline inline-flex items-center gap-1">
-                  <span>Start Quote for Option B</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
+            <ScrollReveal direction="right" delay={100} className="h-full">
+              <div className="p-7 rounded-xl bg-[#F5F5F3] border border-[#E2E2E2] space-y-3 h-full flex flex-col justify-between">
+                <div className="space-y-3">
+                  <span className="editorial-badge bg-white text-[#343434] border-neutral-300">
+                    WHEN TO CHOOSE OPTION B
+                  </span>
+                  <h3 className="text-xl font-bold text-[#343434] font-heading">
+                    Client-Arranged Container
+                  </h3>
+                  <p className="text-[14px] text-[#666666] leading-relaxed">
+                    Choose this arrangement if your freight forwarder or shipping line already provides carrier-owned containers (COC) or shipper-owned containers (SOC). Our crew performs only the agreed packaging, stuffing, and lashing work on your supplied box.
+                  </p>
+                </div>
+                <div className="pt-2">
+                  <Link to="/request-quote?solution=client-arranged" className="text-[13px] font-semibold text-[#343434] hover:underline inline-flex items-center gap-1">
+                    <span>Start Quote for Option B</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
               </div>
-            </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>

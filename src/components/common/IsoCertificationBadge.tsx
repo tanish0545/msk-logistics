@@ -26,8 +26,8 @@ export const IsoCertificationBadge: React.FC<IsoCertificationBadgeProps> = ({
     <div
       className={`inline-flex items-center gap-3 p-2.5 sm:p-3 rounded-xl transition-all duration-200 group select-none ${
         isDark
-          ? 'bg-[#0E1C30] border border-[#22354F] shadow-sm hover:border-[#385680] hover:-translate-y-0.5'
-          : 'bg-white border border-[#E2E8F0] shadow-xs hover:shadow-md hover:border-[#173F70]/40 hover:-translate-y-0.5'
+          ? 'bg-[#0B0B0D] border border-white/15 shadow-sm hover:border-white/30 hover:-translate-y-0.5'
+          : 'bg-white border border-[#E2E8F0] shadow-xs hover:shadow-md hover:border-black/40 hover:-translate-y-0.5'
       } ${className}`}
       aria-label="Certified ISO 9001:2015 Company"
     >

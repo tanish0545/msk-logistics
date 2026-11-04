@@ -10,11 +10,13 @@ import {
   AlertCircle,
   Loader2,
   Compass,
-  ExternalLink
+  ExternalLink,
+  PhoneCall
 } from 'lucide-react';
 import { COMPANY_DETAILS } from '../data/company';
 import { IsoCertificationBadge } from '../components/common/IsoCertificationBadge';
 import { InnerPageBanner } from '../components/layout/InnerPageBanner';
+import { ScrollReveal } from '../components/common/ScrollReveal';
 
 export const ContactPage: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -146,18 +148,23 @@ export const ContactPage: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
             
             {/* Left Column: Official Contact Info (5 cols) */}
-            <div className="lg:col-span-5 space-y-7 bg-[#F8FAFC] p-7 sm:p-9 rounded-2xl border border-[#E2E8F0] shadow-xs">
-              <div className="space-y-2">
+            <ScrollReveal direction="left" delay={50} className="lg:col-span-5 h-full">
+              <div className="space-y-7 bg-[#F8FAFC] p-7 sm:p-9 rounded-2xl border border-[#E2E8F0] shadow-xs h-full">
+                <div className="space-y-2">
                 <span className="editorial-badge bg-white text-[#B62825] border-red-200">
                   OFFICIAL DETAILS
                 </span>
                 <h2 className="text-2xl font-bold text-[#1E293B] font-heading">
                   {COMPANY_DETAILS.publicName}
                 </h2>
+                <p className="text-sm font-semibold text-[#B62825] italic tracking-wide">
+                  &ldquo;Beyond logistics, we deliver trust.&rdquo;
+                </p>
               </div>
 
               {/* Verified Details */}
               <div className="space-y-5 text-[14px] text-[#334155]">
+                {/* Registered Office */}
                 <div className="flex items-start gap-3">
                   <MapPin className="w-5 h-5 text-[#B62825] shrink-0 mt-0.5" />
                   <div>
@@ -166,16 +173,58 @@ export const ContactPage: React.FC = () => {
                   </div>
                 </div>
 
+                {/* Main Commercial Branch */}
                 <div className="flex items-start gap-3">
-                  <Phone className="w-5 h-5 text-[#B62825] shrink-0 mt-0.5" />
+                  <MapPin className="w-5 h-5 text-[#173F70] shrink-0 mt-0.5" />
                   <div>
-                    <strong className="block text-[#1E293B] mb-0.5">Direct Operations Desk:</strong>
+                    <strong className="block text-[#1E293B] mb-0.5 font-medium">Main Commercial Branch (Belapur):</strong>
+                    <span className="text-[#64748B] leading-relaxed text-[13px] block">
+                      Office No-A-428, 4th Floor, Balaji Bhawan, Plot No-42A, Sector 11, CBD Belapur, Navi Mumbai 400 614, Maharashtra, India
+                    </span>
+                  </div>
+                </div>
+
+                {/* Standard Business Contact: Direct Operations Desk */}
+                <div className="flex items-start gap-3">
+                  <Phone className="w-5 h-5 text-[#173F70] shrink-0 mt-0.5" />
+                  <div>
+                    <strong className="block text-[#1E293B] mb-0.5 font-medium">Direct Operations Desk:</strong>
                     <a 
                       href={COMPANY_DETAILS.phoneHref}
-                      className="text-[#173F70] font-semibold hover:text-[#B62825] transition-colors"
+                      className="text-[#173F70] font-bold text-[15px] hover:text-[#B62825] transition-colors font-mono"
                     >
                       {COMPANY_DETAILS.phone}
                     </a>
+                    <span className="block text-xs text-[#64748B] mt-0.5">Regular Business Hours • Commercial Enquiries</span>
+                  </div>
+                </div>
+
+                {/* 24×7 Dedicated Emergency Operations Desk — Placed Directly Below Direct Operations Desk */}
+                <div className="p-4 rounded-xl bg-red-50/90 border border-red-200 space-y-2 shadow-2xs">
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="flex items-center gap-2">
+                      <PhoneCall className="w-4 h-4 text-[#B62825] shrink-0" />
+                      <strong className="text-xs font-bold font-mono text-[#B62825] uppercase tracking-wider">
+                        24×7 Emergency Operations Desk
+                      </strong>
+                    </div>
+                    <span className="px-2 py-0.5 rounded-full bg-[#B62825] text-white text-[10px] font-mono font-bold uppercase tracking-wider animate-pulse">
+                      24×7 ACTIVE
+                    </span>
+                  </div>
+                  <div>
+                    <div className="text-xs text-[#64748B] font-medium mb-1">
+                      Emergency mobile no.:
+                    </div>
+                    <a 
+                      href="tel:8108672929"
+                      className="text-xl font-bold font-mono text-[#B62825] hover:text-[#9E2220] transition-colors inline-block tracking-tight"
+                    >
+                      8108672929
+                    </a>
+                    <p className="text-[12px] text-[#475569] font-medium mt-1">
+                      We are working 24×7 — Urgent night movements, CFS gate-in escalations &amp; emergency securing.
+                    </p>
                   </div>
                 </div>
 
@@ -241,10 +290,12 @@ export const ContactPage: React.FC = () => {
                 </Link>
               </div>
             </div>
+            </ScrollReveal>
 
             {/* Right Column: Working Contact Form (7 cols) */}
-            <div className="lg:col-span-7 bg-white p-7 sm:p-9 rounded-2xl border border-[#E2E8F0] shadow-xs space-y-6">
-              <div className="space-y-2">
+            <ScrollReveal direction="right" delay={150} className="lg:col-span-7 h-full">
+              <div className="bg-white p-7 sm:p-9 rounded-2xl border border-[#E2E8F0] shadow-xs space-y-6 h-full">
+                <div className="space-y-2">
                 <span className="editorial-badge bg-[#F8FAFC] text-[#1E293B] border-neutral-300">
                   ENQUIRY DESK
                 </span>
@@ -478,51 +529,54 @@ export const ContactPage: React.FC = () => {
                   </div>
                 </form>
               )}
-            </div>
+              </div>
+            </ScrollReveal>
           </div>
 
           {/* 3. Responsive Google Maps Embed Section */}
-          <div className="bg-[#F8FAFC] rounded-2xl border border-[#E2E8F0] p-6 sm:p-8 space-y-5">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-              <div className="space-y-1">
-                <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#B62825] uppercase tracking-wider">
-                  <MapPin className="w-4 h-4" />
-                  <span>LOCATION MAP</span>
+          <ScrollReveal direction="up" delay={100}>
+            <div className="bg-[#F8FAFC] rounded-2xl border border-[#E2E8F0] p-6 sm:p-8 space-y-5">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div className="space-y-1">
+                  <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#B62825] uppercase tracking-wider">
+                    <MapPin className="w-4 h-4" />
+                    <span>LOCATION MAP</span>
+                  </div>
+                  <h3 className="text-xl font-bold font-heading text-[#1E293B]">
+                    Registered Office Location
+                  </h3>
+                  <p className="text-xs sm:text-sm text-[#64748B]">
+                    {COMPANY_DETAILS.address}
+                  </p>
                 </div>
-                <h3 className="text-xl font-bold font-heading text-[#1E293B]">
-                  Registered Office Location
-                </h3>
-                <p className="text-xs sm:text-sm text-[#64748B]">
-                  {COMPANY_DETAILS.address}
-                </p>
+
+                <a
+                  href={mapExternalUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-secondary text-xs py-2 px-4 inline-flex items-center gap-1.5 self-start sm:self-auto whitespace-nowrap shadow-xs"
+                >
+                  <span>Open in Google Maps</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
               </div>
 
-              <a
-                href={mapExternalUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-secondary text-xs py-2 px-4 inline-flex items-center gap-1.5 self-start sm:self-auto whitespace-nowrap shadow-xs"
-              >
-                <span>Open in Google Maps</span>
-                <ExternalLink className="w-3.5 h-3.5" />
-              </a>
+              {/* Map Frame */}
+              <div className="relative w-full h-[360px] sm:h-[420px] rounded-xl overflow-hidden border border-[#E2E8F0] bg-neutral-100 shadow-inner">
+                <iframe
+                  title="MSK Logistics Registered Office Map"
+                  src={mapEmbedUrl}
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen={false}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="w-full h-full"
+                />
+              </div>
             </div>
-
-            {/* Map Frame */}
-            <div className="relative w-full h-[360px] sm:h-[420px] rounded-xl overflow-hidden border border-[#E2E8F0] bg-neutral-100 shadow-inner">
-              <iframe
-                title="MSK Logistics Registered Office Map"
-                src={mapEmbedUrl}
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen={false}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="w-full h-full"
-              />
-            </div>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
     </div>

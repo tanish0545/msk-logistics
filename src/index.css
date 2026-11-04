@@ -19,6 +19,7 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
     font-family: var(--font-body);
     color: var(--color-brand-charcoal);
     background-color: #FFFFFF;
@@ -92,14 +93,28 @@
   color: #FFFFFF;
   background-color: #B62825;
   border-radius: 0.375rem;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+}
+
+.btn-primary svg {
+  transition: transform 0.22s ease-out;
 }
 
 .btn-primary:hover {
   background-color: #9E2220;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 6px -1px rgba(182, 40, 37, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px -2px rgba(182, 40, 37, 0.35);
+}
+
+.btn-primary:hover svg {
+  transform: translateX(3px);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 3px 0 rgba(182, 40, 37, 0.2);
 }
 
 .btn-secondary {
@@ -116,13 +131,28 @@
   background-color: #FFFFFF;
   border: 1px solid #E2E2E2;
   border-radius: 0.375rem;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.btn-secondary svg {
+  transition: transform 0.22s ease-out;
 }
 
 .btn-secondary:hover {
-  background-color: #F5F5F3;
-  border-color: #343434;
-  transform: translateY(-1px);
+  background-color: #F8F9FA;
+  border-color: #B62825;
+  color: #B62825;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.06);
+}
+
+.btn-secondary:hover svg {
+  transform: translateX(3px);
+}
+
+.btn-secondary:active {
+  transform: translateY(0);
 }
 
 .btn-dark {
@@ -223,10 +253,18 @@
   .animate-marquee-slow,
   .animate-marquee-left,
   .animate-marquee-right,
-  .animate-fade-in-up {
+  .animate-fade-in-up,
+  .animate-page-entrance,
+  .scroll-reveal,
+  .scroll-reveal-left,
+  .scroll-reveal-right,
+  .scroll-reveal-up,
+  .scroll-reveal-down,
+  .scroll-reveal-zoom {
     animation: none !important;
     transform: none !important;
     transition: none !important;
+    opacity: 1 !important;
   }
 }
 
@@ -428,6 +466,10 @@
   transform: translate3d(0, calc(-1 * var(--reveal-dist-y, 22px)), 0);
 }
 
+.scroll-reveal-zoom {
+  transform: scale(0.96) translate3d(0, 12px, 0);
+}
+
 .scroll-reveal-none {
   transform: translate3d(0, 0, 0);
 }
@@ -435,7 +477,7 @@
 /* Revealed resting state */
 .scroll-reveal.is-revealed {
   opacity: 1;
-  transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0) scale(1);
 }
 
 /* Tablet screens (641px to 1024px) */
@@ -450,11 +492,9 @@
 
 /* Mobile screens (<= 640px) */
 @media (max-width: 640px) {
-  .scroll-reveal-left {
-    transform: translate3d(calc(-1 * var(--reveal-dist-mobile, 22px)), var(--reveal-dist-y-mobile, 10px), 0);
-  }
+  .scroll-reveal-left,
   .scroll-reveal-right {
-    transform: translate3d(var(--reveal-dist-mobile, 22px), var(--reveal-dist-y-mobile, 10px), 0);
+    transform: translate3d(0, var(--reveal-dist-y-mobile, 16px), 0);
   }
   .scroll-reveal-up {
     transform: translate3d(0, var(--reveal-dist-y-mobile, 16px), 0);
@@ -629,5 +669,85 @@
     opacity: 1 !important;
   }
 }
+
+/* ========================================================================= */
+/* LARGE SCREEN & SMART TV (4K UHD) RESPONSIVE OPTIMIZATION                  */
+/* Eliminates client-reported excessive whitespace on 1920px, 2560px & 3840px */
+/* ========================================================================= */
+
+/* Keyboard and Smart TV Remote Focus Indicator */
+:focus-visible {
+  outline: 3px solid #B62825 !important;
+  outline-offset: 3px !important;
+  border-radius: 4px;
+}
+
+/* 1536px (2XL standard laptops & desktop monitors) */
+@media (min-width: 1536px) {
+  .max-w-7xl {
+    max-width: 1440px !important;
+  }
+}
+
+/* 1920px (Full HD Desktop & Smart TVs) */
+@media (min-width: 1920px) {
+  .max-w-7xl {
+    max-width: 1720px !important;
+    padding-left: 2.5rem !important;
+    padding-right: 2.5rem !important;
+  }
+  .max-w-\[1440px\] {
+    max-width: 1720px !important;
+  }
+  .max-w-\[1620px\] {
+    max-width: 1760px !important;
+  }
+  .max-w-\[1720px\] {
+    max-width: 1820px !important;
+  }
+}
+
+/* 2560px (QHD / 1440p / Ultrawide & 2K Smart Displays) */
+@media (min-width: 2560px) {
+  html {
+    font-size: 18px;
+  }
+  .max-w-7xl {
+    max-width: 2280px !important;
+    padding-left: 3.5rem !important;
+    padding-right: 3.5rem !important;
+  }
+  .max-w-\[1440px\] {
+    max-width: 2280px !important;
+  }
+  .max-w-\[1620px\] {
+    max-width: 2360px !important;
+  }
+  .max-w-\[1720px\] {
+    max-width: 2420px !important;
+  }
+}
+
+/* 3840px (4K UHD Smart TVs & High-Resolution Display Walls) */
+@media (min-width: 3840px) {
+  html {
+    font-size: 22px;
+  }
+  .max-w-7xl {
+    max-width: 3360px !important;
+    padding-left: 5rem !important;
+    padding-right: 5rem !important;
+  }
+  .max-w-\[1440px\] {
+    max-width: 3360px !important;
+  }
+  .max-w-\[1620px\] {
+    max-width: 3440px !important;
+  }
+  .max-w-\[1720px\] {
+    max-width: 3520px !important;
+  }
+}
+
 
 

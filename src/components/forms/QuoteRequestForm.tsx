@@ -8,90 +8,118 @@ import {
   ArrowRight, 
   ArrowLeft, 
   Phone, 
-  Mail, 
-  Info
+  Ship,
+  Plane,
+  Box,
+  Anchor,
+  Maximize2,
+  Warehouse,
+  Check,
+  ShieldAlert
 } from 'lucide-react';
-import { COMPANY_DETAILS } from '../../data/company';
 import type { QuoteFormData, EnquiryCategory, SolutionType } from '../../types';
 
-export const ENQUIRY_CATEGORIES: {
+export interface ServiceOption {
   id: EnquiryCategory;
-  label: string;
+  title: string;
   badge: string;
   description: string;
-  tag?: string;
-}[] = [
+  icon: React.ComponentType<{ className?: string }>;
+  isoCode?: string;
+}
+
+export const SERVICE_OPTIONS: ServiceOption[] = [
   {
-    id: 'general-export',
-    label: 'General Export Packing',
-    badge: 'Standard',
-    description: 'General industrial cargo packaging, crating, palletizing & securing.',
+    id: 'ocean-cargo',
+    title: 'Ocean Cargo',
+    badge: 'ISO FCL / LCL',
+    description: 'Vessel schedule alignment, port gate-in & FCL/LCL ocean freight handling.',
+    icon: Ship,
+    isoCode: '22G1 / 45G1',
   },
   {
-    id: 'flat-rack',
-    label: 'Flat Rack Shipment',
-    badge: 'Heavy / OOG',
-    description: 'Out-of-gauge, heavy equipment or machinery requiring bed-lashing.',
+    id: 'air-cargo',
+    title: 'Air Cargo',
+    badge: 'Express Freight',
+    description: 'Time-critical air freight transfers, ULD packing & airport cargo handling.',
+    icon: Plane,
+    isoCode: 'ULD AIR',
   },
   {
-    id: 'breakbulk',
-    label: 'Breakbulk Shipment',
-    badge: 'Heavy Lift',
-    description: 'Non-containerized breakbulk cargo, project units & heavy rigging.',
+    id: 'container-stuffing',
+    title: 'Container Stuffing Logistics',
+    badge: 'CFS & Yard',
+    description: 'Precision weight distribution, mobile crane lifting & stuffing sequence execution.',
+    icon: Box,
+    isoCode: 'STUFF-OPS',
   },
   {
-    id: 'open-top',
-    label: 'Open Top Shipment',
-    badge: 'Overheight',
-    description: 'Overheight cargo loaded by overhead crane with tarpaulin securing.',
+    id: 'special-project',
+    title: 'Special Project Cargo Handling',
+    badge: 'Heavy Lift / ODC',
+    description: 'Over-dimensional cargo rigging, flat rack securing & multi-axle trailer transport.',
+    icon: Maximize2,
+    isoCode: '45P3 / BBC',
   },
   {
-    id: 'container-selection',
-    label: 'Container Selection Assistance',
-    badge: 'Advisory',
-    description: 'Assistance evaluating cargo dimensions against container payload specs.',
+    id: 'cargo-lashing',
+    title: 'Cargo Lashing',
+    badge: 'Marine Securing',
+    description: 'High-tensile ratchet webbings, Grade 80 chains, steel wire & timber chocking.',
+    icon: Anchor,
+    isoCode: 'LASH-SEC',
   },
   {
-    id: 'open-warehouse',
-    label: 'Open Warehouse Enquiry',
-    badge: 'Yard Buffer',
-    description: 'Open-yard staging / buffer area (Awaiting MSK facility confirmation).',
-    tag: 'Subject to verification',
+    id: 'hazardous-cargo',
+    title: 'Hazardous Cargo',
+    badge: 'DG / IMDG / IATA',
+    description: 'UN-rated packaging, chemical drum palletisation, IBC tote restraint & DG segregation.',
+    icon: ShieldAlert,
+    isoCode: 'DG-IMDG',
+  },
+  {
+    id: 'open-yard-warehouse',
+    title: 'Open Yard Staging',
+    badge: 'Hardstanding',
+    description: 'Spacious open-air container buffer holding & low-bed trailer staging at Conex CFS.',
+    icon: Warehouse,
+    isoCode: 'CFS-BUFFER',
   },
   {
     id: 'shaded-warehouse',
-    label: 'Shaded Warehouse Enquiry',
+    title: 'Shaded Warehouse',
     badge: 'Covered Shed',
-    description: 'Covered shed / weather-protected staging (Awaiting MSK facility confirmation).',
-    tag: 'Subject to verification',
+    description: 'Covered Aquario & Aryan Shed bays for sheltered packing, pallet storage & barrier foil.',
+    icon: Warehouse,
+    isoCode: 'SHED-BAYS',
   },
 ];
 
 export const QuoteRequestForm: React.FC = () => {
   const [searchParams] = useSearchParams();
-  const solParam = searchParams.get('solution');
-  const initialSolution: SolutionType = 
-    solParam === 'client_cargo_container_arranged_by_client' || solParam === 'client-arranged'
-      ? 'client_cargo_container_arranged_by_client'
-      : 'client_container_and_cargo';
 
+  // Initial solution type from URL or default
+  const initialSolution: SolutionType = 'client_container_and_cargo';
+
+  // Initial enquiry category from URL or default
   const getInitialCategory = (): EnquiryCategory => {
     const cat = searchParams.get('category');
-    if (cat === 'flat-rack') return 'flat-rack';
-    if (cat === 'breakbulk') return 'breakbulk';
-    if (cat === 'open-top') return 'open-top';
-    const enq = searchParams.get('enquiry');
-    if (enq === 'open-warehouse') return 'open-warehouse';
-    if (enq === 'shaded-warehouse') return 'shaded-warehouse';
-    if (searchParams.get('container')) return 'container-selection';
-    return 'general-export';
+    if (cat === 'ocean-cargo') return 'ocean-cargo';
+    if (cat === 'air-cargo') return 'air-cargo';
+    if (cat === 'container-stuffing') return 'container-stuffing';
+    if (cat === 'special-project' || cat === 'flat-rack' || cat === 'breakbulk') return 'special-project';
+    if (cat === 'cargo-lashing') return 'cargo-lashing';
+    if (cat === 'open-yard-warehouse' || cat === 'open-warehouse') return 'open-yard-warehouse';
+    if (cat === 'shaded-warehouse') return 'shaded-warehouse';
+    return 'container-stuffing';
   };
 
+  // Initial container from URL or default
   const getInitialContainer = (): string => {
     const containerParam = searchParams.get('container');
     if (containerParam) return containerParam;
     const cat = searchParams.get('category');
-    if (cat === 'flat-rack') return 'Flat Rack Container';
+    if (cat === 'flat-rack') return '40ft Flat Rack Container';
     if (cat === 'breakbulk') return 'Breakbulk / Specialized Rigging';
     if (cat === 'open-top') return 'Open Top Container';
     return '40ft High Cube Container';
@@ -101,15 +129,12 @@ export const QuoteRequestForm: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [generatedRequestId, setGeneratedRequestId] = useState<string>('');
 
   const [formData, setFormData] = useState<QuoteFormData>({
     solutionType: initialSolution,
     enquiryCategory: getInitialCategory(),
-    companyName: '',
-    contactName: '',
-    email: '',
-    phone: '',
-    designation: '',
+    // Step 2
     cargoDescription: '',
     packageCount: '',
     approxWeight: '',
@@ -117,12 +142,22 @@ export const QuoteRequestForm: React.FC = () => {
     dimensions: '',
     packagingNeeds: '',
     specialHandlingNotes: '',
+    // Step 3
+    originCity: 'Navi Mumbai / Nhava Sheva',
+    destinationPort: '',
     containerSize: getInitialContainer(),
     containerLocationOrPositioning: '',
-    containerAvailabilityDate: '',
     preferredDate: '',
     operationalAddress: '',
+    // Step 4
+    quoteName: '', // Client Brief Note 1: "Change req' Add Q name -"
+    companyName: '',
+    contactName: '',
+    email: '',
+    phone: '',
+    designation: '',
     additionalInstructions: '',
+    // Step 5
     privacyConsent: false,
   });
 
@@ -139,23 +174,31 @@ export const QuoteRequestForm: React.FC = () => {
       setFormData(prev => ({ ...prev, solutionType: normalizedSol }));
     }
     const cat = searchParams.get('category');
-    if (cat === 'flat-rack' || cat === 'breakbulk' || cat === 'open-top') {
-      setFormData(prev => ({ 
-        ...prev, 
-        enquiryCategory: cat as EnquiryCategory,
-        containerSize: cat === 'flat-rack' ? 'Flat Rack' : cat === 'open-top' ? 'Open Top' : 'Breakbulk / Specialized Rigging'
-      }));
-    }
-    const enq = searchParams.get('enquiry');
-    if (enq === 'open-warehouse' || enq === 'shaded-warehouse') {
-      setFormData(prev => ({ ...prev, enquiryCategory: enq as EnquiryCategory }));
+    if (cat) {
+      if (cat === 'ocean-cargo') setFormData(p => ({ ...p, enquiryCategory: 'ocean-cargo' }));
+      else if (cat === 'air-cargo') setFormData(p => ({ ...p, enquiryCategory: 'air-cargo' }));
+      else if (cat === 'container-stuffing') setFormData(p => ({ ...p, enquiryCategory: 'container-stuffing' }));
+      else if (cat === 'special-project' || cat === 'flat-rack' || cat === 'breakbulk') {
+        setFormData(p => ({ 
+          ...p, 
+          enquiryCategory: 'special-project',
+          containerSize: cat === 'flat-rack' ? '40ft Flat Rack Container' : 'Breakbulk / Specialized Rigging'
+        }));
+      }
+      else if (cat === 'cargo-lashing') setFormData(p => ({ ...p, enquiryCategory: 'cargo-lashing' }));
+      else if (cat === 'open-warehouse' || cat === 'open-yard-warehouse') {
+        setFormData(p => ({ ...p, enquiryCategory: 'open-yard-warehouse' }));
+      }
+      else if (cat === 'shaded-warehouse') {
+        setFormData(p => ({ ...p, enquiryCategory: 'shaded-warehouse' }));
+      }
     }
     const containerParam = searchParams.get('container');
     if (containerParam) {
       setFormData(prev => ({ 
         ...prev, 
         containerSize: containerParam,
-        enquiryCategory: 'container-selection'
+        enquiryCategory: 'special-project'
       }));
     }
   }, [searchParams]);
@@ -182,10 +225,17 @@ export const QuoteRequestForm: React.FC = () => {
     const errs: Record<string, string> = {};
 
     if (step === 1) {
-      if (!formData.solutionType) {
-        errs.solutionType = 'Please select an export packing solution.';
+      if (!formData.enquiryCategory) {
+        errs.enquiryCategory = 'Please select a core service.';
       }
     } else if (step === 2) {
+      if (!formData.cargoDescription.trim()) errs.cargoDescription = 'Please describe the cargo or commodity.';
+      if (!formData.approxWeight.trim()) errs.approxWeight = 'Approximate weight is required.';
+    } else if (step === 3) {
+      if (!formData.containerLocationOrPositioning.trim() && !formData.operationalAddress.trim()) {
+        errs.operationalAddress = 'Origin facility or container positioning location is required.';
+      }
+    } else if (step === 4) {
       if (!formData.companyName.trim()) errs.companyName = 'Company name is required.';
       if (!formData.contactName.trim()) errs.contactName = 'Contact person name is required.';
       if (!formData.email.trim()) {
@@ -198,19 +248,10 @@ export const QuoteRequestForm: React.FC = () => {
       } else if (formData.phone.trim().length < 8) {
         errs.phone = 'Please enter a valid phone number.';
       }
-    } else if (step === 3) {
-      if (!formData.cargoDescription.trim()) errs.cargoDescription = 'Please describe the cargo or product.';
-      if (!formData.approxWeight.trim()) errs.approxWeight = 'Approximate weight is required.';
-    } else if (step === 4) {
-      if (!formData.containerLocationOrPositioning.trim()) {
-        errs.containerLocationOrPositioning = formData.solutionType === 'complete'
-          ? 'Please specify the required delivery/positioning location.'
-          : 'Please specify where your container will be staged/available.';
-      }
     } else if (step === 5) {
-      if (!formData.operationalAddress.trim()) errs.operationalAddress = 'Work location / facility address is required.';
-    } else if (step === 6) {
-      if (!formData.privacyConsent) errs.privacyConsent = 'You must acknowledge the quote review terms to proceed.';
+      if (!formData.privacyConsent) {
+        errs.privacyConsent = 'You must acknowledge the quote review terms to submit.';
+      }
     }
 
     setErrors(errs);
@@ -219,7 +260,7 @@ export const QuoteRequestForm: React.FC = () => {
 
   const handleNext = () => {
     if (validateStep(currentStep)) {
-      setCurrentStep(prev => Math.min(prev + 1, 6));
+      setCurrentStep(prev => Math.min(prev + 1, 5));
       window.scrollTo({ top: 300, behavior: 'smooth' });
     }
   };
@@ -231,42 +272,45 @@ export const QuoteRequestForm: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!validateStep(6)) return;
+    if (!validateStep(5)) return;
+
+    if (isSubmitting) return;
 
     setIsSubmitting(true);
     setSubmitError(null);
 
+    const reqId = `MSK-REQ-${Date.now().toString().slice(-6)}`;
+
     try {
-      const apiUrl = import.meta.env.VITE_ENQUIRY_API_URL;
-
-      if (apiUrl && apiUrl.trim().length > 0) {
-        const response = await fetch(apiUrl, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            ...formData,
-            submittedAt: new Date().toISOString(),
-            source: 'MSK Logistics Quote Request Portal'
-          })
-        });
-
-        if (!response.ok) {
-          throw new Error('Server responded with an error during submission.');
-        }
-      } else {
-        const existing = JSON.parse(localStorage.getItem('msk_quote_requests') || '[]');
-        existing.push({
+      const endpoint = import.meta.env.VITE_ENQUIRY_API_URL || '/api/quote';
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
           ...formData,
-          id: `REQ-${Date.now()}`,
-          submittedAt: new Date().toISOString()
-        });
-        localStorage.setItem('msk_quote_requests', JSON.stringify(existing));
-        await new Promise(res => setTimeout(res, 800));
-      }
+          id: reqId,
+          submittedAt: new Date().toISOString(),
+          source: 'MSK Logistics Industrial Quote Portal',
+        }),
+      });
 
-      setIsSubmitted(true);
-    } catch (err: any) {
-      setSubmitError(err.message || 'Submission failed. Please contact our desk directly by email or phone.');
+      const result = await response.json().catch(() => null);
+
+      if (response.ok && result?.success) {
+        setGeneratedRequestId(result.referenceId || reqId);
+        setIsSubmitted(true);
+      } else {
+        const message =
+          result?.message ||
+          (result?.error ? `${result.error}: ${result.message || 'Transmission failed.'}` : null) ||
+          'Unable to transmit your quote request. Please email info@msklogisticsolution.com directly or contact our 24x7 desk at 8108672929.';
+        setSubmitError(message);
+      }
+    } catch (err: unknown) {
+      console.error('[Quote Submission Error]:', err);
+      setSubmitError(
+        'A network connection error occurred while submitting your quote request. Please verify your connection or email info@msklogisticsolution.com directly.'
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -274,61 +318,62 @@ export const QuoteRequestForm: React.FC = () => {
 
   if (isSubmitted) {
     return (
-      <div className="bg-white rounded-xl border border-[#E2E2E2] p-8 sm:p-12 text-center max-w-2xl mx-auto shadow-sm space-y-6">
-        <div className="w-16 h-16 bg-red-50 text-[#B62825] rounded-full flex items-center justify-center mx-auto">
-          <CheckCircle2 className="w-10 h-10" />
+      <div className="bg-[#000000] text-white rounded-2xl border border-white/10 shadow-2xl overflow-hidden p-8 sm:p-12 text-center space-y-6">
+        <div className="w-16 h-16 rounded-full bg-[#B62825]/20 border border-[#B62825] flex items-center justify-center mx-auto text-[#B62825]">
+          <CheckCircle2 className="w-8 h-8" />
         </div>
 
-        <div className="space-y-3">
-          <span className="editorial-badge bg-green-50 text-green-700 border-green-200">
-            ENQUIRY RECORDED
-          </span>
-          <h2 className="text-2xl sm:text-3xl font-bold text-[#343434] font-heading">
+        <div className="space-y-2">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-xs font-mono font-bold text-red-300">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#B62825]" />
+            <span>REFERENCE ID: {generatedRequestId}</span>
+          </div>
+          <h3 className="text-2xl sm:text-3xl font-bold font-heading text-white">
             Quote Request Received
-          </h2>
-          <p className="text-[15px] text-[#666666] leading-relaxed">
-            Thank you for your enquiry. Your quote request has been received. Our team will review the information and contact you to discuss requirements and pricing.
+          </h3>
+          <p className="text-sm sm:text-base text-slate-300 max-w-xl mx-auto leading-relaxed">
+            Thank you, <strong className="text-white">{formData.contactName}</strong>. Your enquiry for{' '}
+            <strong className="text-red-400">
+              {SERVICE_OPTIONS.find(s => s.id === formData.enquiryCategory)?.title || formData.enquiryCategory}
+            </strong>{' '}
+            has been routed to our Nhava Sheva commercial operations desk.
           </p>
         </div>
 
-        {/* Truthful Status Box */}
-        <div className="p-4 bg-[#F5F5F3] rounded-lg border border-[#E2E2E2] text-left text-[13px] space-y-2">
-          <div className="font-semibold text-[#343434]">Important Operational Notice:</div>
-          <p className="text-[#666666]">
-            A quote request is <strong>not a confirmed booking, confirmed price, confirmed container arrangement, or scheduled job</strong>. Container availability, transport charges, and packing schedules will be formally verified and agreed upon in writing.
-          </p>
-          <div className="pt-2 border-t border-[#E2E2E2] font-mono-code text-[12px] text-neutral-500 space-y-1">
-            <div>ARRANGEMENT: {formData.solutionType === 'complete' ? 'Complete Export Packing Solution (Option A)' : 'Client-Arranged Container (Option B)'}</div>
-            <div>ENQUIRY FOCUS: {ENQUIRY_CATEGORIES.find(c => c.id === formData.enquiryCategory)?.label || formData.enquiryCategory}</div>
+        <div className="max-w-md mx-auto p-4 rounded-xl bg-white/5 border border-white/10 text-xs text-slate-300 font-mono space-y-2 text-left">
+          <div className="flex justify-between border-b border-white/10 pb-1.5">
+            <span className="text-slate-400">Quote Name:</span>
+            <span className="text-white font-bold">{formData.quoteName || 'N/A'}</span>
+          </div>
+          <div className="flex justify-between border-b border-white/10 pb-1.5">
+            <span className="text-slate-400">Company:</span>
+            <span className="text-white">{formData.companyName}</span>
+          </div>
+          <div className="flex justify-between border-b border-white/10 pb-1.5">
+            <span className="text-slate-400">Cargo Weight:</span>
+            <span className="text-white">{formData.approxWeight} {formData.weightUnit}</span>
+          </div>
+          <div className="flex justify-between">
+            <span className="text-slate-400">Response Target:</span>
+            <span className="text-emerald-400 font-bold">Within 2–4 Business Hours</span>
           </div>
         </div>
 
-        {/* Direct Contact Options */}
-        <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4 text-[14px]">
-          <a 
-            href={COMPANY_DETAILS.phoneHref}
-            className="btn-secondary w-full sm:w-auto"
+        <div className="pt-4 border-t border-white/10 flex flex-col sm:flex-row items-center justify-center gap-4 text-xs">
+          <a
+            href="tel:8108672929"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#B62825] hover:bg-[#9E2220] text-white font-bold transition-colors"
           >
-            <Phone className="w-4 h-4 text-[#B62825]" />
-            <span>Call Desk: {COMPANY_DETAILS.phone}</span>
+            <Phone className="w-3.5 h-3.5" />
+            <span>24×7 Urgent Desk: 8108672929</span>
           </a>
-          <a 
-            href={COMPANY_DETAILS.emailHref}
-            className="btn-primary w-full sm:w-auto"
-          >
-            <Mail className="w-4 h-4" />
-            <span>Email Documents Directly</span>
-          </a>
-        </div>
-
-        <div className="pt-2">
           <button
             type="button"
             onClick={() => {
               setIsSubmitted(false);
               setCurrentStep(1);
             }}
-            className="text-[13px] text-neutral-500 hover:text-[#B62825] underline"
+            className="text-slate-400 hover:text-white underline py-2"
           >
             Submit Another Request
           </button>
@@ -338,211 +383,473 @@ export const QuoteRequestForm: React.FC = () => {
   }
 
   return (
-    <div className="bg-white rounded-xl border border-[#E2E2E2] shadow-sm overflow-hidden">
-      {/* Progress Steps Header */}
-      <div className="bg-[#343434] text-white p-5 sm:p-6 border-b border-neutral-700">
-        <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
-          <div>
-            <span className="editorial-badge bg-white/10 text-white border-white/20">
-              STEP 0{currentStep} OF 06
-            </span>
-            <h2 className="text-xl sm:text-2xl font-bold font-heading text-white mt-1">
-              {currentStep === 1 && 'Select Service Arrangement'}
-              {currentStep === 2 && 'Customer & Company Information'}
-              {currentStep === 3 && 'Cargo Specifications'}
-              {currentStep === 4 && 'Container Sourcing & Placement'}
-              {currentStep === 5 && 'Schedule & Facility Location'}
-              {currentStep === 6 && 'Review Details & Submit'}
-            </h2>
-          </div>
+    <div className="bg-[#000000] text-white rounded-2xl border border-white/10 shadow-2xl overflow-hidden">
+      {/* Concept 07: 5-Step Connected Progress Stepper */}
+      <div className="bg-[#0B0B0D] p-5 sm:p-7 border-b border-white/10">
+        <div className="max-w-4xl mx-auto">
+          {/* Connected Stepper Circles */}
+          <div className="relative flex items-center justify-between">
+            {/* Background connecting line */}
+            <div className="absolute top-1/2 left-0 right-0 -translate-y-1/2 h-0.5 bg-white/10 z-0" />
+            
+            {/* Active connecting line */}
+            <div 
+              className="absolute top-1/2 left-0 -translate-y-1/2 h-0.5 bg-[#B62825] transition-all duration-300 z-0"
+              style={{ width: `${((currentStep - 1) / 4) * 100}%` }}
+            />
 
-          <div className="text-[12px] font-mono-code text-neutral-300">
-            {formData.solutionType === 'client_container_and_cargo' || formData.solutionType === 'complete'
-              ? '[OPTION 01 SELECTED]'
-              : '[OPTION 02 SELECTED]'}
+            {[
+              { num: 1, label: 'Service' },
+              { num: 2, label: 'Cargo Details' },
+              { num: 3, label: 'Route' },
+              { num: 4, label: 'Your Information' },
+              { num: 5, label: 'Review' },
+            ].map((s) => {
+              const isActive = currentStep === s.num;
+              const isPast = currentStep > s.num;
+              return (
+                <div key={s.num} className="relative z-10 flex flex-col items-center">
+                  <div
+                    className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-mono font-bold text-xs sm:text-sm transition-all duration-200 border-2 ${
+                      isActive
+                        ? 'bg-[#B62825] text-white border-[#B62825] ring-4 ring-[#B62825]/30 scale-110 shadow-lg'
+                        : isPast
+                        ? 'bg-[#B62825] text-white border-[#B62825]'
+                        : 'bg-[#18181B] text-[#AEB6C2] border-white/20'
+                    }`}
+                  >
+                    {isPast ? <Check className="w-4 h-4 stroke-[3]" /> : s.num}
+                  </div>
+                  <span
+                    className={`text-[10px] sm:text-xs font-mono font-medium mt-1.5 whitespace-nowrap hidden sm:block ${
+                      isActive ? 'text-white font-bold' : isPast ? 'text-red-300' : 'text-[#64748B]'
+                    }`}
+                  >
+                    {s.label}
+                  </span>
+                </div>
+              );
+            })}
           </div>
-        </div>
-
-        {/* Progress Bar Indicator */}
-        <div className="w-full bg-neutral-700 h-1.5 rounded-full overflow-hidden">
-          <div 
-            className="bg-[#B62825] h-full transition-all duration-300"
-            style={{ width: `${(currentStep / 6) * 100}%` }}
-          />
         </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="p-6 sm:p-9 space-y-6">
-        {/* STEP 1: Select Service Arrangement */}
+      <form onSubmit={handleSubmit} className="p-6 sm:p-9 space-y-8">
+        
+        {/* ========================================================================= */}
+        {/* STEP 1: Select Service & Arrangement (Concept 07)                         */}
+        {/* ========================================================================= */}
         {currentStep === 1 && (
-          <div className="space-y-6">
-            <div>
-              <label className="block text-[15px] font-semibold text-[#343434] mb-1">
-                Which export packing solution do you need? <span className="text-[#B62825]">*</span>
-              </label>
-              <p className="text-[13px] text-[#666666]">
-                Select the arrangement that matches your operational workflow. Both solutions include agreed packaging, stuffing, and lashing work. MSK does not supply or arrange containers under either option.
+          <div className="space-y-7">
+            {/* Left/Top Container Motif Card: Get a Quote */}
+            <div className="p-5 sm:p-6 rounded-2xl bg-gradient-to-r from-[#18181B] via-[#0F0F12] to-[#18181B] border border-white/15 relative overflow-hidden flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="space-y-1 relative z-10">
+                <span className="text-[10px] font-mono text-[#B62825] uppercase tracking-widest font-bold">
+                  STEP 01 • INQUIRY INITIALIZATION
+                </span>
+                <h3 className="text-xl sm:text-2xl font-bold font-heading text-white">
+                  Get a <span className="text-[#B62825]">Quote</span>
+                </h3>
+                <p className="text-xs sm:text-sm text-[#AEB6C2] font-body max-w-xl">
+                  Tell us your requirement and our team will get back to you shortly.
+                </p>
+              </div>
+
+              {/* Decorative mini container badge */}
+              <div className="hidden md:flex items-center gap-2 px-3.5 py-2 rounded-xl bg-black/60 border border-white/10 shrink-0">
+                <div className="w-8 h-8 rounded-lg bg-[#B62825] text-white flex items-center justify-center font-bold text-xs">
+                  MSK
+                </div>
+                <div className="text-left font-mono text-[9px] text-[#AEB6C2] leading-tight">
+                  <div className="text-white font-bold">JNPT CORRIDOR</div>
+                  <div>2-4h Response</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Direct Q Name Input immediately visible on Step 1 */}
+            <div className="p-4 rounded-xl bg-white/5 border border-white/15 space-y-1.5">
+              <div className="flex items-center justify-between">
+                <label className="block text-xs font-mono font-semibold text-slate-200 uppercase tracking-wide">
+                  Quote Reference Name (Q Name) <span className="text-slate-400 font-normal lowercase">(optional)</span>
+                </label>
+                <span className="text-[10px] font-mono text-red-400 font-bold bg-red-950/60 px-2 py-0.5 rounded border border-red-800/40">CLIENT REFERENCE TAG</span>
+              </div>
+              <input
+                type="text"
+                name="quoteName"
+                value={formData.quoteName}
+                onChange={handleChange}
+                placeholder="e.g. Q-PROJECT-2026-FR, EXP-MUNDRA-01, MSK-ODC-TURBINE"
+                className="w-full px-4 py-2.5 rounded-xl bg-black/40 border border-white/20 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#B62825] focus:ring-1 focus:ring-[#B62825]"
+              />
+              <p className="text-[11px] text-slate-400 font-mono">
+                Assign a project identifier or quote name for instant reference by our operations desk.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              {/* Option 01 Radio Card */}
-              <div 
-                onClick={() => setFormData(p => ({ ...p, solutionType: 'client_container_and_cargo' }))}
-                className={`cursor-pointer rounded-xl p-5 border-2 transition-all ${
-                  formData.solutionType === 'client_container_and_cargo' || formData.solutionType === 'complete'
-                    ? 'border-[#173F70] bg-blue-50/20 shadow-md ring-1 ring-[#173F70]/20'
-                    : 'border-[#E2E2E2] hover:border-neutral-400 bg-white'
-                }`}
-              >
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-[11px] font-mono font-bold text-[#173F70] uppercase">
-                    Option 01
-                  </span>
-                  <input
-                    type="radio"
-                    name="solutionType"
-                    checked={formData.solutionType === 'client_container_and_cargo' || formData.solutionType === 'complete'}
-                    onChange={() => setFormData(p => ({ ...p, solutionType: 'client_container_and_cargo' }))}
-                    className="w-4 h-4 text-[#173F70] focus:ring-[#173F70]"
-                  />
-                </div>
-                <div className="font-bold text-[#173F70] text-[16px] mb-1 font-heading">
-                  Client-Arranged Container & Cargo
-                </div>
-                <div className="text-xs font-semibold text-[#343434] mb-2">
-                  You provide the cargo and the container. MSK handles the packing work.
-                </div>
-                <p className="text-[13px] text-[#666666] leading-relaxed mb-4">
-                  Already have your cargo and container arranged? MSK Logistics performs the agreed export packaging, container stuffing, and cargo lashing work.
-                </p>
-                <div className="text-[11px] font-mono text-neutral-600 border-t border-[#E2E2E2] pt-2">
-                  ✓ Container provided by Client • MSK does not supply container
-                </div>
-              </div>
+            <div>
+              <label className="block text-[15px] font-semibold text-white mb-2">
+                Select Service <span className="text-[#B62825]">*</span>
+              </label>
 
-              {/* Option 02 Radio Card */}
-              <div 
-                onClick={() => setFormData(p => ({ ...p, solutionType: 'client_cargo_container_arranged_by_client' }))}
-                className={`cursor-pointer rounded-xl p-5 border-2 transition-all ${
-                  formData.solutionType === 'client_cargo_container_arranged_by_client' || formData.solutionType === 'client-arranged'
-                    ? 'border-[#B62825] bg-red-50/20 shadow-md ring-1 ring-[#B62825]/20'
-                    : 'border-[#E2E2E2] hover:border-neutral-400 bg-white'
-                }`}
-              >
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-[11px] font-mono font-bold text-[#B62825] uppercase">
-                    Option 02
-                  </span>
-                  <input
-                    type="radio"
-                    name="solutionType"
-                    checked={formData.solutionType === 'client_cargo_container_arranged_by_client' || formData.solutionType === 'client-arranged'}
-                    onChange={() => setFormData(p => ({ ...p, solutionType: 'client_cargo_container_arranged_by_client' }))}
-                    className="w-4 h-4 text-[#B62825] focus:ring-[#B62825]"
-                  />
-                </div>
-                <div className="font-bold text-[#343434] text-[16px] mb-1 font-heading">
-                  Client Cargo, Container to Be Arranged
-                </div>
-                <div className="text-xs font-semibold text-[#173F70] mb-2">
-                  You provide the cargo and arrange the container separately.
-                </div>
-                <p className="text-[13px] text-[#666666] leading-relaxed mb-4">
-                  Have products ready but no container yet? Arrange a suitable container independently, then MSK Logistics can perform the agreed export packaging, container stuffing, and cargo lashing work.
-                </p>
-                <div className="text-[11px] font-mono text-neutral-600 border-t border-[#E2E2E2] pt-2">
-                  ✓ Container sourcing is Client responsibility • MSK does not supply container
-                </div>
-              </div>
-            </div>
-
-            {/* Dynamic Explanation Notice */}
-            <div className="p-4 rounded-xl bg-[#F5F5F3] border border-[#E2E2E2] text-[13px] flex items-start gap-3">
-              <Info className="w-5 h-5 text-[#B62825] shrink-0 mt-0.5" />
-              <div>
-                <strong className="text-[#343434] block mb-0.5">
-                  {formData.solutionType === 'client_container_and_cargo' || formData.solutionType === 'complete'
-                    ? 'Option 01 Selected — Container & Cargo Ready:' 
-                    : 'Option 02 Selected — Container to Be Arranged by Client:'}
-                </strong>
-                <p className="text-[#666666]">
-                  {formData.solutionType === 'client_container_and_cargo' || formData.solutionType === 'complete'
-                    ? 'You provide the cargo and container at the staging location. MSK Logistics performs the agreed export packaging, container stuffing, and cargo lashing work.'
-                    : 'You provide the cargo and source the container independently. MSK Logistics performs the agreed export packaging, container stuffing, and cargo lashing work once the container is in place.'}
-                </p>
-              </div>
-            </div>
-
-            {/* Shipment / Enquiry Category Focus */}
-            <div className="pt-4 border-t border-[#E2E2E2] space-y-3">
-              <div>
-                <label className="block text-[15px] font-semibold text-[#343434] mb-1">
-                  Select Shipment or Enquiry Category Focus
-                </label>
-                <p className="text-[13px] text-[#666666]">
-                  Important operational distinction: Sourcing Arrangement (Option A vs B above) specifies container responsibility. Any specialized shipment type below (e.g. Flat Rack, Breakbulk, Open Top) can be serviced under either arrangement.
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                {ENQUIRY_CATEGORIES.map(category => {
-                  const isSelected = formData.enquiryCategory === category.id;
+              {/* 6 Container Service Selection Cards Matching Concept 07 */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+                {[
+                  { id: 'ocean-cargo' as EnquiryCategory, title: 'Ocean Cargo', icon: Ship },
+                  { id: 'air-cargo' as EnquiryCategory, title: 'Air Cargo', icon: Plane },
+                  { id: 'container-stuffing' as EnquiryCategory, title: 'Stuffing Ops', icon: Box },
+                  { id: 'special-project' as EnquiryCategory, title: 'Project Cargo', icon: Maximize2 },
+                  { id: 'cargo-lashing' as EnquiryCategory, title: 'Cargo Lashing', icon: Anchor },
+                  { id: 'hazardous-cargo' as EnquiryCategory, title: 'Hazardous Cargo', icon: ShieldAlert },
+                ].map((item) => {
+                  const Icon = item.icon;
+                  const isSelected = formData.enquiryCategory === item.id;
                   return (
                     <button
-                      key={category.id}
+                      key={item.id}
                       type="button"
-                      onClick={() => {
-                        setFormData(p => ({
-                          ...p,
-                          enquiryCategory: category.id,
-                          containerSize: 
-                            category.id === 'flat-rack' ? 'Flat Rack Container' :
-                            category.id === 'open-top' ? 'Open Top Container' :
-                            category.id === 'breakbulk' ? 'Breakbulk / Specialized Rigging' :
-                            p.containerSize
-                        }));
-                      }}
-                      className={`text-left p-3.5 rounded-lg border transition-all flex flex-col justify-between ${
+                      onClick={() => setFormData(p => ({ ...p, enquiryCategory: item.id }))}
+                      className={`p-4 rounded-xl border flex flex-col items-center justify-center text-center space-y-2.5 transition-all duration-200 cursor-pointer select-none group ${
                         isSelected
-                          ? 'border-[#B62825] bg-red-50/30 ring-1 ring-[#B62825]'
-                          : 'border-[#E2E2E2] hover:border-neutral-400 bg-white'
+                          ? 'border-[#B62825] bg-[#B62825]/15 shadow-[0_0_20px_rgba(182,40,37,0.4)] ring-2 ring-[#B62825]'
+                          : 'border-white/10 bg-[#121215] hover:border-white/30 hover:bg-[#18181D]'
                       }`}
                     >
-                      <div>
-                        <div className="flex items-center justify-between gap-2 mb-1.5">
-                          <span className={`text-[10px] font-mono-code font-bold uppercase px-2 py-0.5 rounded ${
-                            isSelected ? 'bg-[#B62825] text-white' : 'bg-neutral-100 text-neutral-600'
-                          }`}>
-                            {category.badge}
-                          </span>
-                          {category.tag && (
-                            <span className="text-[10px] font-mono-code text-[#D97706] bg-amber-50 px-1.5 py-0.5 rounded border border-amber-200">
-                              {category.tag}
-                            </span>
-                          )}
-                        </div>
-                        <div className="font-semibold text-[13.5px] text-[#343434] mb-1">
-                          {category.label}
-                        </div>
-                        <p className="text-[12px] text-[#666666] leading-snug">
-                          {category.description}
-                        </p>
+                      <div
+                        className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all ${
+                          isSelected
+                            ? 'bg-[#B62825] text-white shadow-md'
+                            : 'bg-white/5 text-[#AEB6C2] group-hover:text-white'
+                        }`}
+                      >
+                        <Icon className="w-6 h-6" />
                       </div>
+                      <span className={`text-xs font-heading font-bold transition-colors ${
+                        isSelected ? 'text-white' : 'text-[#AEB6C2] group-hover:text-white'
+                      }`}>
+                        {item.title}
+                      </span>
                     </button>
                   );
                 })}
               </div>
             </div>
+
+            {errors.enquiryCategory && (
+              <p className="text-red-400 text-xs font-mono">{errors.enquiryCategory}</p>
+            )}
+
+            {/* Service Arrangement Option Cards */}
+            <div className="pt-6 border-t border-white/10 space-y-4">
+              <label className="block text-[14px] font-semibold text-white">
+                Operational Arrangement <span className="text-[#B62825]">*</span>
+              </label>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div
+                  onClick={() => setFormData(p => ({ ...p, solutionType: 'client_container_and_cargo' }))}
+                  className={`cursor-pointer rounded-xl p-4.5 border transition-all ${
+                    formData.solutionType === 'client_container_and_cargo' || formData.solutionType === 'complete'
+                      ? 'border-[#B62825] bg-[#B62825]/10 shadow-md ring-1 ring-[#B62825]'
+                      : 'border-white/10 bg-white/5 hover:border-white/20'
+                  }`}
+                >
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-[10px] font-mono font-bold text-red-400 uppercase">
+                      Option 01: Client Container &amp; Cargo
+                    </span>
+                    <input
+                      type="radio"
+                      name="solutionType"
+                      checked={formData.solutionType === 'client_container_and_cargo' || formData.solutionType === 'complete'}
+                      onChange={() => setFormData(p => ({ ...p, solutionType: 'client_container_and_cargo' }))}
+                      className="accent-[#B62825]"
+                    />
+                  </div>
+                  <h5 className="text-sm font-bold text-white mb-1">
+                    You Provide Cargo &amp; Container
+                  </h5>
+                  <p className="text-xs text-slate-400 leading-relaxed">
+                    MSK Logistics executes export packaging, container stuffing sequences, and certified marine lashing at terminal or factory.
+                  </p>
+                </div>
+
+                <div
+                  onClick={() => setFormData(p => ({ ...p, solutionType: 'client_cargo_container_arranged_by_client' }))}
+                  className={`cursor-pointer rounded-xl p-4.5 border transition-all ${
+                    formData.solutionType === 'client_cargo_container_arranged_by_client' || formData.solutionType === 'client-arranged'
+                      ? 'border-[#B62825] bg-[#B62825]/10 shadow-md ring-1 ring-[#B62825]'
+                      : 'border-white/10 bg-white/5 hover:border-white/20'
+                  }`}
+                >
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-[10px] font-mono font-bold text-red-400 uppercase">
+                      Option 02: Cargo Only / Terminal Coordination
+                    </span>
+                    <input
+                      type="radio"
+                      name="solutionType"
+                      checked={formData.solutionType === 'client_cargo_container_arranged_by_client' || formData.solutionType === 'client-arranged'}
+                      onChange={() => setFormData(p => ({ ...p, solutionType: 'client_cargo_container_arranged_by_client' }))}
+                      className="accent-[#B62825]"
+                    />
+                  </div>
+                  <h5 className="text-sm font-bold text-white mb-1">
+                    Cargo at Staging Yard / Forwarder Equipment
+                  </h5>
+                  <p className="text-xs text-slate-400 leading-relaxed">
+                    You provide the cargo; container placement is coordinated via your shipping line or freight forwarder booking.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         )}
 
-        {/* STEP 2: Customer & Company Details */}
+        {/* ========================================================================= */}
+        {/* STEP 2: Cargo Details & Packaging Needs                                   */}
+        {/* ========================================================================= */}
         {currentStep === 2 && (
-          <div className="space-y-5">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-              <div>
-                <label className="block text-[14px] font-medium text-[#343434] mb-1.5">
+          <div className="space-y-6">
+            <div>
+              <h3 className="text-lg font-bold text-white">Cargo Description &amp; Technical Specs</h3>
+              <p className="text-xs text-slate-400 mt-1">
+                Provide accurate weight and dimensions so our team can evaluate floor load distribution and lashing geometry.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div className="md:col-span-2 space-y-1.5">
+                <label className="block text-xs font-mono font-semibold text-slate-300 uppercase">
+                  Cargo Description / Commodity Name <span className="text-[#B62825]">*</span>
+                </label>
+                <input
+                  type="text"
+                  name="cargoDescription"
+                  value={formData.cargoDescription}
+                  onChange={handleChange}
+                  placeholder="e.g. Heavy CNC Milling Center, Sandvik Mining Assemblies, Electrical Transformer"
+                  className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#B62825] focus:ring-1 focus:ring-[#B62825]"
+                />
+                {errors.cargoDescription && <p className="text-red-400 text-xs font-mono">{errors.cargoDescription}</p>}
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="block text-xs font-mono font-semibold text-slate-300 uppercase">
+                  Package Count / Number of Units
+                </label>
+                <input
+                  type="text"
+                  name="packageCount"
+                  value={formData.packageCount}
+                  onChange={handleChange}
+                  placeholder="e.g. 4 Crates, 12 Pallets, 1 Heavy Skid"
+                  className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#B62825]"
+                />
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="block text-xs font-mono font-semibold text-slate-300 uppercase">
+                  Approximate Weight <span className="text-[#B62825]">*</span>
+                </label>
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    name="approxWeight"
+                    value={formData.approxWeight}
+                    onChange={handleChange}
+                    placeholder="e.g. 24.5"
+                    className="flex-1 px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#B62825]"
+                  />
+                  <select
+                    name="weightUnit"
+                    value={formData.weightUnit}
+                    onChange={handleChange}
+                    className="px-3 py-2.5 rounded-xl bg-neutral-900 border border-white/15 text-sm text-white focus:outline-none focus:border-[#B62825]"
+                  >
+                    <option value="tons">Tons (MT)</option>
+                    <option value="kg">Kilograms (kg)</option>
+                    <option value="lbs">Pounds (lbs)</option>
+                  </select>
+                </div>
+                {errors.approxWeight && <p className="text-red-400 text-xs font-mono">{errors.approxWeight}</p>}
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="block text-xs font-mono font-semibold text-slate-300 uppercase">
+                  Cargo Dimensions (L × W × H)
+                </label>
+                <input
+                  type="text"
+                  name="dimensions"
+                  value={formData.dimensions}
+                  onChange={handleChange}
+                  placeholder="e.g. 11.8m × 2.4m × 2.9m (or in mm / inches)"
+                  className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#B62825]"
+                />
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="block text-xs font-mono font-semibold text-slate-300 uppercase">
+                  Packaging Requirements
+                </label>
+                <input
+                  type="text"
+                  name="packagingNeeds"
+                  value={formData.packagingNeeds}
+                  onChange={handleChange}
+                  placeholder="e.g. Wooden Dunnage, VCI barrier foil, Palletisation, Plywood GSA"
+                  className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#B62825]"
+                />
+              </div>
+
+              <div className="md:col-span-2 space-y-1.5">
+                <label className="block text-xs font-mono font-semibold text-slate-300 uppercase">
+                  Special Handling / ODC Notes
+                </label>
+                <textarea
+                  name="specialHandlingNotes"
+                  rows={2}
+                  value={formData.specialHandlingNotes}
+                  onChange={handleChange}
+                  placeholder="Specify eccentric center of gravity, delicate painted surfaces, crane sling points, or moisture sensitivity."
+                  className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#B62825]"
+                />
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* ========================================================================= */}
+        {/* STEP 3: Origin, Destination & Positioning                                 */}
+        {/* ========================================================================= */}
+        {currentStep === 3 && (
+          <div className="space-y-6">
+            <div>
+              <h3 className="text-lg font-bold text-white">Route, Port &amp; Container Positioning</h3>
+              <p className="text-xs text-slate-400 mt-1">
+                Define the loading gateway, terminal facility, and container equipment specifications.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div className="space-y-1.5">
+                <label className="block text-xs font-mono font-semibold text-slate-300 uppercase">
+                  Origin City / CFS Facility
+                </label>
+                <input
+                  type="text"
+                  name="originCity"
+                  value={formData.originCity}
+                  onChange={handleChange}
+                  placeholder="e.g. Nhava Sheva (JNPT) / Conex CFS / Polaris / Panipat"
+                  className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#B62825]"
+                />
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="block text-xs font-mono font-semibold text-slate-300 uppercase">
+                  Destination Port / Country
+                </label>
+                <input
+                  type="text"
+                  name="destinationPort"
+                  value={formData.destinationPort}
+                  onChange={handleChange}
+                  placeholder="e.g. Jebel Ali (UAE), Rotterdam (NL), Houston (USA)"
+                  className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#B62825]"
+                />
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="block text-xs font-mono font-semibold text-slate-300 uppercase">
+                  Target Container Equipment Type
+                </label>
+                <select
+                  name="containerSize"
+                  value={formData.containerSize}
+                  onChange={handleChange}
+                  className="w-full px-4 py-2.5 rounded-xl bg-neutral-900 border border-white/15 text-sm text-white focus:outline-none focus:border-[#B62825]"
+                >
+                  <option value="20ft Standard Dry Container">20ft Standard Dry Container (22G1)</option>
+                  <option value="40ft Standard Dry Container">40ft Standard Dry Container (42G1)</option>
+                  <option value="40ft High Cube Container">40ft High Cube Container (45G1)</option>
+                  <option value="20ft Flat Rack Container">20ft Flat Rack Container (25P3)</option>
+                  <option value="40ft Flat Rack Container">40ft Flat Rack Container (45P3)</option>
+                  <option value="Open Top Container">Open Top Container (Tarpaulin/Bow)</option>
+                  <option value="Breakbulk / Specialized Rigging">Breakbulk / Non-Containerized Project Cargo</option>
+                  <option value="Open Yard Buffer Holding">Open Yard Buffer Holding (Conex CFS)</option>
+                  <option value="Shaded Warehouse Staging">Shaded Warehouse Staging (Aryan Shed)</option>
+                </select>
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="block text-xs font-mono font-semibold text-slate-300 uppercase">
+                  Preferred Execution Date
+                </label>
+                <input
+                  type="date"
+                  name="preferredDate"
+                  value={formData.preferredDate}
+                  onChange={handleChange}
+                  className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 text-sm text-white focus:outline-none focus:border-[#B62825]"
+                />
+              </div>
+
+              <div className="md:col-span-2 space-y-1.5">
+                <label className="block text-xs font-mono font-semibold text-slate-300 uppercase">
+                  Operational Address / Container Positioning Location <span className="text-[#B62825]">*</span>
+                </label>
+                <input
+                  type="text"
+                  name="operationalAddress"
+                  value={formData.operationalAddress}
+                  onChange={handleChange}
+                  placeholder="e.g. Conex CFS Yard, Dronagiri / Client Works, Taloja MIDC / Nhava Sheva Terminal"
+                  className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#B62825]"
+                />
+                {errors.operationalAddress && (
+                  <p className="text-red-400 text-xs font-mono">{errors.operationalAddress}</p>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* ========================================================================= */}
+        {/* STEP 4: Contact Details & Quote Reference                                 */}
+        {/* ========================================================================= */}
+        {currentStep === 4 && (
+          <div className="space-y-6">
+            <div>
+              <h3 className="text-lg font-bold text-white">Commercial Contact &amp; Quote Reference</h3>
+              <p className="text-xs text-slate-400 mt-1">
+                Assign a shipment quote reference code and provide your direct contact channels for fast quotation turnaround.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              {/* Note 1 line 1: "Change req' Add Q name -" */}
+              <div className="md:col-span-2 space-y-1.5">
+                <div className="flex items-center justify-between">
+                  <label className="block text-xs font-mono font-semibold text-slate-300 uppercase">
+                    Quote Reference Name (Q Name)
+                  </label>
+                  <span className="text-[10px] font-mono text-red-400">CLIENT REFERENCE TAG</span>
+                </div>
+                <input
+                  type="text"
+                  name="quoteName"
+                  value={formData.quoteName}
+                  onChange={handleChange}
+                  placeholder="e.g. Q-PROJECT-2026-FR, EXP-MUNDRA-01, MSK-ODC-TURBINE"
+                  className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#B62825]"
+                />
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="block text-xs font-mono font-semibold text-slate-300 uppercase">
                   Company Name <span className="text-[#B62825]">*</span>
                 </label>
                 <input
@@ -550,33 +857,29 @@ export const QuoteRequestForm: React.FC = () => {
                   name="companyName"
                   value={formData.companyName}
                   onChange={handleChange}
-                  placeholder="e.g. Acme Export Industries"
-                  className={`w-full px-3.5 py-2.5 rounded-md border text-[14px] focus:outline-none focus:ring-2 focus:ring-[#B62825] ${
-                    errors.companyName ? 'border-red-500' : 'border-[#E2E2E2]'
-                  }`}
+                  placeholder="e.g. Greenwich Meridian, Sandvik, BHEL, Larsen &amp; Toubro"
+                  className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#B62825]"
                 />
-                {errors.companyName && <p className="text-red-500 text-[12px] mt-1">{errors.companyName}</p>}
+                {errors.companyName && <p className="text-red-400 text-xs font-mono">{errors.companyName}</p>}
               </div>
 
-              <div>
-                <label className="block text-[14px] font-medium text-[#343434] mb-1.5">
-                  Contact Person Name <span className="text-[#B62825]">*</span>
+              <div className="space-y-1.5">
+                <label className="block text-xs font-mono font-semibold text-slate-300 uppercase">
+                  Contact Person <span className="text-[#B62825]">*</span>
                 </label>
                 <input
                   type="text"
                   name="contactName"
                   value={formData.contactName}
                   onChange={handleChange}
-                  placeholder="e.g. Rajesh Sharma"
-                  className={`w-full px-3.5 py-2.5 rounded-md border text-[14px] focus:outline-none focus:ring-2 focus:ring-[#B62825] ${
-                    errors.contactName ? 'border-red-500' : 'border-[#E2E2E2]'
-                  }`}
+                  placeholder="Full name of logistics manager or coordinator"
+                  className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#B62825]"
                 />
-                {errors.contactName && <p className="text-red-500 text-[12px] mt-1">{errors.contactName}</p>}
+                {errors.contactName && <p className="text-red-400 text-xs font-mono">{errors.contactName}</p>}
               </div>
 
-              <div>
-                <label className="block text-[14px] font-medium text-[#343434] mb-1.5">
+              <div className="space-y-1.5">
+                <label className="block text-xs font-mono font-semibold text-slate-300 uppercase">
                   Business Email <span className="text-[#B62825]">*</span>
                 </label>
                 <input
@@ -585,16 +888,14 @@ export const QuoteRequestForm: React.FC = () => {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="name@company.com"
-                  className={`w-full px-3.5 py-2.5 rounded-md border text-[14px] focus:outline-none focus:ring-2 focus:ring-[#B62825] ${
-                    errors.email ? 'border-red-500' : 'border-[#E2E2E2]'
-                  }`}
+                  className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#B62825]"
                 />
-                {errors.email && <p className="text-red-500 text-[12px] mt-1">{errors.email}</p>}
+                {errors.email && <p className="text-red-400 text-xs font-mono">{errors.email}</p>}
               </div>
 
-              <div>
-                <label className="block text-[14px] font-medium text-[#343434] mb-1.5">
-                  Phone Number <span className="text-[#B62825]">*</span>
+              <div className="space-y-1.5">
+                <label className="block text-xs font-mono font-semibold text-slate-300 uppercase">
+                  Phone / Mobile Number <span className="text-[#B62825]">*</span>
                 </label>
                 <input
                   type="tel"
@@ -602,347 +903,112 @@ export const QuoteRequestForm: React.FC = () => {
                   value={formData.phone}
                   onChange={handleChange}
                   placeholder="+91 98765 43210"
-                  className={`w-full px-3.5 py-2.5 rounded-md border text-[14px] focus:outline-none focus:ring-2 focus:ring-[#B62825] ${
-                    errors.phone ? 'border-red-500' : 'border-[#E2E2E2]'
-                  }`}
+                  className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#B62825]"
                 />
-                {errors.phone && <p className="text-red-500 text-[12px] mt-1">{errors.phone}</p>}
+                {errors.phone && <p className="text-red-400 text-xs font-mono">{errors.phone}</p>}
               </div>
 
-              <div className="sm:col-span-2">
-                <label className="block text-[14px] font-medium text-[#343434] mb-1.5">
-                  Designation / Role (Optional)
+              <div className="space-y-1.5">
+                <label className="block text-xs font-mono font-semibold text-slate-300 uppercase">
+                  Designation / Role
                 </label>
                 <input
                   type="text"
                   name="designation"
                   value={formData.designation}
                   onChange={handleChange}
-                  placeholder="e.g. Export Logistics Manager"
-                  className="w-full px-3.5 py-2.5 rounded-md border border-[#E2E2E2] text-[14px] focus:outline-none focus:ring-2 focus:ring-[#B62825]"
+                  placeholder="e.g. Export Head, Logistics Specialist, Project Manager"
+                  className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#B62825]"
+                />
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="block text-xs font-mono font-semibold text-slate-300 uppercase">
+                  Additional Instructions
+                </label>
+                <input
+                  type="text"
+                  name="additionalInstructions"
+                  value={formData.additionalInstructions}
+                  onChange={handleChange}
+                  placeholder="Gate pass lead time, crane tonnage needed, port surveyor presence"
+                  className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#B62825]"
                 />
               </div>
             </div>
           </div>
         )}
 
-        {/* STEP 3: Cargo Details */}
-        {currentStep === 3 && (
-          <div className="space-y-5">
-            <div>
-              <label className="block text-[14px] font-medium text-[#343434] mb-1.5">
-                Cargo or Product Description <span className="text-[#B62825]">*</span>
-              </label>
-              <textarea
-                name="cargoDescription"
-                rows={3}
-                value={formData.cargoDescription}
-                onChange={handleChange}
-                placeholder="Describe machinery, steel parts, packaged goods, automotive components, etc."
-                className={`w-full px-3.5 py-2.5 rounded-md border text-[14px] focus:outline-none focus:ring-2 focus:ring-[#B62825] ${
-                  errors.cargoDescription ? 'border-red-500' : 'border-[#E2E2E2]'
-                }`}
-              />
-              {errors.cargoDescription && <p className="text-red-500 text-[12px] mt-1">{errors.cargoDescription}</p>}
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-              <div>
-                <label className="block text-[14px] font-medium text-[#343434] mb-1.5">
-                  Number of Packages / Units (Optional)
-                </label>
-                <input
-                  type="text"
-                  name="packageCount"
-                  value={formData.packageCount}
-                  onChange={handleChange}
-                  placeholder="e.g. 12 crates / 4 skids"
-                  className="w-full px-3.5 py-2.5 rounded-md border border-[#E2E2E2] text-[14px] focus:outline-none focus:ring-2 focus:ring-[#B62825]"
-                />
-              </div>
-
-              <div>
-                <label className="block text-[14px] font-medium text-[#343434] mb-1.5">
-                  Approximate Total Weight <span className="text-[#B62825]">*</span>
-                </label>
-                <div className="flex gap-2">
-                  <input
-                    type="text"
-                    name="approxWeight"
-                    value={formData.approxWeight}
-                    onChange={handleChange}
-                    placeholder="e.g. 18"
-                    className={`flex-1 px-3.5 py-2.5 rounded-md border text-[14px] focus:outline-none focus:ring-2 focus:ring-[#B62825] ${
-                      errors.approxWeight ? 'border-red-500' : 'border-[#E2E2E2]'
-                    }`}
-                  />
-                  <select
-                    name="weightUnit"
-                    value={formData.weightUnit}
-                    onChange={handleChange}
-                    className="px-3 py-2.5 rounded-md border border-[#E2E2E2] text-[14px] bg-white"
-                  >
-                    <option value="tons">Metric Tons</option>
-                    <option value="kg">Kilograms (kg)</option>
-                    <option value="lbs">Pounds (lbs)</option>
-                  </select>
-                </div>
-                {errors.approxWeight && <p className="text-red-500 text-[12px] mt-1">{errors.approxWeight}</p>}
-              </div>
-
-              <div>
-                <label className="block text-[14px] font-medium text-[#343434] mb-1.5">
-                  Cargo Dimensions (L × W × H)
-                </label>
-                <input
-                  type="text"
-                  name="dimensions"
-                  value={formData.dimensions}
-                  onChange={handleChange}
-                  placeholder="e.g. 3.2m × 1.8m × 2.1m (or 'Not available yet')"
-                  className="w-full px-3.5 py-2.5 rounded-md border border-[#E2E2E2] text-[14px] focus:outline-none focus:ring-2 focus:ring-[#B62825]"
-                />
-                <span className="text-[11px] text-[#666666] mt-0.5 block">
-                  Exact measurements not required if still being finalized.
-                </span>
-              </div>
-
-              <div>
-                <label className="block text-[14px] font-medium text-[#343434] mb-1.5">
-                  Packaging Requirements (Optional)
-                </label>
-                <input
-                  type="text"
-                  name="packagingNeeds"
-                  value={formData.packagingNeeds}
-                  onChange={handleChange}
-                  placeholder="e.g. Wooden crating, moisture barrier foil, skidding"
-                  className="w-full px-3.5 py-2.5 rounded-md border border-[#E2E2E2] text-[14px] focus:outline-none focus:ring-2 focus:ring-[#B62825]"
-                />
-              </div>
-
-              <div className="sm:col-span-2">
-                <label className="block text-[14px] font-medium text-[#343434] mb-1.5">
-                  Special Cargo-Handling Notes (Optional)
-                </label>
-                <input
-                  type="text"
-                  name="specialHandlingNotes"
-                  value={formData.specialHandlingNotes}
-                  onChange={handleChange}
-                  placeholder="e.g. Top-heavy machinery, crane lifting lugs available, center-of-gravity marked"
-                  className="w-full px-3.5 py-2.5 rounded-md border border-[#E2E2E2] text-[14px] focus:outline-none focus:ring-2 focus:ring-[#B62825]"
-                />
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* STEP 4: Container Arrangements */}
-        {currentStep === 4 && (
-          <div className="space-y-6">
-            {formData.solutionType === 'complete' ? (
-              <div className="space-y-5">
-                <div className="p-4 bg-red-50/60 rounded-lg border border-red-200 text-[13px] space-y-1">
-                  <div className="font-bold text-[#B62825] uppercase font-mono-code">
-                    Option A — Complete Export Packing Arrangement
-                  </div>
-                  <p className="text-[#343434]">
-                    MSK Logistics will arrange the container subject to availability and an agreed quotation. Container charges, positioning fees, and included scope will be clarified in your quotation.
-                  </p>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <div>
-                    <label className="block text-[14px] font-medium text-[#343434] mb-1.5">
-                      Preferred Container Type / Size
-                    </label>
-                    <select
-                      name="containerSize"
-                      value={formData.containerSize}
-                      onChange={handleChange}
-                      className="w-full px-3.5 py-2.5 rounded-md border border-[#E2E2E2] text-[14px] bg-white focus:outline-none focus:ring-2 focus:ring-[#B62825]"
-                    >
-                      <option value="20ft Standard Dry Container">20ft Standard Dry Container</option>
-                      <option value="40ft Standard Dry Container">40ft Standard Dry Container</option>
-                      <option value="40ft High Cube Container">40ft High Cube Container (HQ)</option>
-                      <option value="Open Top Container">Open Top Container</option>
-                      <option value="Flat Rack Container">Flat Rack Container</option>
-                      <option value="Reefer Container">Reefer Container (Refrigerated)</option>
-                      <option value="Breakbulk / Specialized Rigging">Breakbulk / Specialized Rigging (Non-containerized)</option>
-                      <option value="Not sure yet (Need MSK Recommendation)">Not sure yet (Need MSK Recommendation)</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="block text-[14px] font-medium text-[#343434] mb-1.5">
-                      Container Delivery / Positioning Location <span className="text-[#B62825]">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      name="containerLocationOrPositioning"
-                      value={formData.containerLocationOrPositioning}
-                      onChange={handleChange}
-                      placeholder="e.g. Client factory in Taloja, Navi Mumbai"
-                      className={`w-full px-3.5 py-2.5 rounded-md border text-[14px] focus:outline-none focus:ring-2 focus:ring-[#B62825] ${
-                        errors.containerLocationOrPositioning ? 'border-red-500' : 'border-[#E2E2E2]'
-                      }`}
-                    />
-                    {errors.containerLocationOrPositioning && (
-                      <p className="text-red-500 text-[12px] mt-1">{errors.containerLocationOrPositioning}</p>
-                    )}
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <div className="space-y-5">
-                <div className="p-4 bg-neutral-100 rounded-lg border border-neutral-300 text-[13px] space-y-1">
-                  <div className="font-bold text-[#343434] uppercase font-mono-code">
-                    Option B — Client-Arranged Container
-                  </div>
-                  <p className="text-[#666666]">
-                    You are responsible for arranging the container directly with your carrier or leasing partner. MSK Logistics will perform the packaging, stuffing, and cargo lashing work on-site.
-                  </p>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <div>
-                    <label className="block text-[14px] font-medium text-[#343434] mb-1.5">
-                      Your Planned Container Type / Size
-                    </label>
-                    <select
-                      name="containerSize"
-                      value={formData.containerSize}
-                      onChange={handleChange}
-                      className="w-full px-3.5 py-2.5 rounded-md border border-[#E2E2E2] text-[14px] bg-white focus:outline-none focus:ring-2 focus:ring-[#B62825]"
-                    >
-                      <option value="20ft Standard Dry Container">20ft Standard Dry Container</option>
-                      <option value="40ft Standard Dry Container">40ft Standard Dry Container</option>
-                      <option value="40ft High Cube Container">40ft High Cube Container (HQ)</option>
-                      <option value="Open Top Container">Open Top Container</option>
-                      <option value="Flat Rack Container">Flat Rack Container</option>
-                      <option value="Reefer Container">Reefer Container (Refrigerated)</option>
-                      <option value="Breakbulk / Specialized Rigging">Breakbulk / Specialized Rigging (Non-containerized)</option>
-                      <option value="Not finalized yet">Not finalized yet</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="block text-[14px] font-medium text-[#343434] mb-1.5">
-                      Container Staging / Availability Location <span className="text-[#B62825]">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      name="containerLocationOrPositioning"
-                      value={formData.containerLocationOrPositioning}
-                      onChange={handleChange}
-                      placeholder="e.g. CFS Yard, Nhava Sheva or Client Warehouse"
-                      className={`w-full px-3.5 py-2.5 rounded-md border text-[14px] focus:outline-none focus:ring-2 focus:ring-[#B62825] ${
-                        errors.containerLocationOrPositioning ? 'border-red-500' : 'border-[#E2E2E2]'
-                      }`}
-                    />
-                    {errors.containerLocationOrPositioning && (
-                      <p className="text-red-500 text-[12px] mt-1">{errors.containerLocationOrPositioning}</p>
-                    )}
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
-        )}
-
-        {/* STEP 5: Schedule & Location */}
+        {/* ========================================================================= */}
+        {/* STEP 5: Review & Confirm Submission                                       */}
+        {/* ========================================================================= */}
         {currentStep === 5 && (
-          <div className="space-y-5">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-              <div>
-                <label className="block text-[14px] font-medium text-[#343434] mb-1.5">
-                  Preferred Packing / Stuffing Date
-                </label>
-                <input
-                  type="date"
-                  name="preferredDate"
-                  value={formData.preferredDate}
-                  onChange={handleChange}
-                  className="w-full px-3.5 py-2.5 rounded-md border border-[#E2E2E2] text-[14px] focus:outline-none focus:ring-2 focus:ring-[#B62825]"
-                />
-                <span className="text-[11px] text-[#666666] mt-0.5 block">
-                  Subject to operational confirmation. (Not a final booking).
-                </span>
-              </div>
+          <div className="space-y-6">
+            <div>
+              <h3 className="text-lg font-bold text-white">Review Quote Specifications</h3>
+              <p className="text-xs text-slate-400 mt-1">
+                Please verify your cargo and operational details before dispatching to our engineering desk.
+              </p>
+            </div>
 
-              <div>
-                <label className="block text-[14px] font-medium text-[#343434] mb-1.5">
-                  Operational Packing Facility / Work Location <span className="text-[#B62825]">*</span>
-                </label>
-                <input
-                  type="text"
-                  name="operationalAddress"
-                  value={formData.operationalAddress}
-                  onChange={handleChange}
-                  placeholder="e.g. Plot 45, MIDC Taloja, Navi Mumbai"
-                  className={`w-full px-3.5 py-2.5 rounded-md border text-[14px] focus:outline-none focus:ring-2 focus:ring-[#B62825] ${
-                    errors.operationalAddress ? 'border-red-500' : 'border-[#E2E2E2]'
-                  }`}
-                />
-                {errors.operationalAddress && (
-                  <p className="text-red-500 text-[12px] mt-1">{errors.operationalAddress}</p>
+            {/* Industrial Review Card */}
+            <div className="rounded-xl bg-white/5 border border-white/10 p-5 space-y-4 font-mono text-xs">
+              <div className="flex flex-wrap items-center justify-between border-b border-white/10 pb-3 gap-2">
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-[#B62825]" />
+                  <span className="text-white font-bold tracking-wider">
+                    {SERVICE_OPTIONS.find(s => s.id === formData.enquiryCategory)?.title.toUpperCase() || 'LOGISTICS SERVICE'}
+                  </span>
+                </div>
+                {formData.quoteName && (
+                  <span className="px-2 py-0.5 rounded bg-[#B62825]/20 text-red-300 border border-[#B62825]/40 font-bold">
+                    Q NAME: {formData.quoteName}
+                  </span>
                 )}
               </div>
 
-              <div className="sm:col-span-2">
-                <label className="block text-[14px] font-medium text-[#343434] mb-1.5">
-                  Additional Scope Notes / Work Schedule Instructions (Optional)
-                </label>
-                <textarea
-                  name="additionalInstructions"
-                  rows={3}
-                  value={formData.additionalInstructions}
-                  onChange={handleChange}
-                  placeholder="Specify crane requirements, gate entry formalities, loading window constraints, etc."
-                  className="w-full px-3.5 py-2.5 rounded-md border border-[#E2E2E2] text-[14px] focus:outline-none focus:ring-2 focus:ring-[#B62825]"
-                />
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* STEP 6: Review & Consent */}
-        {currentStep === 6 && (
-          <div className="space-y-6">
-            <div className="bg-[#F5F5F3] p-5 rounded-lg border border-[#E2E2E2] space-y-4 text-[13px]">
-              <div className="flex items-center justify-between border-b border-[#E2E2E2] pb-2 font-bold text-[#343434]">
-                <span>Enquiry Summary</span>
-                <span className="font-mono-code text-[11px] text-[#B62825]">
-                  {formData.solutionType === 'complete' ? 'OPTION A: COMPLETE SOLUTION' : 'OPTION B: CLIENT-ARRANGED CONTAINER'}
-                </span>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-[#343434]">
-                <div><strong>Company:</strong> {formData.companyName || '—'}</div>
-                <div><strong>Contact:</strong> {formData.contactName} ({formData.phone})</div>
-                <div><strong>Email:</strong> {formData.email}</div>
-                <div><strong>Enquiry Focus:</strong> {
-                  ENQUIRY_CATEGORIES.find(c => c.id === formData.enquiryCategory)?.label || formData.enquiryCategory
-                }</div>
-                <div><strong>Cargo:</strong> {formData.cargoDescription}</div>
-                <div><strong>Weight:</strong> {formData.approxWeight} {formData.weightUnit}</div>
-                <div><strong>Dimensions:</strong> {formData.dimensions || 'Pending confirmation'}</div>
-                <div><strong>Container:</strong> {formData.containerSize}</div>
-                <div className="sm:col-span-2"><strong>Work Location:</strong> {formData.operationalAddress}</div>
-              </div>
-
-              {(formData.enquiryCategory === 'open-warehouse' || formData.enquiryCategory === 'shaded-warehouse') && (
-                <div className="p-2.5 bg-amber-50 border border-amber-200 rounded text-[12px] text-amber-900">
-                  <strong>Warehouse Staging Note:</strong> Open-yard and shaded staging inquiries are indicative and awaiting formal facility capacity confirmation by MSK Logistics prior to final quote approval.
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-slate-300">
+                <div>
+                  <span className="text-slate-500 block text-[10px] uppercase">Company:</span>
+                  <span className="text-white font-semibold">{formData.companyName || '—'}</span>
                 </div>
-              )}
+                <div>
+                  <span className="text-slate-500 block text-[10px] uppercase">Contact Person:</span>
+                  <span className="text-white">{formData.contactName} ({formData.phone})</span>
+                </div>
+                <div>
+                  <span className="text-slate-500 block text-[10px] uppercase">Business Email:</span>
+                  <span className="text-white">{formData.email}</span>
+                </div>
+                <div>
+                  <span className="text-slate-500 block text-[10px] uppercase">Cargo Commodity:</span>
+                  <span className="text-white">{formData.cargoDescription}</span>
+                </div>
+                <div>
+                  <span className="text-slate-500 block text-[10px] uppercase">Weight &amp; Units:</span>
+                  <span className="text-emerald-400 font-bold">{formData.approxWeight} {formData.weightUnit}</span>
+                </div>
+                <div>
+                  <span className="text-slate-500 block text-[10px] uppercase">Target Equipment:</span>
+                  <span className="text-white">{formData.containerSize}</span>
+                </div>
+                <div className="sm:col-span-2">
+                  <span className="text-slate-500 block text-[10px] uppercase">Operating / Staging Location:</span>
+                  <span className="text-white">{formData.operationalAddress || formData.originCity}</span>
+                </div>
+                {formData.packagingNeeds && (
+                  <div>
+                    <span className="text-slate-500 block text-[10px] uppercase">Packaging Scope:</span>
+                    <span className="text-white">{formData.packagingNeeds}</span>
+                  </div>
+                )}
+              </div>
 
-              <div className="pt-2 border-t border-[#E2E2E2] text-[12px] text-neutral-600">
-                <strong>Responsibility Check:</strong>{' '}
-                {formData.solutionType === 'complete'
-                  ? 'Option A: MSK Logistics arranges container (subject to quotation & availability) and performs agreed packing, stuffing, and lashing.'
-                  : 'Option B: Customer provides cargo and arranges container; MSK Logistics performs agreed packaging, stuffing, and lashing.'}
+              <div className="pt-3 border-t border-white/10 flex items-center justify-between text-[11px] text-slate-400">
+                <span>Direct 24×7 Operations Hotline:</span>
+                <a href="tel:8108672929" className="text-red-400 font-bold hover:underline">
+                  +91 8108672929
+                </a>
               </div>
             </div>
 
@@ -954,66 +1020,89 @@ export const QuoteRequestForm: React.FC = () => {
                   name="privacyConsent"
                   checked={formData.privacyConsent}
                   onChange={handleChange}
-                  className="w-4 h-4 text-[#B62825] focus:ring-[#B62825] rounded mt-0.5"
+                  className="w-4 h-4 text-[#B62825] accent-[#B62825] rounded mt-0.5"
                 />
-                <span className="text-[13px] text-[#343434] leading-snug">
-                  I confirm that the shipment details provided are accurate for quotation purposes. I understand that submitting this enquiry does not constitute a confirmed container booking or price guarantee until formally reviewed and accepted in writing by MSK Logistics Pvt. Ltd.
+                <span className="text-xs text-slate-300 leading-relaxed">
+                  I confirm that the shipment specifications provided are accurate for operational assessment. I understand this enquiry will be reviewed by MSK Logistics commercial desk to generate a formal quote.
                 </span>
               </label>
               {errors.privacyConsent && (
-                <p className="text-red-500 text-[12px] pl-7">{errors.privacyConsent}</p>
+                <p className="text-red-400 text-xs font-mono pl-7">{errors.privacyConsent}</p>
               )}
             </div>
 
             {submitError && (
-              <div className="p-4 bg-red-50 rounded border border-red-200 text-red-700 text-[13px] flex items-center gap-2">
-                <AlertCircle className="w-4 h-4 shrink-0" />
-                <span>{submitError}</span>
+              <div className="p-4 bg-red-950/80 rounded-xl border border-red-700 text-red-200 text-xs space-y-3">
+                <div className="flex items-start gap-2.5">
+                  <AlertCircle className="w-5 h-5 text-red-400 shrink-0 mt-0.5" />
+                  <div className="space-y-1">
+                    <p className="font-semibold text-red-300 font-mono tracking-wide">
+                      SUBMISSION NOTICE
+                    </p>
+                    <p className="leading-relaxed text-slate-200">{submitError}</p>
+                  </div>
+                </div>
+                <div className="pt-2 border-t border-red-800/60 flex flex-wrap gap-2 text-xs font-mono">
+                  <a
+                    href={`mailto:info@msklogisticsolution.com?subject=Quote%20Request%20-%20${encodeURIComponent(formData.quoteName || formData.companyName || 'Industrial Consignment')}&body=Company:%20${encodeURIComponent(formData.companyName)}%0D%0AContact:%20${encodeURIComponent(formData.contactName)}%20(${encodeURIComponent(formData.phone)})%0D%0AService:%20${encodeURIComponent(formData.enquiryCategory)}%0D%0ACargo:%20${encodeURIComponent(formData.cargoDescription)}%0D%0AWeight:%20${encodeURIComponent(formData.approxWeight)}%20${encodeURIComponent(formData.weightUnit)}`}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#B62825] hover:bg-[#9E2220] text-white font-bold transition-colors"
+                  >
+                    <span>Email Direct: info@msklogisticsolution.com</span>
+                  </a>
+                  <a
+                    href="tel:8108672929"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white font-bold transition-colors border border-white/20"
+                  >
+                    <span>Call Desk: +91 81086 72929</span>
+                  </a>
+                </div>
               </div>
             )}
           </div>
         )}
 
-        {/* Navigation Buttons */}
-        <div className="pt-4 border-t border-[#E2E2E2] flex items-center justify-between gap-3">
+        {/* ========================================================================= */}
+        {/* Navigation Buttons                                                        */}
+        {/* ========================================================================= */}
+        <div className="pt-6 border-t border-white/10 flex items-center justify-between gap-3">
           {currentStep > 1 ? (
             <button
               type="button"
               onClick={handlePrev}
               disabled={isSubmitting}
-              className="btn-secondary px-5 py-2.5 text-[14px]"
+              className="px-5 py-2.5 rounded-xl border border-white/20 hover:border-white/40 text-slate-300 hover:text-white text-xs font-semibold font-mono transition-colors flex items-center gap-1.5"
             >
-              <ArrowLeft className="w-4 h-4 mr-1" />
-              <span>Previous</span>
+              <ArrowLeft className="w-4 h-4" />
+              <span>PREVIOUS</span>
             </button>
           ) : (
             <div />
           )}
 
-          {currentStep < 6 ? (
+          {currentStep < 5 ? (
             <button
               type="button"
               onClick={handleNext}
-              className="btn-primary px-6 py-2.5 text-[14px]"
+              className="px-6 py-2.5 rounded-xl bg-[#B62825] hover:bg-[#9E2220] text-white text-xs font-semibold font-mono tracking-wider transition-colors shadow-lg flex items-center gap-1.5"
             >
-              <span>Continue</span>
-              <ArrowRight className="w-4 h-4 ml-1" />
+              <span>CONTINUE</span>
+              <ArrowRight className="w-4 h-4" />
             </button>
           ) : (
             <button
               type="submit"
               disabled={isSubmitting}
-              className="btn-primary px-8 py-3 text-[15px]"
+              className="px-8 py-3 rounded-xl bg-[#B62825] hover:bg-[#9E2220] text-white text-sm font-bold font-mono tracking-wider transition-all shadow-xl flex items-center gap-2 disabled:opacity-50"
             >
               {isSubmitting ? (
                 <>
-                  <Loader2 className="w-4 h-4 animate-spin mr-1.5" />
-                  <span>Submitting Request...</span>
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  <span>TRANSMITTING SPECIFICATION...</span>
                 </>
               ) : (
                 <>
-                  <Send className="w-4 h-4 mr-1.5" />
-                  <span>Submit Quote Request</span>
+                  <Send className="w-4 h-4" />
+                  <span>SUBMIT QUOTE REQUEST</span>
                 </>
               )}
             </button>

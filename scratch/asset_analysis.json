@@ -1,0 +1,2626 @@
+{
+  "totalImages": 159,
+  "duplicateGroups": [
+    {
+      "hash": "e7f22b04830eeb400b54dfea94464d0bb283a14fd8167a89d76f2c3811de16f9",
+      "paths": [
+        "public/images/certifications/iso-9001-2015-certified.jpg",
+        "public/images/iso/iso-9001-2015.jpg"
+      ]
+    },
+    {
+      "hash": "8cba844994576cd6e360d3ce43046ccd2053a87ab574810c8bff45322a372442",
+      "paths": [
+        "public/images/containers/container-20ft-flat-rack.jpg",
+        "public/images/drive-staging/IMG-20261022-WA0023.jpg",
+        "public/images/shipments/flat-rack/flat-rack-20ft-tarpaulin-lashed.jpg"
+      ]
+    },
+    {
+      "hash": "a55d93a3efec13bc101e0da8df8558bf9eff92a548a41f75f786909165b62344",
+      "paths": [
+        "public/images/containers/container-40ft-flat-rack.jpg",
+        "public/images/drive-staging/IMG-20261022-WA0026.jpg",
+        "public/images/shipments/flat-rack/flat-rack-40ft-dual-cargo-lashed.jpg"
+      ]
+    },
+    {
+      "hash": "df40c1e8c98b718c5104c4f469eb2452d9dfe97fd790d3e9367d9d48b9205ef9",
+      "paths": [
+        "public/images/containers/container-40ft-high-cube.jpg",
+        "public/images/drive-staging/IMG-20261022-WA0004.jpg"
+      ]
+    },
+    {
+      "hash": "56587c07a16e9e29aa4f9e60eba90fb518b481f18eef644d0c5d0ec6da158187",
+      "paths": [
+        "public/images/containers/container-flat-rack-dual-stowage.jpg",
+        "public/images/drive-staging/IMG-20261022-WA0009.jpg",
+        "public/images/shipments/flat-rack/flat-rack-aerial-stowage.jpg"
+      ]
+    },
+    {
+      "hash": "e831be7ab9f978dcc5caefef28dceec91f3e974b3555eef5b9a1bfe3151afeb5",
+      "paths": [
+        "public/images/drive-staging/IMG-20261022-WA0002.jpg",
+        "public/images/operations/export-packaging/heavy-machinery-skid-wrapping.jpg"
+      ]
+    },
+    {
+      "hash": "6c3c3639c3057f6a4e72b7f3ecc5a3f620d03f9dde0fedab76b2d784a5b81d5b",
+      "paths": [
+        "public/images/drive-staging/IMG-20261022-WA0003.jpg",
+        "public/images/operations/export-packaging/skidded-equipment-terminal-staging.jpg"
+      ]
+    },
+    {
+      "hash": "af0c7aae8a1747effbe0ebd1d0bf21d16cb9687da863112bfd26c98da6e6c9a4",
+      "paths": [
+        "public/images/drive-staging/IMG-20261022-WA0005.jpg",
+        "public/images/operations/export-packaging/sandvik-heavy-wooden-crate.jpg"
+      ]
+    },
+    {
+      "hash": "fdb5a847c661c5ad550308fe7a3d9a58afc29f91d7517abf24f7fcd7bcde9739",
+      "paths": [
+        "public/images/drive-staging/IMG-20261022-WA0006.jpg",
+        "public/images/shipments/breakbulk/breakbulk-lowbed-machinery-lashing.jpg"
+      ]
+    },
+    {
+      "hash": "bd0eb26ee1937e3e76ad765e304061ee23ec67952e166f71905b4cac270fe9c3",
+      "paths": [
+        "public/images/drive-staging/IMG-20261022-WA0007.jpg",
+        "public/images/shipments/breakbulk/breakbulk-heavy-rigging-trailer.jpg"
+      ]
+    },
+    {
+      "hash": "822a27e2f31e779db18ce44baecf7842322b18ed7c3c02be1cce006e1c86cf05",
+      "paths": [
+        "public/images/drive-staging/IMG-20261022-WA0008.jpg",
+        "public/images/operations/cargo-lashing/trailer-chassis-ratchet-lashing.jpg"
+      ]
+    },
+    {
+      "hash": "d1b8c98abb309ea79715e224c35e7da47788e2fdc2cc2734786b65ff250dee14",
+      "paths": [
+        "public/images/drive-staging/IMG-20261022-WA0010.jpg",
+        "public/images/operations/container-loading/rigging-crew-crane-loading.jpg",
+        "public/images/shipments/flat-rack/flat-rack-crane-loading.jpg"
+      ]
+    },
+    {
+      "hash": "687b6bb64a328ab3f0656f788f8044e1e0a31cadb98731b103150cd38fb1d95b",
+      "paths": [
+        "public/images/drive-staging/IMG-20261022-WA0011.jpg",
+        "public/images/operations/warehouse/shaded-warehouse-main-bay.jpg"
+      ]
+    },
+    {
+      "hash": "a46f51ea591f55473f2aade0f3360209eb53091cf00dac32385fdf704fc702e2",
+      "paths": [
+        "public/images/drive-staging/IMG-20261022-WA0012.jpg",
+        "public/images/operations/container-loading/vessel-stowage-cell-guides.jpg",
+        "public/images/shipments/flat-rack/flat-rack-vessel-cell-stowage.jpg"
+      ]
+    },
+    {
+      "hash": "912cefe6e89d49c130ed173337be683dcbef044b9edd3e5aa67a159ba91fdf2e",
+      "paths": [
+        "public/images/drive-staging/IMG-20261022-WA0013.jpg",
+        "public/images/operations/warehouse/export-pallet-strapping-staging.jpg"
+      ]
+    },
+    {
+      "hash": "65ee8c3a015d464e484ea07ff0a40594cdef5896c5616893442e34805238c793",
+      "paths": [
+        "public/images/drive-staging/IMG-20261022-WA0014.jpg",
+        "public/images/operations/warehouse/covered-staging-bays-pallets.jpg"
+      ]
+    },
+    {
+      "hash": "0b5e2d304762cd72012da68fcae12d9bd4b883475c1258a020e513ac4fbab677",
+      "paths": [
+        "public/images/drive-staging/IMG-20261022-WA0015.jpg",
+        "public/images/operations/container-loading/mobile-crane-heavy-lift.jpg",
+        "public/images/shipments/flat-rack/flat-rack-mobile-crane-lift.jpg"
+      ]
+    },
+    {
+      "hash": "0c7b988f31f9d02c8febf441a4c905f826433187dd385f0f77465f5254a81ed7",
+      "paths": [
+        "public/images/drive-staging/IMG-20261022-WA0016.jpg",
+        "public/images/operations/warehouse/industrial-rolls-covered-storage.jpg"
+      ]
+    },
+    {
+      "hash": "fcbe32ee4b51255635227224d4984a465d3ee1eca25bb6a83fbb65160f96fbe1",
+      "paths": [
+        "public/images/drive-staging/IMG-20261022-WA0017.jpg",
+        "public/images/shipments/breakbulk/breakbulk-vessel-hold-stowage.jpg"
+      ]
+    },
+    {
+      "hash": "9aaffe96e27f796a3a3ed903b75327db8c7fbdc0d90a69bdb5178b4f0b5cdfab",
+      "paths": [
+        "public/images/drive-staging/IMG-20261022-WA0018.jpg",
+        "public/images/shipments/breakbulk/breakbulk-cylindrical-haulage.jpg"
+      ]
+    },
+    {
+      "hash": "24baacbcc4842ac59c33be77de08074cca9b38bfca99dbe88e3d11aef851e5f8",
+      "paths": [
+        "public/images/drive-staging/IMG-20261022-WA0019.jpg",
+        "public/images/shipments/flat-rack/flat-rack-night-lashing-hold.jpg"
+      ]
+    },
+    {
+      "hash": "326af3cd78bdc3c84306738a675bedbe58d4472657789901213b396346103640",
+      "paths": [
+        "public/images/drive-staging/IMG-20261022-WA0020.jpg",
+        "public/images/operations/cargo-lashing/vessel-cross-webbing-lashing.jpg"
+      ]
+    },
+    {
+      "hash": "5e8c3d30826283e85198493fdcfaf277f32f5694b079c18e41510239f6174a01",
+      "paths": [
+        "public/images/drive-staging/IMG-20261022-WA0024.jpg",
+        "public/images/operations/cargo-lashing/flat-rack-heavy-duty-orange-lashing.jpg"
+      ]
+    },
+    {
+      "hash": "36cd6ea7a899978a9326c235cd0fec8c251ce191ea0c9bb530150ef0affb3edf",
+      "paths": [
+        "public/images/drive-staging/IMG-20261022-WA0025.jpg",
+        "public/images/operations/warehouse/open-yard-conex-staging.jpg"
+      ]
+    },
+    {
+      "hash": "fbb45bdc6ba92f5c6c55357d98ba5b7948951f9928193ae5bc758f69154690ed",
+      "paths": [
+        "public/images/drive-staging/IMG-20261022-WA0030.jpg",
+        "public/images/operations/office/msk-jnpt-office-signboard.jpg"
+      ]
+    },
+    {
+      "hash": "762180191a3e85fdd2b5bad592dcdcc2d0f1220382a801b1bb268617f71e463c",
+      "paths": [
+        "public/images/hero/cinematic-port-hero-unified.jpg",
+        "public/images/hero/msk-cinematic-port-final.jpg"
+      ]
+    },
+    {
+      "hash": "a7f78ef7d748de49df92492ef9034b9addd0205d3d25a38814018cdb5acdce2c",
+      "paths": [
+        "public/images/hero/msk-cinematic-port-final.png",
+        "public/images/hero/msk-logistics-cinematic-bg.png"
+      ]
+    },
+    {
+      "hash": "ebf6ec8945f5516517a6a1f7efb929ee8166713503e25a90a696406947e717cc",
+      "paths": [
+        "public/images/import-export/lcl-consolidation.jpg",
+        "public/images/services/export-pallets.jpg"
+      ]
+    },
+    {
+      "hash": "8a210ac97219a812b3ec9d50642d3f7171c8313514a8162c8800cf263d75810a",
+      "paths": [
+        "public/images/import-export/lcl-consolidation.webp",
+        "public/images/services/export-pallets.webp"
+      ]
+    },
+    {
+      "hash": "bace0a4b24c54150efb296ad0bde01ebd797e9cee2651be99de0966bd80feb16",
+      "paths": [
+        "public/images/operations/warehouse/open-warehouse-edited-sky.jpg",
+        "public/images/operations/warehouse/open-warehouse-yard-staging.jpg"
+      ]
+    }
+  ],
+  "unusedCount": 38,
+  "usedCount": 121,
+  "inventory": [
+    {
+      "diskPath": "public/apple-touch-icon.png",
+      "publicRef": "/apple-touch-icon.png",
+      "filename": "apple-touch-icon.png",
+      "ext": ".png",
+      "size": 24868,
+      "width": 180,
+      "height": 180,
+      "type": "png",
+      "sha256": "b91c5c18b49fafd8fa0f59e7cb07654578b45fbc2fa27226d94591e08da7026e",
+      "usages": [
+        "index.html"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/favicon-16.png",
+      "publicRef": "/favicon-16.png",
+      "filename": "favicon-16.png",
+      "ext": ".png",
+      "size": 748,
+      "width": 16,
+      "height": 16,
+      "type": "png",
+      "sha256": "74d7ef2e2c637a49f50e0c209cc014787fefc4fa0c0a6c31d97b6a75f939b4b0",
+      "usages": [
+        "index.html"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/favicon-192.png",
+      "publicRef": "/favicon-192.png",
+      "filename": "favicon-192.png",
+      "ext": ".png",
+      "size": 27720,
+      "width": 192,
+      "height": 192,
+      "type": "png",
+      "sha256": "0bbdddccccdeb7c28a8c62515515c47ca90c3c5d75670fb25d38295ffc19126b",
+      "usages": [],
+      "isUsed": false
+    },
+    {
+      "diskPath": "public/favicon-32.png",
+      "publicRef": "/favicon-32.png",
+      "filename": "favicon-32.png",
+      "ext": ".png",
+      "size": 1847,
+      "width": 32,
+      "height": 32,
+      "type": "png",
+      "sha256": "ca61caad692a9080d58180b825c764c0ee682e7083c7d2c8bc9424284c446375",
+      "usages": [
+        "index.html"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/favicon.png",
+      "publicRef": "/favicon.png",
+      "filename": "favicon.png",
+      "ext": ".png",
+      "size": 133868,
+      "width": 512,
+      "height": 512,
+      "type": "png",
+      "sha256": "e1223a307bb10b88988ac02ab8745bda0e271f38e9261d27853be2dbfb8dc5e2",
+      "usages": [
+        "index.html"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/favicon.svg",
+      "publicRef": "/favicon.svg",
+      "filename": "favicon.svg",
+      "ext": ".svg",
+      "size": 144201,
+      "width": 512,
+      "height": 512,
+      "type": "svg",
+      "sha256": "a5f665460f07caee7cba6118c54618f205680f1a24852236a97b7f331b54bebb",
+      "usages": [],
+      "isUsed": false
+    },
+    {
+      "diskPath": "public/icons.svg",
+      "publicRef": "/icons.svg",
+      "filename": "icons.svg",
+      "ext": ".svg",
+      "size": 5031,
+      "width": 16,
+      "height": 17,
+      "type": "svg",
+      "sha256": "b45fa506195cfcdef406ba9f0c77b36ddc1a7c224040926ec70abc2fdea7b93a",
+      "usages": [],
+      "isUsed": false
+    },
+    {
+      "diskPath": "public/images/certifications/iso-9001-2015-certified.jpg",
+      "publicRef": "/images/certifications/iso-9001-2015-certified.jpg",
+      "filename": "iso-9001-2015-certified.jpg",
+      "ext": ".jpg",
+      "size": 92634,
+      "width": 779,
+      "height": 755,
+      "type": "jpg",
+      "sha256": "e7f22b04830eeb400b54dfea94464d0bb283a14fd8167a89d76f2c3811de16f9",
+      "usages": [],
+      "isUsed": false
+    },
+    {
+      "diskPath": "public/images/clients/alliance-logo.png",
+      "publicRef": "/images/clients/alliance-logo.png",
+      "filename": "alliance-logo.png",
+      "ext": ".png",
+      "size": 32316,
+      "width": 240,
+      "height": 196,
+      "type": "png",
+      "sha256": "b1fe402f047af322df531653bd6cf6c13147df915e9bd23545d2688c5301a39d",
+      "usages": [
+        "src\\pages\\ClientsPage.tsx"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/clients/astraasl-logo.png",
+      "publicRef": "/images/clients/astraasl-logo.png",
+      "filename": "astraasl-logo.png",
+      "ext": ".png",
+      "size": 6631,
+      "width": 91,
+      "height": 130,
+      "type": "png",
+      "sha256": "e90ec2fb5b0516bfe65da4fcd76106d35784d60e1a4eafdb39dde2063d8ae4f8",
+      "usages": [
+        "src\\pages\\ClientsPage.tsx"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/clients/drift-logo.png",
+      "publicRef": "/images/clients/drift-logo.png",
+      "filename": "drift-logo.png",
+      "ext": ".png",
+      "size": 14297,
+      "width": 216,
+      "height": 83,
+      "type": "png",
+      "sha256": "af5ec87191c4518ad844d13b980657adbdfb76c19cf32e30f21b2ffd2066a842",
+      "usages": [
+        "src\\pages\\ClientsPage.tsx"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/clients/goodrich-logo.jpg",
+      "publicRef": "/images/clients/goodrich-logo.jpg",
+      "filename": "goodrich-logo.jpg",
+      "ext": ".jpg",
+      "size": 32239,
+      "width": 650,
+      "height": 500,
+      "type": "jpg",
+      "sha256": "e692f62a93039577ee9ba4cc670ec1911ef4ef0c58f4903c93be80d4c9778172",
+      "usages": [
+        "src\\pages\\ClientsPage.tsx"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/clients/greenwich-logo.png",
+      "publicRef": "/images/clients/greenwich-logo.png",
+      "filename": "greenwich-logo.png",
+      "ext": ".png",
+      "size": 22614,
+      "width": 214,
+      "height": 78,
+      "type": "png",
+      "sha256": "c9e7b07bd316d36e48bc0c4f60f275400654bcd07687a369a2c74a9f741d34d5",
+      "usages": [
+        "src\\pages\\ClientsPage.tsx"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/clients/hublinks-logo.png",
+      "publicRef": "/images/clients/hublinks-logo.png",
+      "filename": "hublinks-logo.png",
+      "ext": ".png",
+      "size": 3075,
+      "width": 213,
+      "height": 73,
+      "type": "png",
+      "sha256": "9c9372e311b154f47f1645021aa50e613e6d2244cd29080a62bdb4a253ee5004",
+      "usages": [
+        "src\\pages\\ClientsPage.tsx"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/clients/integrity-logo.png",
+      "publicRef": "/images/clients/integrity-logo.png",
+      "filename": "integrity-logo.png",
+      "ext": ".png",
+      "size": 32972,
+      "width": 400,
+      "height": 136,
+      "type": "png",
+      "sha256": "1ad3211a8682bb89ebd3d7d11beb609622330e3298a21475ab7de5d58bb93957",
+      "usages": [
+        "src\\pages\\ClientsPage.tsx"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/clients/jaguar-logo.jpg",
+      "publicRef": "/images/clients/jaguar-logo.jpg",
+      "filename": "jaguar-logo.jpg",
+      "ext": ".jpg",
+      "size": 6737,
+      "width": 67,
+      "height": 91,
+      "type": "jpg",
+      "sha256": "f71bc41e598aa0d29733ca25cf40a9d1bbf0846d8e0d8aedba3198b533551184",
+      "usages": [
+        "src\\pages\\ClientsPage.tsx"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/clients/omkar-logo.png",
+      "publicRef": "/images/clients/omkar-logo.png",
+      "filename": "omkar-logo.png",
+      "ext": ".png",
+      "size": 30300,
+      "width": 519,
+      "height": 90,
+      "type": "png",
+      "sha256": "9a47f70befbb3f088d260bf8820ff502b2f9ce276bff8a231307c30e5a33326f",
+      "usages": [
+        "src\\pages\\ClientsPage.tsx"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/clients/phvalue-logo.svg",
+      "publicRef": "/images/clients/phvalue-logo.svg",
+      "filename": "phvalue-logo.svg",
+      "ext": ".svg",
+      "size": 154391,
+      "width": 69,
+      "height": 71,
+      "type": "svg",
+      "sha256": "50cb8843229ede8df2112a2f6621c0ba5edd3160cb617e7af0bed4d698116a25",
+      "usages": [
+        "src\\pages\\ClientsPage.tsx"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/clients/sahara-logo.jpg",
+      "publicRef": "/images/clients/sahara-logo.jpg",
+      "filename": "sahara-logo.jpg",
+      "ext": ".jpg",
+      "size": 61881,
+      "width": 526,
+      "height": 509,
+      "type": "jpg",
+      "sha256": "1ba158c4882b67c634f87c4c347ce07c221bcde99deb4552968f27566f210240",
+      "usages": [
+        "src\\pages\\ClientsPage.tsx"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/clients/shreeji-logo.svg",
+      "publicRef": "/images/clients/shreeji-logo.svg",
+      "filename": "shreeji-logo.svg",
+      "ext": ".svg",
+      "size": 51386,
+      "width": 4148,
+      "height": 1242,
+      "type": "svg",
+      "sha256": "d1aee10c60a55a1c403796cf8116de017b1fc57a57f9e23af16aa6ea28e9147f",
+      "usages": [
+        "src\\pages\\ClientsPage.tsx"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/clients/transglobal-logo.webp",
+      "publicRef": "/images/clients/transglobal-logo.webp",
+      "filename": "transglobal-logo.webp",
+      "ext": ".webp",
+      "size": 6816,
+      "width": 300,
+      "height": 59,
+      "type": "webp (VP8X)",
+      "sha256": "5779240d532aeae95691fa9f185f21f8d141499c59c248530307c739f4e86f6b",
+      "usages": [
+        "src\\pages\\ClientsPage.tsx"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/clients/vanguard-logo.svg",
+      "publicRef": "/images/clients/vanguard-logo.svg",
+      "filename": "vanguard-logo.svg",
+      "ext": ".svg",
+      "size": 4826,
+      "width": 331,
+      "height": 85,
+      "type": "svg",
+      "sha256": "e30365ee25691ebb65af55dd11bdbd081b0269e111d46fcd79b72150460d9bfb",
+      "usages": [
+        "src\\pages\\ClientsPage.tsx"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/containers/20ft-standard-dry-container.svg",
+      "publicRef": "/images/containers/20ft-standard-dry-container.svg",
+      "filename": "20ft-standard-dry-container.svg",
+      "ext": ".svg",
+      "size": 3346,
+      "width": 800,
+      "height": 480,
+      "type": "svg",
+      "sha256": "a4631bd4e2008c24890bc400294f39a70d26c16c9a1e2a710cba6179e17453a6",
+      "usages": [
+        "src\\data\\assetChecklist.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/containers/20ft-standard-dry-exterior.jpg",
+      "publicRef": "/images/containers/20ft-standard-dry-exterior.jpg",
+      "filename": "20ft-standard-dry-exterior.jpg",
+      "ext": ".jpg",
+      "size": 823691,
+      "width": 1376,
+      "height": 768,
+      "type": "jpg",
+      "sha256": "93aa4d43dce6b6f020d4b2bfd74a61afeb354c0cac22e7e5f4aab6edfa7876eb",
+      "usages": [
+        "src\\data\\containerGuideData.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/containers/20ft-standard-dry-interior.jpg",
+      "publicRef": "/images/containers/20ft-standard-dry-interior.jpg",
+      "filename": "20ft-standard-dry-interior.jpg",
+      "ext": ".jpg",
+      "size": 814763,
+      "width": 1376,
+      "height": 768,
+      "type": "jpg",
+      "sha256": "90aa3050e481c462ceae6932d2e38486a9aa43a4b8e25eaeaaa2a91ab1319d13",
+      "usages": [
+        "src\\data\\containerGuideData.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/containers/40ft-high-cube-container.svg",
+      "publicRef": "/images/containers/40ft-high-cube-container.svg",
+      "filename": "40ft-high-cube-container.svg",
+      "ext": ".svg",
+      "size": 3419,
+      "width": 800,
+      "height": 480,
+      "type": "svg",
+      "sha256": "92ff6d2d17c07330b5cf22db3e4c0500b8588340a9b608d01df06d3627a317b5",
+      "usages": [
+        "src\\data\\assetChecklist.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/containers/40ft-high-cube-exterior.jpg",
+      "publicRef": "/images/containers/40ft-high-cube-exterior.jpg",
+      "filename": "40ft-high-cube-exterior.jpg",
+      "ext": ".jpg",
+      "size": 838164,
+      "width": 1376,
+      "height": 768,
+      "type": "jpg",
+      "sha256": "c8fb0832b1585709c45516e7d57024f40d66121381666a888509f5b35633d340",
+      "usages": [
+        "src\\data\\containerGuideData.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/containers/40ft-high-cube-interior.jpg",
+      "publicRef": "/images/containers/40ft-high-cube-interior.jpg",
+      "filename": "40ft-high-cube-interior.jpg",
+      "ext": ".jpg",
+      "size": 831706,
+      "width": 1376,
+      "height": 768,
+      "type": "jpg",
+      "sha256": "dea63a1c94a4cc2287bb0bfd086c2414d2f5382e89bf6726c58c02fc417fd327",
+      "usages": [
+        "src\\data\\containerGuideData.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/containers/40ft-standard-dry-container.svg",
+      "publicRef": "/images/containers/40ft-standard-dry-container.svg",
+      "filename": "40ft-standard-dry-container.svg",
+      "ext": ".svg",
+      "size": 3156,
+      "width": 800,
+      "height": 480,
+      "type": "svg",
+      "sha256": "1fd70fdd8ee697e76d652f46add79d9ab781a7d9ed8d8612c870d1b2661edd43",
+      "usages": [
+        "src\\data\\assetChecklist.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/containers/40ft-standard-dry-exterior.jpg",
+      "publicRef": "/images/containers/40ft-standard-dry-exterior.jpg",
+      "filename": "40ft-standard-dry-exterior.jpg",
+      "ext": ".jpg",
+      "size": 816058,
+      "width": 1376,
+      "height": 768,
+      "type": "jpg",
+      "sha256": "abff9727598fec66e2607a56c84108fcb6e409cc2a3c359272e46802ed6da98f",
+      "usages": [
+        "src\\data\\containerGuideData.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/containers/40ft-standard-dry-interior.jpg",
+      "publicRef": "/images/containers/40ft-standard-dry-interior.jpg",
+      "filename": "40ft-standard-dry-interior.jpg",
+      "ext": ".jpg",
+      "size": 924846,
+      "width": 1376,
+      "height": 768,
+      "type": "jpg",
+      "sha256": "f409ef8f65e74970bb28efdedb7fb5d7f80de3c2ef088e0694e3031eec208c08",
+      "usages": [
+        "src\\data\\containerGuideData.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/containers/container-20ft-flat-rack.jpg",
+      "publicRef": "/images/containers/container-20ft-flat-rack.jpg",
+      "filename": "container-20ft-flat-rack.jpg",
+      "ext": ".jpg",
+      "size": 148673,
+      "width": 1156,
+      "height": 867,
+      "type": "jpg",
+      "sha256": "8cba844994576cd6e360d3ce43046ccd2053a87ab574810c8bff45322a372442",
+      "usages": [
+        "src\\data\\containerGuideData.ts",
+        "src\\data\\imageAssets.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/containers/container-40ft-flat-rack.jpg",
+      "publicRef": "/images/containers/container-40ft-flat-rack.jpg",
+      "filename": "container-40ft-flat-rack.jpg",
+      "ext": ".jpg",
+      "size": 98567,
+      "width": 1156,
+      "height": 867,
+      "type": "jpg",
+      "sha256": "a55d93a3efec13bc101e0da8df8558bf9eff92a548a41f75f786909165b62344",
+      "usages": [
+        "src\\data\\containerGuideData.ts",
+        "src\\data\\imageAssets.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/containers/container-40ft-high-cube.jpg",
+      "publicRef": "/images/containers/container-40ft-high-cube.jpg",
+      "filename": "container-40ft-high-cube.jpg",
+      "ext": ".jpg",
+      "size": 123218,
+      "width": 1280,
+      "height": 859,
+      "type": "jpg",
+      "sha256": "df40c1e8c98b718c5104c4f469eb2452d9dfe97fd790d3e9367d9d48b9205ef9",
+      "usages": [
+        "src\\data\\containerGuideData.ts",
+        "src\\data\\imageAssets.ts",
+        "src\\pages\\ContainerStuffingPage.tsx",
+        "src\\pages\\WarehousePage.tsx"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/containers/container-flat-rack-dual-stowage.jpg",
+      "publicRef": "/images/containers/container-flat-rack-dual-stowage.jpg",
+      "filename": "container-flat-rack-dual-stowage.jpg",
+      "ext": ".jpg",
+      "size": 391804,
+      "width": 1600,
+      "height": 1201,
+      "type": "jpg",
+      "sha256": "56587c07a16e9e29aa4f9e60eba90fb518b481f18eef644d0c5d0ec6da158187",
+      "usages": [
+        "src\\data\\containerGuideData.ts",
+        "src\\data\\imageAssets.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/containers/flat-rack-container.svg",
+      "publicRef": "/images/containers/flat-rack-container.svg",
+      "filename": "flat-rack-container.svg",
+      "ext": ".svg",
+      "size": 2789,
+      "width": 800,
+      "height": 480,
+      "type": "svg",
+      "sha256": "3ffad67a9db1d65f3190d1b6001c2bed6067e05f299d0c18caf6a7a0c79ca410",
+      "usages": [
+        "src\\data\\assetChecklist.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/containers/flat-rack-exterior.jpg",
+      "publicRef": "/images/containers/flat-rack-exterior.jpg",
+      "filename": "flat-rack-exterior.jpg",
+      "ext": ".jpg",
+      "size": 881661,
+      "width": 1376,
+      "height": 768,
+      "type": "jpg",
+      "sha256": "9796356fcd8ba1a1235f67cbc5d5555dc0cfb0d45b0547fe130ffa552482f5fe",
+      "usages": [
+        "src\\data\\containerGuideData.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/containers/flat-rack-interior.jpg",
+      "publicRef": "/images/containers/flat-rack-interior.jpg",
+      "filename": "flat-rack-interior.jpg",
+      "ext": ".jpg",
+      "size": 936515,
+      "width": 1376,
+      "height": 768,
+      "type": "jpg",
+      "sha256": "0f6a9183e44bc415b41189524a203878fc2b4e245905ca3ef6c91eade9f62d6a",
+      "usages": [
+        "src\\data\\containerGuideData.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/containers/open-top-container.svg",
+      "publicRef": "/images/containers/open-top-container.svg",
+      "filename": "open-top-container.svg",
+      "ext": ".svg",
+      "size": 2767,
+      "width": 800,
+      "height": 480,
+      "type": "svg",
+      "sha256": "b0159aa227345c08e01f9fbed2c5a611db4e45f58974f881c3be9e6126ef32bd",
+      "usages": [
+        "src\\data\\assetChecklist.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/containers/open-top-exterior.jpg",
+      "publicRef": "/images/containers/open-top-exterior.jpg",
+      "filename": "open-top-exterior.jpg",
+      "ext": ".jpg",
+      "size": 916429,
+      "width": 1376,
+      "height": 768,
+      "type": "jpg",
+      "sha256": "8518c43b72342d78cd5f4ea0e049e1e6cfd8d187b2188c6353fe379b83e6b167",
+      "usages": [
+        "src\\data\\containerGuideData.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/containers/open-top-interior.jpg",
+      "publicRef": "/images/containers/open-top-interior.jpg",
+      "filename": "open-top-interior.jpg",
+      "ext": ".jpg",
+      "size": 905623,
+      "width": 1376,
+      "height": 768,
+      "type": "jpg",
+      "sha256": "d93ac4018727eb9667a7cba8cc16dbd001f1fa18b4331336f928339054b7f171",
+      "usages": [
+        "src\\data\\containerGuideData.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/containers/reefer-container.svg",
+      "publicRef": "/images/containers/reefer-container.svg",
+      "filename": "reefer-container.svg",
+      "ext": ".svg",
+      "size": 2684,
+      "width": 800,
+      "height": 480,
+      "type": "svg",
+      "sha256": "599bb6bf1777aa9b65f89854886967f971dc70f0faca9fc773cfcac8dfe10ead",
+      "usages": [
+        "src\\data\\assetChecklist.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/containers/reefer-exterior.jpg",
+      "publicRef": "/images/containers/reefer-exterior.jpg",
+      "filename": "reefer-exterior.jpg",
+      "ext": ".jpg",
+      "size": 836626,
+      "width": 1376,
+      "height": 768,
+      "type": "jpg",
+      "sha256": "8ffe28301e021f9e6648c9bfa04a9aa8c6137cad1bfbc7045cec5bd9fef16eac",
+      "usages": [
+        "src\\data\\containerGuideData.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/containers/reefer-interior.jpg",
+      "publicRef": "/images/containers/reefer-interior.jpg",
+      "filename": "reefer-interior.jpg",
+      "ext": ".jpg",
+      "size": 754657,
+      "width": 1376,
+      "height": 768,
+      "type": "jpg",
+      "sha256": "5251917999a693ee74131c435898bfc6798a18fa94233fd047467b6a7a5a2ea1",
+      "usages": [
+        "src\\data\\containerGuideData.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/drive-staging/IMG-20261022-WA0002.jpg",
+      "publicRef": "/images/drive-staging/IMG-20261022-WA0002.jpg",
+      "filename": "IMG-20261022-WA0002.jpg",
+      "ext": ".jpg",
+      "size": 166738,
+      "width": 1280,
+      "height": 963,
+      "type": "jpg",
+      "sha256": "e831be7ab9f978dcc5caefef28dceec91f3e974b3555eef5b9a1bfe3151afeb5",
+      "usages": [
+        "src\\data\\imageAssets.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/drive-staging/IMG-20261022-WA0003.jpg",
+      "publicRef": "/images/drive-staging/IMG-20261022-WA0003.jpg",
+      "filename": "IMG-20261022-WA0003.jpg",
+      "ext": ".jpg",
+      "size": 194211,
+      "width": 963,
+      "height": 1280,
+      "type": "jpg",
+      "sha256": "6c3c3639c3057f6a4e72b7f3ecc5a3f620d03f9dde0fedab76b2d784a5b81d5b",
+      "usages": [
+        "src\\data\\imageAssets.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/drive-staging/IMG-20261022-WA0004.jpg",
+      "publicRef": "/images/drive-staging/IMG-20261022-WA0004.jpg",
+      "filename": "IMG-20261022-WA0004.jpg",
+      "ext": ".jpg",
+      "size": 123218,
+      "width": 1280,
+      "height": 859,
+      "type": "jpg",
+      "sha256": "df40c1e8c98b718c5104c4f469eb2452d9dfe97fd790d3e9367d9d48b9205ef9",
+      "usages": [
+        "src\\data\\containerGuideData.ts",
+        "src\\data\\imageAssets.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/drive-staging/IMG-20261022-WA0005.jpg",
+      "publicRef": "/images/drive-staging/IMG-20261022-WA0005.jpg",
+      "filename": "IMG-20261022-WA0005.jpg",
+      "ext": ".jpg",
+      "size": 126688,
+      "width": 1280,
+      "height": 853,
+      "type": "jpg",
+      "sha256": "af0c7aae8a1747effbe0ebd1d0bf21d16cb9687da863112bfd26c98da6e6c9a4",
+      "usages": [
+        "src\\data\\imageAssets.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/drive-staging/IMG-20261022-WA0006.jpg",
+      "publicRef": "/images/drive-staging/IMG-20261022-WA0006.jpg",
+      "filename": "IMG-20261022-WA0006.jpg",
+      "ext": ".jpg",
+      "size": 274904,
+      "width": 1600,
+      "height": 1200,
+      "type": "jpg",
+      "sha256": "fdb5a847c661c5ad550308fe7a3d9a58afc29f91d7517abf24f7fcd7bcde9739",
+      "usages": [
+        "src\\data\\imageAssets.ts",
+        "src\\data\\shipmentGalleryData.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/drive-staging/IMG-20261022-WA0007.jpg",
+      "publicRef": "/images/drive-staging/IMG-20261022-WA0007.jpg",
+      "filename": "IMG-20261022-WA0007.jpg",
+      "ext": ".jpg",
+      "size": 236574,
+      "width": 1600,
+      "height": 1200,
+      "type": "jpg",
+      "sha256": "bd0eb26ee1937e3e76ad765e304061ee23ec67952e166f71905b4cac270fe9c3",
+      "usages": [
+        "src\\data\\imageAssets.ts",
+        "src\\data\\shipmentGalleryData.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/drive-staging/IMG-20261022-WA0008.jpg",
+      "publicRef": "/images/drive-staging/IMG-20261022-WA0008.jpg",
+      "filename": "IMG-20261022-WA0008.jpg",
+      "ext": ".jpg",
+      "size": 252804,
+      "width": 1600,
+      "height": 1200,
+      "type": "jpg",
+      "sha256": "822a27e2f31e779db18ce44baecf7842322b18ed7c3c02be1cce006e1c86cf05",
+      "usages": [
+        "src\\data\\imageAssets.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/drive-staging/IMG-20261022-WA0009.jpg",
+      "publicRef": "/images/drive-staging/IMG-20261022-WA0009.jpg",
+      "filename": "IMG-20261022-WA0009.jpg",
+      "ext": ".jpg",
+      "size": 391804,
+      "width": 1600,
+      "height": 1201,
+      "type": "jpg",
+      "sha256": "56587c07a16e9e29aa4f9e60eba90fb518b481f18eef644d0c5d0ec6da158187",
+      "usages": [
+        "src\\data\\imageAssets.ts",
+        "src\\data\\shipmentGalleryData.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/drive-staging/IMG-20261022-WA0010.jpg",
+      "publicRef": "/images/drive-staging/IMG-20261022-WA0010.jpg",
+      "filename": "IMG-20261022-WA0010.jpg",
+      "ext": ".jpg",
+      "size": 373908,
+      "width": 1600,
+      "height": 1201,
+      "type": "jpg",
+      "sha256": "d1b8c98abb309ea79715e224c35e7da47788e2fdc2cc2734786b65ff250dee14",
+      "usages": [
+        "src\\data\\imageAssets.ts",
+        "src\\data\\shipmentGalleryData.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/drive-staging/IMG-20261022-WA0011.jpg",
+      "publicRef": "/images/drive-staging/IMG-20261022-WA0011.jpg",
+      "filename": "IMG-20261022-WA0011.jpg",
+      "ext": ".jpg",
+      "size": 235848,
+      "width": 1600,
+      "height": 1200,
+      "type": "jpg",
+      "sha256": "687b6bb64a328ab3f0656f788f8044e1e0a31cadb98731b103150cd38fb1d95b",
+      "usages": [
+        "src\\data\\imageAssets.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/drive-staging/IMG-20261022-WA0012.jpg",
+      "publicRef": "/images/drive-staging/IMG-20261022-WA0012.jpg",
+      "filename": "IMG-20261022-WA0012.jpg",
+      "ext": ".jpg",
+      "size": 379747,
+      "width": 1600,
+      "height": 1201,
+      "type": "jpg",
+      "sha256": "a46f51ea591f55473f2aade0f3360209eb53091cf00dac32385fdf704fc702e2",
+      "usages": [
+        "src\\data\\imageAssets.ts",
+        "src\\data\\shipmentGalleryData.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/drive-staging/IMG-20261022-WA0013.jpg",
+      "publicRef": "/images/drive-staging/IMG-20261022-WA0013.jpg",
+      "filename": "IMG-20261022-WA0013.jpg",
+      "ext": ".jpg",
+      "size": 220463,
+      "width": 1600,
+      "height": 1200,
+      "type": "jpg",
+      "sha256": "912cefe6e89d49c130ed173337be683dcbef044b9edd3e5aa67a159ba91fdf2e",
+      "usages": [
+        "src\\data\\imageAssets.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/drive-staging/IMG-20261022-WA0014.jpg",
+      "publicRef": "/images/drive-staging/IMG-20261022-WA0014.jpg",
+      "filename": "IMG-20261022-WA0014.jpg",
+      "ext": ".jpg",
+      "size": 225070,
+      "width": 1600,
+      "height": 1200,
+      "type": "jpg",
+      "sha256": "65ee8c3a015d464e484ea07ff0a40594cdef5896c5616893442e34805238c793",
+      "usages": [
+        "src\\data\\imageAssets.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/drive-staging/IMG-20261022-WA0015.jpg",
+      "publicRef": "/images/drive-staging/IMG-20261022-WA0015.jpg",
+      "filename": "IMG-20261022-WA0015.jpg",
+      "ext": ".jpg",
+      "size": 241935,
+      "width": 1600,
+      "height": 1200,
+      "type": "jpg",
+      "sha256": "0b5e2d304762cd72012da68fcae12d9bd4b883475c1258a020e513ac4fbab677",
+      "usages": [
+        "src\\data\\containerGuideData.ts",
+        "src\\data\\imageAssets.ts",
+        "src\\data\\shipmentGalleryData.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/drive-staging/IMG-20261022-WA0016.jpg",
+      "publicRef": "/images/drive-staging/IMG-20261022-WA0016.jpg",
+      "filename": "IMG-20261022-WA0016.jpg",
+      "ext": ".jpg",
+      "size": 176473,
+      "width": 1600,
+      "height": 1200,
+      "type": "jpg",
+      "sha256": "0c7b988f31f9d02c8febf441a4c905f826433187dd385f0f77465f5254a81ed7",
+      "usages": [
+        "src\\data\\imageAssets.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/drive-staging/IMG-20261022-WA0017.jpg",
+      "publicRef": "/images/drive-staging/IMG-20261022-WA0017.jpg",
+      "filename": "IMG-20261022-WA0017.jpg",
+      "ext": ".jpg",
+      "size": 381131,
+      "width": 1600,
+      "height": 1201,
+      "type": "jpg",
+      "sha256": "fcbe32ee4b51255635227224d4984a465d3ee1eca25bb6a83fbb65160f96fbe1",
+      "usages": [
+        "src\\data\\imageAssets.ts",
+        "src\\data\\shipmentGalleryData.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/drive-staging/IMG-20261022-WA0018.jpg",
+      "publicRef": "/images/drive-staging/IMG-20261022-WA0018.jpg",
+      "filename": "IMG-20261022-WA0018.jpg",
+      "ext": ".jpg",
+      "size": 241825,
+      "width": 1600,
+      "height": 1200,
+      "type": "jpg",
+      "sha256": "9aaffe96e27f796a3a3ed903b75327db8c7fbdc0d90a69bdb5178b4f0b5cdfab",
+      "usages": [
+        "src\\data\\containerGuideData.ts",
+        "src\\data\\imageAssets.ts",
+        "src\\data\\shipmentGalleryData.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/drive-staging/IMG-20261022-WA0019.jpg",
+      "publicRef": "/images/drive-staging/IMG-20261022-WA0019.jpg",
+      "filename": "IMG-20261022-WA0019.jpg",
+      "ext": ".jpg",
+      "size": 72991,
+      "width": 721,
+      "height": 1280,
+      "type": "jpg",
+      "sha256": "24baacbcc4842ac59c33be77de08074cca9b38bfca99dbe88e3d11aef851e5f8",
+      "usages": [
+        "src\\data\\containerGuideData.ts",
+        "src\\data\\imageAssets.ts",
+        "src\\data\\shipmentGalleryData.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/drive-staging/IMG-20261022-WA0020.jpg",
+      "publicRef": "/images/drive-staging/IMG-20261022-WA0020.jpg",
+      "filename": "IMG-20261022-WA0020.jpg",
+      "ext": ".jpg",
+      "size": 78352,
+      "width": 721,
+      "height": 1280,
+      "type": "jpg",
+      "sha256": "326af3cd78bdc3c84306738a675bedbe58d4472657789901213b396346103640",
+      "usages": [
+        "src\\data\\containerGuideData.ts",
+        "src\\data\\imageAssets.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/drive-staging/IMG-20261022-WA0021.jpg",
+      "publicRef": "/images/drive-staging/IMG-20261022-WA0021.jpg",
+      "filename": "IMG-20261022-WA0021.jpg",
+      "ext": ".jpg",
+      "size": 86179,
+      "width": 721,
+      "height": 1280,
+      "type": "jpg",
+      "sha256": "b9490f80c4b586a3224492b66b7864392620dec6c1c41f21c36316c19d30483e",
+      "usages": [],
+      "isUsed": false
+    },
+    {
+      "diskPath": "public/images/drive-staging/IMG-20261022-WA0022.jpg",
+      "publicRef": "/images/drive-staging/IMG-20261022-WA0022.jpg",
+      "filename": "IMG-20261022-WA0022.jpg",
+      "ext": ".jpg",
+      "size": 70264,
+      "width": 721,
+      "height": 1280,
+      "type": "jpg",
+      "sha256": "4734641e1d230a249d6d9da51cbf47892f78dd1e4deab340d8be01c2ecc378cf",
+      "usages": [],
+      "isUsed": false
+    },
+    {
+      "diskPath": "public/images/drive-staging/IMG-20261022-WA0023.jpg",
+      "publicRef": "/images/drive-staging/IMG-20261022-WA0023.jpg",
+      "filename": "IMG-20261022-WA0023.jpg",
+      "ext": ".jpg",
+      "size": 148673,
+      "width": 1156,
+      "height": 867,
+      "type": "jpg",
+      "sha256": "8cba844994576cd6e360d3ce43046ccd2053a87ab574810c8bff45322a372442",
+      "usages": [
+        "src\\data\\imageAssets.ts",
+        "src\\data\\shipmentGalleryData.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/drive-staging/IMG-20261022-WA0024.jpg",
+      "publicRef": "/images/drive-staging/IMG-20261022-WA0024.jpg",
+      "filename": "IMG-20261022-WA0024.jpg",
+      "ext": ".jpg",
+      "size": 135011,
+      "width": 1156,
+      "height": 867,
+      "type": "jpg",
+      "sha256": "5e8c3d30826283e85198493fdcfaf277f32f5694b079c18e41510239f6174a01",
+      "usages": [
+        "src\\data\\imageAssets.ts",
+        "src\\data\\shipmentGalleryData.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/drive-staging/IMG-20261022-WA0025.jpg",
+      "publicRef": "/images/drive-staging/IMG-20261022-WA0025.jpg",
+      "filename": "IMG-20261022-WA0025.jpg",
+      "ext": ".jpg",
+      "size": 121229,
+      "width": 1156,
+      "height": 867,
+      "type": "jpg",
+      "sha256": "36cd6ea7a899978a9326c235cd0fec8c251ce191ea0c9bb530150ef0affb3edf",
+      "usages": [
+        "src\\data\\containerGuideData.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/drive-staging/IMG-20261022-WA0026.jpg",
+      "publicRef": "/images/drive-staging/IMG-20261022-WA0026.jpg",
+      "filename": "IMG-20261022-WA0026.jpg",
+      "ext": ".jpg",
+      "size": 98567,
+      "width": 1156,
+      "height": 867,
+      "type": "jpg",
+      "sha256": "a55d93a3efec13bc101e0da8df8558bf9eff92a548a41f75f786909165b62344",
+      "usages": [
+        "src\\data\\imageAssets.ts",
+        "src\\data\\shipmentGalleryData.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/drive-staging/IMG-20261022-WA0027.jpg",
+      "publicRef": "/images/drive-staging/IMG-20261022-WA0027.jpg",
+      "filename": "IMG-20261022-WA0027.jpg",
+      "ext": ".jpg",
+      "size": 131803,
+      "width": 1156,
+      "height": 867,
+      "type": "jpg",
+      "sha256": "2da0e23d9b6c9080ca8881e565576a8ea5b4b63ac8618c63a1c8769019aeb366",
+      "usages": [],
+      "isUsed": false
+    },
+    {
+      "diskPath": "public/images/drive-staging/IMG-20261022-WA0030.jpg",
+      "publicRef": "/images/drive-staging/IMG-20261022-WA0030.jpg",
+      "filename": "IMG-20261022-WA0030.jpg",
+      "ext": ".jpg",
+      "size": 451746,
+      "width": 3072,
+      "height": 4080,
+      "type": "jpg",
+      "sha256": "fbb45bdc6ba92f5c6c55357d98ba5b7948951f9928193ae5bc758f69154690ed",
+      "usages": [
+        "src\\data\\imageAssets.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/general/logistics-hero-poster.webp",
+      "publicRef": "/images/general/logistics-hero-poster.webp",
+      "filename": "logistics-hero-poster.webp",
+      "ext": ".webp",
+      "size": 493292,
+      "width": "Unknown",
+      "height": "Unknown",
+      "type": "webp",
+      "sha256": "2f49a35cfd73554537962b2ea39f77fe28124c936ed3cfe6c5c1c915cd340e26",
+      "usages": [
+        "src\\components\\hero\\HeroVideoSequence.tsx"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/hero/cinematic-port-hero-unified.jpg",
+      "publicRef": "/images/hero/cinematic-port-hero-unified.jpg",
+      "filename": "cinematic-port-hero-unified.jpg",
+      "ext": ".jpg",
+      "size": 336199,
+      "width": 2048,
+      "height": 920,
+      "type": "jpg",
+      "sha256": "762180191a3e85fdd2b5bad592dcdcc2d0f1220382a801b1bb268617f71e463c",
+      "usages": [],
+      "isUsed": false
+    },
+    {
+      "diskPath": "public/images/hero/concept09-port-background.jpg",
+      "publicRef": "/images/hero/concept09-port-background.jpg",
+      "filename": "concept09-port-background.jpg",
+      "ext": ".jpg",
+      "size": 745056,
+      "width": 1376,
+      "height": 768,
+      "type": "jpg",
+      "sha256": "7b69d280914b8140bab3f6792d7e69398f9670f4a7e83425df14c3633e4c61d1",
+      "usages": [],
+      "isUsed": false
+    },
+    {
+      "diskPath": "public/images/hero/global-freight-environmental-showcase.png",
+      "publicRef": "/images/hero/global-freight-environmental-showcase.png",
+      "filename": "global-freight-environmental-showcase.png",
+      "ext": ".png",
+      "size": 1841704,
+      "width": 1920,
+      "height": 1080,
+      "type": "png",
+      "sha256": "6d50a7d6e752ac829de06165f1e5840148bd83a81052a5a7c70808e0b7f7857d",
+      "usages": [],
+      "isUsed": false
+    },
+    {
+      "diskPath": "public/images/hero/global-freight-transportation-montage.png",
+      "publicRef": "/images/hero/global-freight-transportation-montage.png",
+      "filename": "global-freight-transportation-montage.png",
+      "ext": ".png",
+      "size": 1981844,
+      "width": 1774,
+      "height": 887,
+      "type": "png",
+      "sha256": "ab1cb04064928b19c6fd80aa40cee0e7108230961b561016866e4d85b3761654",
+      "usages": [],
+      "isUsed": false
+    },
+    {
+      "diskPath": "public/images/hero/hero-fullbleed-cinematic.png",
+      "publicRef": "/images/hero/hero-fullbleed-cinematic.png",
+      "filename": "hero-fullbleed-cinematic.png",
+      "ext": ".png",
+      "size": 2571595,
+      "width": 1920,
+      "height": 1080,
+      "type": "png",
+      "sha256": "b1ae9be00c0c9c41cf2a6ec62046052074bce1d1ee867a3f7bd39c66d0667254",
+      "usages": [
+        "src\\components\\hero\\HeroVideo.tsx"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/hero/hero-fullbleed-cinematic.webp",
+      "publicRef": "/images/hero/hero-fullbleed-cinematic.webp",
+      "filename": "hero-fullbleed-cinematic.webp",
+      "ext": ".webp",
+      "size": 236122,
+      "width": 1920,
+      "height": 1080,
+      "type": "webp (VP8X)",
+      "sha256": "58826cd1e11e6bf1947844666335fa151ea3e8d0d01c43f6a341627823e288dd",
+      "usages": [
+        "src\\components\\hero\\HeroVideo.tsx"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/hero/hero-transport-environment.png",
+      "publicRef": "/images/hero/hero-transport-environment.png",
+      "filename": "hero-transport-environment.png",
+      "ext": ".png",
+      "size": 1667420,
+      "width": 1920,
+      "height": 1080,
+      "type": "png",
+      "sha256": "18f0ef2808b49c2b818efc03a3904076d80c9608d2a2a7fc26ddd1372a9ffb05",
+      "usages": [],
+      "isUsed": false
+    },
+    {
+      "diskPath": "public/images/hero/layer-forklift.png",
+      "publicRef": "/images/hero/layer-forklift.png",
+      "filename": "layer-forklift.png",
+      "ext": ".png",
+      "size": 2251480,
+      "width": 1774,
+      "height": 887,
+      "type": "png",
+      "sha256": "8cfd1b42eec02abffa712fa2a2f51fcc3592038e4eeb369f875eaad418e8f2f5",
+      "usages": [],
+      "isUsed": false
+    },
+    {
+      "diskPath": "public/images/hero/layer-plane.png",
+      "publicRef": "/images/hero/layer-plane.png",
+      "filename": "layer-plane.png",
+      "ext": ".png",
+      "size": 2248301,
+      "width": 1774,
+      "height": 887,
+      "type": "png",
+      "sha256": "7afffb50009b664b4b1767735af6a3c5dca0dc0077a51e2dbfe554f61dbd0626",
+      "usages": [],
+      "isUsed": false
+    },
+    {
+      "diskPath": "public/images/hero/layer-ship.png",
+      "publicRef": "/images/hero/layer-ship.png",
+      "filename": "layer-ship.png",
+      "ext": ".png",
+      "size": 2315200,
+      "width": 1774,
+      "height": 887,
+      "type": "png",
+      "sha256": "e68cd23acc51fd326fa845c3dde53ce84458f722944d77fd70a5154fdb2b6adf",
+      "usages": [],
+      "isUsed": false
+    },
+    {
+      "diskPath": "public/images/hero/layer-train.png",
+      "publicRef": "/images/hero/layer-train.png",
+      "filename": "layer-train.png",
+      "ext": ".png",
+      "size": 2256069,
+      "width": 1774,
+      "height": 887,
+      "type": "png",
+      "sha256": "70e4a0497b349206f4b48fd2dcbe796d19a34921c648cb242303acdf38bfdd4b",
+      "usages": [],
+      "isUsed": false
+    },
+    {
+      "diskPath": "public/images/hero/layer-truck.png",
+      "publicRef": "/images/hero/layer-truck.png",
+      "filename": "layer-truck.png",
+      "ext": ".png",
+      "size": 2295943,
+      "width": 1774,
+      "height": 887,
+      "type": "png",
+      "sha256": "158b4e30a968c8beed29d8b22666e09fa0559e7cc946935d32c8e9123dd37ae7",
+      "usages": [],
+      "isUsed": false
+    },
+    {
+      "diskPath": "public/images/hero/msk-cinematic-port-final.jpg",
+      "publicRef": "/images/hero/msk-cinematic-port-final.jpg",
+      "filename": "msk-cinematic-port-final.jpg",
+      "ext": ".jpg",
+      "size": 336199,
+      "width": 2048,
+      "height": 920,
+      "type": "jpg",
+      "sha256": "762180191a3e85fdd2b5bad592dcdcc2d0f1220382a801b1bb268617f71e463c",
+      "usages": [],
+      "isUsed": false
+    },
+    {
+      "diskPath": "public/images/hero/msk-cinematic-port-final.png",
+      "publicRef": "/images/hero/msk-cinematic-port-final.png",
+      "filename": "msk-cinematic-port-final.png",
+      "ext": ".png",
+      "size": 5271153,
+      "width": 2560,
+      "height": 1280,
+      "type": "png",
+      "sha256": "a7f78ef7d748de49df92492ef9034b9addd0205d3d25a38814018cdb5acdce2c",
+      "usages": [
+        "src\\components\\hero\\HeroConcept09.tsx"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/hero/msk-cinematic-port-raw.png",
+      "publicRef": "/images/hero/msk-cinematic-port-raw.png",
+      "filename": "msk-cinematic-port-raw.png",
+      "ext": ".png",
+      "size": 751003,
+      "width": 1024,
+      "height": 509,
+      "type": "png",
+      "sha256": "02eecff08d18787b6a61d86c616972157421cb9b03743d82bb0e139df382352f",
+      "usages": [],
+      "isUsed": false
+    },
+    {
+      "diskPath": "public/images/hero/msk-logistics-cinematic-bg.png",
+      "publicRef": "/images/hero/msk-logistics-cinematic-bg.png",
+      "filename": "msk-logistics-cinematic-bg.png",
+      "ext": ".png",
+      "size": 5271153,
+      "width": 2560,
+      "height": 1280,
+      "type": "png",
+      "sha256": "a7f78ef7d748de49df92492ef9034b9addd0205d3d25a38814018cdb5acdce2c",
+      "usages": [],
+      "isUsed": false
+    },
+    {
+      "diskPath": "public/images/hero/temp_plane_area.png",
+      "publicRef": "/images/hero/temp_plane_area.png",
+      "filename": "temp_plane_area.png",
+      "ext": ".png",
+      "size": 631727,
+      "width": 1500,
+      "height": 450,
+      "type": "png",
+      "sha256": "f8cf03f4d686b8d0e387267f172e48e2dccc5a130045616018456aa31a47ee45",
+      "usages": [],
+      "isUsed": false
+    },
+    {
+      "diskPath": "public/images/import-export/client-cargo-ready.jpg",
+      "publicRef": "/images/import-export/client-cargo-ready.jpg",
+      "filename": "client-cargo-ready.jpg",
+      "ext": ".jpg",
+      "size": 419373,
+      "width": 1376,
+      "height": 768,
+      "type": "jpg",
+      "sha256": "781a9c8bd8fbd67c29187a7b722da01f6dae33106a4e753923cb169d2ec3891f",
+      "usages": [],
+      "isUsed": false
+    },
+    {
+      "diskPath": "public/images/import-export/client-cargo-ready.webp",
+      "publicRef": "/images/import-export/client-cargo-ready.webp",
+      "filename": "client-cargo-ready.webp",
+      "ext": ".webp",
+      "size": 370598,
+      "width": 1376,
+      "height": 768,
+      "type": "webp (VP8)",
+      "sha256": "a4f75c687300d508b9dd56884e1e12f88222f67244563b4298d9fd734391e0b2",
+      "usages": [
+        "src\\data\\company.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/import-export/client-container-cargo.jpg",
+      "publicRef": "/images/import-export/client-container-cargo.jpg",
+      "filename": "client-container-cargo.jpg",
+      "ext": ".jpg",
+      "size": 328862,
+      "width": 1376,
+      "height": 768,
+      "type": "jpg",
+      "sha256": "a17144d3d79c24be771d7a89f0a8f8009e6d02b601533f724679807c9f06e3ff",
+      "usages": [
+        "src\\data\\containerGuideData.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/import-export/client-container-cargo.webp",
+      "publicRef": "/images/import-export/client-container-cargo.webp",
+      "filename": "client-container-cargo.webp",
+      "ext": ".webp",
+      "size": 262020,
+      "width": 1376,
+      "height": 768,
+      "type": "webp (VP8)",
+      "sha256": "15d6ee0ff24e2639cc62cce70548de7c3bbb2799c70cd03c486e6c1fcd74b844",
+      "usages": [
+        "src\\data\\company.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/import-export/fcl-dedicated-shipping.jpg",
+      "publicRef": "/images/import-export/fcl-dedicated-shipping.jpg",
+      "filename": "fcl-dedicated-shipping.jpg",
+      "ext": ".jpg",
+      "size": 382205,
+      "width": 1376,
+      "height": 768,
+      "type": "jpg",
+      "sha256": "f6d1929b2bc2b84db3574e1f3932e6c9b6d24218878afc86ef11a5a5ddf35fd7",
+      "usages": [
+        "src\\data\\containerGuideData.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/import-export/fcl-dedicated-shipping.webp",
+      "publicRef": "/images/import-export/fcl-dedicated-shipping.webp",
+      "filename": "fcl-dedicated-shipping.webp",
+      "ext": ".webp",
+      "size": 315530,
+      "width": 1376,
+      "height": 768,
+      "type": "webp (VP8)",
+      "sha256": "5f851de001da0cfb4352a4b2c42901a9628ec41b41dbd50e7f5700104419cf4a",
+      "usages": [
+        "src\\pages\\ImportExportPage.tsx"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/import-export/lcl-consolidation.jpg",
+      "publicRef": "/images/import-export/lcl-consolidation.jpg",
+      "filename": "lcl-consolidation.jpg",
+      "ext": ".jpg",
+      "size": 438997,
+      "width": 1376,
+      "height": 768,
+      "type": "jpg",
+      "sha256": "ebf6ec8945f5516517a6a1f7efb929ee8166713503e25a90a696406947e717cc",
+      "usages": [],
+      "isUsed": false
+    },
+    {
+      "diskPath": "public/images/import-export/lcl-consolidation.webp",
+      "publicRef": "/images/import-export/lcl-consolidation.webp",
+      "filename": "lcl-consolidation.webp",
+      "ext": ".webp",
+      "size": 373240,
+      "width": 1376,
+      "height": 768,
+      "type": "webp (VP8)",
+      "sha256": "8a210ac97219a812b3ec9d50642d3f7171c8313514a8162c8800cf263d75810a",
+      "usages": [
+        "src\\pages\\ImportExportPage.tsx"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/iso/iso-9001-2015-seal.png",
+      "publicRef": "/images/iso/iso-9001-2015-seal.png",
+      "filename": "iso-9001-2015-seal.png",
+      "ext": ".png",
+      "size": 582856,
+      "width": 720,
+      "height": 720,
+      "type": "png",
+      "sha256": "fe4d10660ba4adaa321abdf645d4e4d432986954e4cd77ade4df501af969fef2",
+      "usages": [],
+      "isUsed": false
+    },
+    {
+      "diskPath": "public/images/iso/iso-9001-2015.jpg",
+      "publicRef": "/images/iso/iso-9001-2015.jpg",
+      "filename": "iso-9001-2015.jpg",
+      "ext": ".jpg",
+      "size": 92634,
+      "width": 779,
+      "height": 755,
+      "type": "jpg",
+      "sha256": "e7f22b04830eeb400b54dfea94464d0bb283a14fd8167a89d76f2c3811de16f9",
+      "usages": [],
+      "isUsed": false
+    },
+    {
+      "diskPath": "public/images/iso/iso-9001-2015.png",
+      "publicRef": "/images/iso/iso-9001-2015.png",
+      "filename": "iso-9001-2015.png",
+      "ext": ".png",
+      "size": 497276,
+      "width": 779,
+      "height": 755,
+      "type": "png",
+      "sha256": "45f7986cb4550e68351f08d5dcd5a5630a6e83fe61acb1c45dc63dc00407bd3e",
+      "usages": [
+        "src\\components\\common\\IsoCertificationBadge.tsx"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/logo/msk-logistics-logo.png",
+      "publicRef": "/images/logo/msk-logistics-logo.png",
+      "filename": "msk-logistics-logo.png",
+      "ext": ".png",
+      "size": 1190424,
+      "width": 1774,
+      "height": 887,
+      "type": "png",
+      "sha256": "dc04a976ff18c394047a517dc500bcbd284e3f85f79184311ecd4c75d7408f85",
+      "usages": [
+        "src\\components\\common\\BrandedImage.tsx",
+        "src\\components\\gallery\\OperationalEnvironmentsGallery.tsx",
+        "src\\components\\layout\\Footer.tsx",
+        "src\\components\\navigation\\Navbar.tsx",
+        "src\\data\\assetChecklist.ts",
+        "src\\pages\\AboutPage.tsx",
+        "src\\pages\\ContainerGuidePage.tsx",
+        "src\\pages\\HomePage.tsx",
+        "src\\pages\\ImportExportPage.tsx",
+        "src\\pages\\OperationsPage.tsx",
+        "api\\emailTemplates.ts",
+        "index.html"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/operations/cargo-lashing/flat-rack-heavy-duty-orange-lashing.jpg",
+      "publicRef": "/images/operations/cargo-lashing/flat-rack-heavy-duty-orange-lashing.jpg",
+      "filename": "flat-rack-heavy-duty-orange-lashing.jpg",
+      "ext": ".jpg",
+      "size": 135011,
+      "width": 1156,
+      "height": 867,
+      "type": "jpg",
+      "sha256": "5e8c3d30826283e85198493fdcfaf277f32f5694b079c18e41510239f6174a01",
+      "usages": [
+        "src\\data\\company.ts",
+        "src\\data\\containerGuideData.ts",
+        "src\\data\\imageAssets.ts",
+        "src\\data\\shipmentGalleryData.ts",
+        "src\\pages\\CargoLashingPage.tsx",
+        "src\\pages\\WarehousePage.tsx"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/operations/cargo-lashing/trailer-chassis-ratchet-lashing.jpg",
+      "publicRef": "/images/operations/cargo-lashing/trailer-chassis-ratchet-lashing.jpg",
+      "filename": "trailer-chassis-ratchet-lashing.jpg",
+      "ext": ".jpg",
+      "size": 252804,
+      "width": 1600,
+      "height": 1200,
+      "type": "jpg",
+      "sha256": "822a27e2f31e779db18ce44baecf7842322b18ed7c3c02be1cce006e1c86cf05",
+      "usages": [
+        "src\\data\\company.ts",
+        "src\\data\\imageAssets.ts",
+        "src\\pages\\CargoLashingPage.tsx",
+        "src\\pages\\WarehousePage.tsx"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/operations/cargo-lashing/vessel-cross-webbing-lashing.jpg",
+      "publicRef": "/images/operations/cargo-lashing/vessel-cross-webbing-lashing.jpg",
+      "filename": "vessel-cross-webbing-lashing.jpg",
+      "ext": ".jpg",
+      "size": 78352,
+      "width": 721,
+      "height": 1280,
+      "type": "jpg",
+      "sha256": "326af3cd78bdc3c84306738a675bedbe58d4472657789901213b396346103640",
+      "usages": [
+        "src\\data\\company.ts",
+        "src\\data\\containerGuideData.ts",
+        "src\\data\\imageAssets.ts",
+        "src\\pages\\CargoLashingPage.tsx"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/operations/container-loading/mobile-crane-heavy-lift.jpg",
+      "publicRef": "/images/operations/container-loading/mobile-crane-heavy-lift.jpg",
+      "filename": "mobile-crane-heavy-lift.jpg",
+      "ext": ".jpg",
+      "size": 241935,
+      "width": 1600,
+      "height": 1200,
+      "type": "jpg",
+      "sha256": "0b5e2d304762cd72012da68fcae12d9bd4b883475c1258a020e513ac4fbab677",
+      "usages": [
+        "src\\pages\\ContainerStuffingPage.tsx",
+        "src\\pages\\WarehousePage.tsx"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/operations/container-loading/rigging-crew-crane-loading.jpg",
+      "publicRef": "/images/operations/container-loading/rigging-crew-crane-loading.jpg",
+      "filename": "rigging-crew-crane-loading.jpg",
+      "ext": ".jpg",
+      "size": 373908,
+      "width": 1600,
+      "height": 1201,
+      "type": "jpg",
+      "sha256": "d1b8c98abb309ea79715e224c35e7da47788e2fdc2cc2734786b65ff250dee14",
+      "usages": [
+        "src\\pages\\WarehousePage.tsx"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/operations/container-loading/vessel-stowage-cell-guides.jpg",
+      "publicRef": "/images/operations/container-loading/vessel-stowage-cell-guides.jpg",
+      "filename": "vessel-stowage-cell-guides.jpg",
+      "ext": ".jpg",
+      "size": 379747,
+      "width": 1600,
+      "height": 1201,
+      "type": "jpg",
+      "sha256": "a46f51ea591f55473f2aade0f3360209eb53091cf00dac32385fdf704fc702e2",
+      "usages": [
+        "src\\data\\company.ts",
+        "src\\data\\containerGuideData.ts",
+        "src\\pages\\HomePage.tsx"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/operations/export-packaging/heavy-machinery-skid-wrapping.jpg",
+      "publicRef": "/images/operations/export-packaging/heavy-machinery-skid-wrapping.jpg",
+      "filename": "heavy-machinery-skid-wrapping.jpg",
+      "ext": ".jpg",
+      "size": 166738,
+      "width": 1280,
+      "height": 963,
+      "type": "jpg",
+      "sha256": "e831be7ab9f978dcc5caefef28dceec91f3e974b3555eef5b9a1bfe3151afeb5",
+      "usages": [
+        "src\\data\\containerGuideData.ts",
+        "src\\data\\imageAssets.ts",
+        "src\\pages\\ExportPackagingPage.tsx",
+        "src\\pages\\WarehousePage.tsx"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/operations/export-packaging/sandvik-heavy-wooden-crate.jpg",
+      "publicRef": "/images/operations/export-packaging/sandvik-heavy-wooden-crate.jpg",
+      "filename": "sandvik-heavy-wooden-crate.jpg",
+      "ext": ".jpg",
+      "size": 126688,
+      "width": 1280,
+      "height": 853,
+      "type": "jpg",
+      "sha256": "af0c7aae8a1747effbe0ebd1d0bf21d16cb9687da863112bfd26c98da6e6c9a4",
+      "usages": [
+        "src\\data\\containerGuideData.ts",
+        "src\\data\\imageAssets.ts",
+        "src\\pages\\ExportPackagingPage.tsx",
+        "src\\pages\\WarehousePage.tsx"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/operations/export-packaging/skidded-equipment-terminal-staging.jpg",
+      "publicRef": "/images/operations/export-packaging/skidded-equipment-terminal-staging.jpg",
+      "filename": "skidded-equipment-terminal-staging.jpg",
+      "ext": ".jpg",
+      "size": 194211,
+      "width": 963,
+      "height": 1280,
+      "type": "jpg",
+      "sha256": "6c3c3639c3057f6a4e72b7f3ecc5a3f620d03f9dde0fedab76b2d784a5b81d5b",
+      "usages": [
+        "src\\data\\containerGuideData.ts",
+        "src\\data\\imageAssets.ts",
+        "src\\pages\\ContainerStuffingPage.tsx",
+        "src\\pages\\WarehousePage.tsx"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/operations/office/msk-jnpt-office-signboard.jpg",
+      "publicRef": "/images/operations/office/msk-jnpt-office-signboard.jpg",
+      "filename": "msk-jnpt-office-signboard.jpg",
+      "ext": ".jpg",
+      "size": 451746,
+      "width": 3072,
+      "height": 4080,
+      "type": "jpg",
+      "sha256": "fbb45bdc6ba92f5c6c55357d98ba5b7948951f9928193ae5bc758f69154690ed",
+      "usages": [
+        "src\\data\\imageAssets.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/operations/warehouse/covered-staging-bays-pallets.jpg",
+      "publicRef": "/images/operations/warehouse/covered-staging-bays-pallets.jpg",
+      "filename": "covered-staging-bays-pallets.jpg",
+      "ext": ".jpg",
+      "size": 225070,
+      "width": 1600,
+      "height": 1200,
+      "type": "jpg",
+      "sha256": "65ee8c3a015d464e484ea07ff0a40594cdef5896c5616893442e34805238c793",
+      "usages": [
+        "src\\data\\containerGuideData.ts",
+        "src\\data\\imageAssets.ts",
+        "src\\pages\\WarehousePage.tsx"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/operations/warehouse/export-pallet-strapping-staging.jpg",
+      "publicRef": "/images/operations/warehouse/export-pallet-strapping-staging.jpg",
+      "filename": "export-pallet-strapping-staging.jpg",
+      "ext": ".jpg",
+      "size": 220463,
+      "width": 1600,
+      "height": 1200,
+      "type": "jpg",
+      "sha256": "912cefe6e89d49c130ed173337be683dcbef044b9edd3e5aa67a159ba91fdf2e",
+      "usages": [
+        "src\\data\\imageAssets.ts",
+        "src\\pages\\ExportPackagingPage.tsx",
+        "src\\pages\\WarehousePage.tsx"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/operations/warehouse/industrial-rolls-covered-storage.jpg",
+      "publicRef": "/images/operations/warehouse/industrial-rolls-covered-storage.jpg",
+      "filename": "industrial-rolls-covered-storage.jpg",
+      "ext": ".jpg",
+      "size": 176473,
+      "width": 1600,
+      "height": 1200,
+      "type": "jpg",
+      "sha256": "0c7b988f31f9d02c8febf441a4c905f826433187dd385f0f77465f5254a81ed7",
+      "usages": [
+        "src\\data\\imageAssets.ts",
+        "src\\pages\\WarehousePage.tsx"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/operations/warehouse/open-warehouse-edited-sky.jpg",
+      "publicRef": "/images/operations/warehouse/open-warehouse-edited-sky.jpg",
+      "filename": "open-warehouse-edited-sky.jpg",
+      "ext": ".jpg",
+      "size": 423723,
+      "width": 1600,
+      "height": 1200,
+      "type": "jpg",
+      "sha256": "bace0a4b24c54150efb296ad0bde01ebd797e9cee2651be99de0966bd80feb16",
+      "usages": [],
+      "isUsed": false
+    },
+    {
+      "diskPath": "public/images/operations/warehouse/open-warehouse-yard-staging.jpg",
+      "publicRef": "/images/operations/warehouse/open-warehouse-yard-staging.jpg",
+      "filename": "open-warehouse-yard-staging.jpg",
+      "ext": ".jpg",
+      "size": 423723,
+      "width": 1600,
+      "height": 1200,
+      "type": "jpg",
+      "sha256": "bace0a4b24c54150efb296ad0bde01ebd797e9cee2651be99de0966bd80feb16",
+      "usages": [],
+      "isUsed": false
+    },
+    {
+      "diskPath": "public/images/operations/warehouse/open-yard-conex-staging.jpg",
+      "publicRef": "/images/operations/warehouse/open-yard-conex-staging.jpg",
+      "filename": "open-yard-conex-staging.jpg",
+      "ext": ".jpg",
+      "size": 121229,
+      "width": 1156,
+      "height": 867,
+      "type": "jpg",
+      "sha256": "36cd6ea7a899978a9326c235cd0fec8c251ce191ea0c9bb530150ef0affb3edf",
+      "usages": [
+        "src\\components\\warehouse\\WarehouseDualFacilityShowcase.tsx",
+        "src\\data\\containerGuideData.ts",
+        "src\\data\\warehouseData.ts",
+        "src\\pages\\WarehousePage.tsx"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/operations/warehouse/shaded-warehouse-main-bay.jpg",
+      "publicRef": "/images/operations/warehouse/shaded-warehouse-main-bay.jpg",
+      "filename": "shaded-warehouse-main-bay.jpg",
+      "ext": ".jpg",
+      "size": 235848,
+      "width": 1600,
+      "height": 1200,
+      "type": "jpg",
+      "sha256": "687b6bb64a328ab3f0656f788f8044e1e0a31cadb98731b103150cd38fb1d95b",
+      "usages": [
+        "src\\components\\warehouse\\WarehouseDualFacilityShowcase.tsx",
+        "src\\data\\company.ts",
+        "src\\data\\imageAssets.ts",
+        "src\\data\\warehouseData.ts",
+        "src\\pages\\WarehousePage.tsx"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/services/cargo-lashing.jpg",
+      "publicRef": "/images/services/cargo-lashing.jpg",
+      "filename": "cargo-lashing.jpg",
+      "ext": ".jpg",
+      "size": 333873,
+      "width": 1376,
+      "height": 768,
+      "type": "jpg",
+      "sha256": "d6c60593d04b5f5f79dca57f8ccfc922816d0e77bda1d03bf29ab776412082c4",
+      "usages": [],
+      "isUsed": false
+    },
+    {
+      "diskPath": "public/images/services/cargo-lashing.webp",
+      "publicRef": "/images/services/cargo-lashing.webp",
+      "filename": "cargo-lashing.webp",
+      "ext": ".webp",
+      "size": 281020,
+      "width": 1376,
+      "height": 768,
+      "type": "webp (VP8)",
+      "sha256": "0a6c4cb18244c8fcfb1f6f726c066627aa5905a75deb51cdec34f9b64273e8c4",
+      "usages": [
+        "src\\pages\\AboutPage.tsx"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/services/container-interior.webp",
+      "publicRef": "/images/services/container-interior.webp",
+      "filename": "container-interior.webp",
+      "ext": ".webp",
+      "size": 233900,
+      "width": 1376,
+      "height": 768,
+      "type": "webp (VP8)",
+      "sha256": "6520a75721c39d91e48e1926ac7a53ee46eee311b057a8f15b82a91c7dfb6c27",
+      "usages": [],
+      "isUsed": false
+    },
+    {
+      "diskPath": "public/images/services/container-stuffing.jpg",
+      "publicRef": "/images/services/container-stuffing.jpg",
+      "filename": "container-stuffing.jpg",
+      "ext": ".jpg",
+      "size": 326068,
+      "width": 1376,
+      "height": 768,
+      "type": "jpg",
+      "sha256": "c87d28b1f653603351097ef09cb015a5feeff69d7b07ef6e7f91058f0927a94e",
+      "usages": [
+        "src\\data\\containerGuideData.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/services/container-stuffing.webp",
+      "publicRef": "/images/services/container-stuffing.webp",
+      "filename": "container-stuffing.webp",
+      "ext": ".webp",
+      "size": 255924,
+      "width": 1376,
+      "height": 768,
+      "type": "webp (VP8)",
+      "sha256": "cd88011c79ee2c1f6d9b9b97b6310d7352ce2f28e4d8410d6f7d0d7ea54fc833",
+      "usages": [
+        "src\\data\\company.ts",
+        "src\\data\\containerGuideData.ts",
+        "src\\pages\\AboutPage.tsx"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/services/export-packaging.jpg",
+      "publicRef": "/images/services/export-packaging.jpg",
+      "filename": "export-packaging.jpg",
+      "ext": ".jpg",
+      "size": 417332,
+      "width": 1376,
+      "height": 768,
+      "type": "jpg",
+      "sha256": "975337c48121a4e0bac1f10c3ea9d90e7aa4e1287eaf79b91624aa8fc23f20eb",
+      "usages": [],
+      "isUsed": false
+    },
+    {
+      "diskPath": "public/images/services/export-packaging.webp",
+      "publicRef": "/images/services/export-packaging.webp",
+      "filename": "export-packaging.webp",
+      "ext": ".webp",
+      "size": 350128,
+      "width": 1376,
+      "height": 768,
+      "type": "webp (VP8)",
+      "sha256": "be0ca4c3ddeeebbe738990e3726772c97f46b6ed0e4b6a08e3b7a6a0edd98735",
+      "usages": [
+        "src\\pages\\AboutPage.tsx"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/services/export-pallets.jpg",
+      "publicRef": "/images/services/export-pallets.jpg",
+      "filename": "export-pallets.jpg",
+      "ext": ".jpg",
+      "size": 438997,
+      "width": 1376,
+      "height": 768,
+      "type": "jpg",
+      "sha256": "ebf6ec8945f5516517a6a1f7efb929ee8166713503e25a90a696406947e717cc",
+      "usages": [
+        "src\\data\\containerGuideData.ts",
+        "src\\pages\\ExportPackagingPage.tsx"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/services/export-pallets.webp",
+      "publicRef": "/images/services/export-pallets.webp",
+      "filename": "export-pallets.webp",
+      "ext": ".webp",
+      "size": 373240,
+      "width": 1376,
+      "height": 768,
+      "type": "webp (VP8)",
+      "sha256": "8a210ac97219a812b3ec9d50642d3f7171c8313514a8162c8800cf263d75810a",
+      "usages": [],
+      "isUsed": false
+    },
+    {
+      "diskPath": "public/images/services/industrial-cargo-crating.webp",
+      "publicRef": "/images/services/industrial-cargo-crating.webp",
+      "filename": "industrial-cargo-crating.webp",
+      "ext": ".webp",
+      "size": 227155,
+      "width": "Unknown",
+      "height": "Unknown",
+      "type": "webp",
+      "sha256": "44fa0878a0213877841e05864ca0776ecb88221694a918becfececa2bec0d798",
+      "usages": [],
+      "isUsed": false
+    },
+    {
+      "diskPath": "public/images/shipments/breakbulk/breakbulk-cylindrical-haulage.jpg",
+      "publicRef": "/images/shipments/breakbulk/breakbulk-cylindrical-haulage.jpg",
+      "filename": "breakbulk-cylindrical-haulage.jpg",
+      "ext": ".jpg",
+      "size": 241825,
+      "width": 1600,
+      "height": 1200,
+      "type": "jpg",
+      "sha256": "9aaffe96e27f796a3a3ed903b75327db8c7fbdc0d90a69bdb5178b4f0b5cdfab",
+      "usages": [
+        "src\\data\\containerGuideData.ts",
+        "src\\data\\imageAssets.ts",
+        "src\\data\\shipmentGalleryData.ts",
+        "src\\pages\\WarehousePage.tsx"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/shipments/breakbulk/breakbulk-heavy-equipment-rigging.svg",
+      "publicRef": "/images/shipments/breakbulk/breakbulk-heavy-equipment-rigging.svg",
+      "filename": "breakbulk-heavy-equipment-rigging.svg",
+      "ext": ".svg",
+      "size": 2756,
+      "width": 800,
+      "height": 350,
+      "type": "svg",
+      "sha256": "80f41e9172664f83449c6e91b81100a909808fdebd57c7b6239afe61b19ea777",
+      "usages": [
+        "src\\data\\assetChecklist.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/shipments/breakbulk/breakbulk-heavy-rigging-trailer.jpg",
+      "publicRef": "/images/shipments/breakbulk/breakbulk-heavy-rigging-trailer.jpg",
+      "filename": "breakbulk-heavy-rigging-trailer.jpg",
+      "ext": ".jpg",
+      "size": 236574,
+      "width": 1600,
+      "height": 1200,
+      "type": "jpg",
+      "sha256": "bd0eb26ee1937e3e76ad765e304061ee23ec67952e166f71905b4cac270fe9c3",
+      "usages": [
+        "src\\data\\imageAssets.ts",
+        "src\\data\\shipmentGalleryData.ts",
+        "src\\pages\\WarehousePage.tsx"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/shipments/breakbulk/breakbulk-industrial-skidded-units.svg",
+      "publicRef": "/images/shipments/breakbulk/breakbulk-industrial-skidded-units.svg",
+      "filename": "breakbulk-industrial-skidded-units.svg",
+      "ext": ".svg",
+      "size": 2469,
+      "width": 800,
+      "height": 340,
+      "type": "svg",
+      "sha256": "b80465a673585dc64e1143b27adae2aa9abd88a1967060bcf6a65207ee675607",
+      "usages": [
+        "src\\data\\assetChecklist.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/shipments/breakbulk/breakbulk-lowbed-machinery-lashing.jpg",
+      "publicRef": "/images/shipments/breakbulk/breakbulk-lowbed-machinery-lashing.jpg",
+      "filename": "breakbulk-lowbed-machinery-lashing.jpg",
+      "ext": ".jpg",
+      "size": 274904,
+      "width": 1600,
+      "height": 1200,
+      "type": "jpg",
+      "sha256": "fdb5a847c661c5ad550308fe7a3d9a58afc29f91d7517abf24f7fcd7bcde9739",
+      "usages": [
+        "src\\data\\containerGuideData.ts",
+        "src\\data\\imageAssets.ts",
+        "src\\data\\shipmentGalleryData.ts",
+        "src\\pages\\WarehousePage.tsx"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/shipments/breakbulk/breakbulk-project-cargo-stowage.svg",
+      "publicRef": "/images/shipments/breakbulk/breakbulk-project-cargo-stowage.svg",
+      "filename": "breakbulk-project-cargo-stowage.svg",
+      "ext": ".svg",
+      "size": 2529,
+      "width": 800,
+      "height": 350,
+      "type": "svg",
+      "sha256": "45810daeeedd00a85ceb61cfe6e5bd49040c33f071201a17d0d6ee41ad36e403",
+      "usages": [
+        "src\\data\\assetChecklist.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/shipments/breakbulk/breakbulk-vessel-hold-stowage.jpg",
+      "publicRef": "/images/shipments/breakbulk/breakbulk-vessel-hold-stowage.jpg",
+      "filename": "breakbulk-vessel-hold-stowage.jpg",
+      "ext": ".jpg",
+      "size": 381131,
+      "width": 1600,
+      "height": 1201,
+      "type": "jpg",
+      "sha256": "fcbe32ee4b51255635227224d4984a465d3ee1eca25bb6a83fbb65160f96fbe1",
+      "usages": [
+        "src\\data\\imageAssets.ts",
+        "src\\data\\shipmentGalleryData.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/shipments/flat-rack/flat-rack-20ft-tarpaulin-lashed.jpg",
+      "publicRef": "/images/shipments/flat-rack/flat-rack-20ft-tarpaulin-lashed.jpg",
+      "filename": "flat-rack-20ft-tarpaulin-lashed.jpg",
+      "ext": ".jpg",
+      "size": 148673,
+      "width": 1156,
+      "height": 867,
+      "type": "jpg",
+      "sha256": "8cba844994576cd6e360d3ce43046ccd2053a87ab574810c8bff45322a372442",
+      "usages": [
+        "src\\data\\shipmentGalleryData.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/shipments/flat-rack/flat-rack-40ft-dual-cargo-lashed.jpg",
+      "publicRef": "/images/shipments/flat-rack/flat-rack-40ft-dual-cargo-lashed.jpg",
+      "filename": "flat-rack-40ft-dual-cargo-lashed.jpg",
+      "ext": ".jpg",
+      "size": 98567,
+      "width": 1156,
+      "height": 867,
+      "type": "jpg",
+      "sha256": "a55d93a3efec13bc101e0da8df8558bf9eff92a548a41f75f786909165b62344",
+      "usages": [
+        "src\\data\\shipmentGalleryData.ts",
+        "src\\pages\\CargoLashingPage.tsx"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/shipments/flat-rack/flat-rack-aerial-stowage.jpg",
+      "publicRef": "/images/shipments/flat-rack/flat-rack-aerial-stowage.jpg",
+      "filename": "flat-rack-aerial-stowage.jpg",
+      "ext": ".jpg",
+      "size": 391804,
+      "width": 1600,
+      "height": 1201,
+      "type": "jpg",
+      "sha256": "56587c07a16e9e29aa4f9e60eba90fb518b481f18eef644d0c5d0ec6da158187",
+      "usages": [
+        "src\\data\\shipmentGalleryData.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/shipments/flat-rack/flat-rack-crane-loading.jpg",
+      "publicRef": "/images/shipments/flat-rack/flat-rack-crane-loading.jpg",
+      "filename": "flat-rack-crane-loading.jpg",
+      "ext": ".jpg",
+      "size": 373908,
+      "width": 1600,
+      "height": 1201,
+      "type": "jpg",
+      "sha256": "d1b8c98abb309ea79715e224c35e7da47788e2fdc2cc2734786b65ff250dee14",
+      "usages": [
+        "src\\data\\imageAssets.ts",
+        "src\\data\\shipmentGalleryData.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/shipments/flat-rack/flat-rack-heavy-machinery-lashing.svg",
+      "publicRef": "/images/shipments/flat-rack/flat-rack-heavy-machinery-lashing.svg",
+      "filename": "flat-rack-heavy-machinery-lashing.svg",
+      "ext": ".svg",
+      "size": 4852,
+      "width": 800,
+      "height": 340,
+      "type": "svg",
+      "sha256": "94808d4115172fb7fb323c8b3f7f053f1a087782eb38bf4e4ebcfa1e6086eb6a",
+      "usages": [
+        "src\\data\\assetChecklist.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/shipments/flat-rack/flat-rack-mobile-crane-lift.jpg",
+      "publicRef": "/images/shipments/flat-rack/flat-rack-mobile-crane-lift.jpg",
+      "filename": "flat-rack-mobile-crane-lift.jpg",
+      "ext": ".jpg",
+      "size": 241935,
+      "width": 1600,
+      "height": 1200,
+      "type": "jpg",
+      "sha256": "0b5e2d304762cd72012da68fcae12d9bd4b883475c1258a020e513ac4fbab677",
+      "usages": [
+        "src\\data\\containerGuideData.ts",
+        "src\\data\\imageAssets.ts",
+        "src\\data\\shipmentGalleryData.ts",
+        "src\\pages\\WarehousePage.tsx"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/shipments/flat-rack/flat-rack-night-lashing-hold.jpg",
+      "publicRef": "/images/shipments/flat-rack/flat-rack-night-lashing-hold.jpg",
+      "filename": "flat-rack-night-lashing-hold.jpg",
+      "ext": ".jpg",
+      "size": 72991,
+      "width": 721,
+      "height": 1280,
+      "type": "jpg",
+      "sha256": "24baacbcc4842ac59c33be77de08074cca9b38bfca99dbe88e3d11aef851e5f8",
+      "usages": [
+        "src\\data\\containerGuideData.ts",
+        "src\\data\\imageAssets.ts",
+        "src\\data\\shipmentGalleryData.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/shipments/flat-rack/flat-rack-oversized-cargo-chocking.svg",
+      "publicRef": "/images/shipments/flat-rack/flat-rack-oversized-cargo-chocking.svg",
+      "filename": "flat-rack-oversized-cargo-chocking.svg",
+      "ext": ".svg",
+      "size": 2614,
+      "width": 800,
+      "height": 340,
+      "type": "svg",
+      "sha256": "4bc4a7a351065b02e087e0b69fe9a5e6e2105b38d3fbf410984014d3a38610cc",
+      "usages": [
+        "src\\data\\assetChecklist.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/shipments/flat-rack/flat-rack-structural-skids.svg",
+      "publicRef": "/images/shipments/flat-rack/flat-rack-structural-skids.svg",
+      "filename": "flat-rack-structural-skids.svg",
+      "ext": ".svg",
+      "size": 2125,
+      "width": 800,
+      "height": 340,
+      "type": "svg",
+      "sha256": "1951277cdee2092f002321956b56d03a23c65fb4530fe73575fea2d2b6c3368a",
+      "usages": [
+        "src\\data\\assetChecklist.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/shipments/flat-rack/flat-rack-vessel-cell-stowage.jpg",
+      "publicRef": "/images/shipments/flat-rack/flat-rack-vessel-cell-stowage.jpg",
+      "filename": "flat-rack-vessel-cell-stowage.jpg",
+      "ext": ".jpg",
+      "size": 379747,
+      "width": 1600,
+      "height": 1201,
+      "type": "jpg",
+      "sha256": "a46f51ea591f55473f2aade0f3360209eb53091cf00dac32385fdf704fc702e2",
+      "usages": [
+        "src\\data\\imageAssets.ts",
+        "src\\data\\shipmentGalleryData.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/shipments/open-top/open-top-bow-securing-lashing.svg",
+      "publicRef": "/images/shipments/open-top/open-top-bow-securing-lashing.svg",
+      "filename": "open-top-bow-securing-lashing.svg",
+      "ext": ".svg",
+      "size": 1899,
+      "width": 800,
+      "height": 350,
+      "type": "svg",
+      "sha256": "e1073425edae801af7132bf6e5f32b477e6b68f969935bc9a6816911833aabfb",
+      "usages": [
+        "src\\data\\assetChecklist.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/shipments/open-top/open-top-crane-loading-machinery.svg",
+      "publicRef": "/images/shipments/open-top/open-top-crane-loading-machinery.svg",
+      "filename": "open-top-crane-loading-machinery.svg",
+      "ext": ".svg",
+      "size": 1839,
+      "width": 800,
+      "height": 350,
+      "type": "svg",
+      "sha256": "fcf251dca5f5c584a87c98c853569ffe56f1cd0fa24398909e9a1e843ddafba3",
+      "usages": [
+        "src\\data\\assetChecklist.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/shipments/open-top/open-top-crane-loading.jpg",
+      "publicRef": "/images/shipments/open-top/open-top-crane-loading.jpg",
+      "filename": "open-top-crane-loading.jpg",
+      "ext": ".jpg",
+      "size": 1065609,
+      "width": 1376,
+      "height": 768,
+      "type": "jpg",
+      "sha256": "98721b70d47234df8c961278bee54beb2bc6461b2a3b6d0ab7e9bc299ff8e971",
+      "usages": [
+        "src\\data\\containerGuideData.ts",
+        "src\\data\\shipmentGalleryData.ts",
+        "src\\pages\\ContainerStuffingPage.tsx"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/shipments/open-top/open-top-overheight-cargo-tarpaulin.svg",
+      "publicRef": "/images/shipments/open-top/open-top-overheight-cargo-tarpaulin.svg",
+      "filename": "open-top-overheight-cargo-tarpaulin.svg",
+      "ext": ".svg",
+      "size": 2945,
+      "width": 800,
+      "height": 350,
+      "type": "svg",
+      "sha256": "afd647dc25cbce788eb4848b5d44e5c569c68ccdc03c0168f5a46addab4722ad",
+      "usages": [
+        "src\\data\\assetChecklist.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/team/msk-logistics-team-original.jpg",
+      "publicRef": "/images/team/msk-logistics-team-original.jpg",
+      "filename": "msk-logistics-team-original.jpg",
+      "ext": ".jpg",
+      "size": 394847,
+      "width": 768,
+      "height": 1024,
+      "type": "jpg",
+      "sha256": "8847d06b20980364ac83eb1b8005b7f8a0f5fbb4084c701ea0847a4e396fcaa8",
+      "usages": [],
+      "isUsed": false
+    },
+    {
+      "diskPath": "public/images/team/msk-logistics-team.jpg",
+      "publicRef": "/images/team/msk-logistics-team.jpg",
+      "filename": "msk-logistics-team.jpg",
+      "ext": ".jpg",
+      "size": 312744,
+      "width": 768,
+      "height": 1024,
+      "type": "jpg",
+      "sha256": "b7fd707da644f7eee7dcbefaad5a89aa4570c9c1e0e50005c15848f1ef17f6f0",
+      "usages": [
+        "src\\pages\\AboutPage.tsx"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/team/msk-logistics-team.webp",
+      "publicRef": "/images/team/msk-logistics-team.webp",
+      "filename": "msk-logistics-team.webp",
+      "ext": ".webp",
+      "size": 247790,
+      "width": 768,
+      "height": 1024,
+      "type": "webp (VP8)",
+      "sha256": "31ad01ac3662b396a9f1ff5c2c9e70c3fb35642c542fc775eb12146d50320ad8",
+      "usages": [
+        "src\\pages\\AboutPage.tsx",
+        "src\\pages\\StaffPage.tsx"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/warehouse/open/open-yard-container-buffer.svg",
+      "publicRef": "/images/warehouse/open/open-yard-container-buffer.svg",
+      "filename": "open-yard-container-buffer.svg",
+      "ext": ".svg",
+      "size": 1908,
+      "width": 800,
+      "height": 280,
+      "type": "svg",
+      "sha256": "d9992906bf3bcc249ca3c54d358394abf0a6bb7214c1159c493bcef4f03329e9",
+      "usages": [],
+      "isUsed": false
+    },
+    {
+      "diskPath": "public/images/warehouse/open/open-yard-staging-area.svg",
+      "publicRef": "/images/warehouse/open/open-yard-staging-area.svg",
+      "filename": "open-yard-staging-area.svg",
+      "ext": ".svg",
+      "size": 2577,
+      "width": 800,
+      "height": 260,
+      "type": "svg",
+      "sha256": "02ee8809961987c02d1f6c9d0f71ccb26a68bc086f901593d0022609b71d255f",
+      "usages": [
+        "src\\data\\assetChecklist.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "public/images/warehouse/shaded/covered-cargo-staging-bay.svg",
+      "publicRef": "/images/warehouse/shaded/covered-cargo-staging-bay.svg",
+      "filename": "covered-cargo-staging-bay.svg",
+      "ext": ".svg",
+      "size": 1832,
+      "width": 800,
+      "height": 500,
+      "type": "svg",
+      "sha256": "2d2bd667ff4e5ffdb7f0913ce89ddd8700a869d782de00e591195700af520da2",
+      "usages": [],
+      "isUsed": false
+    },
+    {
+      "diskPath": "public/images/warehouse/shaded/shaded-packing-shed.svg",
+      "publicRef": "/images/warehouse/shaded/shaded-packing-shed.svg",
+      "filename": "shaded-packing-shed.svg",
+      "ext": ".svg",
+      "size": 2553,
+      "width": 800,
+      "height": 500,
+      "type": "svg",
+      "sha256": "afa50ed825bb4c1a01d13921def95cd338b204f86c9e6ac4e4f31e1744743a5c",
+      "usages": [
+        "src\\data\\assetChecklist.ts"
+      ],
+      "isUsed": true
+    },
+    {
+      "diskPath": "src/assets/hero.png",
+      "publicRef": "src/assets/hero.png",
+      "filename": "hero.png",
+      "ext": ".png",
+      "size": 831020,
+      "width": 1024,
+      "height": 512,
+      "type": "png",
+      "sha256": "f60da4c75533d232f4971b3c8d2e09d216a3e801a8b8b93745a88fd916704f1b",
+      "usages": [],
+      "isUsed": false
+    },
+    {
+      "diskPath": "src/assets/react.svg",
+      "publicRef": "src/assets/react.svg",
+      "filename": "react.svg",
+      "ext": ".svg",
+      "size": 4126,
+      "width": 256,
+      "height": 228,
+      "type": "svg",
+      "sha256": "35ef61ed53b323ae94a16a8ec659b3d0af3880698791133f23b084085ab1c2e5",
+      "usages": [],
+      "isUsed": false
+    },
+    {
+      "diskPath": "src/assets/vite.svg",
+      "publicRef": "src/assets/vite.svg",
+      "filename": "vite.svg",
+      "ext": ".svg",
+      "size": 8709,
+      "width": 77,
+      "height": 47,
+      "type": "svg",
+      "sha256": "5be21acd42eb7b896e517f4e0f0f11eb5c5d9e54fbbcebe9453f033008fcca6f",
+      "usages": [],
+      "isUsed": false
+    }
+  ]
+}

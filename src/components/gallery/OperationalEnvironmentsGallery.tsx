@@ -69,10 +69,10 @@ export const OperationalEnvironmentsGallery: React.FC = () => {
   };
 
   return (
-    <section className="py-20 sm:py-24 bg-[#12161E] text-white border-y border-neutral-800 relative overflow-hidden select-none">
+    <section className="py-20 sm:py-24 bg-[#000000] text-white border-y border-white/10 relative overflow-hidden select-none">
       {/* Background Decorative Ambient Radial Glow */}
       <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-gradient-to-b from-[#1E293B]/40 to-transparent pointer-events-none"
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-gradient-to-b from-neutral-900/40 to-transparent pointer-events-none"
         aria-hidden="true"
       />
 
