@@ -1,50 +1,72 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 
 export interface CartingDropdownSectionProps {
-  theme?: 'dark' | 'light';
+  onClose?: () => void;
   className?: string;
 }
+
+interface CartingOption {
+  readonly id: string;
+  readonly name: string;
+  readonly path: string;
+  readonly label: string;
+}
+
+const CARTING_OPTIONS: readonly CartingOption[] = [
+  {
+    id: 'speedy',
+    name: 'Speedy',
+    path: '/services/container-stuffing#speedy',
+    label: 'Speedy CFS Carting Operations',
+  },
+  {
+    id: 'punjab',
+    name: 'Punjab',
+    path: '/services/container-stuffing#punjab',
+    label: 'Punjab Conware CFS Carting Operations',
+  },
+  {
+    id: 'polaris',
+    name: 'Polaris',
+    path: '/services/container-stuffing#polaris',
+    label: 'Polaris Marine Logistics CFS Carting Operations',
+  },
+];
 
 /**
  * CARTING Section Component
  * 
- * Preserves the exact visual hierarchy, connecting tree lines, and three terminals:
- * - Speedy
- * - Punjab
- * - Polaris
- * 
- * Retains 100% authentic identity and connections with enhanced industrial polish.
+ * Restores the authentic compact white/light diagram panel:
+ * - Centered CARTING heading badge
+ * - Tree connector branches (SVG with MSK red lines and junction dots)
+ * - Three individual options: Speedy, Punjab, Polaris
+ * - Fully interactive, clickable with directional arrow and hover states
  */
 export const CartingDropdownSection: React.FC<CartingDropdownSectionProps> = ({
-  theme = 'dark',
+  onClose,
   className = '',
 }) => {
-  const isDark = theme === 'dark';
-
   return (
     <div
-      className={`p-3.5 rounded-xl border transition-all duration-200 select-none ${
-        isDark
-          ? 'bg-[#121620]/90 border-[#262F3E] shadow-inner'
-          : 'bg-[#F8F9FA] border-[#E9ECEF]'
-      } ${className}`}
+      className={`p-3 sm:p-3.5 rounded-xl bg-white border border-[#E2E8F0] shadow-xs select-none ${className}`}
       aria-label="MSK Carting Terminals: Speedy, Punjab, Polaris"
     >
-      {/* Centered Parent Node: CARTING (Display-only, non-clickable) */}
+      {/* Centered Parent Node: CARTING Heading */}
       <div className="flex justify-center">
-        <div
-          className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-md border shadow-xs select-none cursor-default pointer-events-none ${
-            isDark
-              ? 'bg-[#181E2B] border-[#B62825]/60 text-white'
-              : 'bg-white border-[#B62825]/40 text-[#202124]'
-          }`}
+        <Link
+          to="/services/container-stuffing#carting"
+          onClick={onClose}
+          className="group/parent inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-white hover:bg-neutral-50 border border-[#B62825]/40 hover:border-[#B62825] shadow-2xs transition-all duration-200 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B62825]"
           title="MSK Carting Operations"
+          aria-label="MSK Carting Operations"
         >
-          <span className="w-1.5 h-1.5 rounded-full bg-[#B62825] shadow-[0_0_6px_#B62825]" />
-          <span className="font-heading font-bold text-[10.5px] tracking-widest uppercase">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#B62825] shadow-[0_0_4px_rgba(182,40,37,0.6)]" />
+          <span className="font-heading font-extrabold text-[11px] text-[#202124] group-hover/parent:text-[#B62825] tracking-widest uppercase transition-colors">
             CARTING
           </span>
-        </div>
+        </Link>
       </div>
 
       {/* Tree Connector Lines (SVG with MSK-red accents) */}
@@ -62,58 +84,28 @@ export const CartingDropdownSection: React.FC<CartingDropdownSectionProps> = ({
           <path d="M 250 10 L 250 20" stroke="#B62825" strokeWidth="1.5" strokeLinecap="round" />
           {/* Junction & Terminal Dots */}
           <circle cx="150" cy="10" r="2" fill="#B62825" />
-          <circle cx="50" cy="18" r="2" fill="#B62825" />
-          <circle cx="150" cy="18" r="2" fill="#B62825" />
-          <circle cx="250" cy="18" r="2" fill="#B62825" />
+          <circle cx="50" cy="18" r="1.75" fill="#B62825" />
+          <circle cx="150" cy="18" r="1.75" fill="#B62825" />
+          <circle cx="250" cy="18" r="1.75" fill="#B62825" />
         </svg>
       </div>
 
-      {/* 3 Child Company Nodes Horizontally Aligned (Speedy, Punjab, Polaris) */}
-      <div className="grid grid-cols-3 gap-2 select-none">
-        <div
-          className={`flex flex-col items-center justify-center py-2 px-1.5 rounded-lg border text-center transition-all duration-200 cursor-default pointer-events-none ${
-            isDark
-              ? 'bg-[#181E2B] border-[#2A3445] text-slate-200 shadow-2xs'
-              : 'bg-white border-[#E2E8F0] text-[#202124] shadow-2xs'
-          }`}
-        >
-          <span className="text-[12px] font-bold tracking-tight">
-            Speedy
-          </span>
-          <span className="text-[9px] font-mono text-slate-400 uppercase tracking-wider mt-0.5">
-            CFS
-          </span>
-        </div>
-
-        <div
-          className={`flex flex-col items-center justify-center py-2 px-1.5 rounded-lg border text-center transition-all duration-200 cursor-default pointer-events-none ${
-            isDark
-              ? 'bg-[#181E2B] border-[#2A3445] text-slate-200 shadow-2xs'
-              : 'bg-white border-[#E2E8F0] text-[#202124] shadow-2xs'
-          }`}
-        >
-          <span className="text-[12px] font-bold tracking-tight">
-            Punjab
-          </span>
-          <span className="text-[9px] font-mono text-slate-400 uppercase tracking-wider mt-0.5">
-            Conware
-          </span>
-        </div>
-
-        <div
-          className={`flex flex-col items-center justify-center py-2 px-1.5 rounded-lg border text-center transition-all duration-200 cursor-default pointer-events-none ${
-            isDark
-              ? 'bg-[#181E2B] border-[#2A3445] text-slate-200 shadow-2xs'
-              : 'bg-white border-[#E2E8F0] text-[#202124] shadow-2xs'
-          }`}
-        >
-          <span className="text-[12px] font-bold tracking-tight">
-            Polaris
-          </span>
-          <span className="text-[9px] font-mono text-slate-400 uppercase tracking-wider mt-0.5">
-            Logistics
-          </span>
-        </div>
+      {/* 3 Child Company Nodes Horizontally Aligned */}
+      <div className="grid grid-cols-3 gap-2">
+        {CARTING_OPTIONS.map((item) => (
+          <Link
+            key={item.id}
+            to={item.path}
+            onClick={onClose}
+            className="group/node flex items-center justify-center gap-1 py-1.5 px-2 rounded-lg bg-white hover:bg-[#FFF5F5] border border-[#E2E8F0] hover:border-[#B62825] shadow-2xs hover:shadow-xs transition-all duration-200 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B62825]"
+            aria-label={item.label}
+          >
+            <span className="text-[12px] font-semibold text-[#202124] group-hover/node:text-[#B62825] transition-colors">
+              {item.name}
+            </span>
+            <ArrowRight className="w-2.5 h-2.5 text-slate-400 group-hover/node:text-[#B62825] group-hover/node:translate-x-0.5 transition-all shrink-0" />
+          </Link>
+        ))}
       </div>
     </div>
   );

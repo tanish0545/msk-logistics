@@ -9,9 +9,9 @@ import {
   AlertTriangle, 
   ArrowRight,
   Check,
-  Truck,
   RotateCw
 } from 'lucide-react';
+import { CartingDropdownSection } from './CartingDropdownSection';
 
 export interface ConceptBServiceItem {
   readonly id: string;
@@ -109,18 +109,6 @@ const CONCEPT_B_SERVICES: readonly ConceptBServiceItem[] = [
       'Statutory Port Authority Approvals',
     ],
   },
-] as const;
-
-interface CartingTerminal {
-  readonly name: string;
-  readonly desc: string;
-  readonly path: string;
-}
-
-const CARTING_TERMINALS: readonly CartingTerminal[] = [
-  { name: 'Speedy', desc: 'CFS Terminal, Nhava Sheva', path: '/services/container-stuffing#speedy' },
-  { name: 'Punjab', desc: 'Conware CFS, Nhava Sheva', path: '/services/container-stuffing#punjab' },
-  { name: 'Polaris', desc: 'Marine Logistics CFS, Nhava Sheva', path: '/services/container-stuffing#polaris' },
 ] as const;
 
 interface Services3DContainerDropdownProps {
@@ -440,69 +428,9 @@ export const Services3DContainerDropdown: React.FC<Services3DContainerDropdownPr
           </p>
         </div>
 
-        {/* CARTING Section with Vertical Hierarchy Bus Line Matching Concept B Mockup */}
-        <div className="my-4 py-1">
-          
-          {/* Centered Carting Parent Badge */}
-          <div className="flex justify-start sm:justify-center mb-3">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-xl bg-gradient-to-r from-[#D43330] via-[#B62825] to-[#8F1917] text-white shadow-[0_4px_18px_rgba(182,40,37,0.45)] border border-red-400/30">
-              <Truck className="w-3.5 h-3.5 text-white" />
-              <span className="font-heading font-black text-xs tracking-wider uppercase">
-                CARTING
-              </span>
-            </div>
-          </div>
-
-          {/* Carting Terminal Cards with Vertical Circuit Bus */}
-          <div className="relative pl-6">
-            
-            {/* SVG Circuit Line Bus descending vertically with horizontal branch connectors */}
-            <div className="absolute left-1 top-3 bottom-3 w-5 pointer-events-none select-none" aria-hidden="true">
-              <svg className="w-full h-full" viewBox="0 0 20 160" fill="none" preserveAspectRatio="none">
-                {/* Vertical Bus Trunk */}
-                <line x1="6" y1="0" x2="6" y2="155" stroke="#B62825" strokeWidth="1.5" />
-                {/* Branch 1 to Speedy */}
-                <line x1="6" y1="24" x2="18" y2="24" stroke="#B62825" strokeWidth="1.5" />
-                <circle cx="18" cy="24" r="2.5" fill="#B62825" />
-                {/* Branch 2 to Punjab */}
-                <line x1="6" y1="78" x2="18" y2="78" stroke="#B62825" strokeWidth="1.5" />
-                <circle cx="18" cy="78" r="2.5" fill="#B62825" />
-                {/* Branch 3 to Polaris */}
-                <line x1="6" y1="132" x2="18" y2="132" stroke="#B62825" strokeWidth="1.5" />
-                <circle cx="18" cy="132" r="2.5" fill="#B62825" />
-              </svg>
-            </div>
-
-            {/* 3 Vertically Stacked Carting Terminal Cards */}
-            <div className="space-y-2.5">
-              {CARTING_TERMINALS.map((terminal) => (
-                <Link
-                  key={terminal.name}
-                  to={terminal.path}
-                  onClick={onClose}
-                  className="group/term flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-[#12151D]/90 hover:bg-[#1C2230] border border-white/10 hover:border-[#B62825] transition-all duration-200 shadow-sm hover:shadow-[0_4px_16px_rgba(182,40,37,0.3)] cursor-pointer"
-                >
-                  <div className="flex items-center gap-2.5">
-                    <div className="w-7 h-7 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-slate-300 group-hover/term:text-[#B62825] group-hover/term:border-[#B62825]/40 transition-colors">
-                      <Truck className="w-3.5 h-3.5" />
-                    </div>
-                    <div>
-                      <span className="text-xs font-bold font-heading text-white group-hover/term:text-[#B62825] transition-colors">
-                        {terminal.name}
-                      </span>
-                      <span className="block text-[9.5px] font-mono text-slate-400">
-                        {terminal.desc}
-                      </span>
-                    </div>
-                  </div>
-
-                  <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover/term:text-[#B62825] group-hover/term:translate-x-1 transition-all" />
-                </Link>
-              ))}
-            </div>
-
-          </div>
-
+        {/* Restored Authentic Carting Diagram (Compact, Centered, 3 Connected Nodes) */}
+        <div className="my-4">
+          <CartingDropdownSection onClose={onClose} />
         </div>
 
         {/* View All Services Directory Link */}

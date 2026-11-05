@@ -522,7 +522,7 @@ export const Navbar: React.FC = () => {
                             <div className="border-t border-[#E2E2E2] my-2" />
 
                             {/* Mobile Carting Tree (Exact Preserved Component) */}
-                            <CartingDropdownSection />
+                            <CartingDropdownSection onClose={() => setMobileMenuOpen(false)} />
 
                             {/* Divider */}
                             <div className="border-t border-[#E2E2E2] my-2" />

@@ -124,7 +124,11 @@ export const ContainerStuffingPage: React.FC = () => {
           </div>
 
           {/* Authentic Container Stuffing & OEM Yard Box Showcase */}
-          <div className="pt-10 border-t border-[#E2E2E2] space-y-6">
+          <div id="cfs-carting" className="pt-10 border-t border-[#E2E2E2] space-y-6 scroll-mt-28">
+            <span id="speedy" className="sr-only" aria-hidden="true" />
+            <span id="punjab" className="sr-only" aria-hidden="true" />
+            <span id="polaris" className="sr-only" aria-hidden="true" />
+            <span id="carting" className="sr-only" aria-hidden="true" />
             <ScrollReveal direction="up" className="space-y-2">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 text-[#B62825] border border-red-200 text-xs font-mono font-bold uppercase">
                 <span>FIELD EXECUTION OPERATIONS</span>
