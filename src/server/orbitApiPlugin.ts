@@ -148,7 +148,7 @@ async function checkGeminiStatus(apiKey: string): Promise<VerificationCache> {
     if (testRes.ok) {
       verificationCache = {
         status: 'gemini-active',
-        label: 'Gemini AI Active',
+        label: 'MSK Orbit AI Active',
         verified: true,
         model: 'gemini-1.5-flash',
         checkedAt: Date.now(),
@@ -301,7 +301,7 @@ export function mskOrbitApiPlugin(): Plugin {
           // Reset cache to active on successful inference
           verificationCache = {
             status: 'gemini-active',
-            label: 'Gemini AI Active',
+            label: 'MSK Orbit AI Active',
             verified: true,
             model: 'gemini-1.5-flash',
             checkedAt: Date.now(),
@@ -309,7 +309,7 @@ export function mskOrbitApiPlugin(): Plugin {
 
           res.end(JSON.stringify({
             status: 'gemini-active',
-            label: 'Gemini AI Active',
+            label: 'MSK Orbit AI Active',
             reply: text,
             fallback: false,
           }));

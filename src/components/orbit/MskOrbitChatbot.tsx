@@ -46,7 +46,7 @@ export const MskOrbitChatbot: React.FC = () => {
         const data = await res.json();
         if (data.status === 'gemini-active' && data.verified) {
           setEngineStatus('gemini-active');
-          setEngineLabel(data.label || 'Gemini AI Active');
+          setEngineLabel(data.label || 'MSK Orbit AI ActiveActive');
         } else if (data.status === 'unavailable') {
           setEngineStatus('unavailable');
           setEngineLabel(data.label || 'AI Temporarily Unavailable');
@@ -103,7 +103,7 @@ export const MskOrbitChatbot: React.FC = () => {
         const data = await res.json();
         if (data.status === 'gemini-active' && data.reply) {
           setEngineStatus('gemini-active');
-          setEngineLabel('Gemini AI Active');
+          setEngineLabel('MSK Orbit AI Active');
 
           const aiMsg: ChatMessageItem = {
             id: `ai-${Date.now()}`,

@@ -169,3 +169,4 @@ run().catch(err => {
   console.error('Fatal error in verify_staff_hero_fix:', err);
   process.exit(1);
 });
+

@@ -121,7 +121,7 @@ export const OrbitChatWindow: React.FC<OrbitChatWindowProps> = ({
               {engineStatus === 'gemini-active' && (
                 <span className="inline-flex items-center gap-1 px-2 py-0.2 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-[9.5px] font-mono font-semibold text-emerald-400">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                  <span>{engineLabel || 'Gemini AI Active'}</span>
+                  <span>{engineLabel || 'MSK Orbit AI ActiveActive'}</span>
                 </span>
               )}
               {engineStatus === 'local-mode' && (
@@ -194,9 +194,6 @@ export const OrbitChatWindow: React.FC<OrbitChatWindowProps> = ({
           {engineStatus === 'gemini-active' && (
             <div className="pt-2 border-t border-white/10 text-[11px] text-emerald-400 font-mono flex items-start gap-1.5">
               <span>●</span>
-              <span>
-                Gemini AI Active — High-speed multimodal intelligence grounded in verified MSK port operations. English &amp; natural Hinglish supported.
-              </span>
             </div>
           )}
           {engineStatus === 'local-mode' && (
