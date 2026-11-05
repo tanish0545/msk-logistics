@@ -589,18 +589,15 @@ export const AboutPage: React.FC = () => {
             {/* Team Photograph Column (7 cols) */}
             <div className="lg:col-span-7">
               <div className="relative rounded-2xl overflow-hidden border border-[#E2E2E2] shadow-md bg-neutral-100 group transition-all duration-300 hover:shadow-xl">
-                <picture>
-                  <source srcSet="/images/team/msk-logistics-team.webp" type="image/webp" />
-                  <img
-                    src="/images/team/msk-logistics-team.jpg"
-                    alt="MSK Logistics team standing together inside a warehouse."
-                    className="w-full h-auto object-cover max-h-[640px] transition-transform duration-500 ease-out group-hover:scale-[1.02]"
-                    loading="lazy"
-                    decoding="async"
-                    width="768"
-                    height="1024"
-                  />
-                </picture>
+                <img
+                  src="/images/team/msk-team-containers.jpg"
+                  alt="MSK Logistics dedicated team standing in front of shipping containers."
+                  className="w-full h-auto object-cover max-h-[640px] transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+                  loading="lazy"
+                  decoding="async"
+                  width="1024"
+                  height="768"
+                />
 
                 {/* Corner MSK Logo Watermark Overlay */}
                 <div className="absolute bottom-4 right-4 z-10 pointer-events-none select-none">
@@ -672,6 +669,17 @@ export const AboutPage: React.FC = () => {
                       Complete photographic records before container door closure for client records, customs, and ocean carrier compliance.
                     </p>
                   </div>
+                </div>
+
+                {/* Direct Link to Dedicated Our Staff / Our Team Page */}
+                <div className="pt-2">
+                  <Link
+                    to="/company/staff"
+                    className="inline-flex items-center gap-2 text-sm font-bold text-[#B62825] hover:text-[#9E2220] transition-colors group"
+                  >
+                    <span>Meet Our Full Operations &amp; Field Team</span>
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </Link>
                 </div>
               </div>
             </div>
