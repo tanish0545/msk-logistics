@@ -24,7 +24,7 @@ export const OrbitLauncher: React.FC<OrbitLauncherProps> = ({
         }`}
     >
       {/* STRICT: ONE CIRCULAR BUTTON ONLY — Concept 09 */}
-      <div className="relative w-10 h-10 sm:w-15 sm:h-15 rounded-full bg-[#000000] border-2 border-[#B62825] flex flex-col items-center justify-center p-2 shadow-[0_8px_30px_rgba(0,0,0,0.85)] group-hover:shadow-[0_0_28px_rgba(182,40,37,0.65)] group-hover:border-red-500 transition-all duration-300 overflow-hidden cursor-pointer">
+      <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#0A0A0C] border-2 border-[#B62825] flex flex-col items-center justify-center p-2 shadow-[0_8px_30px_rgba(0,0,0,0.85)] group-hover:shadow-[0_0_28px_rgba(182,40,37,0.65)] group-hover:border-red-500 transition-all duration-300 overflow-hidden cursor-pointer">
 
         {/* Subtle Ambient Radial Red Glow */}
         <div

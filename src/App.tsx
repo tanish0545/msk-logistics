@@ -4,6 +4,7 @@ import { Navbar } from './components/navigation/Navbar';
 import { Footer } from './components/layout/Footer';
 import { ErrorBoundary } from './components/common/ErrorBoundary';
 import { ImageRecoveryManager } from './components/common/ImageRecoveryManager';
+import { RouteProgressIndicator } from './components/common/RouteProgressIndicator';
 
 // Pages
 import { HomePage } from './pages/HomePage';
@@ -65,6 +66,7 @@ export const App: React.FC = () => {
     <ErrorBoundary fallbackTitle="Application Error">
       <Router>
         <ScrollToTop />
+        <RouteProgressIndicator />
         <ImageRecoveryManager />
         <div className="min-h-screen flex flex-col bg-[#FFFFFF] text-[#343434] selection:bg-[#B62825] selection:text-white">
           <Navbar />

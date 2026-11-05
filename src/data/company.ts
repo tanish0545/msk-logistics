@@ -46,7 +46,7 @@ export const CORE_SERVICES: ServiceItem[] = [
     tag: 'SEC. 01 / OCEAN FREIGHT',
     shortDescription: 'Comprehensive ocean freight handling, maritime container coordination, and vessel hold stowage operating through Nhava Sheva (JNPT) and western shipping gateways.',
     fullDescription: 'MSK Logistics coordinates dedicated ocean cargo operations for export and import consignments. Operating from Western India’s primary maritime corridor at JNPT, we manage container staging, FCL/LCL transfers, terminal port gate-in schedules, and secure vessel stowage preparation.',
-    image: '/images/operations/container-loading/vessel-stowage-cell-guides.jpg',
+    image: '/images/import-export/fcl-dedicated-shipping.webp',
     keyActivities: [
       'Cargo handling of Export Import & Ocean Cargo',
       'Port terminal gate-in and vessel schedule alignment at JNPT',
@@ -73,7 +73,7 @@ export const CORE_SERVICES: ServiceItem[] = [
     tag: 'SEC. 02 / AIR FREIGHT',
     shortDescription: 'Time-critical air cargo handling, airport terminal transfers, specialized aircraft palletisation, and expedited export customs processing.',
     fullDescription: 'Air shipments demand swift turnaround, strict weight adherence, and secure packaging protection. MSK Logistics provides dedicated air cargo logistics, executing certified lightweight wooden skidding, carton palletisation, airport staging, and customs clearance for export, import, and SEZ shipments.',
-    image: '/images/operations/cargo-lashing/vessel-cross-webbing-lashing.jpg',
+    image: '/images/services/air-cargo.png',
     keyActivities: [
       'Cargo handling of Air Cargo and expedited export transfers',
       'Custom palletisation and banding tailored to air freight ULD standards',
@@ -127,7 +127,7 @@ export const CORE_SERVICES: ServiceItem[] = [
     tag: 'SEC. 04 / SPECIAL PROJECT CARGO',
     shortDescription: 'Specialist in Over-Dimensional Cargo (ODC), heavy machinery rigging, flat-rack securing, and project cargo execution from Nhava Sheva and Mundra ports.',
     fullDescription: 'Heavy and oversized project cargo demands specialized industrial engineering. MSK Logistics is a recognized specialist in Project and Over-Dimensional Cargo (ODC) handling operating through Nhava Sheva and Mundra gateways, providing flat rack container securing, heavy low-bed trailer haulage, and specialized mobile crane rigging for complex industrial freight.',
-    image: '/images/operations/cargo-lashing/flat-rack-heavy-duty-orange-lashing.jpg',
+    image: '/images/shipments/break-bulk/breakbulk-night-crane-qc04-hoist.jpg',
     keyActivities: [
       'Specialist in Project (ODC) handling from Nhava Sheva and Mundra',
       'Flat-rack and open-top heavy machinery positioning and tie-down',
@@ -154,7 +154,7 @@ export const CORE_SERVICES: ServiceItem[] = [
     tag: 'SEC. 05 / CARGO LASHING',
     shortDescription: 'Certified marine cargo lashing, timber chocking, container securing, and high-tensile composite strapping engineered for complete sea freight protection.',
     fullDescription: 'MSK Logistics delivers certified cargo lashing and securing disciplines encompassing container box lashing, flat rack tie-downs, certified timber chocking, heavy-duty ratchet lashing, and cargo nets engineered for severe maritime transit conditions.',
-    image: '/images/operations/cargo-lashing/trailer-chassis-ratchet-lashing.jpg',
+    image: '/images/services/cargo-lashing.webp',
     keyActivities: [
       'Marine cargo lashing and timber chocking with heavy ratchet straps and wire ropes',
       'Container box lashing, flat rack turnbuckle rigging, and safety nets',
@@ -181,7 +181,7 @@ export const CORE_SERVICES: ServiceItem[] = [
     tag: 'SEC. 06 / DANGEROUS GOODS (DG)',
     shortDescription: 'Technical packaging, UN-certified container securing, chemical drum lashing, and regulatory coordination in accordance with IMDG Code and IATA DGR standards.',
     fullDescription: 'Dangerous Goods (DG) and hazardous chemical consignments require rigorous adherence to international maritime and aviation protocols. MSK Logistics coordinates certified container stuffing, chemical drum securing, IBC tote restraint, and regulatory documentation checks at Nhava Sheva (JNPT) and Mundra. All operations are strictly subject to verified cargo classification, manufacturer Safety Data Sheets (SDS), carrier line acceptance, and statutory port authority approvals.',
-    image: '/images/services/hazardous-cargo/dg-port-terminal-hero.jpg',
+    image: '/images/hazardous/un3265-corrosive-class-8-drums.jpg',
     keyActivities: [
       'Dangerous Goods (DG) container loading, timber bulkheading, and segregation planning',
       'UN-rated steel and HDPE chemical drum palletisation and composite strapping',

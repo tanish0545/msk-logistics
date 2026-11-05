@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Ship, Plane, Box, Maximize2, Anchor } from 'lucide-react';
+import { Ship, Plane, Box, Maximize2, Anchor, AlertTriangle } from 'lucide-react';
 import type { ServiceItem } from '../../data/company';
 
 export interface ContainerServiceDoorCardProps {
@@ -53,6 +53,14 @@ const CONTAINER_STYLES: Record<string, ContainerDoorStyle> = {
     accentColor: '#F87171',
     icon: Anchor,
     isoNumber: 'MSKL 554318-1',
+  },
+  'hazardous-cargo': {
+    baseColor: 'bg-[#18181B]',
+    borderColor: 'border-[#B62825]',
+    accentColor: '#EF4444',
+    icon: AlertTriangle,
+    isoNumber: 'MSKD 882019-9',
+    hazardStripes: true,
   },
 };
 

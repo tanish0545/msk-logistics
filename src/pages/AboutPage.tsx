@@ -17,6 +17,7 @@ import {
 import { COMPANY_DETAILS } from '../data/company';
 import { BrandedImage } from '../components/common/BrandedImage';
 import { ScrollReveal } from '../components/common/ScrollReveal';
+import { AnimatedStatCounter } from '../components/common/AnimatedStatCounter';
 import { InnerPageBanner } from '../components/layout/InnerPageBanner';
 
 export const AboutPage: React.FC = () => {
@@ -223,7 +224,7 @@ export const AboutPage: React.FC = () => {
 
                   <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4 pt-2">
                     <span className="text-5xl sm:text-6xl lg:text-7xl font-bold font-heading text-white tracking-tight drop-shadow-sm">
-                      350–400
+                      <AnimatedStatCounter rangeStart={350} rangeEnd={400} />
                     </span>
                     <div className="flex flex-col items-center sm:items-start">
                       <span className="text-2xl sm:text-3xl font-bold font-heading text-[#B62825] tracking-wide">

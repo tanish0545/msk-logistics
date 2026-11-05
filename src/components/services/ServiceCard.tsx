@@ -17,6 +17,7 @@ const SERVICE_ISO_CODES: Record<string, { iso: string; payload: string; tare: st
   'container-stuffing': { iso: 'ISO 45G1 / HC', payload: 'NET: 28,600 KG', tare: 'TARE: 3,900 KG' },
   'special-project': { iso: 'ISO 45P3 / ODC', payload: 'NET: 40,000+ KG', tare: 'TARE: 5,200 KG' },
   'cargo-lashing': { iso: 'IMO / CSS CODE', payload: 'TENSILE: 5,000 KG', tare: 'ISPM-15 CHOCK' },
+  'hazardous-cargo': { iso: 'IMDG / CLASS 1-9', payload: 'UN CERTIFIED', tare: 'IMDG COMPLIANT' },
 };
 
 export const ServiceCard: React.FC<ServiceCardProps> = ({ service, index }) => {

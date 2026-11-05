@@ -75,7 +75,7 @@ export const ContainerServicesSection: React.FC = () => {
         {/* 5 Shipping-Container Doors Row Matching Concept 02 */}
         <div
           ref={scrollContainerRef}
-          className="grid grid-flow-col auto-cols-[82%] sm:auto-cols-[46%] lg:auto-cols-[calc(20%-13px)] gap-4 overflow-x-auto pb-4 pt-2 scrollbar-none snap-x snap-mandatory"
+          className="grid grid-flow-col auto-cols-[82%] sm:auto-cols-[46%] lg:auto-cols-[calc(16.666%-13px)] gap-4 overflow-x-auto pb-4 pt-2 scrollbar-none snap-x snap-mandatory"
         >
           {CORE_SERVICES.map((service, index) => (
             <div key={service.id} className="snap-start">
@@ -88,7 +88,7 @@ export const ContainerServicesSection: React.FC = () => {
         <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-white/10 text-xs font-mono text-[#94A3B8]">
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-[#B62825]" />
-            <span>5 Core Dedicated Services • Exclusively Focused Export Execution</span>
+            <span>6 Core Dedicated Services • Exclusively Focused Export Execution</span>
           </div>
           <div>
             <span>Direct CFS Coordination near Punjab &amp; Polaris, JNPT</span>

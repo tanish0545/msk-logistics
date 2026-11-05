@@ -13,12 +13,23 @@ export const Navbar: React.FC = () => {
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [mobileCompanyOpen, setMobileCompanyOpen] = useState(false);
   const [mobileBranchesOpen, setMobileBranchesOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const servicesRef = useRef<HTMLDivElement>(null);
   const companyRef = useRef<HTMLDivElement>(null);
   const servicesTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const companyTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const location = useLocation();
+
+  // Dynamic scroll listener for luxury frosted glass & micro red accent line
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 15);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Close menus on route change
   useEffect(() => {
@@ -107,7 +118,9 @@ export const Navbar: React.FC = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-white border-b border-[#E2E2E2] select-none shadow-xs">
+    <header className={`sticky top-0 z-50 w-full select-none transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-md border-b border-[#CBD5E1]/80 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.08)]' : 'bg-white border-b border-[#E2E2E2] shadow-xs'}`}>
+      {/* Micro Top MSK-Red Accent Line */}
+      <div className={`h-[2px] w-full bg-gradient-to-r from-transparent via-[#B62825] to-transparent transition-opacity duration-300 ${isScrolled ? 'opacity-100' : 'opacity-0'}`} />
       {/* Target total height: 68-76px (72px desktop / 68px mobile) */}
       <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 h-[68px] sm:h-[72px] flex items-center justify-between">
 
@@ -115,18 +128,21 @@ export const Navbar: React.FC = () => {
         <div className="flex-shrink-0 flex items-center">
           <Link
             to="/"
-            className="flex items-center transition-opacity hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B62825] rounded-sm py-0.5"
+            className="flex items-center transition-opacity hover:opacity-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B62825] rounded-sm py-0.5 group"
             aria-label="MSK Logistics Homepage"
           >
-            <img
-              src="/images/logo/msk-logistics-logo.png"
-              alt="MSK Logistics Solution"
-              className="w-[120px] sm:w-[135px] lg:w-[150px] xl:w-[140px] h-auto object-contain"
-              width="155"
-              height="60"
-              loading="eager"
-              decoding="async"
-            />
+            <div className="relative overflow-hidden rounded-xs">
+              <img
+                src="/images/logo/msk-logistics-logo.png"
+                alt="MSK Logistics Solution"
+                className="w-[120px] sm:w-[135px] lg:w-[150px] xl:w-[140px] h-auto object-contain transition-transform duration-300 group-hover:scale-[1.02] filter drop-shadow-xs"
+                width="155"
+                height="60"
+                loading="eager"
+                decoding="async"
+              />
+              <div aria-hidden="true" className="pointer-events-none absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/25 to-transparent" />
+            </div>
           </Link>
         </div>
 

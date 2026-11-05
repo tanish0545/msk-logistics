@@ -97,14 +97,14 @@ export const Footer: React.FC = () => {
           
           {/* Col 1: Brand & Overview (4 cols) */}
           <div className="lg:col-span-4 space-y-4">
-            <Link to="/" className="inline-block" aria-label="MSK Logistics Homepage">
-              <div className="bg-white px-3 py-2 rounded-lg inline-block shadow-sm">
+            <Link to="/" className="inline-block group" aria-label="MSK Logistics Homepage">
+              <div className="bg-white px-3.5 py-2.5 rounded-lg inline-block shadow-sm border border-white/20 transition-all duration-300 group-hover:bg-white group-hover:shadow-[0_0_20px_rgba(255,255,255,0.25)]">
                 <img 
                   src="/images/logo/msk-logistics-logo.png" 
                   alt="MSK Logistics Pvt. Ltd." 
-                  className="h-9 w-auto object-contain"
-                  width="90"
-                  height="36"
+                  className="h-9 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+                  width="135"
+                  height="42"
                   loading="lazy"
                   decoding="async"
                 />
