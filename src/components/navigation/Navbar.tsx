@@ -19,6 +19,7 @@ export const Navbar: React.FC = () => {
   const companyRef = useRef<HTMLDivElement>(null);
   const servicesTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const companyTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const isNavigatingRef = useRef(false);
   const location = useLocation();
 
   // Dynamic scroll listener for luxury frosted glass & micro red accent line
@@ -31,15 +32,43 @@ export const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close menus on route change
-  useEffect(() => {
-    setMobileMenuOpen(false);
+  // Unconditional dropdown and mobile drawer close function with navigation suppression lock
+  const closeAllDropdowns = () => {
+    isNavigatingRef.current = true;
+    if (servicesTimeoutRef.current) {
+      clearTimeout(servicesTimeoutRef.current);
+      servicesTimeoutRef.current = null;
+    }
+    if (companyTimeoutRef.current) {
+      clearTimeout(companyTimeoutRef.current);
+      companyTimeoutRef.current = null;
+    }
     setServicesDropdownOpen(false);
     setCompanyDropdownOpen(false);
+    setMobileMenuOpen(false);
     setMobileServicesOpen(false);
     setMobileCompanyOpen(false);
     setMobileBranchesOpen(false);
-  }, [location.pathname]);
+
+    // Suppress hover re-opening for 500ms immediately following navigation
+    setTimeout(() => {
+      isNavigatingRef.current = false;
+    }, 500);
+  };
+
+  // Close menus immediately on any route change (pathname, search, or hash)
+  useEffect(() => {
+    closeAllDropdowns();
+  }, [location.pathname, location.search, location.hash]);
+
+  // Close menus on browser Back / Forward (popstate)
+  useEffect(() => {
+    const handlePopState = () => {
+      closeAllDropdowns();
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
 
   // Click outside listener for dropdowns
   useEffect(() => {
@@ -60,17 +89,16 @@ export const Navbar: React.FC = () => {
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
-        setServicesDropdownOpen(false);
-        setCompanyDropdownOpen(false);
-        setMobileMenuOpen(false);
+        closeAllDropdowns();
       }
     };
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  // Hover handlers for Services dropdown with 180ms grace period
+  // Hover handlers for Services dropdown with grace period & navigation suppression
   const handleServicesEnter = () => {
+    if (isNavigatingRef.current) return;
     if (servicesTimeoutRef.current) {
       clearTimeout(servicesTimeoutRef.current);
       servicesTimeoutRef.current = null;
@@ -84,8 +112,9 @@ export const Navbar: React.FC = () => {
     }, 180);
   };
 
-  // Hover handlers for Company dropdown with 180ms grace period
+  // Hover handlers for Company dropdown with grace period & navigation suppression
   const handleCompanyEnter = () => {
+    if (isNavigatingRef.current) return;
     if (companyTimeoutRef.current) {
       clearTimeout(companyTimeoutRef.current);
       companyTimeoutRef.current = null;
@@ -250,7 +279,7 @@ export const Navbar: React.FC = () => {
                     >
                       {isServices ? (
                         /* SERVICES DROPDOWN — IDEA 08 3D CONTAINER THEME (INDUSTRIAL LOOK) */
-                        <Services3DContainerDropdown onClose={() => setServicesDropdownOpen(false)} />
+                        <Services3DContainerDropdown onClose={closeAllDropdowns} />
                       ) : (
                         /* COMPANY OVERVIEW DROPDOWN (PRESERVED) */
                         <div className="bg-white rounded-xl shadow-xl border border-[#E2E2E2] py-2 overflow-visible">
@@ -367,6 +396,7 @@ export const Navbar: React.FC = () => {
               <div key={item.id} className="relative h-full flex items-center">
                 <Link
                   to={item.path}
+                  onClick={closeAllDropdowns}
                   className={`group relative h-full flex items-center px-2 xl:px-2.5 py-1 font-nav text-[13px] 2xl:text-[14px] 3xl:text-[14.5px] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B62825] rounded-sm whitespace-nowrap ${active
                     ? 'text-[#B62825] font-semibold'
                     : 'text-[#475569] font-normal hover:text-[#B62825]'

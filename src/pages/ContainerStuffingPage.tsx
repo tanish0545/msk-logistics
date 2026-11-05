@@ -134,10 +134,10 @@ export const ContainerStuffingPage: React.FC = () => {
                 <span>FIELD EXECUTION OPERATIONS</span>
               </div>
               <h3 className="text-xl sm:text-2xl font-bold font-heading text-[#343434]">
-                Container Stuffing: Punjab &amp; Polaris CFS, Haz Panipat &amp; Delhi Corridors, ODC &amp; OEM Yard Box Packing
+                Carting &amp; Stuffing: Speedy, Punjab &amp; Polaris CFS Terminals, Haz Panipat &amp; Delhi Corridors
               </h3>
               <p className="text-xs sm:text-sm text-[#666666] max-w-3xl">
-                Precision stuffing sequences, weight distribution planning, and heavy mobile crane loading executed across Punjab and Polaris CFS facilities, Haz Panipat &amp; Delhi industrial operations, and OEM yard box staging at Nhava Sheva.
+                Precision stuffing sequences, port-to-CFS carting movements, weight distribution planning, and heavy mobile crane loading executed across Speedy, Punjab Conware, and Polaris CFS facilities, Haz Panipat &amp; Delhi industrial corridors, and OEM yard box staging at Nhava Sheva.
               </p>
             </ScrollReveal>
 

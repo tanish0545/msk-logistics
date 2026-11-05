@@ -58,12 +58,12 @@ export const CartingDropdownSection: React.FC<CartingDropdownSectionProps> = ({
         <Link
           to="/services/container-stuffing#carting"
           onClick={onClose}
-          className="group/parent inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-white hover:bg-neutral-50 border border-[#B62825]/40 hover:border-[#B62825] shadow-2xs transition-all duration-200 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B62825]"
+          className="group/parent inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF5F5] hover:bg-[#FEE2E2] border border-[#B62825]/50 hover:border-[#B62825] shadow-2xs transition-all duration-200 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B62825]"
           title="MSK Carting Operations"
           aria-label="MSK Carting Operations"
         >
-          <span className="w-1.5 h-1.5 rounded-full bg-[#B62825] shadow-[0_0_4px_rgba(182,40,37,0.6)]" />
-          <span className="font-heading font-extrabold text-[11px] text-[#202124] group-hover/parent:text-[#B62825] tracking-widest uppercase transition-colors">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#B62825] shadow-[0_0_6px_rgba(182,40,37,0.7)]" />
+          <span className="font-heading font-extrabold text-[11.5px] text-[#B62825] tracking-widest uppercase transition-colors">
             CARTING
           </span>
         </Link>

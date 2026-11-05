@@ -73,7 +73,7 @@ export const CORE_SERVICES: ServiceItem[] = [
     tag: 'SEC. 02 / AIR FREIGHT',
     shortDescription: 'Time-critical air cargo handling, airport terminal transfers, specialized aircraft palletisation, and expedited export customs processing.',
     fullDescription: 'Air shipments demand swift turnaround, strict weight adherence, and secure packaging protection. MSK Logistics provides dedicated air cargo logistics, executing certified lightweight wooden skidding, carton palletisation, airport staging, and customs clearance for export, import, and SEZ shipments.',
-    image: '/images/services/air-cargo.png',
+    image: '/images/services/air-cargo-premium.png',
     keyActivities: [
       'Cargo handling of Air Cargo and expedited export transfers',
       'Custom palletisation and banding tailored to air freight ULD standards',

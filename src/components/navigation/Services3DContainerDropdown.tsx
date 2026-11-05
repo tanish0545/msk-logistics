@@ -45,7 +45,7 @@ const CONCEPT_B_SERVICES: readonly ConceptBServiceItem[] = [
     subtitle: 'Express Priority Cargo',
     path: '/services/air-cargo',
     icon: Plane,
-    image: '/images/services/air-cargo.png',
+    image: '/images/services/air-cargo-premium.png',
     description: 'Time-sensitive and reliable air freight solutions, airport staging, and expedited export customs processing.',
     capabilities: [
       'Global Air Freight & ULD Handling',
@@ -308,7 +308,15 @@ export const Services3DContainerDropdown: React.FC<Services3DContainerDropdownPr
 
                     {/* Bottom Metadata Bar */}
                     <div className="p-2.5 xl:p-3 bg-[#0E1118] flex items-center justify-between gap-2 border-t border-white/5 h-[38%]">
-                      <div className="flex items-center gap-2 xl:gap-2.5 min-w-0">
+                      <Link
+                        to={service.path}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onClose();
+                        }}
+                        className="flex items-center gap-2 xl:gap-2.5 min-w-0 flex-1 hover:opacity-90 transition-opacity text-left"
+                        aria-label={`Explore ${service.name}`}
+                      >
                         {/* Red Accent Icon Badge */}
                         <div className="w-7 h-7 rounded-lg bg-[#B62825]/20 border border-[#B62825]/40 flex items-center justify-center text-[#B62825] group-hover/stack:bg-[#B62825] group-hover/stack:text-white transition-colors shrink-0 shadow-xs">
                           <Icon className="w-3.5 h-3.5" />
@@ -323,12 +331,20 @@ export const Services3DContainerDropdown: React.FC<Services3DContainerDropdownPr
                             {service.subtitle}
                           </p>
                         </div>
-                      </div>
+                      </Link>
 
                       {/* Directional Circular Arrow Button */}
-                      <div className="w-6 h-6 rounded-full border border-white/20 flex items-center justify-center text-white/70 group-hover/stack:border-[#B62825] group-hover/stack:text-white group-hover/stack:bg-[#B62825] transition-all shrink-0">
+                      <Link
+                        to={service.path}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onClose();
+                        }}
+                        className="w-6 h-6 rounded-full border border-white/20 flex items-center justify-center text-white/70 group-hover/stack:border-[#B62825] group-hover/stack:text-white group-hover/stack:bg-[#B62825] transition-all shrink-0 cursor-pointer"
+                        aria-label={`Go to ${service.name}`}
+                      >
                         <ArrowRight className="w-3 h-3" />
-                      </div>
+                      </Link>
                     </div>
                   </div>
 
