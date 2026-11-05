@@ -134,3 +134,4 @@ export const AnimatedStatCounter: React.FC<AnimatedStatCounterProps> = ({
     </span>
   );
 };
+

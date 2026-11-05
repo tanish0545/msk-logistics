@@ -185,10 +185,7 @@ export const Navbar: React.FC = () => {
                       /* Company Nav Item: Button trigger that opens/closes dropdown on click without navigating */
                       <button
                         type="button"
-                        onClick={() => {
-                          setCompanyDropdownOpen(!companyDropdownOpen);
-                          setServicesDropdownOpen(false);
-                        }}
+                        onClick={onToggle}
                         className={`relative h-full flex items-center gap-1 px-2 xl:px-2.5 py-1 text-[13px] 2xl:text-[14px] 3xl:text-[14.5px] font-nav transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B62825] rounded-sm whitespace-nowrap cursor-pointer ${active
                           ? 'text-[#B62825] font-semibold'
                           : 'text-[#475569] font-normal hover:text-[#B62825]'
@@ -213,32 +210,23 @@ export const Navbar: React.FC = () => {
                         />
                       </button>
                     ) : (
-                      /* Services Nav Item: Preserved exactly as before */
-                      <Link
-                        to={item.path}
-                        className={`relative h-full flex items-center gap-1 px-2 xl:px-2.5 py-1 text-[13px] 2xl:text-[14px] 3xl:text-[14.5px] font-nav transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B62825] rounded-sm whitespace-nowrap ${active
+                      /* Services Nav Item: Interactive Mega Menu Trigger */
+                      <button
+                        type="button"
+                        onClick={onToggle}
+                        className={`relative h-full flex items-center gap-1 px-2 xl:px-2.5 py-1 text-[13px] 2xl:text-[14px] 3xl:text-[14.5px] font-nav transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B62825] rounded-sm whitespace-nowrap cursor-pointer ${active
                           ? 'text-[#B62825] font-semibold'
                           : 'text-[#475569] font-normal hover:text-[#B62825]'
                           }`}
                         aria-haspopup="true"
                         aria-expanded={isOpen}
+                        aria-label="Toggle Services menu"
                       >
                         <span>{item.label}</span>
-                        <button
-                          type="button"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            onToggle();
-                          }}
-                          className="p-0.5 rounded hover:bg-neutral-100 transition-colors focus:outline-none"
-                          aria-label={`Toggle ${item.label} submenu`}
-                        >
-                          <ChevronDown
-                            className={`w-3.5 h-3.5 transition-transform duration-200 stroke-[2.2] ${isOpen ? 'rotate-180 text-[#B62825]' : 'text-current group-hover:text-[#B62825]'
-                              }`}
-                          />
-                        </button>
+                        <ChevronDown
+                          className={`w-3.5 h-3.5 transition-transform duration-200 stroke-[2.2] ${isOpen ? 'rotate-180 text-[#B62825]' : 'text-current group-hover:text-[#B62825]'
+                            }`}
+                        />
 
                         {/* Smooth Animated Red Underline Bar */}
                         <span
@@ -248,14 +236,14 @@ export const Navbar: React.FC = () => {
                             }`}
                           aria-hidden="true"
                         />
-                      </Link>
+                      </button>
                     )}
                   </div>
 
                   {/* Dropdown Menu */}
                   {isOpen && (
                     <div
-                      className={`absolute top-full pt-1.5 z-50 animate-in fade-in slide-in-from-top-1 duration-180 ${isCompany ? 'right-0 min-w-[310px]' : 'left-1/2 -translate-x-[36%] w-auto'
+                      className={`absolute top-full pt-1.5 z-50 animate-in fade-in slide-in-from-top-1 duration-180 ${isCompany ? 'right-0 min-w-[310px]' : 'left-1/2 -translate-x-[30%] xl:-translate-x-[32%] w-auto'
                         }`}
                       role="menu"
                       aria-orientation="vertical"

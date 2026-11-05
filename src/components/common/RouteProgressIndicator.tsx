@@ -74,3 +74,4 @@ export const RouteProgressIndicator: React.FC = () => {
     </div>
   );
 };
+
