@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   Ship, 
@@ -7,358 +7,372 @@ import {
   Layers, 
   Link2, 
   AlertTriangle, 
-  ChevronRight, 
-  ArrowRight 
+  ArrowRight
 } from 'lucide-react';
 import { CartingDropdownSection } from './CartingDropdownSection';
 
 export interface ContainerServiceItem {
-  id: string;
-  name: string;
-  shortLabel: string;
-  tagline: string;
-  path: string;
-  icon: React.ComponentType<{ className?: string }>;
-  image: string;
+  readonly id: string;
+  readonly name: string;
+  readonly shortLabel: string;
+  readonly description: string;
+  readonly path: string;
+  readonly icon: React.ComponentType<{ className?: string }>;
+  readonly image: string;
+  readonly badgeText: string;
 }
 
-const CONTAINER_SERVICES: ContainerServiceItem[] = [
+const CONTAINER_SERVICES: readonly ContainerServiceItem[] = [
   {
     id: 'ocean-cargo',
     name: 'Ocean Cargo',
-    shortLabel: 'Ocean Cargo',
-    tagline: 'FCL & LCL Port Freight',
+    shortLabel: 'Ocean Freight',
+    description: 'FCL dedicated container shipping & consolidated maritime freight across global port corridors.',
     path: '/services/ocean-cargo',
     icon: Ship,
-    image: '/images/import-export/fcl-dedicated-shipping.jpg',
+    image: '/images/import-export/fcl-dedicated-shipping.webp',
+    badgeText: 'FCL / LCL',
   },
   {
     id: 'air-cargo',
     name: 'Air Cargo',
-    shortLabel: 'Air Cargo',
-    tagline: 'Express Priority Cargo',
+    shortLabel: 'Air Freight',
+    description: 'Priority express air freight and customs clearance with scheduled international flight departures.',
     path: '/services/air-cargo',
     icon: Plane,
-    image: '/images/archive_unused_20261103/layer-plane.png',
+    image: '/images/services/air-cargo.png',
+    badgeText: 'Priority Air',
   },
   {
     id: 'container-stuffing',
     name: 'Container Stuffing Logistics',
     shortLabel: 'Container Stuffing',
-    tagline: 'Stuffing & De-Stuffing',
+    description: 'Certified cargo stuffing, de-stuffing, weight balance & container yard terminal preparation.',
     path: '/services/container-stuffing',
     icon: Box,
     image: '/images/services/container-stuffing.webp',
+    badgeText: 'Stuffing Ops',
   },
   {
     id: 'special-project',
     name: 'Special Project Cargo Handling',
     shortLabel: 'Project Cargo',
-    tagline: 'Heavy-Lift & Break Bulk',
+    description: 'Heavy-lift crane hoisting, over-dimensional cargo (ODC) & break-bulk specialized transport.',
     path: '/services/special-project',
     icon: Layers,
     image: '/images/shipments/break-bulk/breakbulk-night-crane-qc04-hoist.jpg',
+    badgeText: 'Heavy-Lift ODC',
   },
   {
     id: 'cargo-lashing',
     name: 'Cargo Lashing',
-    shortLabel: 'Cargo Lashing',
-    tagline: 'Choking & Marine Lashing',
+    shortLabel: 'Cargo Securing',
+    description: 'Turnkey marine chocking, high-tensile steel strapping & certified seaworthy lashing.',
     path: '/services/cargo-lashing',
     icon: Link2,
     image: '/images/services/cargo-lashing.webp',
+    badgeText: 'Marine Securing',
   },
   {
     id: 'hazardous-cargo',
     name: 'Hazardous Cargo',
-    shortLabel: 'Hazardous Cargo',
-    tagline: 'Class 1-9 DGR Certified',
+    shortLabel: 'Dangerous Goods (DGR)',
+    description: 'Certified Class 1–9 dangerous goods packing, UN-spec packaging & IMDG segregation compliance.',
     path: '/services/hazardous-cargo',
     icon: AlertTriangle,
     image: '/images/hazardous/un3265-corrosive-class-8-drums.jpg',
+    badgeText: 'Class 1-9 DGR',
   },
-];
+] as const;
 
 interface Services3DContainerDropdownProps {
   onClose: () => void;
 }
 
 /**
- * IDEA 08 — 3D Container Theme (Industrial Look)
+ * MSK LOGISTICS — PREMIUM 3D SERVICES DROPDOWN V2
  * 
  * Features:
- * 1. Realistic open red shipping container with CSS 3D perspective and open doors.
- * 2. Official MSK logo stenciled on the left open door.
- * 3. Industrial locking bars, corner castings, and ISO twistlocks.
- * 4. Recessed interior cargo bay with depth lighting.
- * 5. Six interactive service cards in a 3-column × 2-row layout with authentic cargo imagery.
- * 6. Untouched, exact CARTING section on the right (Speedy, Punjab, Polaris).
+ * 1. Physically convincing 3D shipping container frame with Cor-Ten red steel, ISO corner castings & bevels.
+ * 2. Realistic open double cargo doors with corrugated steel ridges, galvanized locking bars & industrial hinges.
+ * 3. Atmospheric red ambient underglow with recessed cargo bay depth lighting.
+ * 4. Clean 3-column × 2-row service card layout with authentic imagery, bold legible typography & smooth hover lift.
+ * 5. Integrated right-side Specialized Services panel featuring the exact Carting hierarchy (Speedy, Punjab, Polaris).
+ * 6. Full keyboard (Escape), outside click, and touchscreen interaction support.
  */
 export const Services3DContainerDropdown: React.FC<Services3DContainerDropdownProps> = ({ onClose }) => {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
+  // Close on Escape key press
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [onClose]);
+
+  // Close on click outside the dropdown panel
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent | TouchEvent) => {
+      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+        onClose();
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('touchstart', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+    };
+  }, [onClose]);
+
   return (
-    <div 
-      className="bg-[#0B0D13] rounded-2xl shadow-2xl shadow-black/40 border border-[#222834] overflow-hidden text-left flex flex-col lg:flex-row w-[970px] max-w-[calc(100vw-2rem)] select-none transition-all duration-200"
+    <div
+      ref={containerRef}
+      className="bg-[#0B0D13] text-[#D9DEE5] rounded-2xl shadow-[0_24px_64px_rgba(0,0,0,0.85)] border border-[#222834] overflow-hidden text-left flex flex-col lg:flex-row w-[1020px] max-w-[calc(100vw-2rem)] select-none transition-all duration-300"
       role="menu"
-      aria-label="Services Mega Menu — 3D Container Theme"
+      aria-label="MSK Logistics 3D Services Menu"
+      tabIndex={-1}
     >
       {/* ========================================================================= */}
-      {/* LEFT / CENTER AREA — 3D Open Shipping Container Bay                        */}
+      {/* MAIN CONTAINER AREA — Realistic 3D Open Shipping Container Bay            */}
       {/* ========================================================================= */}
-      <div className="relative flex-1 p-4 sm:p-5 bg-gradient-to-b from-[#0F131A] via-[#0B0E14] to-[#07090D] flex flex-col justify-center overflow-hidden">
+      <div className="relative flex-1 p-3.5 sm:p-5 bg-gradient-to-b from-[#111620] via-[#0B0E14] to-[#07090D] flex flex-col justify-center overflow-hidden">
         
-        {/* Subtle Industrial Background Grid & Ambient Red Glow */}
+        {/* Subtle Ambient Red Atmospheric Illumination */}
         <div 
-          className="absolute inset-0 pointer-events-none opacity-40"
+          className="absolute inset-0 pointer-events-none opacity-50"
           style={{
-            backgroundImage: 'radial-gradient(circle at 50% 30%, rgba(182,40,37,0.18) 0%, rgba(182,40,37,0.04) 50%, transparent 75%)',
+            backgroundImage: 'radial-gradient(ellipse at 50% 30%, rgba(182,40,37,0.22) 0%, rgba(182,40,37,0.06) 50%, transparent 75%)',
           }}
+          aria-hidden="true"
         />
 
-        {/* 3D Perspective Container Wrapper */}
+        {/* 3D Perspective Container Frame */}
         <div className="relative w-full [perspective:1400px]">
           
-          {/* Container Heavy Outer Frame */}
-          <div className="relative rounded-lg bg-gradient-to-b from-[#8C1B19] via-[#B62825] to-[#731311] p-[3px] shadow-[0_16px_36px_rgba(0,0,0,0.7)] border-t border-[#D93834]/60 border-b border-[#4A0A09]">
+          {/* Container Outer Shell (Cor-Ten Red Steel) */}
+          <div className="relative rounded-xl bg-gradient-to-b from-[#8C1B19] via-[#B62825] to-[#6E1210] p-[3px] shadow-[0_20px_40px_rgba(0,0,0,0.8)] border-t border-[#E53935]/70 border-b border-[#3E0908]">
             
-            {/* Top Corner Castings (ISO Twistlock Blocks) */}
-            <div className="absolute -top-2 -left-2 z-30 w-5 h-5 rounded-xs bg-gradient-to-br from-[#474D5A] via-[#2A2F3A] to-[#14171F] border border-[#6B7280] shadow-md flex items-center justify-center">
-              <div className="w-2.5 h-1.5 bg-[#090B0E] rounded-full border border-black" />
+            {/* Corner Castings (ISO 1161 Steel Blocks) */}
+            {/* Top-Left */}
+            <div className="absolute -top-2.5 -left-2.5 z-40 w-5.5 h-5.5 rounded-[3px] bg-gradient-to-br from-[#5A6272] via-[#353A47] to-[#1C1F26] border border-[#788296] shadow-[0_2px_6px_rgba(0,0,0,0.6)] flex items-center justify-center">
+              <div className="w-3 h-1.5 bg-[#090B0E] rounded-full border border-black/80" />
             </div>
-            <div className="absolute -top-2 -right-2 z-30 w-5 h-5 rounded-xs bg-gradient-to-br from-[#474D5A] via-[#2A2F3A] to-[#14171F] border border-[#6B7280] shadow-md flex items-center justify-center">
-              <div className="w-2.5 h-1.5 bg-[#090B0E] rounded-full border border-black" />
+            {/* Top-Right */}
+            <div className="absolute -top-2.5 -right-2.5 z-40 w-5.5 h-5.5 rounded-[3px] bg-gradient-to-br from-[#5A6272] via-[#353A47] to-[#1C1F26] border border-[#788296] shadow-[0_2px_6px_rgba(0,0,0,0.6)] flex items-center justify-center">
+              <div className="w-3 h-1.5 bg-[#090B0E] rounded-full border border-black/80" />
+            </div>
+            {/* Bottom-Left */}
+            <div className="absolute -bottom-2.5 -left-2.5 z-40 w-5.5 h-5.5 rounded-[3px] bg-gradient-to-br from-[#5A6272] via-[#353A47] to-[#1C1F26] border border-[#788296] shadow-[0_2px_6px_rgba(0,0,0,0.6)] flex items-center justify-center">
+              <div className="w-3 h-1.5 bg-[#090B0E] rounded-full border border-black/80" />
+            </div>
+            {/* Bottom-Right */}
+            <div className="absolute -bottom-2.5 -right-2.5 z-40 w-5.5 h-5.5 rounded-[3px] bg-gradient-to-br from-[#5A6272] via-[#353A47] to-[#1C1F26] border border-[#788296] shadow-[0_2px_6px_rgba(0,0,0,0.6)] flex items-center justify-center">
+              <div className="w-3 h-1.5 bg-[#090B0E] rounded-full border border-black/80" />
             </div>
 
-            {/* Bottom Corner Castings */}
-            <div className="absolute -bottom-2 -left-2 z-30 w-5 h-5 rounded-xs bg-gradient-to-br from-[#474D5A] via-[#2A2F3A] to-[#14171F] border border-[#6B7280] shadow-md flex items-center justify-center">
-              <div className="w-2.5 h-1.5 bg-[#090B0E] rounded-full border border-black" />
-            </div>
-            <div className="absolute -bottom-2 -right-2 z-30 w-5 h-5 rounded-xs bg-gradient-to-br from-[#474D5A] via-[#2A2F3A] to-[#14171F] border border-[#6B7280] shadow-md flex items-center justify-center">
-              <div className="w-2.5 h-1.5 bg-[#090B0E] rounded-full border border-black" />
-            </div>
-
-            {/* Container Header Beam: High-Cube Hazard Stripes & Identification */}
-            <div className="relative h-6 bg-[#161A22] rounded-t-sm flex items-center justify-between px-3 overflow-hidden border-b border-[#2A3140]">
-              {/* Top High-Cube Warning Stripes */}
-              <div 
-                className="absolute top-0 left-0 right-0 h-[3px] opacity-90"
-                style={{
-                  backgroundImage: 'repeating-linear-gradient(45deg, #FACC15, #FACC15 8px, #111827 8px, #111827 16px)',
-                }}
-              />
-
-              {/* Left Stencil Identification */}
+            {/* Container Top Header Rail with Stenciled Technical ID */}
+            <div className="h-6.5 bg-[#141822] rounded-t-lg border-b border-[#2A3142] flex items-center justify-between px-4 text-[9px] font-mono tracking-wider text-slate-400">
               <div className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#B62825] animate-pulse" />
-                <span className="font-mono text-[9.5px] font-bold text-white/90 tracking-wider">
-                  MSKU 2026-HC
-                </span>
-                <span className="hidden sm:inline font-mono text-[8.5px] text-[#94A3B8] tracking-widest uppercase">
-                  40&apos; HIGH CUBE
-                </span>
+                <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
+                <span className="font-bold text-slate-200">MSK HIGH-CUBE INTERMODAL BAY</span>
               </div>
-
-              {/* Center Stencil: MSK SPECIALIZED SERVICES */}
-              <div className="font-mono text-[10px] font-black text-white tracking-widest uppercase flex items-center gap-1.5">
-                <span className="text-[#B62825] font-bold">●</span>
-                <span>SPECIALIZED SERVICES</span>
-                <span className="text-[#B62825] font-bold">●</span>
-              </div>
-
-              {/* Right Stencil: Cargo Specifications */}
-              <div className="font-mono text-[9px] text-[#CBD5E1] tracking-wider hidden sm:block">
-                PAYLOAD: 28,600 KG
+              <div className="hidden sm:flex items-center gap-3 font-mono text-[8.5px] text-slate-400">
+                <span>ISO 6346: 45G1</span>
+                <span className="text-[#B62825] font-bold">MAX PAYLOAD: 28,600 KG</span>
               </div>
             </div>
 
-            {/* Main Open Container Chamber & 3D Doors */}
-            <div className="relative flex min-h-[300px]">
+            {/* Container Open Interior Stage */}
+            <div className="relative flex flex-col md:flex-row bg-[#080A0E] overflow-hidden">
               
-              {/* ------------------------------------------------------------- */}
-              {/* 3D LEFT CONTAINER DOOR (Swung Open to the Left with MSK Logo) */}
-              {/* ------------------------------------------------------------- */}
-              <div 
-                className="hidden md:flex flex-col justify-between w-[92px] shrink-0 bg-gradient-to-r from-[#7A1311] via-[#A82220] to-[#8C1917] p-2 relative shadow-[-10px_10px_20px_rgba(0,0,0,0.6)] border-r border-black/60 origin-left"
+              {/* =============================================================== */}
+              {/* LEFT 3D OPEN CONTAINER DOOR                                     */}
+              {/* =============================================================== */}
+              <div
+                className="hidden xl:flex w-[84px] shrink-0 bg-gradient-to-r from-[#8C1B19] via-[#A82421] to-[#6E1210] border-r-2 border-[#380807] flex-col justify-between p-2 relative shadow-[10px_0_24px_rgba(0,0,0,0.7)] z-20"
                 style={{
-                  transform: 'perspective(1000px) rotateY(32deg)',
+                  transform: 'rotateY(20deg) scale(0.97)',
+                  transformOrigin: 'left center',
                   transformStyle: 'preserve-3d',
                 }}
+                aria-hidden="true"
               >
-                {/* Corrugated Vertical Lines on Door */}
-                <div 
-                  className="absolute inset-0 pointer-events-none opacity-20"
-                  style={{
-                    backgroundImage: 'repeating-linear-gradient(90deg, transparent, transparent 6px, #000 6px, #000 10px, rgba(255,255,255,0.2) 10px, rgba(255,255,255,0.2) 12px)',
-                  }}
-                />
-
-                {/* Industrial Hinges on outer edge */}
-                <div className="absolute top-4 -left-1 w-2.5 h-4 bg-[#2D3340] rounded-xs border border-gray-500 shadow-sm" />
-                <div className="absolute top-1/2 -left-1 -translate-y-1/2 w-2.5 h-4 bg-[#2D3340] rounded-xs border border-gray-500 shadow-sm" />
-                <div className="absolute bottom-4 -left-1 w-2.5 h-4 bg-[#2D3340] rounded-xs border border-gray-500 shadow-sm" />
-
-                {/* Dual Vertical Galvanized Steel Locking Bars */}
-                <div className="absolute top-0 bottom-0 left-[26px] w-[3px] bg-gradient-to-r from-[#94A3B8] via-[#E2E8F0] to-[#64748B] shadow-sm">
-                  <div className="absolute top-[42%] -left-1 w-2.5 h-3.5 bg-white rounded-xs border border-gray-600 shadow-xs" />
-                </div>
-                <div className="absolute top-0 bottom-0 left-[42px] w-[3px] bg-gradient-to-r from-[#94A3B8] via-[#E2E8F0] to-[#64748B] shadow-sm">
-                  <div className="absolute top-[48%] -left-1 w-2.5 h-3.5 bg-white rounded-xs border border-gray-600 shadow-xs" />
-                </div>
-
-                {/* Top Door Stencil */}
-                <div className="relative z-10 font-mono text-[7.5px] font-black text-white/80 tracking-widest uppercase">
-                  DOOR 01-L
-                </div>
-
-                {/* Center Door: Official MSK Logo Asset */}
-                <div className="relative z-10 flex flex-col items-center my-auto">
-                  <div className="bg-white/95 rounded p-1.5 shadow-md border border-white/40 flex items-center justify-center">
-                    <img 
-                      src="/images/logo/msk-logistics-logo.png" 
-                      alt="MSK Logistics" 
-                      className="w-16 h-auto object-contain filter drop-shadow-xs" 
-                    />
-                  </div>
-                  <span className="font-mono text-[8px] font-black text-white tracking-widest uppercase mt-1.5 text-center leading-tight">
-                    SERVICES
-                  </span>
-                </div>
-
-                {/* Bottom Door Specification Plaque */}
-                <div className="relative z-10 font-mono text-[6.5px] text-white/70 leading-tight">
-                  <div>TARE: 3900 KG</div>
-                  <div>VOL: 76.4 CBM</div>
-                </div>
-              </div>
-
-              {/* ------------------------------------------------------------- */}
-              {/* CENTER INTERIOR CARGO CHAMBER (Recessed 3x2 Service Cards Grid) */}
-              {/* ------------------------------------------------------------- */}
-              <div className="relative flex-1 bg-[#0E1117] p-2.5 sm:p-3 overflow-hidden shadow-[inset_0_12px_24px_rgba(0,0,0,0.85),inset_0_-8px_16px_rgba(0,0,0,0.7)] flex flex-col justify-between">
-                
-                {/* Container Back Wall Corrugation Pattern */}
+                {/* Corrugated Vertical Rib Texture */}
                 <div 
                   className="absolute inset-0 pointer-events-none opacity-25"
                   style={{
-                    backgroundImage: 'repeating-linear-gradient(90deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 14px, rgba(0,0,0,0.5) 14px, rgba(0,0,0,0.5) 28px)',
+                    backgroundImage: 'repeating-linear-gradient(90deg, transparent, transparent 7px, #000000 7px, #000000 11px, rgba(255,255,255,0.35) 11px, rgba(255,255,255,0.35) 13px)',
                   }}
                 />
 
-                {/* Container Ceiling Overhead Red LED Glow */}
-                <div 
-                  className="absolute top-0 left-0 right-0 h-16 pointer-events-none"
-                  style={{
-                    background: 'radial-gradient(ellipse at 50% 0%, rgba(182,40,37,0.38) 0%, transparent 70%)',
-                  }}
-                />
+                {/* 3 Heavy Steel Outer Hinges */}
+                <div className="absolute top-4 -left-1.5 w-3 h-5 bg-[#3B4252] rounded-xs border border-gray-400 shadow-md" />
+                <div className="absolute top-1/2 -left-1.5 -translate-y-1/2 w-3 h-5 bg-[#3B4252] rounded-xs border border-gray-400 shadow-md" />
+                <div className="absolute bottom-4 -left-1.5 w-3 h-5 bg-[#3B4252] rounded-xs border border-gray-400 shadow-md" />
 
-                {/* Container Floor Rib Texture at the Bottom */}
-                <div 
-                  className="absolute bottom-0 left-0 right-0 h-4 pointer-events-none opacity-30"
-                  style={{
-                    backgroundImage: 'repeating-linear-gradient(90deg, #1E2430 0px, #1E2430 6px, #0B0E14 6px, #0B0E14 12px)',
-                  }}
-                />
+                {/* Dual Vertical Galvanized Steel Locking Bars */}
+                <div className="absolute top-0 bottom-0 left-[26px] w-[3.5px] bg-gradient-to-r from-[#94A3B8] via-[#F8FAFC] to-[#64748B] shadow-sm">
+                  <div className="absolute top-[42%] -left-1 w-3 h-4 bg-white rounded-xs border border-gray-700 shadow-sm" />
+                </div>
+                <div className="absolute top-0 bottom-0 left-[44px] w-[3.5px] bg-gradient-to-r from-[#94A3B8] via-[#F8FAFC] to-[#64748B] shadow-sm">
+                  <div className="absolute top-[48%] -left-1 w-3 h-4 bg-white rounded-xs border border-gray-700 shadow-sm" />
+                </div>
 
-                {/* The 6 Service Cards inside the container (3 Columns × 2 Rows) */}
-                <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5">
+                {/* Top Door Stencil */}
+                <div className="relative z-10 font-mono text-[7.5px] font-black text-white/90 tracking-widest uppercase">
+                  DOOR 01-L
+                </div>
+
+                {/* Center Stencil: Official MSK Brand Emblem */}
+                <div className="relative z-10 py-3 text-center">
+                  <div className="font-heading font-black text-[13px] tracking-widest text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] leading-none">
+                    MSK
+                  </div>
+                  <div className="font-mono text-[6.5px] text-white/80 tracking-wider font-semibold uppercase mt-0.5">
+                    LOGISTICS
+                  </div>
+                </div>
+
+                {/* Bottom Door Specification Stencil */}
+                <div className="relative z-10 font-mono text-[6.5px] text-white/70 leading-tight space-y-0.5">
+                  <div>TARE 3900KG</div>
+                  <div>CUBE 76.4M³</div>
+                </div>
+              </div>
+
+              {/* =============================================================== */}
+              {/* RECESSED INTERIOR CARGO BAY — 3x2 SERVICE CARDS                 */}
+              {/* =============================================================== */}
+              <div className="relative flex-1 p-3 sm:p-4 bg-gradient-to-b from-[#0E1219] via-[#090C11] to-[#06080B] overflow-hidden">
+                
+                {/* Overhead Industrial Lamp Glows */}
+                <div className="absolute top-0 left-1/4 w-32 h-1 bg-gradient-to-r from-transparent via-[#E2E8F0]/40 to-transparent blur-xs pointer-events-none" />
+                <div className="absolute top-0 right-1/4 w-32 h-1 bg-gradient-to-r from-transparent via-[#E2E8F0]/40 to-transparent blur-xs pointer-events-none" />
+
+                {/* 3-Column x 2-Row Interactive Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5 sm:gap-3 relative z-10">
                   {CONTAINER_SERVICES.map((service) => {
-                    const Icon = service.icon;
+                    const IconComponent = service.icon;
+
                     return (
                       <Link
                         key={service.id}
                         to={service.path}
                         onClick={onClose}
-                        className="group relative rounded-xl overflow-hidden bg-[#131720]/90 border border-[#B62825]/35 hover:border-[#B62825] p-2.5 sm:p-3 flex flex-col justify-between h-[125px] transition-all duration-300 hover:-translate-y-1 hover:scale-[1.015] hover:shadow-[0_8px_20px_rgba(182,40,37,0.45)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B62825]"
-                        role="menuitem"
-                        title={service.name}
+                        className="group relative rounded-xl overflow-hidden border border-[#232B3B] bg-[#121620] shadow-[0_6px_16px_rgba(0,0,0,0.45)] hover:border-[#B62825] hover:shadow-[0_12px_28px_-4px_rgba(182,40,37,0.45),0_0_0_1px_rgba(217,56,52,0.6)] hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between min-h-[128px] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B62825]"
                       >
-                        {/* Authentic Cargo Background Image Overlay */}
-                        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-                          <img 
-                            src={service.image} 
-                            alt={service.name}
-                            className="w-full h-full object-cover opacity-20 group-hover:opacity-40 group-hover:scale-105 transition-all duration-500"
+                        {/* Background Cargo Image with Deep Protective Gradients */}
+                        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                          <img
+                            src={service.image}
+                            alt=""
+                            className="w-full h-full object-cover opacity-35 group-hover:opacity-50 group-hover:scale-108 transition-all duration-500 ease-out"
                             loading="lazy"
                           />
-                          {/* Dark Vignette Gradient for Perfect Contrast */}
-                          <div className="absolute inset-0 bg-gradient-to-t from-[#0A0D12] via-[#0A0D12]/75 to-[#0A0D12]/35" />
+                          {/* Multi-stage High-Legibility Gradients */}
+                          <div className="absolute inset-0 bg-gradient-to-t from-[#090C12] via-[#0B0F17]/85 to-[#0B0F17]/40" />
+                          <div className="absolute inset-0 bg-black/30 group-hover:bg-black/15 transition-colors duration-200" />
                         </div>
 
-                        {/* Card Top: Icon Badge & Micro Arrow */}
-                        <div className="relative z-10 flex items-center justify-between">
-                          <div className="w-7 h-7 rounded-lg bg-[#B62825]/20 border border-[#B62825]/40 flex items-center justify-center text-white group-hover:bg-[#B62825] group-hover:text-white group-hover:shadow-[0_0_12px_rgba(182,40,37,0.6)] transition-all duration-300">
-                            <Icon className="w-3.5 h-3.5" />
+                        {/* Card Content Top: Icon & Badge */}
+                        <div className="relative z-10 p-2.5 pb-1 flex items-start justify-between gap-2">
+                          {/* Metallic Chrome Icon Badge */}
+                          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#2D3546] to-[#151923] border border-[#3E485D] group-hover:border-[#B62825] group-hover:from-[#B62825] group-hover:to-[#8C1B19] shadow-md flex items-center justify-center shrink-0 transition-all duration-200">
+                            <IconComponent className="w-4 h-4 text-white group-hover:scale-110 transition-transform duration-200" />
                           </div>
-                          
-                          <div className="w-5 h-5 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 group-hover:text-white group-hover:border-[#B62825]/60 group-hover:bg-[#B62825]/30 group-hover:translate-x-0.5 transition-all duration-200">
-                            <ChevronRight className="w-3 h-3" />
-                          </div>
+
+                          {/* Technical Pill Badge */}
+                          <span className="font-mono text-[9px] font-bold text-slate-300 group-hover:text-white bg-black/60 backdrop-blur-xs px-2 py-0.5 rounded-full border border-white/10 group-hover:border-[#B62825]/60 transition-colors duration-200">
+                            {service.badgeText}
+                          </span>
                         </div>
 
-                        {/* Card Bottom: Service Name & Specification Tagline */}
-                        <div className="relative z-10 mt-auto">
-                          <div className="text-[13px] sm:text-[13.5px] font-bold text-white group-hover:text-red-100 tracking-tight leading-snug">
-                            {service.shortLabel}
+                        {/* Card Content Bottom: Title, Description & Action */}
+                        <div className="relative z-10 p-2.5 pt-0 space-y-1">
+                          <div className="flex items-center justify-between gap-1">
+                            <h5 className="font-heading font-bold text-[13px] text-white tracking-tight group-hover:text-[#FFFFFF] transition-colors duration-150">
+                              {service.name}
+                            </h5>
+                            <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#FF5252] group-hover:translate-x-1 transition-all duration-200 shrink-0" />
                           </div>
-                          <div className="text-[10px] text-gray-400 group-hover:text-red-200/90 font-medium truncate mt-0.5">
-                            {service.tagline}
-                          </div>
+
+                          <p className="text-[11px] text-slate-300 leading-snug line-clamp-2 font-normal group-hover:text-slate-200 transition-colors duration-150">
+                            {service.description}
+                          </p>
                         </div>
+
+                        {/* Subtle Red Bottom Active Glow Line */}
+                        <div className="h-[2px] w-0 group-hover:w-full bg-gradient-to-r from-transparent via-[#FF5252] to-transparent transition-all duration-300" />
                       </Link>
                     );
                   })}
                 </div>
+
+                {/* Cargo Deck Floor Crossmembers */}
+                <div className="mt-3 pt-2 border-t border-[#1C222F] flex items-center justify-between text-[8px] font-mono text-slate-400">
+                  <span className="flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#B62825]" />
+                    <span>NHAVA SHEVA (JNPT) CARGO TERMINAL STAGING</span>
+                  </span>
+                  <span className="hidden sm:inline">SAFETY FIRST • COMPLIANCE ALWAYS</span>
+                </div>
               </div>
 
-              {/* ------------------------------------------------------------- */}
-              {/* 3D RIGHT CONTAINER DOOR (Swung Open to the Right with Hardware) */}
-              {/* ------------------------------------------------------------- */}
-              <div 
-                className="hidden md:flex flex-col justify-between w-[92px] shrink-0 bg-gradient-to-l from-[#7A1311] via-[#A82220] to-[#8C1917] p-2 relative shadow-[10px_10px_20px_rgba(0,0,0,0.6)] border-l border-black/60 origin-right"
+              {/* =============================================================== */}
+              {/* RIGHT 3D OPEN CONTAINER DOOR                                    */}
+              {/* =============================================================== */}
+              <div
+                className="hidden xl:flex w-[84px] shrink-0 bg-gradient-to-r from-[#6E1210] via-[#A82421] to-[#8C1B19] border-l-2 border-[#380807] flex-col justify-between p-2 relative shadow-[-10px_0_24px_rgba(0,0,0,0.7)] z-20"
                 style={{
-                  transform: 'perspective(1000px) rotateY(-36deg)',
+                  transform: 'rotateY(-20deg) scale(0.97)',
+                  transformOrigin: 'right center',
                   transformStyle: 'preserve-3d',
                 }}
+                aria-hidden="true"
               >
-                {/* Corrugated Vertical Lines on Door */}
+                {/* Corrugated Vertical Rib Texture */}
                 <div 
-                  className="absolute inset-0 pointer-events-none opacity-20"
+                  className="absolute inset-0 pointer-events-none opacity-25"
                   style={{
-                    backgroundImage: 'repeating-linear-gradient(90deg, transparent, transparent 6px, #000 6px, #000 10px, rgba(255,255,255,0.2) 10px, rgba(255,255,255,0.2) 12px)',
+                    backgroundImage: 'repeating-linear-gradient(90deg, transparent, transparent 7px, #000000 7px, #000000 11px, rgba(255,255,255,0.35) 11px, rgba(255,255,255,0.35) 13px)',
                   }}
                 />
 
-                {/* Industrial Hinges on outer right edge */}
-                <div className="absolute top-4 -right-1 w-2.5 h-4 bg-[#2D3340] rounded-xs border border-gray-500 shadow-sm" />
-                <div className="absolute top-1/2 -right-1 -translate-y-1/2 w-2.5 h-4 bg-[#2D3340] rounded-xs border border-gray-500 shadow-sm" />
-                <div className="absolute bottom-4 -right-1 w-2.5 h-4 bg-[#2D3340] rounded-xs border border-gray-500 shadow-sm" />
+                {/* 3 Heavy Steel Outer Hinges */}
+                <div className="absolute top-4 -right-1.5 w-3 h-5 bg-[#3B4252] rounded-xs border border-gray-400 shadow-md" />
+                <div className="absolute top-1/2 -right-1.5 -translate-y-1/2 w-3 h-5 bg-[#3B4252] rounded-xs border border-gray-400 shadow-md" />
+                <div className="absolute bottom-4 -right-1.5 w-3 h-5 bg-[#3B4252] rounded-xs border border-gray-400 shadow-md" />
 
                 {/* Dual Vertical Galvanized Steel Locking Bars */}
-                <div className="absolute top-0 bottom-0 right-[42px] w-[3px] bg-gradient-to-r from-[#94A3B8] via-[#E2E8F0] to-[#64748B] shadow-sm">
-                  <div className="absolute top-[40%] -left-1 w-2.5 h-3.5 bg-white rounded-xs border border-gray-600 shadow-xs" />
+                <div className="absolute top-0 bottom-0 right-[26px] w-[3.5px] bg-gradient-to-r from-[#94A3B8] via-[#F8FAFC] to-[#64748B] shadow-sm">
+                  <div className="absolute top-[42%] -left-1 w-3 h-4 bg-white rounded-xs border border-gray-700 shadow-sm" />
                 </div>
-                <div className="absolute top-0 bottom-0 right-[26px] w-[3px] bg-gradient-to-r from-[#94A3B8] via-[#E2E8F0] to-[#64748B] shadow-sm">
-                  <div className="absolute top-[46%] -left-1 w-2.5 h-3.5 bg-white rounded-xs border border-gray-600 shadow-xs" />
+                <div className="absolute top-0 bottom-0 right-[44px] w-[3.5px] bg-gradient-to-r from-[#94A3B8] via-[#F8FAFC] to-[#64748B] shadow-sm">
+                  <div className="absolute top-[48%] -left-1 w-3 h-4 bg-white rounded-xs border border-gray-700 shadow-sm" />
                 </div>
 
                 {/* Top Door Stencil */}
-                <div className="relative z-10 text-right font-mono text-[7.5px] font-black text-white/80 tracking-widest uppercase">
+                <div className="relative z-10 text-right font-mono text-[7.5px] font-black text-white/90 tracking-widest uppercase">
                   DOOR 02-R
                 </div>
 
-                {/* Center Door: CSC Safety Approval & Container Data Plate */}
-                <div className="relative z-10 bg-[#161B24]/90 border border-gray-600/60 rounded p-1.5 shadow-sm text-[6.5px] font-mono text-gray-300 leading-tight">
+                {/* Center: CSC Safety Approval Metal Plate */}
+                <div className="relative z-10 bg-[#161B24]/95 border border-gray-500/80 rounded p-1 shadow-sm text-[6px] font-mono text-gray-200 leading-tight">
                   <div className="font-bold text-[#FACC15] border-b border-gray-600 pb-0.5 mb-0.5">
-                    CSC SAFETY APPROVAL
+                    CSC APPROVAL
                   </div>
                   <div>MAX: 32,500 KG</div>
-                  <div>PAYLOAD: 28,600 KG</div>
-                  <div>CUBE: 76.4 CU.M</div>
-                  <div className="text-[5.5px] text-gray-400 mt-0.5">ISO 6346 CERTIFIED</div>
+                  <div>NET: 28,600 KG</div>
+                  <div className="text-[5.5px] text-[#38BDF8] mt-0.5">ISO 6346 CERT</div>
                 </div>
 
-                {/* Bottom Door Locking Cam Warning Stencil */}
-                <div className="relative z-10 text-right font-mono text-[7px] text-[#FACC15] font-bold">
+                {/* Bottom Door Locking Cam Warning */}
+                <div className="relative z-10 text-right font-mono text-[7px] text-[#FACC15] font-black tracking-wider">
                   HIGH CARGO
                 </div>
               </div>
@@ -366,9 +380,9 @@ export const Services3DContainerDropdown: React.FC<Services3DContainerDropdownPr
             </div>
 
             {/* Container Bottom Sill Crossmember */}
-            <div className="h-2.5 bg-[#141820] rounded-b-sm border-t border-[#262C3A] flex items-center justify-between px-3">
-              <span className="font-mono text-[7px] text-[#64748B]">FORKLIFT POCKETS 2050mm</span>
-              <span className="font-mono text-[7px] text-[#64748B]">HEAVY DUTY COR-TEN STEEL</span>
+            <div className="h-4 bg-[#121620] rounded-b-lg border-t border-[#262C3A] flex items-center justify-between px-4 text-[8px] font-mono text-slate-400">
+              <span>FORKLIFT POCKETS: 2050mm SPREAD</span>
+              <span className="hidden sm:inline">HIGH-STRENGTH COR-TEN CORROSION RESISTANT STEEL</span>
             </div>
 
           </div>
@@ -376,37 +390,37 @@ export const Services3DContainerDropdown: React.FC<Services3DContainerDropdownPr
       </div>
 
       {/* ========================================================================= */}
-      {/* RIGHT AREA — SPECIALIZED SERVICES & CARTING (Preserved 100% Unchanged)    */}
+      {/* RIGHT-SIDE PANEL — SPECIALIZED SERVICES & CARTING                         */}
       {/* ========================================================================= */}
-      <div className="w-full lg:w-[285px] border-t lg:border-t-0 lg:border-l border-[#1F2533] bg-[#0E121A] p-5 flex flex-col justify-between space-y-4">
+      <div className="w-full lg:w-[285px] border-t lg:border-t-0 lg:border-l border-[#222834] bg-[#0E121A] p-4 sm:p-5 flex flex-col justify-between space-y-4">
         
         {/* Header Block */}
         <div>
-          <div className="flex items-center gap-1.5 mb-1">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#B62825]" />
-            <h4 className="font-heading font-bold text-[12px] tracking-wider text-white uppercase">
+          <div className="flex items-center gap-2 mb-1.5">
+            <span className="w-2 h-2 rounded-full bg-[#B62825] shadow-[0_0_8px_#B62825] animate-pulse" />
+            <h4 className="font-heading font-black text-[12px] tracking-wider text-white uppercase">
               SPECIALIZED SERVICES
             </h4>
           </div>
-          <p className="text-[11.5px] text-slate-400 leading-relaxed">
+          <p className="text-[11.5px] text-slate-300 leading-relaxed">
             End-to-End Cargo Solutions
           </p>
         </div>
 
-        {/* CARTING TREE SECTION — 100% Preserved Component & Design */}
+        {/* CARTING DIAGRAM (Speedy, Punjab, Polaris preserved 100%) */}
         <div className="my-auto py-1">
-          <CartingDropdownSection />
+          <CartingDropdownSection theme="dark" />
         </div>
 
         {/* Directory Footer Action */}
-        <div className="pt-2 border-t border-[#1F2533]">
+        <div className="pt-3 border-t border-[#1F2533]">
           <Link
             to="/services"
             onClick={onClose}
-            className="group inline-flex items-center gap-1.5 text-[12.5px] font-semibold text-[#E53935] hover:text-[#FF5252] transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-[#B62825] rounded py-0.5"
+            className="group flex items-center justify-between p-2.5 rounded-xl bg-[#141924] hover:bg-[#B62825] border border-[#273142] hover:border-[#B62825] text-[12px] font-bold text-white transition-all duration-200 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B62825]"
           >
             <span>View All Services Directory</span>
-            <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
+            <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
           </Link>
         </div>
 

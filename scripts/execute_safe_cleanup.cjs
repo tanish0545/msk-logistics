@@ -155,3 +155,4 @@ console.log('Total disk space recovered:', (totalBytes / (1024 * 1024)).toFixed(
 const manifestPath = path.join(ARCHIVE_ROOT, 'CLEANUP_MANIFEST.json');
 fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
 console.log('Manifest written to:', manifestPath);
+
