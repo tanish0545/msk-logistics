@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   ShieldAlert, 
@@ -12,10 +12,92 @@ import {
   Compass, 
   Box,
   FileCheck2,
-  Lock
+  Lock,
+  ChevronLeft,
+  ChevronRight,
+  Camera
 } from 'lucide-react';
 import { InnerPageBanner } from '../components/layout/InnerPageBanner';
 import { ScrollReveal } from '../components/common/ScrollReveal';
+
+export interface HazardousGalleryItem {
+  id: string;
+  image: string;
+  thumbnailTitle: string;
+  title: string;
+  tag: string;
+  unNumber: string;
+  hazardClass: string;
+  caption: string;
+  technicalSpecs: string[];
+}
+
+export const HAZARDOUS_CLIENT_GALLERY: HazardousGalleryItem[] = [
+  {
+    id: 'un3265-corrosive-drums',
+    image: '/images/hazardous/un3265-corrosive-class-8-drums.jpg',
+    thumbnailTitle: '1. Silver Drums (UN 3265)',
+    title: 'Silver Chemical Drums — UN 3265, Corrosive Class 8',
+    tag: 'UN 3265 • CORROSIVE CLASS 8',
+    unNumber: 'UN 3265',
+    hazardClass: 'Class 8 (Corrosive Liquid, Acidic, Organic, N.O.S.)',
+    caption: 'Double-tier palletized silver steel chemical drums inside container hold. Features official UN 3265 stenciling, Class 8 Corrosive hazard diamonds, Marine Pollutant symbols, high-tensile composite strapping, and protective stretch wrapping on heat-treated timber skids.',
+    technicalSpecs: [
+      'UN-rated steel drum packaging (UN 1A1) certified for Class 8 Corrosive liquids',
+      'Dual-tier palletized loading secured with reinforced composite polyester strapping',
+      'Visible four-sided IMDG hazard classification diamonds and Marine Pollutant markings',
+      'Floor-level timber chocking and dunnage blocking preventing longitudinal container shift'
+    ]
+  },
+  {
+    id: 'un2588-un2903-chemical-cartons',
+    image: '/images/hazardous/un2588-un2903-palletized-chemical-cartons.jpg',
+    thumbnailTitle: '2. Palletized Red Container',
+    title: 'Palletized Chemical Cartons Inside Red Container — Multi-Hazard Placards',
+    tag: 'UN 2588 / UN 2903 • MULTI-HAZARD',
+    unNumber: 'UN 2588 & UN 2903',
+    hazardClass: 'Class 6.1 (Toxic) & Class 3 (Flammable Liquid)',
+    caption: 'Palletized chemical cartons loaded inside red Corten shipping container. Consignment exhibits UN 2588 and UN 2903 markings, Class 6 toxic skull-and-crossbones labels, Class 3 flammable liquid subsidiary risk placards, green cross-banding, and moisture-barrier shrink wrap.',
+    technicalSpecs: [
+      'Multi-hazard chemical consignment: Pallet No. 17, 15 & 04 (36 / 48 boxes per skid)',
+      'Primary Class 6.1 Toxic hazard with Class 3 Flammable Liquid subsidiary risk labels',
+      'Heavy-duty green polypropylene strapping over industrial stretch-film moisture shield',
+      'Full compliance with IMDG Code Chapter 7.2 segregation and stowage compatibility'
+    ]
+  },
+  {
+    id: 'un2588-strapping-wrapping',
+    image: '/images/hazardous/un2588-palletized-hazardous-cargo-strapping.jpg',
+    thumbnailTitle: '3. Secured Palletized Cargo',
+    title: 'Secured Palletized Hazardous Cargo — Green Strapping & Protective Wrapping',
+    tag: 'UN 2588 • TOXIC CLASS 6.1',
+    unNumber: 'UN 2588',
+    hazardClass: 'Class 6.1 (Toxic Chemical Formulation)',
+    caption: 'Unitized pallet loads (Pallet No. 11) of hazardous chemical cartons secured with heavy-duty green composite strapping and clear protective shrink film. Clearly shows orientation arrows, certified Class 6.1 toxic diamond placards, and marine pollutant declarations.',
+    technicalSpecs: [
+      'UN No. 2588 certified industrial chemical formulation packed in corrugated export cartons',
+      'Multi-directional green perimeter strapping preventing carton dislodgement during transit',
+      'High-grade transparent weather-shield wrap guarding against terminal moisture and dust',
+      'Standardized four-way wooden pallet base engineered for rough-sea marine hold stowage'
+    ]
+  },
+  {
+    id: 'un2588-hazard-labels-detail',
+    image: '/images/hazardous/un2588-chemical-cargo-hazard-labels.jpg',
+    thumbnailTitle: '4. Palletized Export Consignment',
+    title: 'Palletized Chemical Cargo — Clearly Visible Packaging & Hazard Labels',
+    tag: 'UN 2588 • EXPORT BATCH CI-PIX',
+    unNumber: 'UN 2588',
+    hazardClass: 'Class 6.1 (Toxic Solid / Solution)',
+    caption: 'Four-unitized pallet consignment (Pallets 13, 14, 16, 21) showing uniform export packaging, dual horizontal and vertical green tension strapping, export batch coding (CI-PIX/26-27/005), and unobstructed primary Class 6.1 toxic hazard warning diamonds.',
+    technicalSpecs: [
+      'Export consignment tracking: Reference CI-PIX/26-27/005 across verified pallet lots',
+      'High-contrast Class 6 toxic skull labels positioned on all visible outer pallet faces',
+      'Engineered uniform pallet footprint optimizing interior container space without voids',
+      'Pre-checked documentation and physical packaging ready for JNPT / Mundra customs gate-in'
+    ]
+  }
+];
 
 interface VisualCard {
   id: string;
@@ -97,7 +179,36 @@ const DG_CLASSES = [
 ];
 
 export const HazardousCargoPage: React.FC = () => {
+  const [activeGalleryIndex, setActiveGalleryIndex] = useState<number>(0);
   const [activeImageModal, setActiveImageModal] = useState<string | null>(null);
+
+  const activeItem = HAZARDOUS_CLIENT_GALLERY[activeGalleryIndex];
+
+  // Keyboard navigation for Lightbox
+  useEffect(() => {
+    if (!activeImageModal) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setActiveImageModal(null);
+      if (e.key === 'ArrowLeft') {
+        const currentIdx = HAZARDOUS_CLIENT_GALLERY.findIndex(item => item.image === activeImageModal);
+        if (currentIdx !== -1) {
+          const prevIdx = (currentIdx - 1 + HAZARDOUS_CLIENT_GALLERY.length) % HAZARDOUS_CLIENT_GALLERY.length;
+          setActiveImageModal(HAZARDOUS_CLIENT_GALLERY[prevIdx].image);
+          setActiveGalleryIndex(prevIdx);
+        }
+      }
+      if (e.key === 'ArrowRight') {
+        const currentIdx = HAZARDOUS_CLIENT_GALLERY.findIndex(item => item.image === activeImageModal);
+        if (currentIdx !== -1) {
+          const nextIdx = (currentIdx + 1) % HAZARDOUS_CLIENT_GALLERY.length;
+          setActiveImageModal(HAZARDOUS_CLIENT_GALLERY[nextIdx].image);
+          setActiveGalleryIndex(nextIdx);
+        }
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [activeImageModal]);
 
   return (
     <div className="space-y-0 bg-[#0B0B0D] text-white selection:bg-[#B62825] selection:text-white">
@@ -135,9 +246,212 @@ export const HazardousCargoPage: React.FC = () => {
       </section>
 
       {/* ========================================================================= */}
-      {/* 3. FOUR CORE TECHNICAL VISUALS SHOWCASE                                    */}
+      {/* 3. VERIFIED HAZARDOUS CARGO (DGR) PHOTOGRAPHIC GALLERY                    */}
       {/* ========================================================================= */}
-      <section className="py-16 sm:py-24 bg-[#0F0F12] border-b border-white/10">
+      <section className="py-16 sm:py-24 bg-[#0F0F12] border-b border-white/10" id="hazardous-gallery">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-10">
+          
+          {/* Section Header with Heading and Professional Minglish Description */}
+          <ScrollReveal direction="up" className="space-y-4 max-w-4xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#B62825]/20 border border-[#B62825]/40 text-[#B62825] text-xs font-mono font-bold tracking-wider uppercase">
+              <Camera className="w-3.5 h-3.5 text-[#B62825]" />
+              <span>OPERATIONAL CARGO DOCUMENTATION • DANGEROUS GOODS</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black font-heading tracking-tight text-white">
+              Hazardous Cargo (DGR) — <span className="text-[#B62825]">Safety First, Compliance Always</span>
+            </h2>
+            <div className="p-4 sm:p-5 rounded-2xl bg-[#16161A] border border-white/15 shadow-inner space-y-1.5">
+              <span className="text-[11px] font-mono font-bold text-amber-400 uppercase tracking-wider flex items-center gap-1.5">
+                <AlertTriangle className="w-3.5 h-3.5 text-amber-400" />
+                <span>Operational Brief &amp; Commitment (Minglish):</span>
+              </span>
+              <p className="text-sm sm:text-base text-slate-200 leading-relaxed font-body">
+                MSK Logistics kadun dangerous goods aani hazardous chemical cargo che 100% compliant, secure aani safe handling. UN-certified packaging, IMDG Class placarding, heavy container lashing aani Nhava Sheva (JNPT) port terminal coordination — safety first, compliance always!
+              </p>
+            </div>
+          </ScrollReveal>
+
+          {/* Interactive Main Photo Viewer & Technical Details */}
+          <ScrollReveal direction="up" delay={100}>
+            <div className="bg-[#16161A] rounded-2xl border border-white/10 overflow-hidden shadow-2xl p-6 sm:p-8 space-y-8">
+              
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                
+                {/* Large Main Photo (7 cols) - Preserves 3:4 aspect ratio without excessive cropping */}
+                <div className="lg:col-span-7 flex flex-col items-center">
+                  <div 
+                    className="relative w-full max-w-[500px] aspect-[3/4] rounded-xl overflow-hidden bg-black/95 border border-white/15 shadow-2xl cursor-pointer group flex items-center justify-center"
+                    onClick={() => setActiveImageModal(activeItem.image)}
+                    title="Click to view full-resolution image"
+                  >
+                    <img
+                      src={activeItem.image}
+                      alt={activeItem.title}
+                      className="w-full h-full object-contain group-hover:scale-[1.02] transition-transform duration-500"
+                    />
+                    
+                    {/* Top Tag Overlay */}
+                    <div className="absolute top-3 left-3 z-10 flex items-center gap-2">
+                      <span className="px-3 py-1 rounded-md text-xs font-mono font-bold bg-[#B62825] text-white uppercase shadow-lg">
+                        {activeItem.tag}
+                      </span>
+                    </div>
+
+                    {/* Enlarge Hover Overlay */}
+                    <div className="absolute bottom-3 right-3 z-10 opacity-90 group-hover:opacity-100 transition-opacity">
+                      <span className="px-3 py-1.5 rounded-lg bg-black/80 text-white flex items-center gap-2 text-xs font-mono backdrop-blur-md border border-white/20 shadow-md">
+                        <Maximize2 className="w-3.5 h-3.5 text-red-400" />
+                        <span>Click to Enlarge (Photo {activeGalleryIndex + 1} of {HAZARDOUS_CLIENT_GALLERY.length})</span>
+                      </span>
+                    </div>
+
+                    {/* Left / Right Quick Navigation Buttons on Photo */}
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setActiveGalleryIndex(prev => (prev - 1 + HAZARDOUS_CLIENT_GALLERY.length) % HAZARDOUS_CLIENT_GALLERY.length);
+                      }}
+                      className="absolute left-3 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-black/70 hover:bg-[#B62825] text-white transition-colors border border-white/20 shadow-lg z-20 cursor-pointer"
+                      aria-label="Previous photo"
+                    >
+                      <ChevronLeft className="w-5 h-5" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setActiveGalleryIndex(prev => (prev + 1) % HAZARDOUS_CLIENT_GALLERY.length);
+                      }}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-black/70 hover:bg-[#B62825] text-white transition-colors border border-white/20 shadow-lg z-20 cursor-pointer"
+                      aria-label="Next photo"
+                    >
+                      <ChevronRight className="w-5 h-5" />
+                    </button>
+                  </div>
+                </div>
+
+                {/* Right Column: Technical Details & Caption (5 cols) */}
+                <div className="lg:col-span-5 space-y-6 flex flex-col justify-between">
+                  <div className="space-y-4">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="px-2.5 py-1 rounded bg-[#B62825]/20 text-[#B62825] border border-[#B62825]/30 text-xs font-mono font-bold">
+                        {activeItem.unNumber}
+                      </span>
+                      <span className="px-2.5 py-1 rounded bg-white/10 text-slate-300 text-xs font-mono">
+                        {activeItem.hazardClass}
+                      </span>
+                    </div>
+
+                    <h3 className="text-2xl sm:text-3xl font-bold font-heading text-white leading-tight">
+                      {activeItem.title}
+                    </h3>
+
+                    {/* Detailed Caption */}
+                    <div className="p-4 rounded-xl bg-white/5 border border-white/10 space-y-1.5">
+                      <span className="text-[11px] font-mono font-bold text-slate-400 uppercase tracking-wider block">
+                        Detailed Visual Caption:
+                      </span>
+                      <p className="text-xs sm:text-sm text-[#D9DEE5] leading-relaxed">
+                        {activeItem.caption}
+                      </p>
+                    </div>
+
+                    {/* Technical Specifications */}
+                    <div className="space-y-2.5 pt-2">
+                      <span className="text-xs font-mono font-bold text-slate-400 uppercase tracking-wider block">
+                        Technical Control Specifications:
+                      </span>
+                      <ul className="space-y-2">
+                        {activeItem.technicalSpecs.map((spec, sIdx) => (
+                          <li key={sIdx} className="flex items-start gap-2.5 text-xs text-slate-300">
+                            <CheckCircle2 className="w-4 h-4 text-[#B62825] shrink-0 mt-0.5" />
+                            <span>{spec}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div className="pt-4 border-t border-white/10 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                    <Link
+                      to="/request-quote?service=hazardous-cargo"
+                      className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#B62825] hover:bg-[#9E2220] text-white text-xs font-mono font-bold transition-all shadow-lg shadow-[#B62825]/25"
+                    >
+                      <span>Inquire for Similar DGR Consignment</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </Link>
+                    <div className="text-xs font-mono text-slate-400 text-center sm:text-left">
+                      Photo {activeGalleryIndex + 1} of {HAZARDOUS_CLIENT_GALLERY.length} Selected
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              {/* 4-Thumbnail Strip */}
+              <div className="pt-6 border-t border-white/10 space-y-3">
+                <div className="flex items-center justify-between text-xs font-mono text-slate-400">
+                  <span>SELECT PHOTOGRAPH TO INSPECT:</span>
+                  <span>Click any thumbnail to preview</span>
+                </div>
+                
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  {HAZARDOUS_CLIENT_GALLERY.map((item, idx) => {
+                    const isSelected = activeGalleryIndex === idx;
+                    return (
+                      <button
+                        key={item.id}
+                        type="button"
+                        onClick={() => setActiveGalleryIndex(idx)}
+                        className={`group relative rounded-xl overflow-hidden border-2 p-1.5 transition-all duration-200 text-left cursor-pointer flex flex-col bg-black/60 ${
+                          isSelected
+                            ? 'border-[#B62825] ring-2 ring-[#B62825]/40 shadow-xl bg-black/90'
+                            : 'border-white/10 hover:border-white/30 opacity-80 hover:opacity-100'
+                        }`}
+                      >
+                        <div className="relative aspect-[3/4] w-full rounded-lg overflow-hidden bg-black mb-2 flex items-center justify-center">
+                          <img
+                            src={item.image}
+                            alt={item.title}
+                            className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                            loading="lazy"
+                          />
+                          <span className={`absolute top-1.5 left-1.5 px-1.5 py-0.5 rounded text-[10px] font-mono font-bold ${
+                            isSelected ? 'bg-[#B62825] text-white' : 'bg-black/80 text-slate-300'
+                          }`}>
+                            0{idx + 1}
+                          </span>
+                          {isSelected && (
+                            <span className="absolute bottom-1.5 right-1.5 px-1.5 py-0.5 rounded text-[9px] font-mono font-bold bg-emerald-500 text-black">
+                              ACTIVE
+                            </span>
+                          )}
+                        </div>
+                        <div className="px-1 pb-1">
+                          <span className="text-[11px] font-mono font-bold text-white line-clamp-1 block">
+                            {item.thumbnailTitle}
+                          </span>
+                          <span className="text-[10px] text-slate-400 line-clamp-1 block">
+                            {item.hazardClass}
+                          </span>
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+            </div>
+          </ScrollReveal>
+
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 4. TECHNICAL VISUALS & PACKAGING METHODOLOGIES                            */}
+      {/* ========================================================================= */}
+      <section className="py-16 sm:py-24 bg-[#0B0B0D] border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-12">
           
           <ScrollReveal direction="up" className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-white/10">

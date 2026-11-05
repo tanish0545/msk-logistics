@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 
 export type RevealDirection = 'left' | 'right' | 'up' | 'down' | 'zoom' | 'none';
 
@@ -7,24 +7,47 @@ export interface UseScrollRevealOptions {
   rootMargin?: string;
   once?: boolean;
   disabled?: boolean;
+  fallbackTimeoutMs?: number;
 }
 
 /**
- * Custom hook to trigger entrance animations when an element enters the viewport.
- * Automatically respects prefers-reduced-motion and gracefully falls back if
- * IntersectionObserver is unavailable.
+ * Check if an element is currently within or above the active viewport.
+ */
+function isElementInOrAboveViewport(el: HTMLElement, marginPx: number = 60): boolean {
+  if (typeof window === 'undefined') return true;
+  const rect = el.getBoundingClientRect();
+  const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+  // Element is visible if its top is above the viewport bottom (with margin)
+  // and its bottom is below the viewport top (has not scrolled completely out of sight upwards)
+  return rect.top <= windowHeight + marginPx && rect.bottom >= -marginPx;
+}
+
+/**
+ * Bulletproof hook to trigger entrance animations when an element enters the viewport.
+ * 
+ * Fixes for Blank Page / Tab-Switch Disappearance:
+ * 1. Checks element bounding rect immediately on mount — elements in viewport reveal instantly.
+ * 2. Fallback timeout guarantees no content is EVER left permanently hidden at opacity: 0.
+ * 3. Listens to 'visibilitychange' and 'pageshow' to re-verify visibility when user returns to tab.
+ * 4. Once revealed, elements stay revealed permanently (never revert to opacity: 0).
+ * 5. Automatically respects prefers-reduced-motion and falls back if IntersectionObserver is missing.
  */
 export function useScrollReveal({
-  threshold = 0.15,
-  rootMargin = '0px 0px -40px 0px',
+  threshold = 0.05,
+  rootMargin = '0px 0px 40px 0px',
   once = true,
   disabled = false,
+  fallbackTimeoutMs = 1200,
 }: UseScrollRevealOptions = {}) {
   const [isRevealed, setIsRevealed] = useState(false);
   const elementRef = useRef<HTMLElement | null>(null);
 
+  const reveal = useCallback(() => {
+    setIsRevealed(true);
+  }, []);
+
   useEffect(() => {
-    if (disabled) {
+    if (disabled || isRevealed) {
       setIsRevealed(true);
       return;
     }
@@ -36,40 +59,84 @@ export function useScrollReveal({
     }
 
     // Immediate display if user prefers reduced motion
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion) {
-      setIsRevealed(true);
-      return;
+    try {
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReducedMotion) {
+        setIsRevealed(true);
+        return;
+      }
+    } catch {
+      // Ignore matchMedia errors
     }
 
     const element = elementRef.current;
     if (!element) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsRevealed(true);
-            if (once) {
-              observer.unobserve(entry.target);
-            }
-          } else if (!once) {
-            setIsRevealed(false);
-          }
-        });
-      },
-      {
-        threshold,
-        rootMargin,
-      }
-    );
+    // 1. Immediate in-viewport geometry check on mount
+    if (isElementInOrAboveViewport(element, 80)) {
+      setIsRevealed(true);
+      return;
+    }
 
-    observer.observe(element);
+    // 2. Setup IntersectionObserver
+    let observer: IntersectionObserver | null = null;
+    try {
+      observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) {
+              reveal();
+              if (once && observer) {
+                observer.unobserve(entry.target);
+              }
+              break;
+            } else if (!once) {
+              setIsRevealed(false);
+            }
+          }
+        },
+        {
+          threshold,
+          rootMargin,
+        }
+      );
+      observer.observe(element);
+    } catch {
+      // If observer setup fails, reveal immediately
+      setIsRevealed(true);
+      return;
+    }
+
+    // 3. Fallback safety timer: guarantees element NEVER stays permanently hidden
+    const safetyTimer = setTimeout(() => {
+      if (elementRef.current && isElementInOrAboveViewport(elementRef.current, 200)) {
+        reveal();
+      }
+    }, fallbackTimeoutMs);
+
+    // 4. Tab resume / visibility listener: re-check when user returns to tab
+    const handleResume = () => {
+      if (document.visibilityState === 'visible' && elementRef.current) {
+        if (isElementInOrAboveViewport(elementRef.current, 100)) {
+          reveal();
+        }
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleResume);
+    window.addEventListener('pageshow', handleResume);
+    window.addEventListener('focus', handleResume);
 
     return () => {
-      observer.disconnect();
+      clearTimeout(safetyTimer);
+      if (observer) {
+        observer.disconnect();
+      }
+      document.removeEventListener('visibilitychange', handleResume);
+      window.removeEventListener('pageshow', handleResume);
+      window.removeEventListener('focus', handleResume);
     };
-  }, [threshold, rootMargin, once, disabled]);
+  }, [threshold, rootMargin, once, disabled, isRevealed, reveal, fallbackTimeoutMs]);
 
   return { ref: elementRef, isRevealed };
 }
@@ -91,7 +158,7 @@ export interface ScrollRevealProps extends React.HTMLAttributes<HTMLElement> {
 
 /**
  * Reusable ScrollReveal component for smooth, hardware-accelerated
- * scroll-triggered entrance animations.
+ * scroll-triggered entrance animations with permanent tab-recovery.
  */
 export const ScrollReveal: React.FC<ScrollRevealProps> = ({
   children,
@@ -101,8 +168,8 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
   staggerIndex,
   distance,
   distanceY,
-  threshold = 0.15,
-  rootMargin = '0px 0px -40px 0px',
+  threshold = 0.05,
+  rootMargin = '0px 0px 40px 0px',
   once = true,
   as: Component = 'div',
   className = '',

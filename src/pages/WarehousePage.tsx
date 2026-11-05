@@ -137,7 +137,7 @@ export const WarehousePage: React.FC = () => {
               <div className="relative rounded-2xl overflow-hidden border border-[#E2E2E2] shadow-md bg-neutral-900 aspect-[16/10] group">
                 <BrandedImage
                   src="/images/operations/warehouse/open-yard-conex-staging.jpg"
-                  alt="Authentic open-air container yard staging at JNPT Conex CFS corridor with natural daylight sky and container stacks"
+                  alt="Open-air container yard staging at JNPT Conex CFS corridor with natural daylight sky and container stacks"
                   aspectRatio="h-full w-full"
                   imageClassName="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
@@ -148,7 +148,7 @@ export const WarehousePage: React.FC = () => {
                 </div>
               </div>
               <p className="text-xs text-[#64748B] font-mono">
-                Authentic open yard staging: Conex CFS &amp; JNPT corridor container buffer yard, trailer maneuvering, and heavy equipment holding under natural daylight sky.
+                Open yard staging: Conex CFS &amp; JNPT corridor container buffer yard, trailer maneuvering, and heavy equipment holding under natural daylight sky.
               </p>
             </ScrollReveal>
 
@@ -489,7 +489,7 @@ export const WarehousePage: React.FC = () => {
               <div className="relative rounded-2xl overflow-hidden border border-[#E2E2E2] shadow-md bg-neutral-900 aspect-[16/10] group">
                 <BrandedImage
                   src="/images/shipments/breakbulk/breakbulk-lowbed-machinery-lashing.jpg"
-                  alt="Authentic ODC project cargo on heavy low-bed trailer staged at JNPT container yard"
+                  alt="ODC project cargo on heavy low-bed trailer staged at JNPT container yard"
                   aspectRatio="h-full w-full"
                   imageClassName="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
@@ -500,7 +500,7 @@ export const WarehousePage: React.FC = () => {
                 </div>
               </div>
               <p className="text-xs text-[#64748B] font-mono">
-                Authentic field record: Heavy low-bed trailer staging with ratchet binders and timber dunnage alongside container stacks.
+                Field record: Heavy low-bed trailer staging with ratchet binders and timber dunnage alongside container stacks.
               </p>
             </ScrollReveal>
 
@@ -647,7 +647,7 @@ export const WarehousePage: React.FC = () => {
               <div className="relative rounded-2xl overflow-hidden border border-[#E2E8F0] shadow-md bg-neutral-900 aspect-[16/10] group">
                 <BrandedImage
                   src="/images/operations/warehouse/export-pallet-strapping-staging.jpg"
-                  alt="Authentic export pallet strapping and packaging staging inside warehouse bay"
+                  alt="Export pallet strapping and packaging staging inside warehouse bay"
                   aspectRatio="h-full w-full"
                   imageClassName="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
@@ -658,7 +658,7 @@ export const WarehousePage: React.FC = () => {
                 </div>
               </div>
               <p className="text-xs text-[#64748B] font-mono">
-                Authentic field record: High-tensile composite strapping and shrink wrapping on customized wooden pallets inside covered warehouse.
+                Field record: High-tensile composite strapping and shrink wrapping on customized wooden pallets inside covered warehouse.
               </p>
             </ScrollReveal>
 
@@ -805,7 +805,7 @@ export const WarehousePage: React.FC = () => {
               <div className="relative rounded-2xl overflow-hidden border border-[#E2E2E2] shadow-md bg-neutral-900 aspect-[16/10] group">
                 <BrandedImage
                   src="/images/operations/container-loading/mobile-crane-heavy-lift.jpg"
-                  alt="Authentic telescopic mobile crane performing heavy lift onto Flat Rack container at Nhava Sheva"
+                  alt="Telescopic mobile crane performing heavy lift onto Flat Rack container at Nhava Sheva"
                   aspectRatio="h-full w-full"
                   imageClassName="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
@@ -816,7 +816,7 @@ export const WarehousePage: React.FC = () => {
                 </div>
               </div>
               <p className="text-xs text-[#64748B] font-mono">
-                Authentic field record: Telescopic mobile hydraulic crane rigging and hoisting heavy machinery component onto yellow Flat Rack platform.
+                Field record: Telescopic mobile hydraulic crane rigging and hoisting heavy machinery component onto yellow Flat Rack platform.
               </p>
             </ScrollReveal>
 

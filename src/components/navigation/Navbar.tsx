@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ChevronDown, ChevronRight, Menu, X } from 'lucide-react';
+import { ChevronDown, ChevronRight, Menu, X, Ship, Plane, Box, Layers, Link2, AlertTriangle } from 'lucide-react';
+import { Services3DContainerDropdown } from './Services3DContainerDropdown';
+import { CartingDropdownSection } from './CartingDropdownSection';
 import { NAV_ITEMS, type NavItem } from './navConfig';
 import { HangingContainerQuoteButton } from './HangingContainerQuoteButton';
 
@@ -237,147 +239,14 @@ export const Navbar: React.FC = () => {
                   {/* Dropdown Menu */}
                   {isOpen && (
                     <div
-                      className={`absolute top-full pt-1.5 z-50 animate-in fade-in slide-in-from-top-1 duration-180 ${isCompany ? 'right-0 min-w-[310px]' : 'left-0 w-[360px]'
+                      className={`absolute top-full pt-1.5 z-50 animate-in fade-in slide-in-from-top-1 duration-180 ${isCompany ? 'right-0 min-w-[310px]' : 'left-1/2 -translate-x-[36%] w-auto'
                         }`}
                       role="menu"
                       aria-orientation="vertical"
                     >
                       {isServices ? (
-                        /* SERVICES DROPDOWN — PREMIUM LIGHT THEME WITH INTEGRATED CARTING TREE */
-                        <div className="bg-white rounded-xl shadow-xl shadow-black/8 border border-[#E2E2E2] py-2.5 overflow-hidden text-left w-[340px]">
-                          {/* 1. Header */}
-                          <div className="px-4 pb-1.5 pt-0.5 text-[10.5px] font-mono uppercase tracking-[0.14em] text-[#64748B] font-semibold border-b border-[#F0F0F0]">
-                            Specialized Services
-                          </div>
-
-                          {/* 2. Specialized Services (Clean Direct Links) */}
-                          <div className="py-1 px-1.5 space-y-0.5">
-                            <Link
-                              to="/services/ocean-cargo"
-                              role="menuitem"
-                              className="block px-3 py-1.5 rounded-md text-[13.5px] font-medium text-[#202124] hover:text-[#B62825] hover:bg-[#F8F9FA] transition-colors"
-                              onClick={() => setServicesDropdownOpen(false)}
-                            >
-                              Ocean Cargo
-                            </Link>
-                            <Link
-                              to="/services/air-cargo"
-                              role="menuitem"
-                              className="block px-3 py-1.5 rounded-md text-[13.5px] font-medium text-[#202124] hover:text-[#B62825] hover:bg-[#F8F9FA] transition-colors"
-                              onClick={() => setServicesDropdownOpen(false)}
-                            >
-                              Air Cargo
-                            </Link>
-                            <Link
-                              to="/services/container-stuffing"
-                              role="menuitem"
-                              className="block px-3 py-1.5 rounded-md text-[13.5px] font-medium text-[#202124] hover:text-[#B62825] hover:bg-[#F8F9FA] transition-colors"
-                              onClick={() => setServicesDropdownOpen(false)}
-                            >
-                              Container Stuffing Logistics
-                            </Link>
-                            <Link
-                              to="/services/special-project"
-                              role="menuitem"
-                              className="block px-3 py-1.5 rounded-md text-[13.5px] font-medium text-[#202124] hover:text-[#B62825] hover:bg-[#F8F9FA] transition-colors"
-                              onClick={() => setServicesDropdownOpen(false)}
-                            >
-                              Special Project Cargo Handling
-                            </Link>
-                            <Link
-                              to="/services/cargo-lashing"
-                              role="menuitem"
-                              className="block px-3 py-1.5 rounded-md text-[13.5px] font-medium text-[#202124] hover:text-[#B62825] hover:bg-[#F8F9FA] transition-colors"
-                              onClick={() => setServicesDropdownOpen(false)}
-                            >
-                              Cargo Lashing
-                            </Link>
-                            <Link
-                              to="/services/hazardous-cargo"
-                              role="menuitem"
-                              className="block px-3 py-1.5 rounded-md text-[13.5px] font-medium text-[#202124] hover:text-[#B62825] hover:bg-[#F8F9FA] transition-colors"
-                              onClick={() => setServicesDropdownOpen(false)}
-                            >
-                              Hazardous Cargo
-                            </Link>
-                          </div>
-
-                          {/* 3. Divider */}
-                          <div className="border-t border-[#F0F0F0] my-1.5 mx-4" />
-
-                          {/* 4. Carting Hierarchical Tree (Display-Only, Non-Clickable) */}
-                          <div className="px-3.5 py-1">
-                            <div className="p-2.5 rounded-lg bg-[#F8F9FA] border border-[#E9ECEF]">
-                              {/* Centered Parent Node: CARTING (Display-only, non-clickable) */}
-                              <div className="flex justify-center">
-                                <div
-                                  className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-md bg-white border border-[#B62825]/40 shadow-2xs select-none cursor-default pointer-events-none"
-                                  title="Carting Operations"
-                                >
-                                  <span className="w-1.5 h-1.5 rounded-full bg-[#B62825] shadow-[0_0_4px_rgba(182,40,37,0.5)]" />
-                                  <span className="font-heading font-bold text-[11px] text-[#202124] tracking-widest uppercase">
-                                    CARTING
-                                  </span>
-                                </div>
-                              </div>
-
-                              {/* Tree Connector Lines (SVG with MSK-red accents) */}
-                              <div className="relative w-full h-4 my-0.5 select-none pointer-events-none" aria-hidden="true">
-                                <svg className="w-full h-full" viewBox="0 0 300 20" fill="none" preserveAspectRatio="none">
-                                  {/* Central vertical stem from parent */}
-                                  <path d="M 150 0 L 150 10" stroke="#B62825" strokeWidth="1.2" />
-                                  {/* Horizontal connector bar spanning across all 3 child columns */}
-                                  <path d="M 50 10 L 250 10" stroke="#B62825" strokeWidth="1.2" />
-                                  {/* Left drop to Speedy */}
-                                  <path d="M 50 10 L 50 20" stroke="#B62825" strokeWidth="1.2" />
-                                  {/* Center drop to Punjab */}
-                                  <path d="M 150 10 L 150 20" stroke="#B62825" strokeWidth="1.2" />
-                                  {/* Right drop to Pollaris */}
-                                  <path d="M 250 10 L 250 20" stroke="#B62825" strokeWidth="1.2" />
-                                  {/* Junction & Terminal Dots */}
-                                  <circle cx="150" cy="10" r="1.75" fill="#B62825" />
-                                  <circle cx="50" cy="18" r="1.5" fill="#B62825" />
-                                  <circle cx="150" cy="18" r="1.5" fill="#B62825" />
-                                  <circle cx="250" cy="18" r="1.5" fill="#B62825" />
-                                </svg>
-                              </div>
-
-                              {/* 3 Child Company Nodes Horizontally Aligned (Display-only, non-clickable) */}
-                              <div className="grid grid-cols-3 gap-1.5 select-none">
-                                <div className="flex flex-col items-center justify-center py-1 px-1 rounded-md bg-white border border-[#E2E8F0] shadow-2xs text-center cursor-default pointer-events-none">
-                                  <span className="text-[12px] font-semibold text-[#202124]">
-                                    Speedy
-                                  </span>
-                                </div>
-                                <div className="flex flex-col items-center justify-center py-1 px-1 rounded-md bg-white border border-[#E2E8F0] shadow-2xs text-center cursor-default pointer-events-none">
-                                  <span className="text-[12px] font-semibold text-[#202124]">
-                                    Punjab
-                                  </span>
-                                </div>
-                                <div className="flex flex-col items-center justify-center py-1 px-1 rounded-md bg-white border border-[#E2E8F0] shadow-2xs text-center cursor-default pointer-events-none">
-                                  <span className="text-[12px] font-semibold text-[#202124]">
-                                    Pollaris
-                                  </span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-
-                          {/* 5. Divider */}
-                          <div className="border-t border-[#F0F0F0] my-1.5 mx-4" />
-
-                          {/* 6. View All Services Directory Link */}
-                          <div className="px-4 pt-0.5 pb-0.5">
-                            <Link
-                              to="/services"
-                              className="text-[12.5px] font-semibold text-[#B62825] hover:text-[#9E2220] inline-flex items-center gap-1.5 transition-colors group/viewall"
-                              onClick={() => setServicesDropdownOpen(false)}
-                            >
-                              <span>View All Services Directory</span>
-                              <span className="group-hover/viewall:translate-x-0.5 transition-transform">&rarr;</span>
-                            </Link>
-                          </div>
-                        </div>
+                        /* SERVICES DROPDOWN — IDEA 08 3D CONTAINER THEME (INDUSTRIAL LOOK) */
+                        <Services3DContainerDropdown onClose={() => setServicesDropdownOpen(false)} />
                       ) : (
                         /* COMPANY OVERVIEW DROPDOWN (PRESERVED) */
                         <div className="bg-white rounded-xl shadow-xl border border-[#E2E2E2] py-2 overflow-visible">
@@ -606,97 +475,50 @@ export const Navbar: React.FC = () => {
                     {isSubOpen && (
                       <div className="pl-4 pr-2 py-2 space-y-1.5 border-l-2 border-[#E2E2E2] ml-4 mt-1 bg-[#FAFAFA] rounded-r-lg">
                         {isServices ? (
-                          /* MOBILE SERVICES VIEW WITH CARTING TREE */
-                          <div className="space-y-2 py-1">
-                            <div className="text-[10px] font-mono uppercase tracking-wider text-[#94A3B8] font-bold px-2">
-                              Specialized Services
+                          /* MOBILE SERVICES VIEW — 3D CONTAINER INDUSTRIAL LOOK & CARTING TREE */
+                          <div className="space-y-3 py-2 bg-[#0C0E14] border border-[#262D3D] rounded-xl p-3 shadow-lg">
+                            {/* Mobile Container Header Accent */}
+                            <div className="relative rounded-t overflow-hidden bg-[#161B24] p-1.5 flex items-center justify-between border-b border-[#2C3445]">
+                              <div className="absolute top-0 left-0 right-0 h-[2px] bg-[repeating-linear-gradient(45deg,#FACC15,#FACC15_6px,#111827_6px,#111827_12px)]" />
+                              <div className="flex items-center gap-1.5 text-[9px] font-mono text-white/90 font-bold">
+                                <span className="w-1.5 h-1.5 rounded-full bg-[#B62825]" />
+                                <span>MSKU 2026-HC</span>
+                              </div>
+                              <div className="text-[9px] font-mono font-bold text-[#FACC15] uppercase tracking-wider">
+                                SPECIALIZED SERVICES
+                              </div>
                             </div>
-                            <div className="space-y-1">
-                              <Link
-                                to="/services/ocean-cargo"
-                                className="block py-1 px-2 text-[13.5px] text-[#52627A] hover:text-[#B62825] font-medium"
-                                onClick={() => setMobileMenuOpen(false)}
-                              >
-                                Ocean Cargo
-                              </Link>
-                              <Link
-                                to="/services/air-cargo"
-                                className="block py-1 px-2 text-[13.5px] text-[#52627A] hover:text-[#B62825] font-medium"
-                                onClick={() => setMobileMenuOpen(false)}
-                              >
-                                Air Cargo
-                              </Link>
-                              <Link
-                                to="/services/container-stuffing"
-                                className="block py-1 px-2 text-[13.5px] text-[#52627A] hover:text-[#B62825] font-medium"
-                                onClick={() => setMobileMenuOpen(false)}
-                              >
-                                Container Stuffing Logistics
-                              </Link>
-                              <Link
-                                to="/services/special-project"
-                                className="block py-1 px-2 text-[13.5px] text-[#52627A] hover:text-[#B62825] font-medium"
-                                onClick={() => setMobileMenuOpen(false)}
-                              >
-                                Special Project Cargo Handling
-                              </Link>
-                              <Link
-                                to="/services/cargo-lashing"
-                                className="block py-1 px-2 text-[13.5px] text-[#52627A] hover:text-[#B62825] font-medium"
-                                onClick={() => setMobileMenuOpen(false)}
-                              >
-                                Cargo Lashing
-                              </Link>
-                              <Link
-                                to="/services/hazardous-cargo"
-                                className="block py-1 px-2 text-[13.5px] text-[#52627A] hover:text-[#B62825] font-medium"
-                                onClick={() => setMobileMenuOpen(false)}
-                              >
-                                Hazardous Cargo
-                              </Link>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
+                              {[
+                                { name: 'Ocean Cargo', path: '/services/ocean-cargo', icon: Ship },
+                                { name: 'Air Cargo', path: '/services/air-cargo', icon: Plane },
+                                { name: 'Container Stuffing Logistics', path: '/services/container-stuffing', icon: Box },
+                                { name: 'Special Project Cargo Handling', path: '/services/special-project', icon: Layers },
+                                { name: 'Cargo Lashing', path: '/services/cargo-lashing', icon: Link2 },
+                                { name: 'Hazardous Cargo', path: '/services/hazardous-cargo', icon: AlertTriangle },
+                              ].map((s) => {
+                                const Icon = s.icon;
+                                return (
+                                  <Link
+                                    key={s.path}
+                                    to={s.path}
+                                    className="flex items-center gap-2.5 py-2 px-2.5 rounded-lg text-[13px] text-gray-200 hover:text-white bg-[#141822]/80 hover:bg-[#1A202C] font-medium transition-colors border border-[#B62825]/30 hover:border-[#B62825]"
+                                    onClick={() => setMobileMenuOpen(false)}
+                                  >
+                                    <div className="w-6 h-6 rounded-full bg-red-50 text-[#B62825] flex items-center justify-center shrink-0">
+                                      <Icon className="w-3.5 h-3.5" />
+                                    </div>
+                                    <span className="truncate">{s.name}</span>
+                                  </Link>
+                                );
+                              })}
                             </div>
 
                             {/* Divider */}
                             <div className="border-t border-[#E2E2E2] my-2" />
 
-                            {/* Mobile Carting Tree (Light Theme, Display-Only, Non-Clickable) */}
-                            <div className="bg-[#F8F9FA] p-2.5 rounded-lg border border-[#E9ECEF]">
-                              <div className="flex justify-center">
-                                <div
-                                  className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-white text-[#202124] text-[11px] font-bold uppercase tracking-wider border border-[#B62825]/40 shadow-2xs select-none cursor-default pointer-events-none"
-                                >
-                                  <span className="w-1.5 h-1.5 rounded-full bg-[#B62825]" />
-                                  <span>CARTING</span>
-                                </div>
-                              </div>
-
-                              {/* SVG Tree Connector */}
-                              <div className="relative w-full h-4 my-0.5 select-none pointer-events-none" aria-hidden="true">
-                                <svg className="w-full h-full" viewBox="0 0 300 20" fill="none" preserveAspectRatio="none">
-                                  <path d="M 150 0 L 150 10" stroke="#B62825" strokeWidth="1.2" />
-                                  <path d="M 50 10 L 250 10" stroke="#B62825" strokeWidth="1.2" />
-                                  <path d="M 50 10 L 50 20" stroke="#B62825" strokeWidth="1.2" />
-                                  <path d="M 150 10 L 150 20" stroke="#B62825" strokeWidth="1.2" />
-                                  <path d="M 250 10 L 250 20" stroke="#B62825" strokeWidth="1.2" />
-                                  <circle cx="150" cy="10" r="1.75" fill="#B62825" />
-                                  <circle cx="50" cy="18" r="1.5" fill="#B62825" />
-                                  <circle cx="150" cy="18" r="1.5" fill="#B62825" />
-                                  <circle cx="250" cy="18" r="1.5" fill="#B62825" />
-                                </svg>
-                              </div>
-
-                              <div className="grid grid-cols-3 gap-1.5 text-center select-none">
-                                <div className="py-1 px-1 rounded-md bg-white border border-[#E2E8F0] shadow-2xs text-[11.5px] font-semibold text-[#34343A] cursor-default pointer-events-none">
-                                  Speedy
-                                </div>
-                                <div className="py-1 px-1 rounded-md bg-white border border-[#E2E8F0] shadow-2xs text-[11.5px] font-semibold text-[#34343A] cursor-default pointer-events-none">
-                                  Punjab
-                                </div>
-                                <div className="py-1 px-1 rounded-md bg-white border border-[#E2E8F0] shadow-2xs text-[11.5px] font-semibold text-[#34343A] cursor-default pointer-events-none">
-                                  Pollaris
-                                </div>
-                              </div>
-                            </div>
+                            {/* Mobile Carting Tree (Exact Preserved Component) */}
+                            <CartingDropdownSection />
 
                             {/* Divider */}
                             <div className="border-t border-[#E2E2E2] my-2" />

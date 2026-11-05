@@ -64,6 +64,7 @@ export const OperationalEnvironmentsGallery: React.FC = () => {
       case 'export-packaging': return 'Export Packaging & Crating';
       case 'cargo-lashing': return 'Cargo Lashing & Securing';
       case 'shaded-warehouse': return 'Shaded Warehouse Operations';
+      case 'hazardous-cargo': return 'Hazardous Cargo (DGR)';
       default: return 'Port Operations';
     }
   };

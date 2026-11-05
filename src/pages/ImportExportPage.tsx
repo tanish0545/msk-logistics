@@ -524,7 +524,7 @@ export const ImportExportPage: React.FC = () => {
               Shipment Gallery
             </h2>
             <p className="text-base sm:text-lg text-[#666666] leading-relaxed">
-              Explore authentic shipment photographs across specialized export methods: Flat Rack platforms, Breakbulk haulage, and Open Top top-loading containers.
+              Explore operational shipment photographs across specialized export methods: Flat Rack platforms, Breakbulk haulage, and Open Top top-loading containers.
             </p>
           </ScrollReveal>
 

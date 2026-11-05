@@ -23,13 +23,13 @@ export const ContainerServicesSection: React.FC = () => {
   return (
     <section className="py-20 sm:py-24 bg-[#050507] text-white border-b border-white/10 relative overflow-hidden" id="core-services">
       {/* Subtle ambient red background radial */}
-      <div 
+      <div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[radial-gradient(ellipse_at_center,rgba(182,40,37,0.12)_0%,transparent_70%)] pointer-events-none"
-        aria-hidden="true" 
+        aria-hidden="true"
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-10 relative z-10">
-        
+
         {/* Section Header Matching Concept 02 */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <ScrollReveal direction="up" className="space-y-2">
@@ -66,7 +66,7 @@ export const ContainerServicesSection: React.FC = () => {
               to="/services"
               className="hidden sm:inline-flex items-center gap-1.5 text-xs font-mono font-bold text-[#D9DEE5] hover:text-[#B62825] ml-2 transition-colors"
             >
-              <span>All 5 Services Directory</span>
+              <span>All 6 Services Directory</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>

@@ -28,11 +28,11 @@ export const HeroConcept09: React.FC = () => {
       {/* 1. CINEMATIC PORT ENVIRONMENT BACKGROUND (One Complete Image Asset)       */}
       {/* ========================================================================= */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden" aria-hidden="true">
-        {/* Full-bleed cinematic logistics-port master image shifted 6-8% right on desktop to clear headline & CTAs */}
+        {/* Full-bleed cinematic logistics-port master image: clean universal object-position, no transform hacks */}
         <img
           src="/images/hero/msk-cinematic-port-final.png"
           alt="MSK Logistics International Multimodal Port Operations"
-          className="w-full h-full object-cover object-[78%_20%] sm:object-[78%_28%] lg:object-[50%_36%] lg:scale-[1.0] lg:translate-x-[6.5%] xl:translate-x-[12%] 2xl:translate-x-[2.8%] opacity-100 origin-center transition-transform duration-300"
+          className="w-full h-full object-cover object-[78%_20%] sm:object-[78%_28%] lg:object-[50%_57%] lg:translate-x-[2.5%] opacity-100"
           loading="eager"
           decoding="sync"
         />
@@ -79,7 +79,7 @@ export const HeroConcept09: React.FC = () => {
 
             {/* Bold Headline with MSK Crimson Accent on "Trust." (Strictly 2 lines on desktop) */}
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[2.65rem] xl:text-[3.15rem] 2xl:text-[3.6rem] font-bold text-white tracking-tight leading-[1.08] font-heading">
-              Beyond Logistics,{' '}<br className="hidden sm:inline" />
+              Beyond Logistics{' '}<br className="hidden sm:inline" />
               We Deliver{' '}
               <span className="text-[#B62825] drop-shadow-[0_2px_22px_rgba(182,40,37,0.55)]">
                 Trust.

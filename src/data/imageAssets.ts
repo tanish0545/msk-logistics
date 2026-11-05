@@ -13,7 +13,8 @@ export interface ClientImageAsset {
     | 'export-packaging'
     | 'cargo-lashing'
     | 'shaded-warehouse'
-    | 'office-signboard';
+    | 'office-signboard'
+    | 'hazardous-cargo';
   alt: string;
   caption: string;
   shortDescription: string;
@@ -365,6 +366,68 @@ export const CLIENT_IMAGE_ASSETS: ClientImageAsset[] = [
     shortDescription: "Official signboard confirming ISO 9001:2015 certification and JNPT Navi Mumbai registration.",
     verifiedDetails: "JNPT Township Colony, Sector-3, Bldg B/48, Office 3, Navi Mumbai 400702. GST 27AXWPK456261ZX.",
     websiteSections: ['operations'],
+  },
+
+  // 8. Hazardous Cargo (DGR) Operations
+  {
+    id: 'img-dgr-un3265-drums',
+    driveFilename: 'un3265-corrosive-class-8-drums.jpg',
+    localPath: '/images/hazardous/un3265-corrosive-class-8-drums.jpg',
+    title: 'UN 3265 Class 8 Corrosive Chemical Drums',
+    category: 'operation',
+    subcategory: 'hazardous-cargo',
+    alt: 'Palletized silver steel drums with UN 3265 Corrosive Class 8 warning diamonds inside container',
+    caption: 'UN 3265 Corrosive Liquid (Class 8) steel drums palletized, shrink-wrapped, and secured for marine export transit',
+    shortDescription: 'IMDG-compliant drum packaging, Class 8 corrosive placarding, and shrink-wrapped pallet containment.',
+    verifiedDetails: 'UN 3265, Class 8 Corrosive label, Marine Pollutant marking, shrink wrap with strapping.',
+    websiteSections: ['homepage-gallery', 'operations'],
+    projectReference: 'IMDG Class 8 Corrosive Chemical Drums Marine Transport',
+    consigneeOrPartner: 'Class 8 Dangerous Goods',
+  },
+  {
+    id: 'img-dgr-un2588-cartons',
+    driveFilename: 'un2588-un2903-palletized-chemical-cartons.jpg',
+    localPath: '/images/hazardous/un2588-un2903-palletized-chemical-cartons.jpg',
+    title: 'UN 2588 & UN 2903 Multi-Hazard Export Cartons',
+    category: 'operation',
+    subcategory: 'hazardous-cargo',
+    alt: 'Palletized chemical cartons inside shipping container showing UN 2588 Toxic Solid and UN 2903 hazard labels',
+    caption: 'Export chemical consignment in red container showing UN 2588 Toxic Solid Class 6.1 and UN 2903 multi-hazard placarding',
+    shortDescription: 'Multi-hazard toxic and flammable chemical carton palletisation with corner strapping and shrink wrap.',
+    verifiedDetails: 'UN 2588 & UN 2903, Class 6.1 Toxic, environmental hazard placards, green PET strapping.',
+    websiteSections: ['homepage-gallery', 'operations'],
+    projectReference: 'IMDG Class 6.1 Multi-Hazard Export Chemical Consignment',
+    consigneeOrPartner: 'Class 6.1 Toxic Substance',
+  },
+  {
+    id: 'img-dgr-un2588-strapping',
+    driveFilename: 'un2588-palletized-hazardous-cargo-strapping.jpg',
+    localPath: '/images/hazardous/un2588-palletized-hazardous-cargo-strapping.jpg',
+    title: 'UN 2588 Heavy-Duty Palletized Cargo Strapping',
+    category: 'operation',
+    subcategory: 'hazardous-cargo',
+    alt: 'Securely strapped pallets of UN 2588 chemical cartons with green tension bands inside container',
+    caption: 'High-tensile green composite strapping and clear stretch wrap stabilizing UN 2588 toxic solid cartons',
+    shortDescription: 'Pallet-level containment preventing shift during intermodal transit with tensioned green banding.',
+    verifiedDetails: 'Pallet #11, 48 boxes per pallet, UN 2588, Class 6.1 poison placards, dual strapping bands.',
+    websiteSections: ['homepage-gallery', 'operations'],
+    projectReference: 'UN 2588 Export Pallet Packaging & Heavy-Duty Strapping',
+    consigneeOrPartner: 'Dangerous Goods Packaging',
+  },
+  {
+    id: 'img-dgr-un2588-batch',
+    driveFilename: 'un2588-chemical-cargo-hazard-labels.jpg',
+    localPath: '/images/hazardous/un2588-chemical-cargo-hazard-labels.jpg',
+    title: 'UN 2588 Batch-Certified Export Chemical Packaging',
+    category: 'operation',
+    subcategory: 'hazardous-cargo',
+    alt: 'Full container load of palletized UN 2588 chemical cartons with batch labels CI-PIX/26-27/005 and hazard diamonds',
+    caption: 'Batch-certified UN 2588 dangerous goods export cartons with CI-PIX identification and IMDG compliance placards',
+    shortDescription: 'Certified chemical export packaging with batch labeling, marine pollutant marks, and pallet-level tracking.',
+    verifiedDetails: 'Pallets #21, #16, #14, #13, Batch CI-PIX/26-27/005, Class 6.1 toxic solid, export grade.',
+    websiteSections: ['homepage-gallery', 'operations'],
+    projectReference: 'Batch-Certified Chemical Export Full Container Load',
+    consigneeOrPartner: 'Hazardous Chemical Export',
   },
 ];
 

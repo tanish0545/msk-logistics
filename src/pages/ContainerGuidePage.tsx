@@ -250,10 +250,10 @@ export const ContainerGuidePage: React.FC = () => {
                   <span className="text-xs font-mono text-neutral-600 bg-neutral-100 px-2 py-0.5 rounded font-bold">
                     {selectedContainer.code}
                   </span>
-                  {selectedContainer.clientFieldImage && (
-                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
-                      <Camera className="w-3 h-3 text-emerald-600" />
-                      <span>AUTHENTIC JNPT FIELD RECORDS</span>
+                  {selectedContainer.galleryImages.some(img => img.isAuthenticClient) && (
+                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-blue-50 text-blue-700 border border-blue-200">
+                      <Camera className="w-3 h-3 text-blue-600" />
+                      <span>VERIFIED FLEET ASSETS</span>
                     </span>
                   )}
                 </div>
@@ -305,17 +305,13 @@ export const ContainerGuidePage: React.FC = () => {
                     </span>
                   </div>
 
-                  {/* Authentic Badge Overlay */}
+                  {/* Equipment Specification Overlay */}
                   <div className="absolute bottom-3 left-3 z-20 pointer-events-none">
-                    <span className={`inline-flex items-center gap-1.5 text-[11px] font-mono font-semibold px-2.5 py-1 rounded-md shadow-md backdrop-blur-md ${
-                      activeGalleryImage.isAuthenticClient
-                        ? 'bg-emerald-950/90 text-emerald-200 border border-emerald-500/40'
-                        : 'bg-black/75 text-neutral-200 border border-white/10'
-                    }`}>
-                      {activeGalleryImage.isAuthenticClient ? (
+                    <span className="inline-flex items-center gap-1.5 text-[11px] font-mono font-semibold px-2.5 py-1 rounded-md shadow-md backdrop-blur-md bg-black/80 text-neutral-200 border border-white/15">
+                      {activeGalleryImage.referenceTag ? (
                         <>
-                          <CheckCircle2 className="w-3 h-3 text-emerald-400" />
-                          <span>{activeGalleryImage.referenceTag || 'Authentic Field Record'}</span>
+                          <CheckCircle2 className="w-3 h-3 text-red-400" />
+                          <span>{activeGalleryImage.referenceTag}</span>
                         </>
                       ) : (
                         <>
@@ -333,7 +329,10 @@ export const ContainerGuidePage: React.FC = () => {
                     <span>Photographs ({selectedContainer.galleryImages.length} Available):</span>
                     <span>Photo {activeGalleryIndex + 1} Selected</span>
                   </div>
-                  <div className="grid grid-cols-5 gap-2">
+                  <div 
+                    className="grid gap-2"
+                    style={{ gridTemplateColumns: `repeat(${selectedContainer.galleryImages.length}, minmax(0, 1fr))` }}
+                  >
                     {selectedContainer.galleryImages.map((img, idx) => {
                       const isSelected = activeGalleryIndex === idx;
                       return (
@@ -355,8 +354,8 @@ export const ContainerGuidePage: React.FC = () => {
                           />
                           {img.isAuthenticClient && (
                             <span 
-                              className="absolute top-1 right-1 w-2 h-2 rounded-full bg-emerald-500 shadow-xs" 
-                              title="Authentic Client Photograph"
+                              className="absolute top-1 right-1 w-2 h-2 rounded-full bg-blue-500 shadow-xs" 
+                              title="Verified Fleet Photograph"
                             />
                           )}
                         </button>
@@ -561,7 +560,7 @@ export const ContainerGuidePage: React.FC = () => {
                 Break Bulk <span className="text-[#B62825]">Consignments</span>
               </h2>
               <p className="text-sm sm:text-base text-[#94A3B8] leading-relaxed">
-                Authentic client field documentation of non-containerized heavy break bulk equipment. Showcasing the complete operational handling cycle of an over-dimensional cylindrical pressure vessel: multi-axle trailer haulage, telescopic mobile crane hoisting, night vessel hold cellular loading, and certified high-tensile cross-webbing ratchet lashing.
+                Field documentation of non-containerized heavy break bulk equipment. Showcasing the complete operational handling cycle of an over-dimensional cylindrical pressure vessel: multi-axle trailer haulage, telescopic mobile crane hoisting, night vessel hold cellular loading, and certified high-tensile cross-webbing ratchet lashing.
               </p>
             </div>
 
@@ -574,7 +573,7 @@ export const ContainerGuidePage: React.FC = () => {
             </Link>
           </ScrollReveal>
 
-          {/* Authentic Client Break Bulk Records Grid */}
+          {/* Break Bulk Records Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {BREAK_BULK_CARGO_RECORDS.map((rec, index) => (
               <ScrollReveal
@@ -597,19 +596,14 @@ export const ContainerGuidePage: React.FC = () => {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#16161A] via-transparent to-black/30 pointer-events-none" />
                     
-                    {/* Drive Asset Stamp */}
+                    {/* Operational Tag Badge */}
                     <div className="absolute top-3 left-3 z-10 flex flex-wrap items-center gap-2">
                       <span className="px-2.5 py-1 rounded-md text-[10px] font-mono font-bold bg-[#B62825] text-white uppercase shadow-md">
-                        AUTHENTIC CLIENT PHOTO
+                        PROJECT CARGO
                       </span>
                       <span className="px-2.5 py-1 rounded-md text-[10px] font-mono font-bold bg-black/80 text-neutral-300 border border-white/20 uppercase backdrop-blur-sm">
-                        {rec.driveFilename}
+                        {rec.projectTag}
                       </span>
-                      {index === 0 && (
-                        <span className="px-2.5 py-1 rounded-md text-[10px] font-mono font-bold bg-blue-600/90 text-white uppercase shadow-md">
-                          FEATURED: BLUE WRAPPED CYLINDRICAL CARGO
-                        </span>
-                      )}
                     </div>
 
                     <div className="absolute bottom-3 right-3 z-10 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -630,9 +624,8 @@ export const ContainerGuidePage: React.FC = () => {
                       {rec.title}
                     </h3>
                     
-                    {/* Explicit Client Verification Caption */}
                     <div className="p-2.5 rounded-lg bg-blue-950/30 border border-blue-800/30 text-blue-200 text-xs font-mono leading-relaxed">
-                      <span className="font-bold text-blue-300 uppercase tracking-wide mr-1.5">CAPTION:</span>
+                      <span className="font-bold text-blue-300 uppercase tracking-wide mr-1.5">SPECIFICATION:</span>
                       {rec.caption}
                     </div>
 

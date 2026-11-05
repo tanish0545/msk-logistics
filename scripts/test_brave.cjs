@@ -84,3 +84,4 @@ async function test() {
   fs.rmSync(tmpDir, { recursive: true, force: true });
 }
 test().catch(console.error);
+

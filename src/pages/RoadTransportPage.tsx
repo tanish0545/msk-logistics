@@ -37,9 +37,9 @@ const ROAD_FLEET_RECORDS: RoadFleetPhoto[] = [
     driveFilename: 'IMG-20261022-WA0018.jpg',
     imagePath: '/images/shipments/breakbulk/breakbulk-cylindrical-haulage.jpg',
     title: 'Multi-Axle Heavy Haulage Prime Mover with Cylindrical Cargo',
-    badge: 'AUTHENTIC FIELD RECORD • WA0018',
+    badge: 'Multi-Axle Modular Haulage',
     technicalTag: 'Multi-Axle Modular Haulage',
-    alt: 'Authentic client photograph of heavy haulage multi-axle prime mover transporting oversized cylindrical pressure vessel under crane hook at port terminal',
+    alt: 'Heavy haulage multi-axle prime mover transporting oversized cylindrical pressure vessel under crane hook at port terminal',
     caption: 'Heavy haulage prime mover transporting oversized cylindrical unit under quayside crane boom at Nhava Sheva (JNPT)',
     description: 'Turnkey road movement of an over-dimensional cylindrical pressure vessel on a multi-axle heavy haulage trailer bed. Positioned directly under the mobile crane hook for tandem hoisting onto ocean transport platforms. Synchronized with terminal gate-in windows to avoid demurrage.',
     specifications: [
@@ -54,9 +54,9 @@ const ROAD_FLEET_RECORDS: RoadFleetPhoto[] = [
     driveFilename: 'IMG-20261022-WA0006.jpg',
     imagePath: '/images/shipments/breakbulk/breakbulk-lowbed-machinery-lashing.jpg',
     title: 'Low-Bed Trailer Machinery Transport & Heavy Ratchet Lashing',
-    badge: 'AUTHENTIC FIELD RECORD • WA0006',
+    badge: 'Low-Bed Industrial Haulage',
     technicalTag: 'Low-Bed Heavy Machinery',
-    alt: 'Authentic client photograph of heavy industrial machinery secured with heavy-duty ratchet binders and timber spreaders on low-bed trailer',
+    alt: 'Heavy industrial machinery secured with heavy-duty ratchet binders and timber spreaders on low-bed trailer',
     caption: 'Heavy skidded industrial machinery secured with ratchet binders on low-bed trailer at container terminal staging area',
     description: 'Multi-axle low-bed trailer haulage engineered for ultra-heavy, high-center-of-gravity industrial machinery. Features certified timber floor spreaders to distribute point loads and Grade 80 chain turnbuckles combined with 5-ton ratchet binders anchored directly into chassis points.',
     specifications: [
@@ -71,9 +71,9 @@ const ROAD_FLEET_RECORDS: RoadFleetPhoto[] = [
     driveFilename: 'IMG-20261022-WA0007.jpg',
     imagePath: '/images/shipments/breakbulk/breakbulk-heavy-rigging-trailer.jpg',
     title: 'Project Cargo Rigging & Highway Transport Assembly',
-    badge: 'AUTHENTIC FIELD RECORD • WA0007',
+    badge: 'Project Rigging & Staging',
     technicalTag: 'Project Cargo Trailer Rigging',
-    alt: 'Authentic client photograph of heavy project cargo secured on trailer alongside logistics prime mover at JNPT port yard',
+    alt: 'Heavy project cargo secured on trailer alongside logistics prime mover at JNPT port yard',
     caption: 'Project cargo trailer with prime mover and perimeter container stacks during export clearance staging',
     description: 'Complete project cargo road haulage setup with prime mover connection, corner edge protectors, and specialized tie-down rigging. The consignment is pre-staged in port perimeter buffer yards ahead of vessel berthing tides.',
     specifications: [
@@ -88,9 +88,9 @@ const ROAD_FLEET_RECORDS: RoadFleetPhoto[] = [
     driveFilename: 'IMG-20261022-WA0008.jpg',
     imagePath: '/images/operations/cargo-lashing/trailer-chassis-ratchet-lashing.jpg',
     title: 'Trailer Chassis Ratchet Securing & Stake Pocket Anchoring',
-    badge: 'AUTHENTIC FIELD RECORD • WA0008',
+    badge: 'Trailer Chassis Ratchet Securing',
     technicalTag: 'Chassis Tie-Down Engineering',
-    alt: 'Authentic client photograph of multi-axle trailer chassis ratchet lashing and stake pocket direct tie-downs',
+    alt: 'Multi-axle trailer chassis ratchet lashing and stake pocket direct tie-downs',
     caption: 'Multi-axle trailer chassis tie-downs with protective corner sleeves for rough road and highway transit',
     description: 'Detailed inspection view of chassis-level securing. High-tensile polyester webbing straps are hooked directly into forged chassis stake pockets with heavy-duty ratchet tensioners to eliminate lateral swaying and vibration loosening on Indian highway corridors.',
     specifications: [
@@ -268,13 +268,13 @@ export const RoadTransportPage: React.FC = () => {
             <div className="space-y-3 max-w-3xl">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#B62825]/20 border border-[#B62825]/40 text-[#B62825] text-xs font-mono font-bold tracking-wider uppercase">
                 <Truck className="w-3.5 h-3.5 text-[#B62825]" />
-                <span>AUTHENTIC OPERATIONAL FIELD RECORDS</span>
+                <span>HEAVY HAULAGE OPERATIONS</span>
               </div>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black font-heading text-white tracking-tight">
                 Our Road Fleet in <span className="text-[#B62825]">Action</span>
               </h2>
               <p className="text-sm sm:text-base text-[#94A3B8] leading-relaxed">
-                Authentic field photographs of heavy road transport operations executed by MSK Logistics. Highlighting multi-axle prime movers, low-bed heavy equipment tie-downs, quayside crane hook staging, and certified chassis ratchet lashing.
+                Field photographs of heavy road transport operations executed by MSK Logistics. Highlighting multi-axle prime movers, low-bed heavy equipment tie-downs, quayside crane hook staging, and certified chassis ratchet lashing.
               </p>
             </div>
 
@@ -287,7 +287,7 @@ export const RoadTransportPage: React.FC = () => {
             </Link>
           </ScrollReveal>
 
-          {/* 4 Authentic Road Fleet Cards Grid */}
+          {/* 4 Road Fleet Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {ROAD_FLEET_RECORDS.map((item, index) => (
               <ScrollReveal
@@ -313,10 +313,10 @@ export const RoadTransportPage: React.FC = () => {
                     {/* Top Badges */}
                     <div className="absolute top-3 left-3 z-10 flex items-center gap-2">
                       <span className="px-2.5 py-1 rounded-md text-[10px] font-mono font-bold bg-[#B62825] text-white uppercase shadow-md">
-                        AUTHENTIC MSK PHOTO
+                        MSK FLEET OPERATION
                       </span>
                       <span className="px-2.5 py-1 rounded-md text-[10px] font-mono font-bold bg-black/80 text-neutral-300 border border-white/20 uppercase backdrop-blur-sm">
-                        {item.driveFilename}
+                        {item.technicalTag}
                       </span>
                     </div>
 
@@ -531,7 +531,7 @@ export const RoadTransportPage: React.FC = () => {
               <div className="flex items-center gap-2 truncate pr-4">
                 <span className="font-bold text-neutral-200">{activeLightbox.title}</span>
                 <span className="text-neutral-500">•</span>
-                <span className="text-red-400 font-semibold">{activeLightbox.driveFilename}</span>
+                <span className="text-red-400 font-semibold">{activeLightbox.technicalTag}</span>
               </div>
               <button
                 type="button"

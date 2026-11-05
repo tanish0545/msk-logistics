@@ -48,10 +48,10 @@ export const ServicesPage: React.FC = () => {
                   Dedicated multi-axle modular trailers, drop-deck low-beds, and factory-to-port road haulage connecting manufacturing corridors across Panipat, Delhi NCR, Gujarat, and Maharashtra directly to Nhava Sheva (JNPT) and Mundra port terminals.
                 </p>
                 <div className="flex flex-wrap gap-2 pt-1 text-xs font-mono text-slate-400">
-                  <span className="px-2.5 py-1 rounded bg-white/5 border border-white/10">WA0018 Prime Mover</span>
-                  <span className="px-2.5 py-1 rounded bg-white/5 border border-white/10">WA0006 Low-Bed</span>
-                  <span className="px-2.5 py-1 rounded bg-white/5 border border-white/10">WA0007 Project Rigging</span>
-                  <span className="px-2.5 py-1 rounded bg-white/5 border border-white/10">WA0008 Chassis Lashing</span>
+                  <span className="px-2.5 py-1 rounded bg-white/5 border border-white/10">Multi-Axle Modular Prime Mover</span>
+                  <span className="px-2.5 py-1 rounded bg-white/5 border border-white/10">Drop-Deck Low-Bed Haulage</span>
+                  <span className="px-2.5 py-1 rounded bg-white/5 border border-white/10">Project Cargo Crane Rigging</span>
+                  <span className="px-2.5 py-1 rounded bg-white/5 border border-white/10">Chassis Stake-Pocket Lashing</span>
                 </div>
               </div>
               <Link

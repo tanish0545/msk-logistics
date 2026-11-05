@@ -85,6 +85,7 @@ type GalleryCategory =
   | 'odc' 
   | 'flat-rack' 
   | 'break-bulk' 
+  | 'hazardous'
   | 'lashing' 
   | 'stuffing' 
   | 'palletisation-packing' 
@@ -134,6 +135,14 @@ export const OperationsPage: React.FC = () => {
         item.id === 'img-bb-vessel-hold' ||
         item.id === 'img-fr-night-lashing' ||
         item.id === 'img-lash-vessel-cross'
+      );
+    }
+    if (category === 'hazardous') {
+      return (
+        item.subcategory === 'hazardous-cargo' ||
+        item.id.includes('dgr') ||
+        item.id.includes('un3265') ||
+        item.id.includes('un2588')
       );
     }
     if (category === 'lashing') {
@@ -317,6 +326,7 @@ export const OperationsPage: React.FC = () => {
               { id: 'odc' as GalleryCategory, label: 'ODC' },
               { id: 'flat-rack' as GalleryCategory, label: 'Flat Rack' },
               { id: 'break-bulk' as GalleryCategory, label: 'Break Bulk' },
+              { id: 'hazardous' as GalleryCategory, label: 'Hazardous Cargo (DGR)' },
               { id: 'lashing' as GalleryCategory, label: 'Cargo Lashing' },
               { id: 'stuffing' as GalleryCategory, label: 'Container Stuffing' },
               { id: 'palletisation-packing' as GalleryCategory, label: 'Palletisation & Packing' },
@@ -415,7 +425,7 @@ export const OperationsPage: React.FC = () => {
                       </h4>
                       {item.projectReference && (
                         <div className="text-[10px] font-mono text-amber-300 font-medium line-clamp-1 bg-amber-950/40 px-2 py-0.5 rounded border border-amber-800/40">
-                          Ref: {item.projectReference}
+                          {item.projectReference.replace(/^Ref:\s*/i, '').replace(/IMG-\d+-WA\d+\.jpe?g/i, '').trim()}
                         </div>
                       )}
                       <p className="text-xs text-slate-400 line-clamp-2 leading-relaxed">

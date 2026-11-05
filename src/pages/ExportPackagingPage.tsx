@@ -127,7 +127,7 @@ export const ExportPackagingPage: React.FC = () => {
           <div className="pt-10 border-t border-[#E2E2E2] space-y-6">
             <ScrollReveal direction="up" className="space-y-2">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 text-[#B62825] border border-red-200 text-xs font-mono font-bold uppercase">
-                <span>AUTHENTIC OPERATIONAL FIELD RECORDS</span>
+                <span>PACKAGING &amp; CRATING OPERATIONS</span>
               </div>
               <h3 className="text-xl sm:text-2xl font-bold font-heading text-[#343434]">
                 Export Packaging: Pallet Making, Industrial Crating &amp; Moisture Barrier Skidding
