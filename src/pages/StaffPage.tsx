@@ -31,7 +31,7 @@ export const StaffPage: React.FC = () => {
             <div className="rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-[#0B0B0D] flex flex-col lg:flex-row items-stretch relative">
               
               {/* LEFT SIDE: Team Photograph with Text Overlay (~68% on Desktop) */}
-              <div className="relative w-full lg:w-[68%] min-h-[480px] sm:min-h-[540px] lg:min-h-[600px] overflow-hidden bg-[#0B0B0D] group">
+              <div className="relative w-full lg:w-[68%] aspect-[4/3] sm:aspect-[16/10] lg:aspect-auto lg:min-h-[600px] overflow-hidden bg-[#0B0B0D] group">
                 <img
                   src="/images/team/msk-team-containers.jpg"
                   alt="MSK Logistics dedicated team standing in front of shipping containers"
@@ -41,9 +41,14 @@ export const StaffPage: React.FC = () => {
                   decoding="async"
                 />
 
-                {/* Dark gradient overlay on top-left for crisp text contrast without obscuring faces */}
-                <div className="absolute inset-0 bg-gradient-to-t via-[#0B0B0D]/50 to-transparent lg:bg-gradient-to-br lg:from-[#0B0B0D]/90 lg:via-[#0B0B0D]/60 lg:to-transparent lg:w-[45%] pointer-events-none" />
-                <div className="absolute inset-0 bg-black/10 pointer-events-none" />
+                {/* Soft, continuous radial contrast behind top-left heading without hard vertical bands */}
+                <div 
+                  className="absolute inset-0 pointer-events-none"
+                  style={{
+                    background: 'radial-gradient(circle at 10% 15%, rgba(11, 11, 13, 0.82) 0%, rgba(11, 11, 13, 0.45) 35%, rgba(11, 11, 13, 0.1) 60%, transparent 80%)'
+                  }}
+                  aria-hidden="true"
+                />
 
                 {/* Text Overlay on Left Side: Positioned at top-left above team members */}
                 <div className="absolute inset-0 z-10 flex flex-col justify-start pt-6 sm:pt-8 lg:pt-10 p-6 sm:p-8 lg:p-10 max-w-md">
@@ -63,18 +68,8 @@ export const StaffPage: React.FC = () => {
                 </div>
               </div>
 
-              {/* Angled Red Dividing Edge (Desktop Viewport) */}
-              <div className="hidden lg:block absolute left-[68%] top-0 bottom-0 w-8 -translate-x-1/2 z-20 pointer-events-none">
-                <svg className="w-full h-full" viewBox="0 0 32 100" preserveAspectRatio="none">
-                  {/* Dark angled polygon matching the right panel background */}
-                  <polygon points="0,0 32,0 32,100 12,100" fill="#0D0F14" />
-                  {/* Angled MSK red dividing accent line */}
-                  <line x1="0" y1="0" x2="12" y2="100" stroke="#B62825" strokeWidth="2.5" vectorEffect="non-scaling-stroke" />
-                </svg>
-              </div>
-
-              {/* RIGHT SIDE: Information Panel (~32% on Desktop) */}
-              <div className="relative w-full lg:w-[32%] bg-[#0D0F14] p-6 sm:p-8 lg:p-10 flex flex-col justify-between border-t lg:border-t-0 border-[#B62825]/40 z-10">
+              {/* RIGHT SIDE: Information Panel (~32% on Desktop with Clean Vertical Red Divider) */}
+              <div className="relative w-full lg:w-[32%] bg-[#0D0F14] p-6 sm:p-8 lg:p-10 flex flex-col justify-between border-t lg:border-t-0 lg:border-l-2 lg:border-[#B62825] z-10">
                 {/* Subtle red edge lighting */}
                 <div className="hidden lg:block absolute inset-y-0 left-0 w-10 bg-gradient-to-r from-[#B62825]/15 to-transparent pointer-events-none" />
 
