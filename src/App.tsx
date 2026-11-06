@@ -32,19 +32,44 @@ import { HazardousCargoPage } from './pages/HazardousCargoPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { MskOrbitChatbot } from './components/orbit/MskOrbitChatbot';
 
-// Scroll to top or anchor on route navigation
+// Scroll to top or anchor on route navigation with React rendering retry & sticky navbar offset
 const ScrollToTop: React.FC = () => {
   const { pathname, hash } = useLocation();
 
   useEffect(() => {
     if (hash) {
-      const el = document.getElementById(hash.replace('#', ''));
-      if (el) {
-        el.scrollIntoView({ behavior: 'instant' as ScrollBehavior });
-        return;
-      }
+      const targetId = hash.replace('#', '');
+      let cancelled = false;
+      let attempts = 0;
+
+      const scrollToElement = () => {
+        if (cancelled) return;
+        const el = document.getElementById(targetId);
+        if (el) {
+          const headerOffset = 90; // accounts for sticky navbar (72px) + breathing room
+          const elementPosition = el.getBoundingClientRect().top + window.pageYOffset;
+          const offsetPosition = Math.max(0, elementPosition - headerOffset);
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth',
+          });
+          return;
+        }
+
+        if (attempts < 20) {
+          attempts++;
+          setTimeout(scrollToElement, 50);
+        }
+      };
+
+      requestAnimationFrame(scrollToElement);
+
+      return () => {
+        cancelled = true;
+      };
+    } else {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' as ScrollBehavior });
     }
-    window.scrollTo({ top: 0, left: 0, behavior: 'instant' as ScrollBehavior });
   }, [pathname, hash]);
 
   return null;

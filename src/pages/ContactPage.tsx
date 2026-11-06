@@ -11,12 +11,15 @@ import {
   Loader2,
   Compass,
   ExternalLink,
-  PhoneCall
+  PhoneCall,
+  Copy,
+  Check
 } from 'lucide-react';
 import { COMPANY_DETAILS } from '../data/company';
 import { IsoCertificationBadge } from '../components/common/IsoCertificationBadge';
 import { InnerPageBanner } from '../components/layout/InnerPageBanner';
 import { ScrollReveal } from '../components/common/ScrollReveal';
+import { validatePhoneNumber, validateEmail, buildEnquiryMailtoUrl } from '../utils/validation';
 
 export const ContactPage: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -24,7 +27,7 @@ export const ContactPage: React.FC = () => {
     email: '',
     phone: '',
     company: '',
-    subject: 'Export Packaging & Cargo Securing Enquiry',
+    subject: '',
     message: '',
     honeypot: '', // Anti-spam honeypot
   });
@@ -34,6 +37,7 @@ export const ContactPage: React.FC = () => {
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [submissionRef, setSubmissionRef] = useState<string | null>(null);
+  const [copiedToClipboard, setCopiedToClipboard] = useState(false);
 
   // Client-side validation
   const validateForm = (): boolean => {
@@ -45,11 +49,14 @@ export const ContactPage: React.FC = () => {
       errors.name = 'Name must be at least 2 characters.';
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!formData.email.trim()) {
-      errors.email = 'Please provide your business email address.';
-    } else if (!emailRegex.test(formData.email.trim())) {
-      errors.email = 'Please enter a valid email format (e.g., name@company.com).';
+    const emailResult = validateEmail(formData.email);
+    if (!emailResult.isValid) {
+      errors.email = emailResult.error || 'Please enter a valid business email address.';
+    }
+
+    const phoneResult = validatePhoneNumber(formData.phone, false);
+    if (!phoneResult.isValid) {
+      errors.phone = phoneResult.error || 'Please enter a valid telephone number.';
     }
 
     if (!formData.subject.trim()) {
@@ -106,7 +113,7 @@ export const ContactPage: React.FC = () => {
           email: '',
           phone: '',
           company: '',
-          subject: 'Export Packaging & Cargo Securing Enquiry',
+          subject: '',
           message: '',
           honeypot: '',
         });
@@ -115,22 +122,50 @@ export const ContactPage: React.FC = () => {
         // Display specific error message from server
         setSubmitError(
           data.message || 
-          'Unable to deliver message at this moment. Please email info@msklogisticsolution.com directly or call our operations desk.'
+          'Unable to deliver message through email service provider. Please use the direct email link below or call our 24x7 desk at 8108672929.'
         );
       }
     } catch (err) {
       // Network failure
       setSubmitError(
-        'A network connection error occurred while submitting your enquiry. Please verify your connection or contact info@msklogisticsolution.com directly.'
+        'A network connection error occurred while submitting your enquiry. Please use the direct email link below or call our 24x7 desk at 8108672929.'
       );
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const mapQuery = encodeURIComponent(COMPANY_DETAILS.address);
-  const mapEmbedUrl = `https://maps.google.com/maps?q=${mapQuery}&t=&z=14&ie=UTF8&iwloc=&output=embed`;
+  const mapQuery = encodeURIComponent('Balaji Bhavan Plot No-42A Sector 11 CBD Belapur Navi Mumbai 400614');
+  const mapEmbedUrl = `https://maps.google.com/maps?q=${mapQuery}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
   const mapExternalUrl = `https://www.google.com/maps/search/?api=1&query=${mapQuery}`;
+
+  const mailtoUrl = buildEnquiryMailtoUrl({
+    toEmail: 'info@msklogisticsolution.com',
+    subject: formData.subject ? `Enquiry: ${formData.subject}` : 'Export Logistics Enquiry — MSK Logistics',
+    details: {
+      'Full Name': formData.name,
+      'Company': formData.company,
+      'Email': formData.email,
+      'Phone': formData.phone,
+      'Subject': formData.subject,
+      'Message': formData.message,
+    },
+  });
+
+  const copyEnquiryToClipboard = () => {
+    const text = [
+      `Enquiry for MSK Logistics Desk`,
+      `Name: ${formData.name}`,
+      `Company: ${formData.company || 'N/A'}`,
+      `Email: ${formData.email}`,
+      `Phone: ${formData.phone || 'N/A'}`,
+      `Subject: ${formData.subject || 'N/A'}`,
+      `Message: ${formData.message}`,
+    ].join('\n');
+    navigator.clipboard.writeText(text);
+    setCopiedToClipboard(true);
+    setTimeout(() => setCopiedToClipboard(false), 2500);
+  };
 
   return (
     <div className="space-y-0 bg-[#FAFAFA]">
@@ -169,7 +204,16 @@ export const ContactPage: React.FC = () => {
                   <MapPin className="w-5 h-5 text-[#B62825] shrink-0 mt-0.5" />
                   <div>
                     <strong className="block text-[#1E293B] mb-0.5">Registered Office Address:</strong>
-                    <span className="text-[#64748B] leading-relaxed">{COMPANY_DETAILS.address}</span>
+                    <a
+                      href={mapExternalUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[#64748B] hover:text-[#B62825] leading-relaxed transition-colors inline-flex items-center gap-1 group"
+                      title="View Registered Office on Google Maps"
+                    >
+                      <span>{COMPANY_DETAILS.address}</span>
+                      <ExternalLink className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100 shrink-0" />
+                    </a>
                   </div>
                 </div>
 
@@ -178,9 +222,16 @@ export const ContactPage: React.FC = () => {
                   <MapPin className="w-5 h-5 text-[#173F70] shrink-0 mt-0.5" />
                   <div>
                     <strong className="block text-[#1E293B] mb-0.5 font-medium">Main Commercial Branch (Belapur):</strong>
-                    <span className="text-[#64748B] leading-relaxed text-[13px] block">
-                      Office No-A-428, 4th Floor, Balaji Bhawan, Plot No-42A, Sector 11, CBD Belapur, Navi Mumbai 400 614, Maharashtra, India
-                    </span>
+                    <a
+                      href={mapExternalUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[#64748B] hover:text-[#B62825] leading-relaxed text-[13px] transition-colors inline-flex items-center gap-1 group"
+                      title="View Commercial Branch on Google Maps"
+                    >
+                      <span>Office No-A-428, 4th Floor, Balaji Bhawan, Plot No-42A, Sector 11, CBD Belapur, Navi Mumbai 400 614, Maharashtra, India</span>
+                      <ExternalLink className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100 shrink-0" />
+                    </a>
                   </div>
                 </div>
 
@@ -342,23 +393,32 @@ export const ContactPage: React.FC = () => {
               ) : (
                 <form onSubmit={handleSubmit} noValidate className="space-y-4 text-[14px]">
                   
-                  {/* Error Notification Banner */}
+                  {/* Error Notification Banner with Multi-Option Fallback */}
                   {submitError && (
-                    <div className="p-4 rounded-xl bg-red-50 border border-red-200 text-red-800 text-[13.5px] space-y-1.5 animate-in fade-in duration-200">
-                      <div className="flex items-center gap-2 font-semibold">
+                    <div className="p-4 rounded-xl bg-red-50 border border-red-200 text-red-800 text-[13.5px] space-y-2.5 animate-in fade-in duration-200">
+                      <div className="flex items-center gap-2 font-semibold text-red-900">
                         <AlertCircle className="w-4 h-4 text-[#B62825] shrink-0" />
-                        <span>Submission Notice</span>
+                        <span>Transmission Notice</span>
                       </div>
                       <p className="text-red-700 leading-relaxed pl-6">
                         {submitError}
                       </p>
-                      <div className="pl-6 pt-1">
+                      <div className="pl-6 pt-1 flex flex-wrap items-center gap-3">
                         <a 
-                          href={`mailto:info@msklogisticsolution.com?subject=${encodeURIComponent(formData.subject || 'Enquiry')}&body=${encodeURIComponent(formData.message || '')}`}
-                          className="font-semibold text-[#B62825] underline hover:text-[#9E2220]"
+                          href={mailtoUrl}
+                          className="font-semibold text-white bg-[#B62825] hover:bg-[#9E2220] px-3.5 py-1.5 rounded-lg text-xs inline-flex items-center gap-1.5 transition-colors shadow-xs"
                         >
-                          Click here to open email client directly &rarr;
+                          <span>Open in Email Client</span>
+                          <ExternalLink className="w-3.5 h-3.5" />
                         </a>
+                        <button
+                          type="button"
+                          onClick={copyEnquiryToClipboard}
+                          className="text-xs font-semibold px-3 py-1.5 rounded-lg bg-white border border-red-300 text-red-800 hover:bg-red-100 transition-colors inline-flex items-center gap-1.5 cursor-pointer shadow-xs"
+                        >
+                          {copiedToClipboard ? <Check className="w-3.5 h-3.5 text-green-600" /> : <Copy className="w-3.5 h-3.5 text-[#B62825]" />}
+                          <span>{copiedToClipboard ? 'Copied to Clipboard!' : 'Copy Enquiry Details'}</span>
+                        </button>
                       </div>
                     </div>
                   )}
@@ -450,10 +510,18 @@ export const ContactPage: React.FC = () => {
                         type="tel"
                         disabled={isSubmitting}
                         value={formData.phone}
-                        onChange={(e) => setFormData(p => ({ ...p, phone: e.target.value }))}
+                        onChange={(e) => {
+                          setFormData(p => ({ ...p, phone: e.target.value }));
+                          if (fieldErrors.phone) setFieldErrors(p => ({ ...p, phone: '' }));
+                        }}
                         placeholder="+91 98765 43210"
-                        className="w-full px-3.5 py-2.5 rounded-lg border border-[#E2E8F0] text-[14px] focus:outline-none focus:ring-2 focus:ring-[#B62825] bg-white transition-all"
+                        className={`w-full px-3.5 py-2.5 rounded-lg border text-[14px] focus:outline-none focus:ring-2 focus:ring-[#B62825] bg-white transition-all ${
+                          fieldErrors.phone ? 'border-red-400 bg-red-50/20' : 'border-[#E2E8F0]'
+                        }`}
                       />
+                      {fieldErrors.phone && (
+                        <p className="text-red-600 text-xs mt-1 font-medium">{fieldErrors.phone}</p>
+                      )}
                     </div>
                   </div>
 
@@ -471,6 +539,7 @@ export const ContactPage: React.FC = () => {
                         setFormData(p => ({ ...p, subject: e.target.value }));
                         if (fieldErrors.subject) setFieldErrors(p => ({ ...p, subject: '' }));
                       }}
+                      placeholder="Enter your subject"
                       className={`w-full px-3.5 py-2.5 rounded-lg border text-[14px] focus:outline-none focus:ring-2 focus:ring-[#B62825] bg-white transition-all ${
                         fieldErrors.subject ? 'border-red-400 bg-red-50/20' : 'border-[#E2E8F0]'
                       }`}

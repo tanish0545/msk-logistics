@@ -179,7 +179,7 @@ export const HomePage: React.FC = () => {
 
           <ScrollReveal direction="up" delay={120} className="text-center pt-2">
             <Link 
-              to="/export-packing-solutions"
+              to="/export-packing-solutions#comparison-matrix"
               className="inline-flex items-center gap-2 text-sm font-bold text-[#000000] hover:text-[#B62825] transition-colors"
             >
               <span>Compare Both Export Arrangements in Full Detail</span>
@@ -351,7 +351,7 @@ export const HomePage: React.FC = () => {
 
                     <div className="p-5 pt-0">
                       <Link
-                        to="/container-guide"
+                        to={`/container-guide?container=${container.id}#container-showcase`}
                         className="w-full text-center block py-2 rounded-lg bg-white border border-[#E2E8F0] hover:bg-[#000000] hover:text-white text-xs font-bold text-[#000000] transition-colors shadow-2xs"
                       >
                         View Specs & Interior &rarr;

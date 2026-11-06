@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Anchor, ShieldCheck, Layers, Truck } from 'lucide-react';
+import { ArrowRight, Anchor, ShieldCheck, Layers, Truck, ChevronRight } from 'lucide-react';
 import { CORE_SERVICES } from '../data/company';
 import { ServiceCard } from '../components/services/ServiceCard';
 import { InnerPageBanner } from '../components/layout/InnerPageBanner';
@@ -11,6 +11,13 @@ export const ServicesPage: React.FC = () => {
     <div className="space-y-0">
       {/* Services Banner */}
       <InnerPageBanner
+        breadcrumb={
+          <>
+            <Link to="/" className="hover:text-white transition-colors">Home</Link>
+            <ChevronRight className="w-3.5 h-3.5 text-[#AEB6C2]" />
+            <span className="text-[#B62825] font-semibold">Services</span>
+          </>
+        }
         badge="COMPREHENSIVE LOGISTICS DIRECTORY"
         badgeSubtext="NHAVA SHEVA (JNPT) • WESTERN MARITIME GATEWAY"
         title="Ocean Cargo, Air Cargo, Container Stuffing, Technical Securing & Hazardous Cargo"

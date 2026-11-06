@@ -82,8 +82,17 @@ export default async function handler(req: any, res: any) {
     errors.email = 'A valid business email address is required.';
   }
 
-  if (phone && typeof phone === 'string' && phone.trim().length > 30) {
-    errors.phone = 'Phone number is too long.';
+  if (phone && typeof phone === 'string' && phone.trim().length > 0) {
+    if (/[a-zA-Z]/.test(phone)) {
+      errors.phone = 'Phone number cannot contain alphabetic characters.';
+    } else {
+      const digits = phone.replace(/\D/g, '');
+      if (digits.length < 8) {
+        errors.phone = 'Phone number is too short (minimum 8 digits required).';
+      } else if (digits.length > 15) {
+        errors.phone = 'Phone number exceeds maximum length (15 digits).';
+      }
+    }
   }
 
   if (!subject || typeof subject !== 'string' || subject.trim().length < 2) {

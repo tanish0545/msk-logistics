@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { 
   ArrowRight, 
   Info, 
@@ -36,15 +36,45 @@ interface LightboxItem {
 }
 
 export const ContainerGuidePage: React.FC = () => {
-  const [selectedContainerId, setSelectedContainerId] = useState<string>('40ft-high-cube');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const containerParam = searchParams.get('container');
+
+  const [selectedContainerId, setSelectedContainerId] = useState<string | null>(() => {
+    if (containerParam && CONTAINER_LIST.some(c => c.id === containerParam)) {
+      return containerParam;
+    }
+    return null; // Empty by default for Complete 6-Container Studio
+  });
+
   const [activeGalleryIndex, setActiveGalleryIndex] = useState<number>(0);
   const [unitMode, setUnitMode] = useState<'metric' | 'both'>('metric');
+
+  // Sync container selection with URL query param
+  useEffect(() => {
+    const cParam = searchParams.get('container');
+    if (cParam && CONTAINER_LIST.some(c => c.id === cParam)) {
+      setSelectedContainerId(cParam);
+    } else if (!cParam) {
+      setSelectedContainerId(null);
+    }
+  }, [searchParams]);
+
+  const handleSelectContainer = (id: string | null) => {
+    setSelectedContainerId(id);
+    if (id) {
+      setSearchParams({ container: id });
+    } else {
+      setSearchParams({});
+    }
+  };
 
   // Lightbox state
   const [lightboxOpen, setLightboxOpen] = useState<boolean>(false);
   const [lightboxIndex, setLightboxIndex] = useState<number>(0);
 
-  const selectedContainer = CONTAINER_LIST.find(c => c.id === selectedContainerId) || CONTAINER_LIST[0];
+  const selectedContainer = selectedContainerId
+    ? CONTAINER_LIST.find(c => c.id === selectedContainerId) || null
+    : null;
 
   // Reset active gallery image index when container changes
   useEffect(() => {
@@ -126,8 +156,9 @@ export const ContainerGuidePage: React.FC = () => {
   }, [lightboxOpen, prevLightboxImage, nextLightboxImage]);
 
   // Active image in container showcase
-  const activeGalleryImage: ContainerGalleryImage = 
-    selectedContainer.galleryImages[activeGalleryIndex] || selectedContainer.galleryImages[0];
+  const activeGalleryImage: ContainerGalleryImage = selectedContainer
+    ? selectedContainer.galleryImages[activeGalleryIndex] || selectedContainer.galleryImages[0]
+    : CONTAINER_LIST[0].galleryImages[0];
 
   const currentLightboxItem = allLightboxEntries[lightboxIndex] || allLightboxEntries[0];
 
@@ -213,13 +244,25 @@ export const ContainerGuidePage: React.FC = () => {
               <span className="text-xs font-mono font-bold text-[#64748B] uppercase tracking-wider px-3 shrink-0 hidden sm:inline">
                 Select Container:
               </span>
+              <button
+                type="button"
+                onClick={() => handleSelectContainer(null)}
+                className={`py-2 px-3.5 sm:px-4 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all duration-200 whitespace-nowrap flex items-center gap-1.5 cursor-pointer select-none shrink-0 ${
+                  selectedContainerId === null
+                    ? 'bg-[#B62825] text-white shadow-xs font-bold ring-2 ring-[#B62825]/30'
+                    : 'bg-[#F8FAFC] text-[#1E293B] hover:bg-[#F1F5F9] hover:text-[#B62825] border border-[#E2E8F0]'
+                }`}
+              >
+                <Layers className="w-3.5 h-3.5" />
+                <span>Complete 6-Container Studio</span>
+              </button>
               {CONTAINER_LIST.map((container) => {
                 const isSelected = selectedContainerId === container.id;
                 return (
                   <button
                     key={container.id}
                     type="button"
-                    onClick={() => setSelectedContainerId(container.id)}
+                    onClick={() => handleSelectContainer(container.id)}
                     className={`py-2 px-3.5 sm:px-4 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all duration-200 whitespace-nowrap flex items-center gap-1.5 cursor-pointer select-none shrink-0 ${
                       isSelected
                         ? 'bg-[#B62825] text-white shadow-xs font-bold ring-2 ring-[#B62825]/30'
@@ -236,8 +279,115 @@ export const ContainerGuidePage: React.FC = () => {
             </div>
           </ScrollReveal>
 
-          <ScrollReveal direction="up" delay={50}>
-          <div className="bg-white rounded-2xl border border-[#E2E8F0] overflow-hidden shadow-sm">
+          {/* COMPLETE STUDIO OVERVIEW OR INDIVIDUAL DEEP-DIVE SHOWCASE */}
+          {!selectedContainer ? (
+            <ScrollReveal direction="up" delay={50}>
+              <div className="space-y-6">
+                {/* Complete 6-Container Studio Header Bar */}
+                <div className="bg-white p-6 sm:p-8 rounded-2xl border border-[#E2E8F0] shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-6 bg-gradient-to-r from-neutral-50 via-white to-neutral-50">
+                  <div className="space-y-2">
+                    <span className="editorial-badge bg-black text-white border-white/20">
+                      COMPLETE 6-CONTAINER STUDIO
+                    </span>
+                    <h2 className="text-2xl sm:text-3xl font-bold font-heading text-[#1E293B]">
+                      Standard &amp; Specialized Ocean Container Collection
+                    </h2>
+                    <p className="text-sm text-[#64748B] max-w-2xl leading-relaxed">
+                      Select any container below to launch its dedicated high-resolution studio, interior clearances, cubic capacity, and verified ISO load ratings.
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-3 shrink-0">
+                    <a
+                      href="#container-comparison"
+                      className="btn-secondary text-xs py-2.5 px-4 inline-flex items-center gap-1.5 shadow-xs"
+                    >
+                      <Ruler className="w-3.5 h-3.5 text-[#B62825]" />
+                      <span>Specifications Matrix</span>
+                    </a>
+                  </div>
+                </div>
+
+                {/* Grid of All Containers */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {CONTAINER_LIST.map((container) => (
+                    <div
+                      key={container.id}
+                      className="bg-white rounded-2xl border border-[#E2E8F0] overflow-hidden shadow-xs hover:shadow-lg transition-all flex flex-col justify-between group"
+                    >
+                      <div>
+                        <div className="relative aspect-[16/11] bg-neutral-900 overflow-hidden">
+                          <img
+                            src={container.exteriorImage}
+                            alt={container.name}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            loading="lazy"
+                          />
+                          <div className="absolute top-3 left-3 z-10 flex gap-1.5">
+                            <span className="px-2.5 py-1 rounded bg-black/80 backdrop-blur-md text-white text-[11px] font-mono font-bold">
+                              {container.code}
+                            </span>
+                          </div>
+                        </div>
+
+                        <div className="p-6 space-y-3">
+                          <div className="flex items-center justify-between">
+                            <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#B62825]">
+                              {container.category}
+                            </span>
+                            <span className="text-xs font-mono text-[#64748B]">
+                              Volume: <strong className="text-black">{container.cubicCapacity.cbm}</strong>
+                            </span>
+                          </div>
+
+                          <h3 className="font-bold text-lg text-[#1E293B] group-hover:text-[#B62825] transition-colors leading-snug">
+                            {container.name}
+                          </h3>
+
+                          <p className="text-xs sm:text-sm text-[#64748B] line-clamp-2 leading-relaxed">
+                            {container.recommendedUse}
+                          </p>
+
+                          <div className="pt-3 border-t border-[#F1F5F9] space-y-1.5 text-xs font-mono text-[#64748B]">
+                            <div className="flex justify-between">
+                              <span>Internal (L × W × H):</span>
+                              <strong className="text-[#334155]">{container.internalDimensions.length.metricMeters} × {container.internalDimensions.width.metricMeters} × {container.internalDimensions.height.metricMeters}</strong>
+                            </div>
+                            <div className="flex justify-between">
+                              <span>Net Payload:</span>
+                              <strong className="text-emerald-700 font-bold">{container.maxPayload.kg}</strong>
+                            </div>
+                            <div className="flex justify-between">
+                              <span>Max Gross Weight:</span>
+                              <strong className="text-amber-700 font-bold">{container.maxGrossWeight.kg}</strong>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="p-6 pt-0 flex gap-2">
+                        <button
+                          type="button"
+                          onClick={() => handleSelectContainer(container.id)}
+                          className="flex-1 py-2.5 px-4 rounded-xl bg-[#000000] hover:bg-[#B62825] text-white text-xs font-mono font-bold transition-all text-center cursor-pointer shadow-xs flex items-center justify-center gap-1.5"
+                        >
+                          <span>Launch Deep-Dive Studio</span>
+                          <ArrowRight className="w-3.5 h-3.5" />
+                        </button>
+                        <Link
+                          to={`/request-quote?container=${encodeURIComponent(container.name)}`}
+                          className="py-2.5 px-3 rounded-xl border border-[#E2E8F0] hover:border-[#B62825] text-[#1E293B] hover:text-[#B62825] text-xs font-mono font-bold transition-colors"
+                        >
+                          Quote
+                        </Link>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </ScrollReveal>
+          ) : (
+            <ScrollReveal direction="up" delay={50}>
+            <div className="bg-white rounded-2xl border border-[#E2E8F0] overflow-hidden shadow-sm">
             
             {/* Showcase Top Bar */}
             <div className="p-6 sm:p-8 border-b border-[#E8E8E8] flex flex-col md:flex-row md:items-center justify-between gap-4 bg-gradient-to-r from-neutral-50 via-white to-neutral-50">
@@ -263,6 +413,15 @@ export const ContainerGuidePage: React.FC = () => {
               </div>
 
               <div className="flex flex-wrap items-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => handleSelectContainer(null)}
+                  className="btn-secondary text-xs py-2 px-3 inline-flex items-center gap-1.5 shadow-2xs"
+                  title="Return to Complete 6-Container Studio overview"
+                >
+                  <Layers className="w-3.5 h-3.5 text-[#B62825]" />
+                  <span>All Containers</span>
+                </button>
                 <div className="text-xs font-mono bg-[#F8FAFC] border border-[#E2E8F0] px-3.5 py-2 rounded-lg text-[#52627A]">
                   Volume: <strong className="text-[#000000] font-bold">{selectedContainer.cubicCapacity.cbm}</strong>
                   {unitMode === 'both' && <span className="text-[#64748B]"> ({selectedContainer.cubicCapacity.cuft})</span>}
@@ -540,6 +699,7 @@ export const ContainerGuidePage: React.FC = () => {
             </div>
           </div>
           </ScrollReveal>
+          )}
         </div>
       </section>
 
@@ -695,7 +855,7 @@ export const ContainerGuidePage: React.FC = () => {
                     <tr 
                       key={c.id} 
                       onClick={() => {
-                        setSelectedContainerId(c.id);
+                        handleSelectContainer(c.id);
                         const el = document.getElementById('container-showcase');
                         if (el) el.scrollIntoView({ behavior: 'smooth' });
                       }}

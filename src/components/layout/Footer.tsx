@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { MapPin, Phone, Mail, ArrowUpRight, ArrowRight, PhoneCall } from 'lucide-react';
+import { MapPin, Phone, Mail, ArrowUpRight, ArrowRight, PhoneCall, ExternalLink } from 'lucide-react';
 import { COMPANY_DETAILS, CORE_SERVICES } from '../../data/company';
 import { MagneticButton } from '../common/MagneticButton';
 import { IsoCertificationBadge } from '../common/IsoCertificationBadge';
@@ -152,7 +152,7 @@ export const Footer: React.FC = () => {
                   className="text-white font-medium hover:text-[#B62825] transition-colors duration-200 inline-flex items-center gap-1.5 group"
                 >
                   <span>Two Export Solutions</span>
-                  <ArrowUpRight className="w-3.5 h-3.5 text-[#B62825] transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <ArrowUpRight className="w-3.5 h-3.5 text-[#B62825] opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </Link>
               </li>
             </ul>
@@ -224,7 +224,16 @@ export const Footer: React.FC = () => {
             <div className="space-y-3 text-[13px] text-slate-300 font-body">
               <div className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-[#B62825] shrink-0 mt-0.5" />
-                <span className="leading-snug">{COMPANY_DETAILS.address}</span>
+                <a
+                  href={COMPANY_DETAILS.googleMapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="leading-snug hover:text-white transition-colors duration-200 group/addr inline-flex items-center gap-1.5"
+                  title="View Registered Office on Google Maps"
+                >
+                  <span>{COMPANY_DETAILS.address}</span>
+                  <ExternalLink className="w-3.5 h-3.5 text-[#B62825] opacity-0 group-hover/addr:opacity-100 transition-opacity shrink-0" />
+                </a>
               </div>
 
               <div className="flex items-center gap-2.5">

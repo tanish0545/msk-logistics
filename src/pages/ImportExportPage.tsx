@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import {
   ArrowRight,
   X,
@@ -28,8 +29,41 @@ import { InnerPageBanner } from '../components/layout/InnerPageBanner';
 import { ScrollReveal } from '../components/common/ScrollReveal';
 
 export const ImportExportPage: React.FC = () => {
+  const [searchParams] = useSearchParams();
+  const shipmentParam = searchParams.get('shipment');
+
   const [activeCategory, setActiveCategory] = useState<ShipmentCategory | 'all'>('all');
   const [lightboxItem, setLightboxItem] = useState<ShipmentItem | null>(null);
+
+  // Auto-select and scroll to shipment if specified in URL query
+  useEffect(() => {
+    if (!shipmentParam) return;
+    const target = SHIPMENT_GALLERY.find(s => s.id === shipmentParam);
+    if (target) {
+      if (activeCategory !== 'all' && target.category !== activeCategory) {
+        setActiveCategory('all');
+      }
+      setLightboxItem(target);
+
+      const timer = setTimeout(() => {
+        const el = document.getElementById(`shipment-${target.id}`);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }, 150);
+      return () => clearTimeout(timer);
+    }
+  }, [shipmentParam]);
+
+  // Lock body scroll when lightbox is open
+  useEffect(() => {
+    if (!lightboxItem) return;
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
+  }, [lightboxItem]);
 
   const opt1 = EXPORT_SOLUTIONS.option01;
   const opt2 = EXPORT_SOLUTIONS.option02;
@@ -571,7 +605,12 @@ export const ImportExportPage: React.FC = () => {
                 className="h-full"
               >
                 <article
-                  className="bg-white rounded-2xl border border-[#E2E2E2] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group h-full hover-lift"
+                  id={`shipment-${item.id}`}
+                  className={`bg-white rounded-2xl border overflow-hidden transition-all duration-300 flex flex-col justify-between group h-full hover-lift scroll-mt-28 ${
+                    shipmentParam === item.id
+                      ? 'border-[#B62825] ring-2 ring-[#B62825]/40 shadow-xl'
+                      : 'border-[#E2E2E2] shadow-sm hover:shadow-xl'
+                  }`}
                 >
                 <div>
                   {/* Image Container — ONLY the MSK Logo watermark in corner, NO text overlays on image */}
@@ -696,13 +735,17 @@ export const ImportExportPage: React.FC = () => {
       {/* ------------------------------------------------------------- */}
       {/* ACCESSIBLE LIGHTBOX MODAL DIALOG                              */}
       {/* ------------------------------------------------------------- */}
-      {lightboxItem && (
+      {typeof document !== 'undefined' && lightboxItem && createPortal(
         <div
-          className="fixed inset-0 z-50 bg-[#000000]/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-y-auto animate-in fade-in duration-200"
+          className="fixed inset-0 z-[9999] bg-[#000000]/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-y-auto animate-in fade-in duration-200"
+          onClick={closeLightbox}
           role="dialog"
           aria-modal="true"
         >
-          <div className="bg-white rounded-2xl max-w-4xl w-full overflow-hidden shadow-2xl border border-neutral-300 relative my-auto">
+          <div 
+            className="bg-white rounded-2xl max-w-4xl w-full overflow-hidden shadow-2xl border border-neutral-300 relative my-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
             {/* Modal Header Bar */}
             <div className="bg-[#000000] text-white px-6 py-4 flex items-center justify-between gap-4 border-b border-white/10">
               <div className="flex items-center gap-3">
@@ -716,7 +759,7 @@ export const ImportExportPage: React.FC = () => {
               <button
                 type="button"
                 onClick={closeLightbox}
-                className="p-1.5 rounded-full text-neutral-300 hover:text-white hover:bg-white/10 transition-colors focus:outline-none"
+                className="p-1.5 rounded-full text-neutral-300 hover:text-white hover:bg-white/10 transition-colors focus:outline-none cursor-pointer"
                 aria-label="Close lightbox"
               >
                 <X className="w-6 h-6" />
@@ -728,19 +771,19 @@ export const ImportExportPage: React.FC = () => {
               <img
                 src={lightboxItem.image}
                 alt={lightboxItem.altText}
-                loading="lazy"
+                loading="eager"
                 decoding="async"
-                className="w-full h-auto max-h-[55vh] object-contain"
+                className="w-full h-auto max-h-[55vh] object-contain select-none"
               />
 
               {/* Watermark Tag (Only Logo) */}
-              <div className="absolute bottom-4 right-4 z-10 pointer-events-none">
+              <div className="absolute bottom-4 right-4 z-10 pointer-events-none select-none">
                 <div className="flex items-center bg-white/95 backdrop-blur-md px-2.5 py-1.5 rounded-md shadow-lg border border-neutral-200">
                   <img
                     src="/images/logo/msk-logistics-logo.png"
                     alt="MSK Logistics"
                     className="h-5 w-auto object-contain"
-                    loading="lazy"
+                    loading="eager"
                     decoding="async"
                   />
                 </div>
@@ -753,7 +796,7 @@ export const ImportExportPage: React.FC = () => {
                   e.stopPropagation();
                   navigateLightbox('prev');
                 }}
-                className="absolute left-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/60 hover:bg-black/90 text-white transition-all focus:outline-none"
+                className="absolute left-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/60 hover:bg-black/90 text-white transition-all focus:outline-none cursor-pointer"
                 aria-label="Previous photograph"
               >
                 <ChevronLeft className="w-6 h-6" />
@@ -764,7 +807,7 @@ export const ImportExportPage: React.FC = () => {
                   e.stopPropagation();
                   navigateLightbox('next');
                 }}
-                className="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/60 hover:bg-black/90 text-white transition-all focus:outline-none"
+                className="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/60 hover:bg-black/90 text-white transition-all focus:outline-none cursor-pointer"
                 aria-label="Next photograph"
               >
                 <ChevronRight className="w-6 h-6" />
@@ -829,7 +872,8 @@ export const ImportExportPage: React.FC = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );

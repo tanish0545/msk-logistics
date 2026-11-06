@@ -8,16 +8,25 @@ import {
   ArrowRight, 
   ArrowLeft, 
   Phone, 
-  Ship,
-  Plane,
-  Box,
-  Anchor,
-  Maximize2,
-  Warehouse,
-  Check,
-  ShieldAlert
+  Ship, 
+  Plane, 
+  Box, 
+  Anchor, 
+  Maximize2, 
+  Warehouse, 
+  Check, 
+  ShieldAlert,
+  Copy,
+  ExternalLink
 } from 'lucide-react';
 import type { QuoteFormData, EnquiryCategory, SolutionType } from '../../types';
+import {
+  validatePhoneNumber,
+  validateApproxWeight,
+  validateEmail,
+  validateDimensions,
+  buildEnquiryMailtoUrl
+} from '../../utils/validation';
 
 export interface ServiceOption {
   id: EnquiryCategory;
@@ -101,17 +110,18 @@ export const QuoteRequestForm: React.FC = () => {
   // Initial solution type from URL or default
   const initialSolution: SolutionType = 'client_container_and_cargo';
 
-  // Initial enquiry category from URL or default
-  const getInitialCategory = (): EnquiryCategory => {
+  // Initial enquiry category from URL or default (empty if unselected)
+  const getInitialCategory = (): EnquiryCategory | '' => {
     const cat = searchParams.get('category');
     if (cat === 'ocean-cargo') return 'ocean-cargo';
     if (cat === 'air-cargo') return 'air-cargo';
     if (cat === 'container-stuffing') return 'container-stuffing';
     if (cat === 'special-project' || cat === 'flat-rack' || cat === 'breakbulk') return 'special-project';
     if (cat === 'cargo-lashing') return 'cargo-lashing';
+    if (cat === 'hazardous-cargo') return 'hazardous-cargo';
     if (cat === 'open-yard-warehouse' || cat === 'open-warehouse') return 'open-yard-warehouse';
     if (cat === 'shaded-warehouse') return 'shaded-warehouse';
-    return 'container-stuffing';
+    return '';
   };
 
   // Initial container from URL or default
@@ -130,6 +140,7 @@ export const QuoteRequestForm: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [generatedRequestId, setGeneratedRequestId] = useState<string>('');
+  const [copiedToClipboard, setCopiedToClipboard] = useState(false);
 
   const [formData, setFormData] = useState<QuoteFormData>({
     solutionType: initialSolution,
@@ -208,6 +219,22 @@ export const QuoteRequestForm: React.FC = () => {
     if (type === 'checkbox') {
       const checked = (e.target as HTMLInputElement).checked;
       setFormData(prev => ({ ...prev, [name]: checked }));
+    } else if (name === 'approxWeight') {
+      // Disallow alphabetic characters and clean input
+      const clean = value.replace(/[^0-9.]/g, '');
+      const parts = clean.split('.');
+      const formatted = parts.length > 2 ? `${parts[0]}.${parts.slice(1).join('')}` : clean;
+      setFormData(prev => ({ ...prev, approxWeight: formatted }));
+      if (value !== formatted) {
+        setErrors(prev => ({ ...prev, approxWeight: 'Weight must be a numeric value without letters.' }));
+      } else if (errors.approxWeight) {
+        setErrors(prev => {
+          const copy = { ...prev };
+          delete copy.approxWeight;
+          return copy;
+        });
+      }
+      return;
     } else {
       setFormData(prev => ({ ...prev, [name]: value }));
     }
@@ -226,27 +253,44 @@ export const QuoteRequestForm: React.FC = () => {
 
     if (step === 1) {
       if (!formData.enquiryCategory) {
-        errs.enquiryCategory = 'Please select a core service.';
+        errs.enquiryCategory = 'Please select a core service to proceed.';
       }
     } else if (step === 2) {
-      if (!formData.cargoDescription.trim()) errs.cargoDescription = 'Please describe the cargo or commodity.';
-      if (!formData.approxWeight.trim()) errs.approxWeight = 'Approximate weight is required.';
+      if (!formData.cargoDescription.trim()) {
+        errs.cargoDescription = 'Please describe the cargo or commodity.';
+      } else if (formData.cargoDescription.trim().length < 3) {
+        errs.cargoDescription = 'Cargo description must be at least 3 characters.';
+      }
+      const weightResult = validateApproxWeight(formData.approxWeight, formData.weightUnit, true);
+      if (!weightResult.isValid) {
+        errs.approxWeight = weightResult.error || 'Please enter a valid numeric weight.';
+      }
+      if (formData.dimensions) {
+        const dimResult = validateDimensions(formData.dimensions);
+        if (!dimResult.isValid) {
+          errs.dimensions = dimResult.error || 'Please enter valid dimensions.';
+        }
+      }
     } else if (step === 3) {
+      if (!formData.originCity?.trim()) {
+        errs.originCity = 'Origin city or CFS facility is required.';
+      }
+      if (!formData.destinationPort?.trim()) {
+        errs.destinationPort = 'Destination port or delivery country is required.';
+      }
       if (!formData.containerLocationOrPositioning.trim() && !formData.operationalAddress.trim()) {
         errs.operationalAddress = 'Origin facility or container positioning location is required.';
       }
     } else if (step === 4) {
       if (!formData.companyName.trim()) errs.companyName = 'Company name is required.';
       if (!formData.contactName.trim()) errs.contactName = 'Contact person name is required.';
-      if (!formData.email.trim()) {
-        errs.email = 'Business email is required.';
-      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-        errs.email = 'Please enter a valid email address.';
+      const emailResult = validateEmail(formData.email);
+      if (!emailResult.isValid) {
+        errs.email = emailResult.error || 'Please enter a valid business email address.';
       }
-      if (!formData.phone.trim()) {
-        errs.phone = 'Phone number is required.';
-      } else if (formData.phone.trim().length < 8) {
-        errs.phone = 'Please enter a valid phone number.';
+      const phoneResult = validatePhoneNumber(formData.phone, true);
+      if (!phoneResult.isValid) {
+        errs.phone = phoneResult.error || 'Please enter a valid telephone/mobile number.';
       }
     } else if (step === 5) {
       if (!formData.privacyConsent) {
@@ -656,6 +700,7 @@ export const QuoteRequestForm: React.FC = () => {
                 <div className="flex gap-2">
                   <input
                     type="text"
+                    inputMode="decimal"
                     name="approxWeight"
                     value={formData.approxWeight}
                     onChange={handleChange}
@@ -688,6 +733,7 @@ export const QuoteRequestForm: React.FC = () => {
                   placeholder="e.g. 11.8m × 2.4m × 2.9m (or in mm / inches)"
                   className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#B62825]"
                 />
+                {errors.dimensions && <p className="text-red-400 text-xs font-mono">{errors.dimensions}</p>}
               </div>
 
               <div className="space-y-1.5">
@@ -746,11 +792,12 @@ export const QuoteRequestForm: React.FC = () => {
                   placeholder="e.g. Nhava Sheva (JNPT) / Conex CFS / Polaris / Panipat"
                   className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#B62825]"
                 />
+                {errors.originCity && <p className="text-red-400 text-xs font-mono">{errors.originCity}</p>}
               </div>
 
               <div className="space-y-1.5">
                 <label className="block text-xs font-mono font-semibold text-slate-300 uppercase">
-                  Destination Port / Country
+                  Destination Port / Country <span className="text-[#B62825]">*</span>
                 </label>
                 <input
                   type="text"
@@ -760,6 +807,7 @@ export const QuoteRequestForm: React.FC = () => {
                   placeholder="e.g. Jebel Ali (UAE), Rotterdam (NL), Houston (USA)"
                   className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#B62825]"
                 />
+                {errors.destinationPort && <p className="text-red-400 text-xs font-mono">{errors.destinationPort}</p>}
               </div>
 
               <div className="space-y-1.5">
@@ -1044,11 +1092,62 @@ export const QuoteRequestForm: React.FC = () => {
                 </div>
                 <div className="pt-2 border-t border-red-800/60 flex flex-wrap gap-2 text-xs font-mono">
                   <a
-                    href={`mailto:info@msklogisticsolution.com?subject=Quote%20Request%20-%20${encodeURIComponent(formData.quoteName || formData.companyName || 'Industrial Consignment')}&body=Company:%20${encodeURIComponent(formData.companyName)}%0D%0AContact:%20${encodeURIComponent(formData.contactName)}%20(${encodeURIComponent(formData.phone)})%0D%0AService:%20${encodeURIComponent(formData.enquiryCategory)}%0D%0ACargo:%20${encodeURIComponent(formData.cargoDescription)}%0D%0AWeight:%20${encodeURIComponent(formData.approxWeight)}%20${encodeURIComponent(formData.weightUnit)}`}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#B62825] hover:bg-[#9E2220] text-white font-bold transition-colors"
+                    href={buildEnquiryMailtoUrl({
+                      toEmail: 'info@msklogisticsolution.com',
+                      subject: `Quote Request — ${formData.quoteName || formData.companyName || formData.enquiryCategory || 'Consignment'}`,
+                      details: {
+                        'Quote Name': formData.quoteName,
+                        'Service Category': formData.enquiryCategory,
+                        'Company': formData.companyName,
+                        'Contact Person': formData.contactName,
+                        'Phone': formData.phone,
+                        'Email': formData.email,
+                        'Cargo Description': formData.cargoDescription,
+                        'Package Count': formData.packageCount,
+                        'Approx Weight': `${formData.approxWeight} ${formData.weightUnit}`,
+                        'Dimensions': formData.dimensions,
+                        'Packaging Needs': formData.packagingNeeds,
+                        'Special Handling': formData.specialHandlingNotes,
+                        'Origin City': formData.originCity,
+                        'Destination Port': formData.destinationPort,
+                        'Target Container': formData.containerSize,
+                        'Positioning Address': formData.operationalAddress,
+                        'Preferred Date': formData.preferredDate,
+                        'Additional Instructions': formData.additionalInstructions,
+                      },
+                    })}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#B62825] hover:bg-[#9E2220] text-white font-bold transition-colors cursor-pointer"
                   >
-                    <span>Email Direct: info@msklogisticsolution.com</span>
+                    <span>Send via Email Client (mailto:)</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
                   </a>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const summary = [
+                        `MSK Logistics Quote Specification`,
+                        `Quote Reference: ${formData.quoteName || 'N/A'}`,
+                        `Service: ${formData.enquiryCategory || 'General'}`,
+                        `Company: ${formData.companyName}`,
+                        `Contact: ${formData.contactName} (${formData.phone})`,
+                        `Email: ${formData.email}`,
+                        `Cargo: ${formData.cargoDescription}`,
+                        `Weight: ${formData.approxWeight} ${formData.weightUnit}`,
+                        `Dimensions: ${formData.dimensions || 'N/A'}`,
+                        `Origin: ${formData.originCity}`,
+                        `Destination: ${formData.destinationPort}`,
+                        `Container: ${formData.containerSize}`,
+                        `Positioning Location: ${formData.operationalAddress}`,
+                      ].join('\n');
+                      navigator.clipboard.writeText(summary);
+                      setCopiedToClipboard(true);
+                      setTimeout(() => setCopiedToClipboard(false), 2500);
+                    }}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white font-bold transition-colors border border-white/20 cursor-pointer"
+                  >
+                    {copiedToClipboard ? <Check className="w-3.5 h-3.5 text-green-400" /> : <Copy className="w-3.5 h-3.5 text-slate-300" />}
+                    <span>{copiedToClipboard ? 'Copied Details!' : 'Copy Quote Details'}</span>
+                  </button>
                   <a
                     href="tel:8108672929"
                     className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white font-bold transition-colors border border-white/20"

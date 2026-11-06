@@ -111,18 +111,39 @@ export default async function handler(req: any, res: any) {
     errors.email = 'A valid business email address is required.';
   }
 
-  if (!phone || typeof phone !== 'string' || phone.trim().length < 8) {
+  if (!phone || typeof phone !== 'string' || phone.trim().length === 0) {
     errors.phone = 'A valid contact telephone/mobile number is required.';
-  } else if (phone.trim().length > 30) {
-    errors.phone = 'Phone number exceeds 30 characters.';
+  } else if (/[a-zA-Z]/.test(phone)) {
+    errors.phone = 'Phone number cannot contain alphabetic characters.';
+  } else {
+    const digits = phone.replace(/\D/g, '');
+    if (digits.length < 8) {
+      errors.phone = 'Phone number is too short (minimum 8 digits required).';
+    } else if (digits.length > 15) {
+      errors.phone = 'Phone number exceeds maximum length (15 digits).';
+    }
   }
 
-  if (!enquiryCategory || typeof enquiryCategory !== 'string') {
+  if (!enquiryCategory || typeof enquiryCategory !== 'string' || enquiryCategory.trim().length === 0) {
     errors.enquiryCategory = 'A service category must be selected.';
   }
 
   if (!cargoDescription || typeof cargoDescription !== 'string' || cargoDescription.trim().length < 3) {
-    errors.cargoDescription = 'Please provide a cargo description.';
+    errors.cargoDescription = 'Please provide a cargo description (minimum 3 characters).';
+  }
+
+  if (!approxWeight || typeof approxWeight !== 'string' || approxWeight.trim().length === 0) {
+    errors.approxWeight = 'Approximate cargo weight is required.';
+  } else if (/[a-zA-Z]/.test(approxWeight)) {
+    errors.approxWeight = 'Weight must be a numeric value without alphabetic characters.';
+  } else if (!/^\d+(\.\d+)?$/.test(approxWeight.trim())) {
+    errors.approxWeight = 'Please enter a valid positive decimal or integer weight.';
+  } else if (parseFloat(approxWeight) <= 0) {
+    errors.approxWeight = 'Weight must be greater than zero.';
+  }
+
+  if (dimensions && typeof dimensions === 'string' && dimensions.trim().length > 100) {
+    errors.dimensions = 'Cargo dimensions cannot exceed 100 characters.';
   }
 
   if (quoteName && typeof quoteName === 'string' && quoteName.trim().length > 150) {

@@ -272,8 +272,13 @@ export const Navbar: React.FC = () => {
                   {/* Dropdown Menu */}
                   {isOpen && (
                     <div
-                      className={`absolute top-full pt-1.5 z-50 animate-in fade-in slide-in-from-top-1 duration-180 ${isCompany ? 'right-0 min-w-[310px]' : 'left-1/2 -translate-x-[30%] xl:-translate-x-[32%] w-auto'
-                        }`}
+                      className={`z-50 animate-in fade-in slide-in-from-top-1 duration-180 ${
+                        isServices
+                          ? 'fixed left-1/2 -translate-x-1/2 top-[68px] sm:top-[72px] w-[95vw] max-w-[1240px] pt-1.5'
+                          : isCompany
+                          ? 'absolute top-full pt-1.5 right-0 min-w-[310px]'
+                          : 'absolute top-full pt-1.5 left-1/2 -translate-x-1/2 min-w-[280px]'
+                      }`}
                       role="menu"
                       aria-orientation="vertical"
                     >

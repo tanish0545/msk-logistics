@@ -38,7 +38,7 @@ export const ExportPackingSolutionsPage: React.FC = () => {
       </section>
 
       {/* Detailed Comparison Matrix */}
-      <section className="py-16 sm:py-20 bg-[#F5F5F3] border-b border-[#E2E2E2]">
+      <section id="comparison-matrix" className="py-16 sm:py-20 bg-[#F5F5F3] border-b border-[#E2E2E2] scroll-mt-24 sm:scroll-mt-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-10">
           <ScrollReveal direction="up">
             <div className="max-w-2xl space-y-3">

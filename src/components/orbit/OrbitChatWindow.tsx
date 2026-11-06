@@ -82,7 +82,7 @@ export const OrbitChatWindow: React.FC<OrbitChatWindowProps> = ({
       role="dialog"
       aria-modal="true"
       aria-label="MSK ORBIT AI Chatbot"
-      className="fixed inset-x-2 bottom-2 top-14 sm:inset-auto sm:bottom-24 sm:right-6 sm:w-[430px] sm:h-[640px] z-50 flex flex-col bg-[#000000] text-white rounded-2xl border border-white/20 shadow-[0_20px_60px_rgba(0,0,0,0.95)] overflow-hidden animate-in fade-in zoom-in-95 duration-200"
+      className="fixed inset-x-2 bottom-2 top-16 sm:inset-auto sm:bottom-6 sm:right-6 sm:w-[420px] sm:max-w-[calc(100vw-3rem)] sm:h-[620px] sm:max-h-[calc(100dvh-6rem)] z-50 flex flex-col bg-[#000000] text-white rounded-2xl border border-white/20 shadow-[0_20px_60px_rgba(0,0,0,0.95)] overflow-hidden animate-in fade-in zoom-in-95 duration-200"
     >
       {/* ========================================================================= */}
       {/* 1. CHAT HEADER                                                            */}

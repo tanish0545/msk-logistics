@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
 import {
   Maximize2,
@@ -36,9 +37,12 @@ export const OperationalEnvironmentsGallery: React.FC = () => {
     setLightboxIndex((lightboxIndex + 1) % images.length);
   }, [lightboxIndex, images.length]);
 
-  // Keyboard navigation for Lightbox
+  // Keyboard navigation for Lightbox & body scroll lock
   useEffect(() => {
     if (lightboxIndex === null) return;
+
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') closeLightbox();
@@ -47,8 +51,29 @@ export const OperationalEnvironmentsGallery: React.FC = () => {
     };
 
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = originalOverflow;
+    };
   }, [lightboxIndex, prevLightboxImage, nextLightboxImage]);
+
+  // Touch swipe support for mobile lightbox
+  const touchStartXRef = useRef<number | null>(null);
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartXRef.current = e.touches[0].clientX;
+  };
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartXRef.current === null) return;
+    const diff = touchStartXRef.current - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) {
+        nextLightboxImage();
+      } else {
+        prevLightboxImage();
+      }
+    }
+    touchStartXRef.current = null;
+  };
 
   // Determine if marquee animation should be paused on card hover
   const isAnimationPaused = hoveredCardId !== null;
@@ -335,11 +360,13 @@ export const OperationalEnvironmentsGallery: React.FC = () => {
         </div>
       </div>
 
-      {/* 3. Accessible Lightbox Modal */}
-      {lightboxIndex !== null && (
+      {/* 3. Accessible Lightbox Modal rendered via Portal */}
+      {typeof document !== 'undefined' && lightboxIndex !== null && createPortal(
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-md p-4 animate-in fade-in duration-200"
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/95 backdrop-blur-md p-4 animate-in fade-in duration-200"
           onClick={closeLightbox}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
           role="dialog"
           aria-modal="true"
           aria-label="Operational photograph details"
@@ -362,7 +389,7 @@ export const OperationalEnvironmentsGallery: React.FC = () => {
               <button
                 type="button"
                 onClick={closeLightbox}
-                className="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors flex items-center gap-1"
+                className="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors flex items-center gap-1 cursor-pointer"
                 aria-label="Close image viewer"
               >
                 <X className="w-4 h-4" />
@@ -371,13 +398,17 @@ export const OperationalEnvironmentsGallery: React.FC = () => {
             </div>
 
             {/* Main Lightbox Image with MSK Corner Watermark Overlay */}
-            <div className="relative max-h-[72vh] w-auto overflow-hidden rounded-xl bg-black border border-white/10 shadow-2xl">
+            <div className="relative max-h-[72vh] w-auto overflow-hidden rounded-xl bg-black border border-white/10 shadow-2xl flex items-center justify-center min-h-[240px] min-w-[280px]">
               <img
                 src={images[lightboxIndex].localPath}
                 alt={images[lightboxIndex].alt}
-                loading="lazy"
+                loading="eager"
                 decoding="async"
-                className="max-h-[72vh] max-w-full w-auto object-contain"
+                className="max-h-[72vh] max-w-full w-auto object-contain select-none"
+                onError={(e) => {
+                  e.currentTarget.onerror = null;
+                  e.currentTarget.src = '/images/containers/container-40ft-high-cube.jpg';
+                }}
               />
 
               {/* MSK Corner Tag Watermark (Only MSK Logo) */}
@@ -387,7 +418,7 @@ export const OperationalEnvironmentsGallery: React.FC = () => {
                     src="/images/logo/msk-logistics-logo.png"
                     alt="MSK Logistics"
                     className="h-5 w-auto object-contain"
-                    loading="lazy"
+                    loading="eager"
                     decoding="async"
                   />
                 </div>
@@ -398,7 +429,7 @@ export const OperationalEnvironmentsGallery: React.FC = () => {
             <button
               type="button"
               onClick={prevLightboxImage}
-              className="absolute left-2 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/70 hover:bg-black/90 text-white backdrop-blur border border-white/20 transition-all shadow-xl"
+              className="absolute left-2 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/70 hover:bg-black/90 text-white backdrop-blur border border-white/20 transition-all shadow-xl cursor-pointer"
               aria-label="Previous photograph"
             >
               <ChevronLeft className="w-6 h-6" />
@@ -406,7 +437,7 @@ export const OperationalEnvironmentsGallery: React.FC = () => {
             <button
               type="button"
               onClick={nextLightboxImage}
-              className="absolute right-2 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/70 hover:bg-black/90 text-white backdrop-blur border border-white/20 transition-all shadow-xl"
+              className="absolute right-2 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/70 hover:bg-black/90 text-white backdrop-blur border border-white/20 transition-all shadow-xl cursor-pointer"
               aria-label="Next photograph"
             >
               <ChevronRight className="w-6 h-6" />
@@ -438,7 +469,8 @@ export const OperationalEnvironmentsGallery: React.FC = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </section>
   );

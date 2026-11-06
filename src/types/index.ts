@@ -23,7 +23,7 @@ export type EnquiryCategory =
 export interface QuoteFormData {
   // Step 1: Core Service & Cargo Arrangement
   solutionType: SolutionType;
-  enquiryCategory: EnquiryCategory;
+  enquiryCategory: EnquiryCategory | '';
 
   // Step 2: Cargo Details
   cargoDescription: string;
