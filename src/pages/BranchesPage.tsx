@@ -3,6 +3,7 @@ import { useLocation, Link } from 'react-router-dom';
 import { MapPin, Phone, Mail, ExternalLink, ArrowRight } from 'lucide-react';
 import { COMPANY_DETAILS } from '../data/company';
 import { InnerPageBanner } from '../components/layout/InnerPageBanner';
+import { Breadcrumbs } from '../components/navigation/Breadcrumbs';
 import { ScrollReveal } from '../components/common/ScrollReveal';
 
 export const BELAPUR_BRANCH = {
@@ -11,9 +12,9 @@ export const BELAPUR_BRANCH = {
   plotSector: 'Plot No-42A, Sector 11, CBD Belapur',
   cityState: 'Navi Mumbai 400 614, Maharashtra, India',
   fullAddress: `OFFICE NO-A-428, 4th FLOOR,\nBALAJI BHAWAN,\nPLOT NO-42A, SECTOR 11,\nCBD BELAPUR,\nNAVI MUMBAI 400 614,\nMAHARASHTRA, INDIA.`,
-  mapQuery: 'Balaji Bhawan, Sector 11, CBD Belapur, Navi Mumbai 400614',
-  mapEmbedUrl: 'https://maps.google.com/maps?q=Balaji+Bhawan+Sector+11+CBD+Belapur+Navi+Mumbai+400614&t=&z=15&ie=UTF8&iwloc=&output=embed',
-  directionsUrl: 'https://www.google.com/maps/search/?api=1&query=Balaji+Bhawan+Sector+11+CBD+Belapur+Navi+Mumbai+400614',
+  mapQuery: 'Office No-A-428, 4th Floor, Balaji Bhawan, Plot No-42A, Sector 11, CBD Belapur, Navi Mumbai 400 614',
+  mapEmbedUrl: 'https://maps.google.com/maps?q=18.9894,73.0416&t=&z=16&ie=UTF8&iwloc=&output=embed',
+  directionsUrl: 'https://www.google.com/maps/search/?api=1&query=18.9894,73.0416',
 };
 
 export const JNPT_BRANCH = {
@@ -44,6 +45,15 @@ export const BranchesPage: React.FC = () => {
     <div className="space-y-0 bg-[#FBFBFC]">
       {/* 1. Header Banner */}
       <InnerPageBanner
+        breadcrumb={
+          <Breadcrumbs
+            items={[
+              { label: 'Home', to: '/' },
+              { label: 'Company' },
+              { label: 'Our Branches', isCurrent: true },
+            ]}
+          />
+        }
         badge="OPERATING NETWORK"
         badgeSubtext="CBD BELAPUR & NHAVA SHEVA (JNPT)"
         title="Our Branches"

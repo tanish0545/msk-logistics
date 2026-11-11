@@ -18,6 +18,7 @@ import {
 import { COMPANY_DETAILS } from '../data/company';
 import { IsoCertificationBadge } from '../components/common/IsoCertificationBadge';
 import { InnerPageBanner } from '../components/layout/InnerPageBanner';
+import { Breadcrumbs } from '../components/navigation/Breadcrumbs';
 import { ScrollReveal } from '../components/common/ScrollReveal';
 import { validatePhoneNumber, validateEmail, buildEnquiryMailtoUrl } from '../utils/validation';
 
@@ -135,9 +136,9 @@ export const ContactPage: React.FC = () => {
     }
   };
 
-  const mapQuery = encodeURIComponent('Balaji Bhavan Plot No-42A Sector 11 CBD Belapur Navi Mumbai 400614');
-  const mapEmbedUrl = `https://maps.google.com/maps?q=${mapQuery}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
-  const mapExternalUrl = `https://www.google.com/maps/search/?api=1&query=${mapQuery}`;
+  const mapCoordinates = '18.9894,73.0416';
+  const mapEmbedUrl = `https://maps.google.com/maps?q=${mapCoordinates}&t=&z=16&ie=UTF8&iwloc=&output=embed`;
+  const mapExternalUrl = `https://www.google.com/maps/search/?api=1&query=${mapCoordinates}`;
 
   const mailtoUrl = buildEnquiryMailtoUrl({
     toEmail: 'info@msklogisticsolution.com',
@@ -171,6 +172,14 @@ export const ContactPage: React.FC = () => {
     <div className="space-y-0 bg-[#FAFAFA]">
       {/* 1. Page Header */}
       <InnerPageBanner
+        breadcrumb={
+          <Breadcrumbs
+            items={[
+              { label: 'Home', to: '/' },
+              { label: 'Contact', isCurrent: true },
+            ]}
+          />
+        }
         badge="COMMERCIAL INQUIRIES"
         badgeSubtext="NAVI MUMBAI & NHAVA SHEVA (JNPT)"
         title="Connect With MSK Logistics"

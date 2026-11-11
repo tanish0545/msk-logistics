@@ -16,6 +16,7 @@ import {
   Wrench
 } from 'lucide-react';
 import { InnerPageBanner } from '../components/layout/InnerPageBanner';
+import { Breadcrumbs } from '../components/navigation/Breadcrumbs';
 import { BrandedImage } from '../components/common/BrandedImage';
 import { ScrollReveal } from '../components/common/ScrollReveal';
 import { COMPANY_DETAILS } from '../data/company';
@@ -26,6 +27,14 @@ export const WarehousePage: React.FC = () => {
     <div className="space-y-0 bg-[#FAFAFA]">
       {/* 1. Page Header */}
       <InnerPageBanner
+        breadcrumb={
+          <Breadcrumbs
+            items={[
+              { label: 'Home', to: '/' },
+              { label: 'Warehouse', isCurrent: true },
+            ]}
+          />
+        }
         badge="FACILITY & STAGING ARRANGEMENTS"
         badgeSubtext="NHAVA SHEVA (JNPT) LOGISTICS CORRIDOR"
         title="Open Yard & Shaded Warehouse Facilities"

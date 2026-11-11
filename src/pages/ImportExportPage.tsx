@@ -26,10 +26,11 @@ import {
 import { EXPORT_SOLUTIONS } from '../data/company';
 import { BrandedImage } from '../components/common/BrandedImage';
 import { InnerPageBanner } from '../components/layout/InnerPageBanner';
+import { Breadcrumbs } from '../components/navigation/Breadcrumbs';
 import { ScrollReveal } from '../components/common/ScrollReveal';
 
 export const ImportExportPage: React.FC = () => {
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const shipmentParam = searchParams.get('shipment');
 
   const [activeCategory, setActiveCategory] = useState<ShipmentCategory | 'all'>('all');
@@ -55,13 +56,26 @@ export const ImportExportPage: React.FC = () => {
     }
   }, [shipmentParam]);
 
-  // Lock body scroll when lightbox is open
+  // Lock body scroll and handle keyboard navigation when lightbox is open
   useEffect(() => {
     if (!lightboxItem) return;
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        closeLightbox();
+      } else if (e.key === 'ArrowRight') {
+        navigateLightbox('next');
+      } else if (e.key === 'ArrowLeft') {
+        navigateLightbox('prev');
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+
     return () => {
       document.body.style.overflow = originalOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
     };
   }, [lightboxItem]);
 
@@ -73,22 +87,37 @@ export const ImportExportPage: React.FC = () => {
     ? SHIPMENT_GALLERY
     : SHIPMENT_GALLERY.filter(item => item.category === activeCategory);
 
-  // Lightbox navigation
-  const openLightbox = (item: ShipmentItem) => setLightboxItem(item);
-  const closeLightbox = () => setLightboxItem(null);
+  // Lightbox navigation with URL sync
+  const openLightbox = (item: ShipmentItem) => {
+    setLightboxItem(item);
+    const nextParams = new URLSearchParams(searchParams);
+    nextParams.set('shipment', item.id);
+    setSearchParams(nextParams, { replace: true });
+  };
+
+  const closeLightbox = () => {
+    setLightboxItem(null);
+    if (searchParams.has('shipment')) {
+      const nextParams = new URLSearchParams(searchParams);
+      nextParams.delete('shipment');
+      setSearchParams(nextParams, { replace: true });
+    }
+  };
 
   const navigateLightbox = (direction: 'next' | 'prev') => {
     if (!lightboxItem) return;
     const currentIndex = filteredGallery.findIndex(i => i.id === lightboxItem.id);
     if (currentIndex === -1) return;
 
-    if (direction === 'next') {
-      const nextIndex = (currentIndex + 1) % filteredGallery.length;
-      setLightboxItem(filteredGallery[nextIndex]);
-    } else {
-      const prevIndex = (currentIndex - 1 + filteredGallery.length) % filteredGallery.length;
-      setLightboxItem(filteredGallery[prevIndex]);
-    }
+    const nextIndex = direction === 'next'
+      ? (currentIndex + 1) % filteredGallery.length
+      : (currentIndex - 1 + filteredGallery.length) % filteredGallery.length;
+
+    const nextItem = filteredGallery[nextIndex];
+    setLightboxItem(nextItem);
+    const nextParams = new URLSearchParams(searchParams);
+    nextParams.set('shipment', nextItem.id);
+    setSearchParams(nextParams, { replace: true });
   };
 
   return (
@@ -97,6 +126,14 @@ export const ImportExportPage: React.FC = () => {
       {/* 1. PAGE HEADING & INTRODUCTION                                */}
       {/* ------------------------------------------------------------- */}
       <InnerPageBanner
+        breadcrumb={
+          <Breadcrumbs
+            items={[
+              { label: 'Home', to: '/' },
+              { label: 'Import & Export', isCurrent: true },
+            ]}
+          />
+        }
         badge="INDUSTRIAL EXPORT OPERATIONS"
         badgeSubtext="PORT OF NHAVA SHEVA • JNPT GATEWAY"
         title="Import & Export Operations"
@@ -607,7 +644,7 @@ export const ImportExportPage: React.FC = () => {
                 <article
                   id={`shipment-${item.id}`}
                   className={`bg-white rounded-2xl border overflow-hidden transition-all duration-300 flex flex-col justify-between group h-full hover-lift scroll-mt-28 ${
-                    shipmentParam === item.id
+                    (lightboxItem?.id === item.id || shipmentParam === item.id)
                       ? 'border-[#B62825] ring-2 ring-[#B62825]/40 shadow-xl'
                       : 'border-[#E2E2E2] shadow-sm hover:shadow-xl'
                   }`}

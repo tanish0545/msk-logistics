@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle2, AlertCircle, ChevronRight } from 'lucide-react';
+import { ArrowRight, CheckCircle2, AlertCircle } from 'lucide-react';
 import { CORE_SERVICES } from '../data/company';
 import { BrandedImage } from '../components/common/BrandedImage';
 import { InnerPageBanner } from '../components/layout/InnerPageBanner';
+import { Breadcrumbs } from '../components/navigation/Breadcrumbs';
 import { ScrollReveal } from '../components/common/ScrollReveal';
 
 export const CargoLashingPage: React.FC = () => {
@@ -14,13 +15,13 @@ export const CargoLashingPage: React.FC = () => {
       {/* Breadcrumb & Hero */}
       <InnerPageBanner
         breadcrumb={
-          <>
-            <Link to="/" className="hover:text-white transition-colors">Home</Link>
-            <ChevronRight className="w-3.5 h-3.5 text-[#AEB6C2]" />
-            <Link to="/services" className="hover:text-white transition-colors">Services</Link>
-            <ChevronRight className="w-3.5 h-3.5 text-[#AEB6C2]" />
-            <span className="text-[#B62825] font-semibold">{service.title}</span>
-          </>
+          <Breadcrumbs
+            items={[
+              { label: 'Home', to: '/' },
+              { label: 'Services', to: '/services', hasDropdown: true },
+              { label: service.title, isCurrent: true },
+            ]}
+          />
         }
         badge={service.tag}
         title={`${service.title} for Ocean Transit`}

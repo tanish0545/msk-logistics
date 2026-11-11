@@ -3,6 +3,7 @@ import { Phone, Mail, Info } from 'lucide-react';
 import { QuoteRequestForm } from '../components/forms/QuoteRequestForm';
 import { COMPANY_DETAILS } from '../data/company';
 import { InnerPageBanner } from '../components/layout/InnerPageBanner';
+import { Breadcrumbs } from '../components/navigation/Breadcrumbs';
 import { ScrollReveal } from '../components/common/ScrollReveal';
 
 export const QuoteRequestPage: React.FC = () => {
@@ -10,6 +11,14 @@ export const QuoteRequestPage: React.FC = () => {
     <div className="space-y-0">
       {/* Page Header */}
       <InnerPageBanner
+        breadcrumb={
+          <Breadcrumbs
+            items={[
+              { label: 'Home', to: '/' },
+              { label: 'Request a Quote', isCurrent: true },
+            ]}
+          />
+        }
         badge="QUOTATION DESK"
         title="Request an Export Packing Quotation"
         description="Submit your cargo parameters and preferred container arrangement for an itemized quotation from our Navi Mumbai operations desk."

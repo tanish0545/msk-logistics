@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Anchor, ShieldCheck, Layers, Truck, ChevronRight } from 'lucide-react';
+import { ArrowRight, Anchor, ShieldCheck, Layers, Truck } from 'lucide-react';
 import { CORE_SERVICES } from '../data/company';
 import { ServiceCard } from '../components/services/ServiceCard';
 import { InnerPageBanner } from '../components/layout/InnerPageBanner';
+import { Breadcrumbs } from '../components/navigation/Breadcrumbs';
 import { ScrollReveal } from '../components/common/ScrollReveal';
 
 export const ServicesPage: React.FC = () => {
@@ -12,11 +13,12 @@ export const ServicesPage: React.FC = () => {
       {/* Services Banner */}
       <InnerPageBanner
         breadcrumb={
-          <>
-            <Link to="/" className="hover:text-white transition-colors">Home</Link>
-            <ChevronRight className="w-3.5 h-3.5 text-[#AEB6C2]" />
-            <span className="text-[#B62825] font-semibold">Services</span>
-          </>
+          <Breadcrumbs
+            items={[
+              { label: 'Home', to: '/' },
+              { label: 'Services', isCurrent: true, hasDropdown: true },
+            ]}
+          />
         }
         badge="COMPREHENSIVE LOGISTICS DIRECTORY"
         badgeSubtext="NHAVA SHEVA (JNPT) • WESTERN MARITIME GATEWAY"

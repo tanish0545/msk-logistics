@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { 
   ArrowRight, 
   CheckCircle2, 
-  ChevronRight, 
   Truck, 
   ShieldCheck, 
   MapPin, 
@@ -16,6 +15,7 @@ import {
 } from 'lucide-react';
 import { COMPANY_DETAILS } from '../data/company';
 import { InnerPageBanner } from '../components/layout/InnerPageBanner';
+import { Breadcrumbs } from '../components/navigation/Breadcrumbs';
 import { ScrollReveal } from '../components/common/ScrollReveal';
 
 interface RoadFleetPhoto {
@@ -110,13 +110,13 @@ export const RoadTransportPage: React.FC = () => {
       {/* 1. Header Banner with Breadcrumbs */}
       <InnerPageBanner
         breadcrumb={
-          <>
-            <Link to="/" className="hover:text-white transition-colors">Home</Link>
-            <ChevronRight className="w-3.5 h-3.5 text-[#AEB6C2]" />
-            <Link to="/services" className="hover:text-white transition-colors">Services</Link>
-            <ChevronRight className="w-3.5 h-3.5 text-[#AEB6C2]" />
-            <span className="text-[#B62825] font-semibold">Road Transport &amp; Heavy Fleet</span>
-          </>
+          <Breadcrumbs
+            items={[
+              { label: 'Home', to: '/' },
+              { label: 'Services', to: '/services', hasDropdown: true },
+              { label: 'Road Transport & Heavy Fleet', isCurrent: true },
+            ]}
+          />
         }
         badge="HEAVY ROAD HAULAGE &amp; FLEET LOGISTICS"
         badgeSubtext="FACTORY-TO-PORT HIGHWAY CORRIDORS • NHAVA SHEVA (JNPT) &amp; MUNDRA"

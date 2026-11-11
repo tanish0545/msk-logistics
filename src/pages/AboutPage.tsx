@@ -19,6 +19,7 @@ import { BrandedImage } from '../components/common/BrandedImage';
 import { ScrollReveal } from '../components/common/ScrollReveal';
 import { AnimatedStatCounter } from '../components/common/AnimatedStatCounter';
 import { InnerPageBanner } from '../components/layout/InnerPageBanner';
+import { Breadcrumbs } from '../components/navigation/Breadcrumbs';
 
 export const AboutPage: React.FC = () => {
   return (
@@ -27,6 +28,14 @@ export const AboutPage: React.FC = () => {
       {/* 1. ABOUT US HERO SECTION                                                  */}
       {/* ========================================================================= */}
       <InnerPageBanner
+        breadcrumb={
+          <Breadcrumbs
+            items={[
+              { label: 'Home', to: '/' },
+              { label: 'About', isCurrent: true },
+            ]}
+          />
+        }
         badge="ABOUT MSK LOGISTICS"
         badgeSubtext="JNPT • NHAVA SHEVA MARITIME CORRIDOR"
         title="Industrial Logistics Engineered for Export Operations"

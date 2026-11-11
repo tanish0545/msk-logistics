@@ -18,6 +18,7 @@ import {
   Camera
 } from 'lucide-react';
 import { InnerPageBanner } from '../components/layout/InnerPageBanner';
+import { Breadcrumbs } from '../components/navigation/Breadcrumbs';
 import { ScrollReveal } from '../components/common/ScrollReveal';
 
 export interface HazardousGalleryItem {
@@ -216,6 +217,15 @@ export const HazardousCargoPage: React.FC = () => {
       {/* 1. HERO BANNER                                                            */}
       {/* ========================================================================= */}
       <InnerPageBanner
+        breadcrumb={
+          <Breadcrumbs
+            items={[
+              { label: 'Home', to: '/' },
+              { label: 'Services', to: '/services', hasDropdown: true },
+              { label: 'Hazardous Cargo', isCurrent: true },
+            ]}
+          />
+        }
         badge="DANGEROUS GOODS (DG) &amp; HAZARDOUS CARGO"
         badgeSubtext="IMDG CODE • IATA DGR • UN-CERTIFIED PACKAGING • NHAVA SHEVA (JNPT) &amp; MUNDRA"
         title="Hazardous Cargo Handling, Technical Packaging &amp; DG Securing"

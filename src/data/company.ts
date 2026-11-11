@@ -21,7 +21,7 @@ export const COMPANY_DETAILS = {
   address: 'Office No-A-428, 4th Floor, Balaji Bhawan, Plot No-42A, Sector 11, CBD Belapur, Navi Mumbai 400 614, Maharashtra, India',
   registeredOffice: 'Office No-A-428, 4th Floor, Balaji Bhawan, Plot No-42A, Sector 11, CBD Belapur, Navi Mumbai 400 614, Maharashtra, India',
   branchOffice: 'JNPT Township Colony, Sector - 3, Building No. B/48, Office No. 3, Navi Mumbai 400702, Maharashtra, India',
-  googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Balaji+Bhavan+Plot+No-42A+Sector+11+CBD+Belapur+Navi+Mumbai+400614',
+  googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=18.9894,73.0416',
   email: 'info@msklogisticsolution.com',
   emailHref: 'mailto:info@msklogisticsolution.com',
   infoEmail: 'info@msklogisticsolution.com',

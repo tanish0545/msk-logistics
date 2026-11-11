@@ -744,12 +744,17 @@ export const HomePage: React.FC = () => {
             {previewShipments.map((item, idx) => {
               const direction = idx === 0 ? 'left' : idx === 1 ? 'up' : 'right';
               const delay = idx * 120;
+              const shipmentUrl = `/import-export?shipment=${item.id}#shipment-${item.id}`;
 
               return (
                 <ScrollReveal key={item.id} direction={direction} delay={delay} className="h-full">
                   <div className="bg-white h-full rounded-2xl border border-[#E2E8F0] overflow-hidden shadow-xs hover-lift transition-all group flex flex-col justify-between">
                     <div>
-                      <div className="relative aspect-[16/10] bg-neutral-900 overflow-hidden">
+                      <Link
+                        to={shipmentUrl}
+                        className="block relative aspect-[16/10] bg-neutral-900 overflow-hidden cursor-pointer"
+                        title={`View ${item.title} details`}
+                      >
                         <BrandedImage
                           src={item.image}
                           alt={item.title}
@@ -761,12 +766,17 @@ export const HomePage: React.FC = () => {
                             {item.categoryLabel}
                           </span>
                         </div>
-                      </div>
+                      </Link>
 
                       <div className="p-6 space-y-2.5">
-                        <h4 className="font-bold text-base sm:text-lg text-[#1E293B] group-hover:text-[#B62825] transition-colors leading-snug">
-                          {item.title}
-                        </h4>
+                        <Link
+                          to={shipmentUrl}
+                          className="block group/title focus:outline-none"
+                        >
+                          <h4 className="font-bold text-base sm:text-lg text-[#1E293B] group-hover:text-[#B62825] transition-colors leading-snug">
+                            {item.title}
+                          </h4>
+                        </Link>
                         <p className="text-xs sm:text-sm text-[#64748B] line-clamp-2 leading-relaxed">
                           {item.shortDescription}
                         </p>
@@ -778,10 +788,11 @@ export const HomePage: React.FC = () => {
                         {item.dimensionsNote}
                       </span>
                       <Link
-                        to="/import-export"
-                        className="text-xs font-bold text-[#000000] hover:text-[#B62825]"
+                        to={shipmentUrl}
+                        className="text-xs font-bold text-[#000000] hover:text-[#B62825] inline-flex items-center gap-1 transition-colors"
                       >
-                        View Record &rarr;
+                        <span>View Record</span>
+                        <span>&rarr;</span>
                       </Link>
                     </div>
                   </div>

@@ -22,6 +22,7 @@ import {
 } from '../data/containerGuideData';
 import { BrandedImage } from '../components/gallery/BrandedImage';
 import { InnerPageBanner } from '../components/layout/InnerPageBanner';
+import { Breadcrumbs } from '../components/navigation/Breadcrumbs';
 import { ScrollReveal } from '../components/common/ScrollReveal';
 
 interface LightboxItem {
@@ -166,6 +167,14 @@ export const ContainerGuidePage: React.FC = () => {
     <div className="space-y-0 bg-[#F9FAFB]">
       {/* 1. Page Header — Dark Graphite Refined Banner */}
       <InnerPageBanner
+        breadcrumb={
+          <Breadcrumbs
+            items={[
+              { label: 'Home', to: '/' },
+              { label: 'Container Guide', isCurrent: true },
+            ]}
+          />
+        }
         badge="EQUIPMENT REFERENCE"
         badgeSubtext="ISO STANDARDS • OCEAN FREIGHT SPECIFICATIONS"
         title="Container Guide: Types, Dimensions & Equipment"
