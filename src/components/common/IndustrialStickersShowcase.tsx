@@ -157,7 +157,7 @@ export const IndustrialStickersShowcase: React.FC = () => {
                 <span className="w-0.5 h-full bg-black" />
               </div>
               <span className="font-mono text-[7.5px] text-neutral-600 tracking-widest">
-                81045-92823-JNPT
+                81086-72929-JNPT
               </span>
             </div>
           </div>

@@ -3,12 +3,12 @@
 // 1. Internal MSK notification to info@msklogisticsolution.com (with customer Reply-To)
 // 2. Customer confirmation email to the user's submitted email address
 
-import type { EmailPayload } from './emailTemplates.ts';
+import type { EmailPayload } from './emailTemplates.js';
 import { 
   generateInternalEmailHtml, 
   generateCustomerConfirmationEmailHtml, 
   getFormattedDateIST 
-} from './emailTemplates.ts';
+} from './emailTemplates.js';
 
 const rateLimitMap = new Map<string, { count: number; expiresAt: number }>();
 

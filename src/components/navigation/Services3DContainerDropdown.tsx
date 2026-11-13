@@ -165,7 +165,7 @@ export const Services3DContainerDropdown: React.FC<Services3DContainerDropdownPr
   return (
     <div
       ref={containerRef}
-      className="relative bg-[#0B0D13]/97 text-[#D9DEE5] rounded-2xl shadow-[0_30px_80px_rgba(0,0,0,0.92),0_0_40px_rgba(182,40,37,0.15)] border border-white/10 overflow-hidden text-left flex flex-col lg:flex-row w-[1140px] xl:w-[1240px] max-w-[calc(100vw-2rem)] select-none backdrop-blur-2xl transition-all duration-300"
+      className="relative bg-[#0B0B0E] text-[#D9DEE5] rounded-2xl shadow-[0_30px_90px_rgba(0,0,0,0.98),0_0_0_1px_rgba(255,255,255,0.18),0_0_50px_rgba(182,40,37,0.25)] border-2 border-white/20 overflow-hidden text-left flex flex-col lg:flex-row w-full max-h-[calc(100vh-92px)] overflow-y-auto select-none backdrop-blur-2xl transition-all duration-300"
       role="menu"
       aria-label="MSK Logistics Services Mega Menu"
       tabIndex={-1}
@@ -246,7 +246,7 @@ export const Services3DContainerDropdown: React.FC<Services3DContainerDropdownPr
             return (
               <div
                 key={service.id}
-                className="relative group/stack [perspective:1000px] h-[195px] xl:h-[205px]"
+                className="relative group/stack [perspective:1000px] h-[205px] xl:h-[215px]"
                 onMouseEnter={() => setFlippedCardId(service.id)}
                 onMouseLeave={() => setFlippedCardId(null)}
               >
@@ -323,8 +323,8 @@ export const Services3DContainerDropdown: React.FC<Services3DContainerDropdownPr
                         </div>
 
                         {/* Title & Subtitle */}
-                        <div className="min-w-0">
-                          <h3 className="text-[12.5px] xl:text-[13px] font-bold font-heading text-white tracking-wide leading-tight group-hover/stack:text-[#B62825] transition-colors line-clamp-1">
+                        <div className="min-w-0 flex-1">
+                          <h3 className="text-[12px] xl:text-[12.5px] font-bold font-heading text-white tracking-tight leading-snug group-hover/stack:text-[#B62825] transition-colors line-clamp-2">
                             {service.name}
                           </h3>
                           <p className="text-[10px] font-mono text-[#94A3B8] truncate mt-0.5">

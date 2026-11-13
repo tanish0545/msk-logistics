@@ -22,7 +22,7 @@ export const InnerPageBanner: React.FC<InnerPageBannerProps> = ({
   className = '',
 }) => {
   return (
-    <section className={`bg-[#000000] text-white py-6 sm:py-8 lg:py-8.5 border-b border-white/10 relative overflow-hidden ${className}`}>
+    <section className={`bg-[#000000] text-white py-6 sm:py-8 lg:py-8.5 border-b border-white/10 relative overflow-visible z-20 ${className}`}>
       {/* Background Gradient — Pure Black to Near Black */}
       <div 
         className="absolute inset-0 bg-gradient-to-r from-[#000000] via-[#0B0B0D] to-[#000000] opacity-95 pointer-events-none" 
@@ -54,7 +54,7 @@ export const InnerPageBanner: React.FC<InnerPageBannerProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-2.5 sm:space-y-3 relative z-10">
         {/* Optional Breadcrumb */}
         {breadcrumb && (
-          <div className="flex flex-wrap items-center gap-1.5 text-[11.5px] sm:text-[12px] font-mono-code text-[#AEB6C2] animate-fade-in-up">
+          <div className="flex flex-wrap items-center gap-1.5 text-[11.5px] sm:text-[12px] font-mono-code text-[#AEB6C2] relative z-30">
             {breadcrumb}
           </div>
         )}

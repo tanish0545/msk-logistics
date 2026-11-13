@@ -90,12 +90,15 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ items, className = '' 
 
                   {/* Services Forward Menu Dropdown */}
                   {dropdownOpen && (
-                    <div className="absolute top-full left-0 mt-2 w-72 bg-[#12141A] border border-white/15 rounded-xl shadow-2xl p-2 z-50 animate-in fade-in zoom-in-95 duration-150 backdrop-blur-md">
-                      <div className="px-2.5 py-1.5 text-[10px] uppercase font-mono tracking-wider text-neutral-400 border-b border-white/10 flex items-center justify-between">
-                        <span>Services Directory</span>
-                        <span className="text-[#B62825] font-bold">6 Modes</span>
+                    <div className="absolute top-full left-0 mt-2 w-80 bg-[#0B0D13] border border-white/20 rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.95),0_0_0_1px_rgba(255,255,255,0.1)] p-2.5 z-50 animate-in fade-in zoom-in-95 duration-150 backdrop-blur-xl">
+                      <div className="px-3 py-2 text-[10px] uppercase font-mono tracking-wider text-slate-300 border-b border-white/10 flex items-center justify-between font-bold">
+                        <span className="flex items-center gap-1.5">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#B62825]" />
+                          <span>Services Directory</span>
+                        </span>
+                        <span className="text-[#B62825] font-extrabold px-1.5 py-0.5 rounded bg-[#B62825]/15 border border-[#B62825]/30">6 MODES</span>
                       </div>
-                      <div className="py-1 space-y-0.5">
+                      <div className="py-1.5 space-y-1">
                         {CORE_SERVICES.map((s) => {
                           const isCurrentService = items.some(it => it.label.toLowerCase() === s.title.toLowerCase());
                           return (
@@ -103,14 +106,18 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ items, className = '' 
                               key={s.id}
                               to={`/services/${s.slug}`}
                               onClick={() => setDropdownOpen(false)}
-                              className={`flex items-center justify-between px-2.5 py-2 rounded-lg text-xs font-sans transition-colors ${
+                              className={`flex items-center justify-between px-3 py-2.5 rounded-lg text-[13px] font-sans transition-all cursor-pointer ${
                                 isCurrentService
-                                  ? 'bg-[#B62825]/20 text-[#B62825] font-bold'
-                                  : 'text-neutral-200 hover:bg-white/10 hover:text-white'
+                                  ? 'bg-[#B62825] text-white font-bold shadow-md'
+                                  : 'text-slate-200 hover:bg-white/10 hover:text-white hover:translate-x-0.5'
                               }`}
                             >
-                              <span className="truncate">{s.title}</span>
-                              {isCurrentService && <Check className="w-3.5 h-3.5 text-[#B62825] shrink-0" />}
+                              <span className="truncate font-medium">{s.title}</span>
+                              {isCurrentService ? (
+                                <Check className="w-4 h-4 text-white shrink-0 stroke-[2.5]" />
+                              ) : (
+                                <span className="text-[10px] font-mono text-slate-400 group-hover:text-slate-200 uppercase">Explore &rarr;</span>
+                              )}
                             </Link>
                           );
                         })}

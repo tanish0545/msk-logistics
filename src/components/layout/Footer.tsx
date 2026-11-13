@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { MapPin, Phone, Mail, ArrowUpRight, ArrowRight, PhoneCall, ExternalLink } from 'lucide-react';
+import { MapPin, Mail, ArrowUpRight, ArrowRight, PhoneCall, ExternalLink } from 'lucide-react';
 import { COMPANY_DETAILS, CORE_SERVICES } from '../../data/company';
 import { MagneticButton } from '../common/MagneticButton';
 import { IsoCertificationBadge } from '../common/IsoCertificationBadge';
@@ -236,25 +236,15 @@ export const Footer: React.FC = () => {
                 </a>
               </div>
 
-              <div className="flex items-center gap-2.5">
-                <Phone className="w-4 h-4 text-[#B62825] shrink-0" />
-                <a 
-                  href={COMPANY_DETAILS.phoneHref}
-                  className="hover:text-white transition-colors font-medium"
-                >
-                  {COMPANY_DETAILS.phone}
-                </a>
-              </div>
-
-              {/* 24×7 Emergency Dispatch */}
-              <div className="p-3 rounded-lg bg-red-950/40 border border-red-700/40 space-y-1">
+              {/* 24×7 Emergency Dispatch Desk */}
+              <div className="p-3.5 rounded-lg bg-red-950/40 border border-red-700/40 space-y-1.5">
                 <div className="flex items-center justify-between gap-1.5">
                   <div className="flex items-center gap-1.5 text-xs font-mono font-bold text-red-300 uppercase">
                     <PhoneCall className="w-3.5 h-3.5 text-[#B62825]" />
-                    <span>24×7 Emergency</span>
+                    <span>24×7 Emergency Desk</span>
                   </div>
                   <span className="px-1.5 py-0.5 rounded text-[9px] font-mono font-bold uppercase tracking-wider bg-[#B62825] text-white">
-                    24×7
+                    24×7 ACTIVE
                   </span>
                 </div>
                 <a 
@@ -265,25 +255,15 @@ export const Footer: React.FC = () => {
                 </a>
               </div>
 
+              {/* General & Service Enquiries */}
               <div className="flex items-center gap-2.5">
                 <Mail className="w-4 h-4 text-[#B62825] shrink-0" />
                 <a 
                   href={COMPANY_DETAILS.infoEmailHref}
                   className="hover:text-white transition-colors break-all"
-                  title="General Inquiries"
+                  title="General &amp; Service Inquiries"
                 >
                   {COMPANY_DETAILS.infoEmail}
-                </a>
-              </div>
-
-              <div className="flex items-center gap-2.5">
-                <Mail className="w-4 h-4 text-[#B62825] shrink-0" />
-                <a 
-                  href={COMPANY_DETAILS.accountsEmailHref}
-                  className="hover:text-white transition-colors break-all"
-                  title="Accounts &amp; Invoicing"
-                >
-                  {COMPANY_DETAILS.accountsEmail}
                 </a>
               </div>
             </div>

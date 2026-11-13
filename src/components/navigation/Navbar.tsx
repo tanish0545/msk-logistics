@@ -272,12 +272,12 @@ export const Navbar: React.FC = () => {
                   {/* Dropdown Menu */}
                   {isOpen && (
                     <div
-                      className={`z-50 animate-in fade-in slide-in-from-top-1 duration-180 ${
+                      className={`animate-in fade-in slide-in-from-top-1 duration-180 ${
                         isServices
-                          ? 'fixed left-1/2 -translate-x-1/2 top-[68px] sm:top-[72px] w-[95vw] max-w-[1240px] pt-1.5'
+                          ? 'fixed left-1/2 -translate-x-1/2 top-[68px] sm:top-[72px] w-[min(1240px,calc(100vw-32px))] pt-2 z-[100]'
                           : isCompany
-                          ? 'absolute top-full pt-1.5 right-0 min-w-[310px]'
-                          : 'absolute top-full pt-1.5 left-1/2 -translate-x-1/2 min-w-[280px]'
+                          ? 'absolute top-full pt-1.5 right-0 min-w-[310px] z-50'
+                          : 'absolute top-full pt-1.5 left-1/2 -translate-x-1/2 min-w-[280px] z-50'
                       }`}
                       role="menu"
                       aria-orientation="vertical"
@@ -473,7 +473,7 @@ export const Navbar: React.FC = () => {
                         /* Mobile Company: Toggles dropdown on click without navigating to Branches */
                         <button
                           type="button"
-                          className={`w-full flex items-center justify-between text-left text-[15px] font-medium ${active ? 'text-[#B62825] font-semibold' : 'text-[#52627A]'
+                          className={`w-full flex items-center justify-between text-left text-[15px] font-medium py-1 ${active ? 'text-[#B62825] font-semibold' : 'text-[#52627A]'
                             }`}
                           onClick={() => setMobileCompanyOpen(!mobileCompanyOpen)}
                           aria-expanded={isSubOpen}
@@ -481,33 +481,36 @@ export const Navbar: React.FC = () => {
                         >
                           <span>{item.label}</span>
                           <ChevronDown
-                            className={`w-4 h-4 transition-transform ${isSubOpen ? 'rotate-180 text-[#B62825]' : ''
+                            className={`w-4 h-4 transition-transform duration-200 ${isSubOpen ? 'rotate-180 text-[#B62825]' : ''
+                              }`}
+                          />
+                        </button>
+                      ) : isServices ? (
+                        /* Mobile Services: Full row button toggling the specialized services accordion */
+                        <button
+                          type="button"
+                          className={`w-full flex items-center justify-between text-left text-[15px] font-medium py-1 ${active ? 'text-[#B62825] font-semibold' : 'text-[#52627A]'
+                            }`}
+                          onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                          aria-expanded={isSubOpen}
+                          aria-label="Toggle Services submenu"
+                        >
+                          <span>{item.label}</span>
+                          <ChevronDown
+                            className={`w-4 h-4 transition-transform duration-200 ${isSubOpen ? 'rotate-180 text-[#B62825]' : ''
                               }`}
                           />
                         </button>
                       ) : (
-                        /* Mobile Services: Preserved exactly as before */
-                        <>
-                          <Link
-                            to={item.path}
-                            className={`text-[15px] font-medium ${active ? 'text-[#B62825] font-semibold' : 'text-[#52627A]'
-                              }`}
-                            onClick={() => setMobileMenuOpen(false)}
-                          >
-                            {item.label}
-                          </Link>
-                          <button
-                            type="button"
-                            onClick={toggleSub}
-                            className="p-1.5 text-[#52627A] hover:text-[#B62825]"
-                            aria-label={`Expand ${item.label} list`}
-                          >
-                            <ChevronDown
-                              className={`w-4 h-4 transition-transform ${isSubOpen ? 'rotate-180 text-[#B62825]' : ''
-                                }`}
-                            />
-                          </button>
-                        </>
+                        /* Default Nav Item */
+                        <Link
+                          to={item.path}
+                          className={`text-[15px] font-medium ${active ? 'text-[#B62825] font-semibold' : 'text-[#52627A]'
+                            }`}
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          {item.label}
+                        </Link>
                       )}
                     </div>
 

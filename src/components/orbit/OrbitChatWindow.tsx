@@ -336,7 +336,7 @@ export const OrbitChatWindow: React.FC<OrbitChatWindowProps> = ({
             className="inline-flex items-center gap-1 text-[#D9DEE5] hover:text-[#B62825] transition-colors"
           >
             <PhoneCall className="w-3 h-3 text-[#B62825]" />
-            <span>Ops: +91 81045 92823</span>
+            <span>Ops: +91 81086 72929</span>
           </a>
 
           <span className="text-white/20">•</span>
@@ -345,7 +345,7 @@ export const OrbitChatWindow: React.FC<OrbitChatWindowProps> = ({
             href={COMPANY_DETAILS.emergencyPhoneHref}
             className="text-[#B62825] font-bold hover:underline"
           >
-            24×7: 8108672929
+            24×7: +91 81086 72929
           </a>
         </div>
       </div>

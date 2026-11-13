@@ -159,7 +159,7 @@ To connect real form submissions to a backend server, webhook, or CRM:
 1. Open `.env` (or copy `.env.example` to `.env`).
 2. Set `VITE_ENQUIRY_API_URL="https://your-api.com/v1/enquiry"`.
 3. The form sends a JSON payload via `POST` with all field values, timestamp, and source metadata.
-4. If `VITE_ENQUIRY_API_URL` is empty, requests are safely stored in browser local storage (`msk_quote_requests`) and direct phone (`+91 81045 92823`) and email (`accounts@msklogisticsolution.com`) contacts are presented.
+4. If `VITE_ENQUIRY_API_URL` is empty, requests are safely stored in browser local storage (`msk_quote_requests`) and direct phone (`+91 81086 72929`) and email (`info@msklogisticsolution.com`) contacts are presented.
 
 ---
 
@@ -167,8 +167,8 @@ To connect real form submissions to a backend server, webhook, or CRM:
 
 - **Company Name:** MSK Logistics Pvt. Ltd.
 - **Address:** JNPT Township Colony, Sector - 3, Building No. B/48, Office No. 3, Navi Mumbai 400702, Maharashtra, India.
-- **Phone:** `+91 81045 92823`
-- **Email:** `accounts@msklogisticsolution.com`
+- **Phone:** `+91 81086 72929`
+- **Email:** `info@msklogisticsolution.com`
 - **Maritime Gateway:** Nhava Sheva (JNPT), Navi Mumbai
 
 ---

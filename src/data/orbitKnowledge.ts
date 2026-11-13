@@ -75,15 +75,15 @@ VERIFIED COMPANY CAPABILITIES & FACTS:
 9. Operating Offices & Contacts:
    - Main Commercial Branch: Office No-A-428, 4th Floor, Balaji Bhawan, Plot No-42A, Sector 11, CBD Belapur, Navi Mumbai 400 614, Maharashtra, India.
    - Registered Operations Office: JNPT Township Colony, Sector - 3, Building No. B/48, Office No. 3, Navi Mumbai 400702, Maharashtra, India.
-   - Direct Operations Desk: +91 81045 92823 (regular business hours).
-   - 24×7 Emergency Operations Desk: 8108672929 (urgent vessel cut-off escalations and night moves).
-   - Email: info@msklogisticsolution.com, accounts@msklogisticsolution.com.
+   - Direct Operations Desk: +91 81086 72929.
+   - 24×7 Emergency Operations Desk: +91 81086 72929 (urgent vessel cut-off escalations and night moves).
+   - Email: info@msklogisticsolution.com.
 
 STRICT CONVERSATIONAL RULES & BOUNDARIES:
 1. ALWAYS identify yourself as MSK ORBIT, the AI logistics assistant for MSK Logistics.
 2. NEVER invent freight rates, dollar/rupee quotations, vessel schedules, container availability, specific delivery transit times, or custom certifications.
-3. If an exporter or client asks for pricing or a quotation, invite them to use the "Request a Quote" form (/request-quote) or contact the Operations Desk (+91 81045 92823).
-4. When technical or commercial details are outside verified records, clearly state that the information requires direct confirmation with our operations desk at JNPT (+91 81045 92823) or emergency desk (8108672929).
+3. If an exporter or client asks for pricing or a quotation, invite them to use the "Request a Quote" form (/request-quote) or contact the Operations Desk (+91 81086 72929).
+4. When technical or commercial details are outside verified records, clearly state that the information requires direct confirmation with our operations desk at JNPT (+91 81086 72929).
 5. Always maintain a professional, courteous, industrial tone with clear, concise bullet points where helpful.
 6. Remember that Warehouse is an independent operational facility and NOT one of the 5 Services categories.
 `;
@@ -169,7 +169,7 @@ export function getLocalGroundedResponse(prompt: string): string {
         `• **5 Services:** Ocean Cargo, Air Cargo, Container Stuffing, Special Project Cargo (ODC), Cargo Lashing\n` +
         `• **Warehouse Facilities:** Open Yard & Shaded Warehouse (Aryan Shed)\n` +
         `• **Container Specs:** 20GP, 40GP, 40HC, Flat Rack & Open Top\n` +
-        `• **Operations Desk:** +91 81045 92823 | 24×7 Emergency: 8108672929\n\n` +
+        `• **Operations Desk:** +91 81086 72929 | 24×7 Emergency: +91 81086 72929\n\n` +
         `Aap kis service ya cargo requirement ke baare mein jaanna chahte hain?`;
     }
     return `**Hello! I am MSK ORBIT, your intelligent AI logistics assistant for MSK Logistics Pvt. Ltd.**\n\n` +
@@ -177,7 +177,7 @@ export function getLocalGroundedResponse(prompt: string): string {
       `• **5 Dedicated Services:** Ocean Cargo, Air Cargo, Container Stuffing Logistics, Special Project Cargo Handling (ODC), and Certified Cargo Lashing.\n` +
       `• **Warehouse Staging:** Open Yard buffer storage and Shaded Warehouse (Aryan Shed) packing bays.\n` +
       `• **ISO Container Specs:** 20ft/40ft Dry, High Cube, Flat Rack, and Open Top.\n` +
-      `• **Direct Assistance:** Operations Desk (+91 81045 92823) & 24×7 Emergency Hotline (8108672929).\n\n` +
+      `• **Direct Assistance:** Operations Desk (+91 81086 72929) & 24×7 Emergency Hotline (+91 81086 72929).\n\n` +
       `How can I assist your cargo shipment today?`;
   }
 
@@ -200,7 +200,7 @@ export function getLocalGroundedResponse(prompt: string): string {
       `• **Heavy Marine Securing:** High-tensile steel wire ropes, turnbuckles, welded base stoppers, and heavy ratchet binders.\n` +
       `• **Port Gate & Low-Bed Staging:** Multi-axle hydraulic trailers, mobile crane rigging, and buffer yard laydown before vessel cut-offs.\n` +
       `• **Engineering Standards:** Executed according to international cargo securing codes and marine surveyor requirements.\n\n` +
-      `For specialized ODC drawings or feasibility checks, please submit a [Request for Quote](/request-quote) or contact our direct desk at **+91 81045 92823**.`;
+      `For specialized ODC drawings or feasibility checks, please submit a [Request for Quote](/request-quote) or contact our direct desk at **+91 81086 72929**.`;
   }
 
   // 4. Ocean Cargo
@@ -271,14 +271,14 @@ export function getLocalGroundedResponse(prompt: string): string {
       `To receive an official quotation:\n` +
       `1. Complete our online form: [Request a Quote](/request-quote)\n` +
       `2. Or email your shipment packing list to: [info@msklogisticsolution.com](mailto:info@msklogisticsolution.com)\n` +
-      `3. For immediate assistance, call our Direct Operations Desk: **+91 81045 92823**`;
+      `3. For immediate assistance, call our Direct Operations Desk: **+91 81086 72929**`;
   }
 
   // 11. Contact & Emergency Phone
   if (p.includes('contact') || p.includes('phone') || p.includes('emergency') || p.includes('address') || p.includes('branch') || p.includes('number') || p.includes('call') || p.includes('sampark') || p.includes('kahan')) {
     return `**MSK Logistics Contact Directory:**\n\n` +
-      `• **Direct Operations Desk:** [+91 81045 92823](tel:+918104592823) *(Regular Business Hours)*\n` +
-      `• **24×7 Emergency Desk:** [8108672929](tel:8108672929) *(24×7 Active for night moves & port escalations)*\n` +
+      `• **Direct Operations Desk:** [+91 81086 72929](tel:+918108672929) *(Commercial & Operational Enquiries)*\n` +
+      `• **24×7 Emergency Desk:** [+91 81086 72929](tel:+918108672929) *(24×7 Active for night moves & port escalations)*\n` +
       `• **Email:** [info@msklogisticsolution.com](mailto:info@msklogisticsolution.com)\n\n` +
       `**Operating Facilities:**\n` +
       `• **Main Commercial Branch:** Balaji Bhawan, Office A-428, Sector 11, CBD Belapur, Navi Mumbai 400614\n` +

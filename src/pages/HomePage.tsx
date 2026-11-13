@@ -17,8 +17,10 @@ import { ContainerServicesSection } from '../components/services/ContainerServic
 import { IndustrialStickersShowcase } from '../components/common/IndustrialStickersShowcase';
 import { SolutionCards } from '../components/export-solutions/SolutionCards';
 import { OperationalEnvironmentsGallery } from '../components/gallery/OperationalEnvironmentsGallery';
+import { HomeTeamPreview } from '../components/team/HomeTeamPreview';
 import { BrandedImage } from '../components/common/BrandedImage';
 import { MagneticButton } from '../components/common/MagneticButton';
+import { MskButton } from '../components/common/MskButton';
 import { ScrollReveal } from '../components/common/ScrollReveal';
 import { 
   COMPANY_DETAILS, 
@@ -804,7 +806,12 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* ------------------------------------------------------------- */}
-      {/* 13. PREMIUM CINEMATIC QUOTE CTA SECTION                       */}
+      {/* 13. CINEMATIC TEAM SECTION: THE PEOPLE BEHIND MSK LOGISTICS   */}
+      {/* ------------------------------------------------------------- */}
+      <HomeTeamPreview />
+
+      {/* ------------------------------------------------------------- */}
+      {/* 14. PREMIUM CINEMATIC QUOTE CTA SECTION                       */}
       {/* ------------------------------------------------------------- */}
       <section className="relative py-24 sm:py-32 bg-[#000000] text-white overflow-hidden group border-t border-white/10">
         {/* Background Photograph with subtle zoom effect */}
@@ -863,30 +870,32 @@ export const HomePage: React.FC = () => {
           {/* Action Buttons */}
           <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
             <MagneticButton maxPull={5}>
-              <Link 
+              <MskButton
                 to="/request-quote"
-                className="w-full sm:w-auto bg-[#B62825] hover:bg-[#9E2220] text-white font-bold py-4 px-9 rounded-xl text-base transition-all duration-200 shadow-xl hover:shadow-2xl hover:-translate-y-0.5 active:scale-[0.98] inline-flex items-center justify-center gap-3 group/btn focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#B62825] motion-reduce:transform-none"
+                variant="primary"
+                size="lg"
+                showArrow
               >
-                <span>Request a Quote</span>
-                <ArrowRight className="w-5 h-5 transition-transform duration-200 group-hover/btn:translate-x-1 motion-reduce:transform-none" />
-              </Link>
+                Request a Quote
+              </MskButton>
             </MagneticButton>
 
             <MagneticButton maxPull={4}>
-              <Link 
+              <MskButton
                 to="/services"
-                className="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white font-semibold py-4 px-8 rounded-xl text-base transition-all duration-200 border border-white/25 hover:border-white/40 hover:-translate-y-0.5 active:scale-[0.98] inline-flex items-center justify-center gap-2 group/btn motion-reduce:transform-none"
+                variant="outline"
+                size="lg"
+                showArrow
               >
-                <span>Explore Our Services</span>
-                <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover/btn:translate-x-1 motion-reduce:transform-none" />
-              </Link>
+                Explore Our Services
+              </MskButton>
             </MagneticButton>
           </div>
         </ScrollReveal>
       </section>
 
       {/* ------------------------------------------------------------- */}
-      {/* 14. FOOTER COMPONENT is rendered automatically via App.tsx     */}
+      {/* 15. FOOTER COMPONENT is rendered automatically via App.tsx     */}
       {/* ------------------------------------------------------------- */}
     </div>
   );
