@@ -462,8 +462,8 @@ export const Navbar: React.FC = () => {
                 const isCompany = item.id === 'company';
                 const isSubOpen = isServices ? mobileServicesOpen : isCompany ? mobileCompanyOpen : false;
                 const toggleSub = () => {
-                  if (isServices) setMobileServicesOpen(!mobileServicesOpen);
-                  if (isCompany) setMobileCompanyOpen(!mobileCompanyOpen);
+                  if (isServices) setMobileServicesOpen((prev) => !prev);
+                  if (isCompany) setMobileCompanyOpen((prev) => !prev);
                 };
 
                 return (
@@ -475,7 +475,7 @@ export const Navbar: React.FC = () => {
                           type="button"
                           className={`w-full flex items-center justify-between text-left text-[15px] font-medium py-1 ${active ? 'text-[#B62825] font-semibold' : 'text-[#52627A]'
                             }`}
-                          onClick={() => setMobileCompanyOpen(!mobileCompanyOpen)}
+                          onClick={toggleSub}
                           aria-expanded={isSubOpen}
                           aria-label="Toggle Company submenu"
                         >
@@ -491,7 +491,7 @@ export const Navbar: React.FC = () => {
                           type="button"
                           className={`w-full flex items-center justify-between text-left text-[15px] font-medium py-1 ${active ? 'text-[#B62825] font-semibold' : 'text-[#52627A]'
                             }`}
-                          onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                          onClick={toggleSub}
                           aria-expanded={isSubOpen}
                           aria-label="Toggle Services submenu"
                         >

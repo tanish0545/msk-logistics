@@ -1,7 +1,8 @@
-const http = require('http');
+ cxconst http = require('http');
 const { spawn } = require('child_process');
 const fs = require('fs');
 const path = require('path');
+const os = require('os');
 
 const ARTIFACT_DIR = 'C:/Users/tanis/.gemini/antigravity/brain/c0b2c763-e918-4c9e-b8e6-bd7de1b3a74d';
 const BASE_URL = 'http://127.0.0.1:5173';
@@ -78,7 +79,7 @@ class CDPClient {
 
   async close() {
     if (this.ws) {
-      try { this.ws.close(); } catch {}
+      try { this.ws.close(); } catch { }
     }
   }
 }
@@ -86,8 +87,8 @@ class CDPClient {
 async function run() {
   console.log('=== Verifying Liquid Glass Service Cards Implementation ===');
   const chromePath = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
-  const tmpDir = path.join(__dirname, '../.tmp_chrome_verify_liquid_glass');
-  if (!fs.existsSync(tmpDir)) fs.mkdirSync(tmpDir, { recursive: true });
+  const tmpDir = path.join(os.tmpdir(), `msk_chrome_verify_liquid_glass_${Date.now()}`);
+  fs.mkdirSync(tmpDir, { recursive: true });
 
   const proc = spawn(chromePath, [
     '--remote-debugging-port=9491',
@@ -133,24 +134,40 @@ async function run() {
       mobile: false,
     });
     await cdp.send('Page.navigate', { url: `${BASE_URL}/` });
-    await delay(2000);
+
+    // Poll until React root is mounted and liquid-glass cards exist
+    let ready = false;
+    for (let i = 0; i < 40; i++) {
+      const count = await cdp.eval('document.querySelectorAll(".liquid-glass").length');
+      if (count >= 6) {
+        ready = true;
+        console.log(`DOM hydrated with ${count} liquid-glass panels in ~${i * 500}ms`);
+        break;
+      }
+      await delay(500);
+    }
+    if (!ready) {
+      throw new Error('Liquid glass cards did not appear within 20s');
+    }
+
+    await delay(1000);
 
     const audit = await cdp.eval(`(() => {
       const section = document.getElementById('core-services');
       if (!section) return { error: '#core-services not found' };
       section.scrollIntoView({ behavior: 'instant', block: 'center' });
 
-      const cards = Array.from(section.querySelectorAll('a[href^="/services/"]'));
+      const glassPanels = Array.from(section.querySelectorAll('.liquid-glass'));
       return {
-        count: cards.length,
-        cards: cards.map((card, idx) => {
-          const glassPanel = card.querySelector('.liquid-glass');
-          const style = glassPanel ? window.getComputedStyle(glassPanel) : null;
-          const title = card.querySelector('h3')?.innerText || '';
-          const desc = card.querySelector('p')?.innerText || '';
-          const btn = card.querySelector('span.bg-\\\\[\\\\#B62825\\\\]');
+        count: glassPanels.length,
+        cards: glassPanels.map((glassPanel, idx) => {
+          const card = glassPanel.closest('a');
+          const style = window.getComputedStyle(glassPanel);
+          const title = card ? card.querySelector('h3')?.innerText || '' : '';
+          const desc = card ? card.querySelector('p')?.innerText || '' : '';
+          const btn = card ? card.querySelector('span.whitespace-nowrap') : null;
           const btnStyle = btn ? window.getComputedStyle(btn) : null;
-          const img = card.querySelector('img');
+          const img = card ? card.querySelector('img') : null;
 
           return {
             index: idx + 1,
@@ -178,7 +195,7 @@ async function run() {
       };
     })()`);
 
-    console.log('Liquid Glass Card Audit:', JSON.stringify(audit, null, 2));
+    console.log('Liquid Glass Card Audit (1536px):', JSON.stringify(audit, null, 2));
 
     await delay(600);
     await cdp.captureScreenshot(path.join(ARTIFACT_DIR, 'verified_liquid_glass_cards_desktop.png'));
@@ -191,6 +208,11 @@ async function run() {
       deviceScaleFactor: 1,
       mobile: false,
     });
+    await delay(600);
+    await cdp.eval(`(() => {
+      const section = document.getElementById('core-services');
+      if (section) section.scrollIntoView({ behavior: 'instant', block: 'center' });
+    })()`);
     await delay(600);
     await cdp.captureScreenshot(path.join(ARTIFACT_DIR, 'verified_liquid_glass_cards_1280px.png'));
 
@@ -220,7 +242,7 @@ async function run() {
     await delay(800);
     try {
       fs.rmSync(tmpDir, { recursive: true, force: true });
-    } catch {}
+    } catch { }
   }
 }
 
