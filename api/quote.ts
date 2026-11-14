@@ -150,6 +150,35 @@ export default async function handler(req: any, res: any) {
     errors.quoteName = 'Quote reference name cannot exceed 150 characters.';
   }
 
+  // Origin City / CFS Facility validation (BUG 02)
+  if (!originCity || typeof originCity !== 'string' || originCity.trim().length < 2) {
+    errors.originCity = 'Origin city or CFS facility is required (minimum 2 characters).';
+  } else if (originCity.trim().length > 150) {
+    errors.originCity = 'Origin city cannot exceed 150 characters.';
+  }
+
+  // Target Container Equipment Type validation (BUG 03)
+  if (!containerSize || typeof containerSize !== 'string' || containerSize.trim().length === 0) {
+    errors.containerSize = 'Please select a valid container equipment type.';
+  }
+
+  // Preferred Date validation: reject past dates (BUG 04)
+  if (preferredDate && typeof preferredDate === 'string' && preferredDate.trim()) {
+    const chosenDate = new Date(preferredDate);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    if (isNaN(chosenDate.getTime())) {
+      errors.preferredDate = 'Please provide a valid execution date.';
+    } else if (chosenDate < today) {
+      errors.preferredDate = 'Preferred execution date cannot be in the past.';
+    }
+  }
+
+  // Operational Address validation (BUG 05)
+  if (!operationalAddress || typeof operationalAddress !== 'string' || operationalAddress.trim().length < 5) {
+    errors.operationalAddress = 'Operational staging address or facility location is required (minimum 5 characters).';
+  }
+
   if (Object.keys(errors).length > 0) {
     return res.status(400).json({
       success: false,

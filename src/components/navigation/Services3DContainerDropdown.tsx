@@ -165,7 +165,7 @@ export const Services3DContainerDropdown: React.FC<Services3DContainerDropdownPr
   return (
     <div
       ref={containerRef}
-      className="relative bg-[#0B0B0E] text-[#D9DEE5] rounded-2xl shadow-[0_30px_90px_rgba(0,0,0,0.98),0_0_0_1px_rgba(255,255,255,0.18),0_0_50px_rgba(182,40,37,0.25)] border-2 border-white/20 overflow-hidden text-left flex flex-col lg:flex-row w-full max-h-[calc(100vh-92px)] overflow-y-auto select-none backdrop-blur-2xl transition-all duration-300"
+      className="relative bg-[#0B0B0E] text-[#D9DEE5] rounded-2xl shadow-[0_30px_90px_rgba(0,0,0,0.98),0_0_0_1px_rgba(255,255,255,0.18),0_0_50px_rgba(182,40,37,0.25)] border-2 border-white/20 overflow-hidden text-left flex flex-col lg:flex-row w-full max-h-[calc(100vh-80px)] overflow-y-auto select-none backdrop-blur-2xl transition-all duration-300 scrollbar-thin"
       role="menu"
       aria-label="MSK Logistics Services Mega Menu"
       tabIndex={-1}
@@ -216,7 +216,7 @@ export const Services3DContainerDropdown: React.FC<Services3DContainerDropdownPr
       {/* ========================================================================= */}
       {/* LEFT SECTION: 6 STACKED LAYERED 3D FLIP CARDS                             */}
       {/* ========================================================================= */}
-      <div className="relative z-10 flex-1 p-5 sm:p-6 lg:p-7 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-white/10">
+      <div className="relative z-10 flex-1 p-5 sm:p-6 lg:p-7 pb-8 sm:pb-9 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-white/10">
         
         {/* Section Header */}
         <div className="space-y-1">
@@ -406,12 +406,12 @@ export const Services3DContainerDropdown: React.FC<Services3DContainerDropdownPr
           })}
         </div>
 
-        {/* Bottom Left Action Bar */}
-        <div className="pt-2 flex flex-wrap items-center gap-3">
+        {/* Bottom Left Action Bar (BUG 09: Ensure buttons have ample padding and never clipped) */}
+        <div className="pt-4 pb-2 flex flex-wrap items-center gap-3 shrink-0">
           <Link
             to="/request-quote"
             onClick={onClose}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-[#D43330] via-[#B62825] to-[#8F1917] hover:brightness-110 active:scale-95 text-white text-xs font-heading font-bold shadow-[0_4px_16px_rgba(182,40,37,0.4)] transition-all cursor-pointer"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#D43330] via-[#B62825] to-[#8F1917] hover:brightness-110 active:scale-95 text-white text-xs font-heading font-bold shadow-[0_4px_16px_rgba(182,40,37,0.4)] transition-all cursor-pointer"
           >
             <span>Request a Quote</span>
             <ArrowRight className="w-3.5 h-3.5" />
@@ -420,7 +420,7 @@ export const Services3DContainerDropdown: React.FC<Services3DContainerDropdownPr
           <Link
             to="/services"
             onClick={onClose}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#141822]/80 hover:bg-[#1C2230] border border-white/15 text-white text-xs font-heading font-bold transition-all cursor-pointer"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#141822]/80 hover:bg-[#1C2230] border border-white/15 text-white text-xs font-heading font-bold transition-all cursor-pointer"
           >
             <span>Explore Services</span>
             <ArrowRight className="w-3.5 h-3.5" />
@@ -432,7 +432,7 @@ export const Services3DContainerDropdown: React.FC<Services3DContainerDropdownPr
       {/* ========================================================================= */}
       {/* RIGHT SECTION: SPECIALIZED SERVICES & CARTING                             */}
       {/* ========================================================================= */}
-      <div className="relative z-10 w-full lg:w-[330px] xl:w-[360px] p-5 sm:p-6 lg:p-7 flex flex-col justify-between bg-black/40 backdrop-blur-md">
+      <div className="relative z-10 w-full lg:w-[330px] xl:w-[360px] p-5 sm:p-6 lg:p-7 pb-8 sm:pb-9 flex flex-col justify-between bg-black/40 backdrop-blur-md">
         
         {/* Right Header */}
         <div className="space-y-1">

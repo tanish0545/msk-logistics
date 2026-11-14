@@ -47,11 +47,13 @@ export const ContainerServiceDoorCard: React.FC<ContainerServiceDoorCardProps> =
       className="group/card relative block w-full select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B62825] rounded-2xl"
       aria-label={`Explore ${service.title} details`}
     >
+      {/* Extended hit-area prevents hover flickering on card translation */}
+      <span className="absolute -bottom-2 inset-x-0 h-2 pointer-events-auto" aria-hidden="true" />
       {/* 
         Refined Card Aspect Ratio ~0.625 (10/16):
         Consistent width-to-height ratio, equal dimensions across all 6 cards
       */}
-      <div className="relative w-full aspect-[10/16] rounded-2xl overflow-hidden bg-[#0D0F14] border border-white/10 group-hover/card:border-[#B62825]/80 shadow-[0_4px_20px_rgba(0,0,0,0.5)] group-hover/card:shadow-[0_8px_30px_rgba(182,40,37,0.25)] transition-all duration-300 ease-out group-hover/card:-translate-y-1.5 flex flex-col justify-between p-3 sm:p-3.5">
+      <div className="relative w-full aspect-[10/16] rounded-2xl overflow-hidden bg-[#0D0F14] border border-white/10 group-hover/card:border-[#B62825]/80 shadow-[0_4px_20px_rgba(0,0,0,0.5)] group-hover/card:shadow-[0_8px_30px_rgba(182,40,37,0.25)] transition-all duration-300 ease-out group-hover/card:-translate-y-1.5 flex flex-col justify-between p-3 sm:p-3.5 transform-gpu will-change-transform backface-hidden">
         
         {/* Photorealistic Closed Container Door Background Image */}
         <img

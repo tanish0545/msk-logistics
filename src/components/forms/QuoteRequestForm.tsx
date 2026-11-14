@@ -106,6 +106,7 @@ export const SERVICE_OPTIONS: ServiceOption[] = [
 
 export const QuoteRequestForm: React.FC = () => {
   const [searchParams] = useSearchParams();
+  const DRAFT_STORAGE_KEY = 'msk_quote_draft_v1';
 
   // Initial solution type from URL or default
   const initialSolution: SolutionType = 'client_container_and_cargo';
@@ -124,7 +125,7 @@ export const QuoteRequestForm: React.FC = () => {
     return '';
   };
 
-  // Initial container from URL or default
+  // Initial container from URL or empty default (BUG 03: starts empty requiring selection)
   const getInitialContainer = (): string => {
     const containerParam = searchParams.get('container');
     if (containerParam) return containerParam;
@@ -132,45 +133,90 @@ export const QuoteRequestForm: React.FC = () => {
     if (cat === 'flat-rack') return '40ft Flat Rack Container';
     if (cat === 'breakbulk') return 'Breakbulk / Specialized Rigging';
     if (cat === 'open-top') return 'Open Top Container';
-    return '40ft High Cube Container';
+    return ''; // Start empty by default to enforce user selection
   };
 
-  const [currentStep, setCurrentStep] = useState(1);
+  // Hydrate draft from sessionStorage (BUG 01: preserve form data after refresh)
+  const getSavedDraft = (): { step?: number; data?: Partial<QuoteFormData> } | null => {
+    try {
+      const raw = typeof window !== 'undefined' ? sessionStorage.getItem(DRAFT_STORAGE_KEY) : null;
+      if (raw) {
+        return JSON.parse(raw);
+      }
+    } catch (e) {
+      console.warn('[MSK Quote Form] Failed to parse sessionStorage draft:', e);
+    }
+    return null;
+  };
+
+  const savedDraft = getSavedDraft();
+
+  const [currentStep, setCurrentStep] = useState<number>(() => {
+    if (savedDraft?.step && savedDraft.step >= 1 && savedDraft.step <= 5) {
+      return savedDraft.step;
+    }
+    return 1;
+  });
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [generatedRequestId, setGeneratedRequestId] = useState<string>('');
   const [copiedToClipboard, setCopiedToClipboard] = useState(false);
 
-  const [formData, setFormData] = useState<QuoteFormData>({
-    solutionType: initialSolution,
-    enquiryCategory: getInitialCategory(),
-    // Step 2
-    cargoDescription: '',
-    packageCount: '',
-    approxWeight: '',
-    weightUnit: 'tons',
-    dimensions: '',
-    packagingNeeds: '',
-    specialHandlingNotes: '',
-    // Step 3
-    originCity: 'Navi Mumbai / Nhava Sheva',
-    destinationPort: '',
-    containerSize: getInitialContainer(),
-    containerLocationOrPositioning: '',
-    preferredDate: '',
-    operationalAddress: '',
-    // Step 4
-    quoteName: '', // Client Brief Note 1: "Change req' Add Q name -"
-    companyName: '',
-    contactName: '',
-    email: '',
-    phone: '',
-    designation: '',
-    additionalInstructions: '',
-    // Step 5
-    privacyConsent: false,
+  const [formData, setFormData] = useState<QuoteFormData>(() => {
+    const initialData: QuoteFormData = {
+      solutionType: initialSolution,
+      enquiryCategory: getInitialCategory(),
+      // Step 2
+      cargoDescription: '',
+      packageCount: '',
+      approxWeight: '',
+      weightUnit: 'tons',
+      dimensions: '',
+      packagingNeeds: '',
+      specialHandlingNotes: '',
+      // Step 3
+      originCity: '', // BUG 02: starts empty or user input
+      destinationPort: '',
+      containerSize: getInitialContainer(), // BUG 03: starts empty requiring user choice
+      containerLocationOrPositioning: '',
+      preferredDate: '',
+      operationalAddress: '',
+      // Step 4
+      quoteName: '', // Client Brief Note 1: "Change req' Add Q name -"
+      companyName: '',
+      contactName: '',
+      email: '',
+      phone: '',
+      designation: '',
+      additionalInstructions: '',
+      // Step 5
+      privacyConsent: false,
+    };
+
+    if (savedDraft?.data) {
+      return {
+        ...initialData,
+        ...savedDraft.data,
+      };
+    }
+    return initialData;
   });
+
+  // Write changes to sessionStorage (BUG 01)
+  useEffect(() => {
+    if (!isSubmitted && typeof window !== 'undefined') {
+      try {
+        sessionStorage.setItem(
+          DRAFT_STORAGE_KEY,
+          JSON.stringify({ step: currentStep, data: formData })
+        );
+      } catch (e) {
+        // quota exceeded or private mode
+      }
+    }
+  }, [formData, currentStep, isSubmitted]);
 
   const [errors, setErrors] = useState<Record<string, string>>({});
 
@@ -272,14 +318,31 @@ export const QuoteRequestForm: React.FC = () => {
         }
       }
     } else if (step === 3) {
-      if (!formData.originCity?.trim()) {
-        errs.originCity = 'Origin city or CFS facility is required.';
+      // BUG 02: Origin City mandatory
+      if (!formData.originCity?.trim() || formData.originCity.trim().length < 2) {
+        errs.originCity = 'Origin city or CFS facility is required (minimum 2 characters).';
       }
       if (!formData.destinationPort?.trim()) {
         errs.destinationPort = 'Destination port or delivery country is required.';
       }
-      if (!formData.containerLocationOrPositioning.trim() && !formData.operationalAddress.trim()) {
-        errs.operationalAddress = 'Origin facility or container positioning location is required.';
+      // BUG 03: Container equipment type explicit selection required
+      if (!formData.containerSize?.trim()) {
+        errs.containerSize = 'Please select a target container equipment type.';
+      }
+      // BUG 04: Preferred Execution Date must reject past dates
+      if (formData.preferredDate) {
+        const chosen = new Date(formData.preferredDate);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        if (isNaN(chosen.getTime())) {
+          errs.preferredDate = 'Please select a valid execution date.';
+        } else if (chosen < today) {
+          errs.preferredDate = 'Preferred execution date cannot be in the past.';
+        }
+      }
+      // BUG 05: Operational Address validated input
+      if (!formData.operationalAddress?.trim() || formData.operationalAddress.trim().length < 5) {
+        errs.operationalAddress = 'Operational staging address or facility location is required (minimum 5 characters).';
       }
     } else if (step === 4) {
       if (!formData.companyName.trim()) errs.companyName = 'Company name is required.';
@@ -343,6 +406,9 @@ export const QuoteRequestForm: React.FC = () => {
       if (response.ok && result?.success) {
         setGeneratedRequestId(result.referenceId || reqId);
         setIsSubmitted(true);
+        if (typeof window !== 'undefined') {
+          sessionStorage.removeItem(DRAFT_STORAGE_KEY);
+        }
       } else {
         const message =
           result?.message ||
@@ -414,10 +480,38 @@ export const QuoteRequestForm: React.FC = () => {
           <button
             type="button"
             onClick={() => {
+              if (typeof window !== 'undefined') {
+                sessionStorage.removeItem(DRAFT_STORAGE_KEY);
+              }
               setIsSubmitted(false);
               setCurrentStep(1);
+              setFormData({
+                solutionType: initialSolution,
+                enquiryCategory: '',
+                cargoDescription: '',
+                packageCount: '',
+                approxWeight: '',
+                weightUnit: 'tons',
+                dimensions: '',
+                packagingNeeds: '',
+                specialHandlingNotes: '',
+                originCity: '',
+                destinationPort: '',
+                containerSize: '',
+                containerLocationOrPositioning: '',
+                preferredDate: '',
+                operationalAddress: '',
+                quoteName: '',
+                companyName: '',
+                contactName: '',
+                email: '',
+                phone: '',
+                designation: '',
+                additionalInstructions: '',
+                privacyConsent: false,
+              });
             }}
-            className="text-slate-400 hover:text-white underline py-2"
+            className="text-slate-400 hover:text-white underline py-2 cursor-pointer"
           >
             Submit Another Request
           </button>
@@ -478,7 +572,7 @@ export const QuoteRequestForm: React.FC = () => {
         </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="p-6 sm:p-9 space-y-8">
+      <form onSubmit={handleSubmit} className="p-4 sm:p-6 md:p-9 space-y-6 sm:space-y-8">
         
         {/* ========================================================================= */}
         {/* STEP 1: Select Service & Arrangement (Concept 07)                         */}
@@ -782,7 +876,7 @@ export const QuoteRequestForm: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               <div className="space-y-1.5">
                 <label className="block text-xs font-mono font-semibold text-slate-300 uppercase">
-                  Origin City / CFS Facility
+                  Origin City / CFS Facility <span className="text-[#B62825]">*</span>
                 </label>
                 <input
                   type="text"
@@ -790,7 +884,7 @@ export const QuoteRequestForm: React.FC = () => {
                   value={formData.originCity}
                   onChange={handleChange}
                   placeholder="e.g. Nhava Sheva (JNPT) / Conex CFS / Polaris / Panipat"
-                  className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#B62825]"
+                  className="w-full min-w-0 px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#B62825]"
                 />
                 {errors.originCity && <p className="text-red-400 text-xs font-mono">{errors.originCity}</p>}
               </div>
@@ -804,22 +898,38 @@ export const QuoteRequestForm: React.FC = () => {
                   name="destinationPort"
                   value={formData.destinationPort}
                   onChange={handleChange}
-                  placeholder="e.g. Jebel Ali (UAE), Rotterdam (NL), Houston (USA)"
-                  className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#B62825]"
+                  list="destination-ports-list"
+                  placeholder="e.g. Jebel Ali (AE), Rotterdam (NL), Houston (US)"
+                  className="w-full min-w-0 px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#B62825]"
                 />
+                <datalist id="destination-ports-list">
+                  <option value="Jebel Ali (AE) — United Arab Emirates" />
+                  <option value="Rotterdam (NL) — Netherlands" />
+                  <option value="Houston, TX (US) — United States" />
+                  <option value="Hamburg (DE) — Germany" />
+                  <option value="Port of Singapore (SG) — Singapore" />
+                  <option value="Dammam (SA) — Saudi Arabia" />
+                  <option value="Felixstowe / London (GB) — United Kingdom" />
+                  <option value="Shanghai (CN) — China" />
+                  <option value="Busan (KR) — South Korea" />
+                  <option value="Durban (ZA) — South Africa" />
+                  <option value="Port Said (EG) — Egypt" />
+                  <option value="Sohar / Salalah (OM) — Oman" />
+                </datalist>
                 {errors.destinationPort && <p className="text-red-400 text-xs font-mono">{errors.destinationPort}</p>}
               </div>
 
               <div className="space-y-1.5">
                 <label className="block text-xs font-mono font-semibold text-slate-300 uppercase">
-                  Target Container Equipment Type
+                  Target Container Equipment Type <span className="text-[#B62825]">*</span>
                 </label>
                 <select
                   name="containerSize"
                   value={formData.containerSize}
                   onChange={handleChange}
-                  className="w-full px-4 py-2.5 rounded-xl bg-neutral-900 border border-white/15 text-sm text-white focus:outline-none focus:border-[#B62825]"
+                  className="w-full min-w-0 px-4 py-2.5 rounded-xl bg-neutral-900 border border-white/15 text-sm text-white focus:outline-none focus:border-[#B62825]"
                 >
+                  <option value="" disabled>-- Select container equipment type --</option>
                   <option value="20ft Standard Dry Container">20ft Standard Dry Container (22G1)</option>
                   <option value="40ft Standard Dry Container">40ft Standard Dry Container (42G1)</option>
                   <option value="40ft High Cube Container">40ft High Cube Container (45G1)</option>
@@ -830,6 +940,7 @@ export const QuoteRequestForm: React.FC = () => {
                   <option value="Open Yard Buffer Holding">Open Yard Buffer Holding (Conex CFS)</option>
                   <option value="Shaded Warehouse Staging">Shaded Warehouse Staging (Aryan Shed)</option>
                 </select>
+                {errors.containerSize && <p className="text-red-400 text-xs font-mono">{errors.containerSize}</p>}
               </div>
 
               <div className="space-y-1.5">
@@ -839,23 +950,47 @@ export const QuoteRequestForm: React.FC = () => {
                 <input
                   type="date"
                   name="preferredDate"
+                  min={new Date().toISOString().split('T')[0]}
                   value={formData.preferredDate}
                   onChange={handleChange}
-                  className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 text-sm text-white focus:outline-none focus:border-[#B62825]"
+                  className="w-full min-w-0 px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 text-sm text-white focus:outline-none focus:border-[#B62825]"
                 />
+                {errors.preferredDate && <p className="text-red-400 text-xs font-mono">{errors.preferredDate}</p>}
               </div>
 
-              <div className="md:col-span-2 space-y-1.5">
+              <div className="space-y-1.5">
                 <label className="block text-xs font-mono font-semibold text-slate-300 uppercase">
-                  Operational Address / Container Positioning Location <span className="text-[#B62825]">*</span>
+                  Container Positioning Facility
+                </label>
+                <select
+                  name="containerLocationOrPositioning"
+                  value={formData.containerLocationOrPositioning}
+                  onChange={handleChange}
+                  className="w-full min-w-0 px-4 py-2.5 rounded-xl bg-neutral-900 border border-white/15 text-sm text-white focus:outline-none focus:border-[#B62825]"
+                >
+                  <option value="">Select facility or positioning hub...</option>
+                  <option value="Conex CFS Yard, Dronagiri (Nhava Sheva)">Conex CFS Yard, Dronagiri (Nhava Sheva)</option>
+                  <option value="JNPT / BMCT Port Terminal Gate">JNPT / BMCT Port Terminal Gate</option>
+                  <option value="Polaris CFS / Gateway Distriparks">Polaris CFS / Gateway Distriparks</option>
+                  <option value="Client Factory / Works — Taloja MIDC">Client Factory / Works — Taloja MIDC</option>
+                  <option value="Client Factory / Works — Pune / Chakan MIDC">Client Factory / Works — Pune / Chakan MIDC</option>
+                  <option value="Client Factory / Works — Panipat Industrial Area">Client Factory / Works — Panipat Industrial Area</option>
+                  <option value="Client Factory / Works — Gujarat Industrial Belt">Client Factory / Works — Gujarat Industrial Belt</option>
+                  <option value="Custom Staging Location">Custom Staging Location</option>
+                </select>
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="block text-xs font-mono font-semibold text-slate-300 uppercase">
+                  Operational Address / Staging Site <span className="text-[#B62825]">*</span>
                 </label>
                 <input
                   type="text"
                   name="operationalAddress"
                   value={formData.operationalAddress}
                   onChange={handleChange}
-                  placeholder="e.g. Conex CFS Yard, Dronagiri / Client Works, Taloja MIDC / Nhava Sheva Terminal"
-                  className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#B62825]"
+                  placeholder="e.g. Conex CFS Plot 12, Dronagiri / Client Works, Taloja MIDC"
+                  className="w-full min-w-0 px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#B62825]"
                 />
                 {errors.operationalAddress && (
                   <p className="text-red-400 text-xs font-mono">{errors.operationalAddress}</p>
@@ -1161,28 +1296,28 @@ export const QuoteRequestForm: React.FC = () => {
         )}
 
         {/* ========================================================================= */}
-        {/* Navigation Buttons                                                        */}
+        {/* Navigation Buttons (Responsive Mobile Layout — BUG 17)                    */}
         {/* ========================================================================= */}
-        <div className="pt-6 border-t border-white/10 flex items-center justify-between gap-3">
+        <div className="pt-6 border-t border-white/10 flex flex-col-reverse sm:flex-row sm:items-center justify-between gap-3">
           {currentStep > 1 ? (
             <button
               type="button"
               onClick={handlePrev}
               disabled={isSubmitting}
-              className="px-5 py-2.5 rounded-xl border border-white/20 hover:border-white/40 text-slate-300 hover:text-white text-xs font-semibold font-mono transition-colors flex items-center gap-1.5"
+              className="w-full sm:w-auto px-5 py-3 sm:py-2.5 rounded-xl border border-white/20 hover:border-white/40 text-slate-300 hover:text-white text-xs font-semibold font-mono transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>PREVIOUS</span>
             </button>
           ) : (
-            <div />
+            <div className="hidden sm:block" />
           )}
 
           {currentStep < 5 ? (
             <button
               type="button"
               onClick={handleNext}
-              className="px-6 py-2.5 rounded-xl bg-[#B62825] hover:bg-[#9E2220] text-white text-xs font-semibold font-mono tracking-wider transition-colors shadow-lg flex items-center gap-1.5"
+              className="w-full sm:w-auto px-6 py-3.5 sm:py-2.5 rounded-xl bg-[#B62825] hover:bg-[#9E2220] text-white text-xs font-semibold font-mono tracking-wider transition-colors shadow-lg flex items-center justify-center gap-1.5 cursor-pointer"
             >
               <span>CONTINUE</span>
               <ArrowRight className="w-4 h-4" />
@@ -1191,7 +1326,7 @@ export const QuoteRequestForm: React.FC = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="px-8 py-3 rounded-xl bg-[#B62825] hover:bg-[#9E2220] text-white text-sm font-bold font-mono tracking-wider transition-all shadow-xl flex items-center gap-2 disabled:opacity-50"
+              className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-3 rounded-xl bg-[#B62825] hover:bg-[#9E2220] text-white text-xs sm:text-sm font-bold font-mono tracking-wider transition-all shadow-xl flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer"
             >
               {isSubmitting ? (
                 <>

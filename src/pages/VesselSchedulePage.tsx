@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, ExternalLink, Ship, Calendar, Clock, Anchor } from 'lucide-react';
 import { VESSEL_SCHEDULE_CONFIG } from '../components/navigation/navConfig';
 import { InnerPageBanner } from '../components/layout/InnerPageBanner';
+import { Breadcrumbs } from '../components/navigation/Breadcrumbs';
 import { ScrollReveal } from '../components/common/ScrollReveal';
 
 export const VesselSchedulePage: React.FC = () => {
@@ -12,6 +13,14 @@ export const VesselSchedulePage: React.FC = () => {
     <div className="space-y-0 bg-white">
       {/* 1. Page Header — Clean, Modern & Action-Oriented */}
       <InnerPageBanner
+        breadcrumb={
+          <Breadcrumbs
+            items={[
+              { label: 'Home', to: '/' },
+              { label: 'Vessel Schedule', isCurrent: true },
+            ]}
+          />
+        }
         badge="PORT TERMINAL COORDINATION"
         badgeSubtext="NHAVA SHEVA (JNPT) • PORT CODE: INNSA"
         title="Vessel Schedule & Cut-Off Coordination"

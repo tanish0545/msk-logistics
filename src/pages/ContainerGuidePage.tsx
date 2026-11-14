@@ -49,6 +49,30 @@ export const ContainerGuidePage: React.FC = () => {
 
   const [activeGalleryIndex, setActiveGalleryIndex] = useState<number>(0);
   const [unitMode, setUnitMode] = useState<'metric' | 'both'>('metric');
+  const [activeSection, setActiveSection] = useState<'container-showcase' | 'break-bulk' | 'container-comparison'>('container-showcase');
+
+  // Track active section via scroll observation (BUG 14: stop auto-highlighting Break Bulk before user scrolls to it)
+  useEffect(() => {
+    const handleScroll = () => {
+      const breakBulkEl = document.getElementById('break-bulk');
+      const comparisonEl = document.getElementById('container-comparison');
+
+      const breakBulkTop = breakBulkEl ? breakBulkEl.getBoundingClientRect().top : 9999;
+      const comparisonTop = comparisonEl ? comparisonEl.getBoundingClientRect().top : 9999;
+
+      if (comparisonTop <= 250) {
+        setActiveSection('container-comparison');
+      } else if (breakBulkTop <= 250) {
+        setActiveSection('break-bulk');
+      } else {
+        setActiveSection('container-showcase');
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Sync container selection with URL query param
   useEffect(() => {
@@ -192,21 +216,33 @@ export const ContainerGuidePage: React.FC = () => {
             </span>
             <a
               href="#container-showcase"
-              className="py-1.5 px-3 rounded-lg text-xs font-semibold transition-all inline-flex items-center gap-1.5 bg-[#F1F5F9] text-[#1E293B] hover:bg-[#B62825] hover:text-white shrink-0"
+              className={`py-1.5 px-3 rounded-lg text-xs font-semibold transition-all inline-flex items-center gap-1.5 shrink-0 ${
+                activeSection === 'container-showcase'
+                  ? 'bg-red-50 text-[#B62825] border border-red-200 font-bold shadow-xs'
+                  : 'bg-[#F1F5F9] text-[#1E293B] hover:bg-[#B62825] hover:text-white border border-transparent'
+              }`}
             >
               <Box className="w-3.5 h-3.5 text-[#B62825]" />
               <span>1. Multi-Photo Showcase</span>
             </a>
             <a
               href="#break-bulk"
-              className="py-1.5 px-3 rounded-lg text-xs font-semibold transition-all inline-flex items-center gap-1.5 bg-red-50 text-[#B62825] border border-red-200 hover:bg-[#B62825] hover:text-white shrink-0 font-bold shadow-xs"
+              className={`py-1.5 px-3 rounded-lg text-xs font-semibold transition-all inline-flex items-center gap-1.5 shrink-0 ${
+                activeSection === 'break-bulk'
+                  ? 'bg-red-50 text-[#B62825] border border-red-200 font-bold shadow-xs'
+                  : 'bg-[#F1F5F9] text-[#1E293B] hover:bg-[#B62825] hover:text-white border border-transparent'
+              }`}
             >
-              <Anchor className="w-3.5 h-3.5 text-[#B62825] group-hover:text-white" />
+              <Anchor className="w-3.5 h-3.5 text-[#B62825]" />
               <span>2. Break Bulk (BBC) Gallery</span>
             </a>
             <a
               href="#container-comparison"
-              className="py-1.5 px-3 rounded-lg text-xs font-semibold transition-all inline-flex items-center gap-1.5 bg-[#F1F5F9] text-[#1E293B] hover:bg-[#B62825] hover:text-white shrink-0"
+              className={`py-1.5 px-3 rounded-lg text-xs font-semibold transition-all inline-flex items-center gap-1.5 shrink-0 ${
+                activeSection === 'container-comparison'
+                  ? 'bg-red-50 text-[#B62825] border border-red-200 font-bold shadow-xs'
+                  : 'bg-[#F1F5F9] text-[#1E293B] hover:bg-[#B62825] hover:text-white border border-transparent'
+              }`}
             >
               <Ruler className="w-3.5 h-3.5 text-[#B62825]" />
               <span>3. Specifications Matrix</span>

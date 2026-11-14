@@ -30,9 +30,11 @@ export const InteractiveCard: React.FC<InteractiveCardProps> = ({
 
   return (
     <div
-      className={`group relative rounded-xl border border-[#E2E2E2] bg-white transition-all duration-300 ease-out focus-within:ring-2 focus-within:ring-[#B62825] focus-within:ring-offset-2 motion-reduce:transform-none motion-reduce:transition-none ${elevationClasses} ${className}`}
+      className={`group relative rounded-xl border border-[#E2E2E2] bg-white transition-all duration-300 ease-out focus-within:ring-2 focus-within:ring-[#B62825] focus-within:ring-offset-2 motion-reduce:transform-none motion-reduce:transition-none transform-gpu will-change-transform backface-hidden ${elevationClasses} ${className}`}
       {...rest}
     >
+      {/* Hit-area extension prevents hover flickering on card bottom border */}
+      <span className="absolute -bottom-2 inset-x-0 h-2 pointer-events-auto" aria-hidden="true" />
       {showRedAccent && (
         <div
           className="absolute top-0 left-0 right-0 h-1 bg-[#B62825] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left z-20 motion-reduce:hidden rounded-t-xl pointer-events-none"

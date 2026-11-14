@@ -14,6 +14,7 @@ import {
   ShieldCheck
 } from 'lucide-react';
 import { InnerPageBanner } from '../components/layout/InnerPageBanner';
+import { Breadcrumbs } from '../components/navigation/Breadcrumbs';
 import { BrandedImage } from '../components/common/BrandedImage';
 import { ScrollReveal } from '../components/common/ScrollReveal';
 import { CLIENT_IMAGE_ASSETS } from '../data/imageAssets';
@@ -224,6 +225,14 @@ export const OperationsPage: React.FC = () => {
     <div className="space-y-0 bg-[#FBFBFC]">
       {/* 1. Page Header */}
       <InnerPageBanner
+        breadcrumb={
+          <Breadcrumbs
+            items={[
+              { label: 'Home', to: '/' },
+              { label: 'Operations', isCurrent: true },
+            ]}
+          />
+        }
         badge="OPERATIONAL EXCELLENCE"
         badgeSubtext="NHAVA SHEVA (JNPT) & MUNDRA PORT CORRIDORS"
         title="MSK Operational Capabilities & Field Projects"

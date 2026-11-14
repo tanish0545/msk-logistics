@@ -165,7 +165,7 @@ export const ImportExportPage: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
             {/* Option 01: Client-Arranged Container & Cargo */}
             <ScrollReveal direction="left" delay={50} className="h-full">
-              <div className="bg-white rounded-2xl border-2 border-black overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group h-full hover-lift">
+              <div className="bg-white rounded-2xl border border-[#E2E2E2] hover:border-[#B62825]/60 overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group h-full hover-lift">
               <div>
                 {/* Visual Header */}
                 <div className="relative">
@@ -187,7 +187,7 @@ export const ImportExportPage: React.FC = () => {
                     <div className="text-xs font-mono font-bold text-[#B62825] uppercase tracking-wider mb-1">
                       OPTION 01
                     </div>
-                    <h3 className="text-2xl sm:text-3xl font-bold text-[#000000] font-heading leading-tight">
+                    <h3 className="text-2xl sm:text-3xl font-bold text-[#1E293B] font-heading leading-tight">
                       {opt1.title}
                     </h3>
                     <p className="mt-2 text-sm sm:text-base font-semibold text-[#343434]">
@@ -274,7 +274,7 @@ export const ImportExportPage: React.FC = () => {
 
           {/* Option 02: Client Cargo, Container to Be Arranged */}
           <ScrollReveal direction="right" delay={150} className="h-full">
-            <div className="bg-white rounded-2xl border-2 border-neutral-300 hover:border-[#B62825] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group h-full hover-lift">
+            <div className="bg-white rounded-2xl border border-[#E2E2E2] hover:border-[#B62825]/60 overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group h-full hover-lift">
               <div>
                 {/* Visual Header */}
                 <div className="relative">
@@ -285,7 +285,7 @@ export const ImportExportPage: React.FC = () => {
                     imageClassName="group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute top-4 left-4 z-10">
-                    <span className="editorial-badge bg-[#343434] text-white border-white/20 shadow-md">
+                    <span className="editorial-badge bg-[#000000] text-white border-white/20 shadow-md">
                       {opt2.badge}
                     </span>
                   </div>
@@ -296,7 +296,7 @@ export const ImportExportPage: React.FC = () => {
                     <div className="text-xs font-mono font-bold text-[#B62825] uppercase tracking-wider mb-1">
                       OPTION 02
                     </div>
-                    <h3 className="text-2xl sm:text-3xl font-bold text-[#343434] font-heading leading-tight">
+                    <h3 className="text-2xl sm:text-3xl font-bold text-[#1E293B] font-heading leading-tight">
                       {opt2.title}
                     </h3>
                     <p className="mt-2 text-sm sm:text-base font-semibold text-[#173F70]">
@@ -417,7 +417,7 @@ export const ImportExportPage: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
             {/* LCL Card */}
             <ScrollReveal direction="left" delay={50} className="h-full">
-              <div className="bg-[#F8F9FA] rounded-2xl border border-[#E2E2E2] overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between h-full hover-lift">
+              <div className="bg-[#F8F9FA] rounded-2xl border border-[#E2E2E2] hover:border-[#B62825]/60 overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between h-full hover-lift">
               <div>
                 {/* Visual Header */}
                 <div className="relative">
@@ -427,7 +427,7 @@ export const ImportExportPage: React.FC = () => {
                     aspectRatio="aspect-[16/9]"
                   />
                   <div className="absolute top-4 left-4 z-10">
-                    <span className="editorial-badge bg-[#343434] text-white border-white/20">
+                    <span className="editorial-badge bg-[#000000] text-white border-white/20">
                       SHARED CONTAINER SPACE
                     </span>
                   </div>
@@ -435,10 +435,10 @@ export const ImportExportPage: React.FC = () => {
 
                 <div className="p-7 sm:p-9 space-y-6">
                   <div>
-                    <div className="text-xs font-mono font-bold text-[#173F70] uppercase tracking-wider mb-1">
+                    <div className="text-xs font-mono font-bold text-[#B62825] uppercase tracking-wider mb-1">
                       CONSOLIDATION FREIGHT
                     </div>
-                    <h3 className="text-2xl sm:text-3xl font-bold text-[#343434] font-heading">
+                    <h3 className="text-2xl sm:text-3xl font-bold text-[#1E293B] font-heading">
                       LCL — Less than Container Load
                     </h3>
                     <p className="mt-3 text-sm sm:text-[15px] text-[#666666] leading-relaxed">
@@ -449,7 +449,7 @@ export const ImportExportPage: React.FC = () => {
                   {/* Feature Checklist */}
                   <div className="space-y-3 pt-2 text-xs sm:text-[13px] text-[#475569]">
                     <div className="flex items-start gap-3 p-3 bg-white rounded-lg border border-[#E2E2E2]">
-                      <Layers className="w-4 h-4 text-[#173F70] shrink-0 mt-0.5" />
+                      <Layers className="w-4 h-4 text-[#B62825] shrink-0 mt-0.5" />
                       <div>
                         <strong className="text-[#343434] block">Shared Space:</strong>
                         <span>Goods are consolidated at a Container Freight Station (CFS) alongside cargo from other shippers.</span>
@@ -457,7 +457,7 @@ export const ImportExportPage: React.FC = () => {
                     </div>
 
                     <div className="flex items-start gap-3 p-3 bg-white rounded-lg border border-[#E2E2E2]">
-                      <Box className="w-4 h-4 text-[#173F70] shrink-0 mt-0.5" />
+                      <Box className="w-4 h-4 text-[#B62825] shrink-0 mt-0.5" />
                       <div>
                         <strong className="text-[#343434]">Typical Suitability:</strong>
                         <span>Consignments between 1 to 15 CBM, boxed machinery spares, palletized drums, and modular cartons.</span>
@@ -465,7 +465,7 @@ export const ImportExportPage: React.FC = () => {
                     </div>
 
                     <div className="flex items-start gap-3 p-3 bg-white rounded-lg border border-[#E2E2E2]">
-                      <Scale className="w-4 h-4 text-[#173F70] shrink-0 mt-0.5" />
+                      <Scale className="w-4 h-4 text-[#B62825] shrink-0 mt-0.5" />
                       <div>
                         <strong className="text-[#343434]">Common Pricing Basis:</strong>
                         <span>Billed on volume or weight basis (Weight or Measurement / W/M per cubic meter or metric ton).</span>
@@ -473,7 +473,7 @@ export const ImportExportPage: React.FC = () => {
                     </div>
 
                     <div className="flex items-start gap-3 p-3 bg-white rounded-lg border border-[#E2E2E2]">
-                      <Clock className="w-4 h-4 text-[#173F70] shrink-0 mt-0.5" />
+                      <Clock className="w-4 h-4 text-[#B62825] shrink-0 mt-0.5" />
                       <div>
                         <strong className="text-[#343434]">Handling Considerations:</strong>
                         <span>Requires robust export crating and shrink wrapping because cargo is handled multiple times during consolidation and deconsolidation.</span>
@@ -484,8 +484,8 @@ export const ImportExportPage: React.FC = () => {
               </div>
 
               <div className="p-7 sm:p-9 pt-0">
-                <div className="p-3.5 bg-neutral-100 rounded-lg text-xs text-neutral-800 border border-neutral-300">
-                  <strong>MSK Export Packaging Focus:</strong> We build ISPM-15 wooden boxes and heavy-duty shrink-wrapped skids tailored to endure shared LCL handling.
+                <div className="p-3.5 bg-white rounded-lg text-xs text-[#334155] border border-[#E2E8F0] shadow-2xs">
+                  <strong className="text-[#B62825]">MSK Export Packaging Focus:</strong> We build ISPM-15 wooden boxes and heavy-duty shrink-wrapped skids tailored to endure shared LCL handling.
                 </div>
               </div>
             </div>
@@ -493,7 +493,7 @@ export const ImportExportPage: React.FC = () => {
 
           {/* FCL Card */}
           <ScrollReveal direction="right" delay={150} className="h-full">
-            <div className="bg-[#F8F9FA] rounded-2xl border-2 border-neutral-300 overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between h-full hover-lift">
+            <div className="bg-[#F8F9FA] rounded-2xl border border-[#E2E2E2] hover:border-[#B62825]/60 overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between h-full hover-lift">
               <div>
                 {/* Visual Header */}
                 <div className="relative">
@@ -514,7 +514,7 @@ export const ImportExportPage: React.FC = () => {
                     <div className="text-xs font-mono font-bold text-[#B62825] uppercase tracking-wider mb-1">
                       DEDICATED CONTAINER LOAD
                     </div>
-                    <h3 className="text-2xl sm:text-3xl font-bold text-[#000000] font-heading">
+                    <h3 className="text-2xl sm:text-3xl font-bold text-[#1E293B] font-heading">
                       FCL — Full Container Load
                     </h3>
                     <p className="mt-3 text-sm sm:text-[15px] text-[#666666] leading-relaxed">
@@ -560,8 +560,8 @@ export const ImportExportPage: React.FC = () => {
               </div>
 
               <div className="p-7 sm:p-9 pt-0">
-                <div className="p-3.5 bg-red-50/70 rounded-lg text-xs text-[#B62825] border border-red-200">
-                  <strong>MSK Stuffing & Lashing Focus:</strong> We calculate load distribution, sequence heavy units, and install certified cross-lashing webbing and chocks.
+                <div className="p-3.5 bg-white rounded-lg text-xs text-[#334155] border border-[#E2E8F0] shadow-2xs">
+                  <strong className="text-[#B62825]">MSK Stuffing & Lashing Focus:</strong> We calculate load distribution, sequence heavy units, and install certified cross-lashing webbing and chocks.
                 </div>
               </div>
             </div>

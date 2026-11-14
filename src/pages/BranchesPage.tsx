@@ -49,7 +49,6 @@ export const BranchesPage: React.FC = () => {
           <Breadcrumbs
             items={[
               { label: 'Home', to: '/' },
-              { label: 'Company' },
               { label: 'Our Branches', isCurrent: true },
             ]}
           />

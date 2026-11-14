@@ -11,7 +11,8 @@ import {
   X, 
   Layers, 
   Compass, 
-  Anchor
+  Anchor,
+  ExternalLink
 } from 'lucide-react';
 import { COMPANY_DETAILS } from '../data/company';
 import { InnerPageBanner } from '../components/layout/InnerPageBanner';
@@ -106,7 +107,7 @@ export const RoadTransportPage: React.FC = () => {
   const [activeLightbox, setActiveLightbox] = useState<RoadFleetPhoto | null>(null);
 
   return (
-    <div className="space-y-0 bg-[#FFFFFF] text-[#1E293B]">
+    <div className="space-y-0 bg-[#FFFFFF] text-[#1E293B] overflow-x-hidden">
       {/* 1. Header Banner with Breadcrumbs */}
       <InnerPageBanner
         breadcrumb={
@@ -118,8 +119,8 @@ export const RoadTransportPage: React.FC = () => {
             ]}
           />
         }
-        badge="HEAVY ROAD HAULAGE &amp; FLEET LOGISTICS"
-        badgeSubtext="FACTORY-TO-PORT HIGHWAY CORRIDORS • NHAVA SHEVA (JNPT) &amp; MUNDRA"
+        badge="HEAVY ROAD HAULAGE & FLEET LOGISTICS"
+        badgeSubtext="FACTORY-TO-PORT HIGHWAY CORRIDORS • NHAVA SHEVA (JNPT) & MUNDRA"
         title="Road Transport & Heavy Haulage Fleet"
         description="Multi-axle hydraulic modular trailers, low-bed haulage, and factory-to-port heavy cargo transport connecting industrial manufacturing centers directly to Western India's maritime gateways."
       />
@@ -345,7 +346,7 @@ export const RoadTransportPage: React.FC = () => {
                     </p>
 
                     {/* Specifications Table */}
-                    <div className="pt-3 border-t border-white/10 grid grid-cols-2 gap-2 text-[11px] font-mono">
+                    <div className="pt-3 border-t border-white/10 grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px] font-mono">
                       {item.specifications.map((spec, sIdx) => (
                         <div key={sIdx} className="p-2 rounded-lg bg-white/[0.03] border border-white/5">
                           <span className="text-[#64748B] block text-[10px] uppercase">{spec.label}</span>
@@ -468,7 +469,7 @@ export const RoadTransportPage: React.FC = () => {
       </section>
 
       {/* 5. Contact & Quote CTA */}
-      <section className="py-16 sm:py-20 bg-white">
+      <section className="py-16 sm:py-20 pb-28 sm:pb-24 bg-white">
         <ScrollReveal direction="up" className="max-w-7xl mx-auto px-4 sm:px-8">
           <div className="p-8 sm:p-12 rounded-3xl bg-neutral-900 text-white flex flex-col lg:flex-row lg:items-center justify-between gap-8 shadow-2xl">
             <div className="space-y-3 max-w-2xl">
@@ -513,17 +514,17 @@ export const RoadTransportPage: React.FC = () => {
         </ScrollReveal>
       </section>
 
-      {/* 6. Accessible Lightbox Modal */}
+      {/* 6. Accessible Lightbox Modal (BUG 15: Open enlarged fleet images from top with dedicated new tab option) */}
       {activeLightbox && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-md p-4 animate-in fade-in duration-200"
+          className="fixed inset-0 z-50 overflow-y-auto bg-black/95 backdrop-blur-md p-4 sm:p-6 md:p-8 flex flex-col items-center justify-start animate-in fade-in duration-200"
           onClick={() => setActiveLightbox(null)}
           role="dialog"
           aria-modal="true"
           aria-label="Road Fleet Image Viewer"
         >
           <div
-            className="relative max-w-5xl w-full max-h-[92vh] flex flex-col items-center justify-center"
+            className="relative max-w-5xl w-full flex flex-col items-stretch my-auto sm:my-4 space-y-3"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Top Bar */}
@@ -533,28 +534,45 @@ export const RoadTransportPage: React.FC = () => {
                 <span className="text-neutral-500">•</span>
                 <span className="text-red-400 font-semibold">{activeLightbox.technicalTag}</span>
               </div>
-              <button
-                type="button"
-                onClick={() => setActiveLightbox(null)}
-                className="p-1.5 rounded-lg bg-white/10 hover:bg-red-600 text-white transition-colors"
-                aria-label="Close image viewer"
-              >
-                <X className="w-5 h-5" />
-              </button>
+              <div className="flex items-center gap-2 shrink-0">
+                <a
+                  href={activeLightbox.imagePath}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#B62825] hover:bg-[#9E2220] text-white text-xs font-mono font-bold transition-all shadow-md cursor-pointer"
+                  title="Open full-size image in new browser tab"
+                >
+                  <span>Open in New Tab</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+                <button
+                  type="button"
+                  onClick={() => setActiveLightbox(null)}
+                  className="p-1.5 rounded-lg bg-white/10 hover:bg-red-600 text-white transition-colors cursor-pointer"
+                  aria-label="Close image viewer"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
             </div>
 
             {/* Modal Image Box */}
-            <div className="relative w-full max-h-[75vh] flex items-center justify-center overflow-hidden rounded-xl bg-black border border-white/15">
+            <div className="relative w-full flex items-center justify-center overflow-hidden rounded-xl bg-black border border-white/15">
               <img
                 src={activeLightbox.imagePath}
                 alt={activeLightbox.alt}
-                className="max-h-[75vh] w-auto max-w-full object-contain"
+                className="w-full max-h-[78vh] object-contain cursor-zoom-in"
+                onClick={() => window.open(activeLightbox.imagePath, '_blank', 'noopener,noreferrer')}
+                title="Click image to open in new tab"
               />
             </div>
 
             {/* Modal Caption */}
-            <div className="w-full mt-3 p-3 rounded-lg bg-neutral-900/90 border border-white/10 text-xs text-neutral-300 font-mono">
-              <p className="leading-relaxed">{activeLightbox.caption}</p>
+            <div className="w-full p-4 rounded-lg bg-neutral-900/90 border border-white/10 text-xs text-neutral-300 font-mono flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <p className="leading-relaxed flex-1">{activeLightbox.caption}</p>
+              <span className="text-[11px] text-slate-400 shrink-0">
+                Click image or button above to inspect full 4K resolution in new tab
+              </span>
             </div>
           </div>
         </div>

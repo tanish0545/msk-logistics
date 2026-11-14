@@ -527,14 +527,29 @@
   animation-delay: 320ms;
 }
 
-/* Hover Lift for Interactive Cards */
+/* Hover Lift for Interactive Cards (BUG 10: eliminate hover flickering on borders and child bounce) */
 .hover-lift {
+  position: relative;
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 .hover-lift:hover {
-  transform: translateY(-4px);
+  transform: translateY(-4px) translateZ(0);
   box-shadow: 0 14px 28px -6px rgba(15, 30, 54, 0.09), 0 4px 10px -2px rgba(15, 30, 54, 0.04);
+}
+
+/* Extended hit-area prevents cursor dropout flickering when the card lifts */
+.hover-lift::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -8px;
+  height: 8px;
+  pointer-events: auto;
 }
 
 /* Hover Zoom on Image Containers */
