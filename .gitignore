@@ -12,7 +12,7 @@ dist
 dist-ssr
 *.local
 .env
-
+.env.example
 # Temporary and testing artifacts
 .tmp*
 *.tmp
