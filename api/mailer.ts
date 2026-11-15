@@ -187,8 +187,9 @@ export async function dispatchEnquiryEmail(payload: EmailPayload): Promise<Email
   const referenceId = payload.referenceId;
   const toEmail = (process.env.CONTACT_TO_EMAIL || 'info@msklogisticsolution.com').trim();
   const smtpUser = (process.env.SMTP_USER || 'info@msklogisticsolution.com').trim();
-  const senderEmail = `"MSK Logistics Solution" <${smtpUser}>`;
-  const resendFromEmail = (process.env.CONTACT_FROM_EMAIL || `MSK Logistics <${smtpUser}>`).trim();
+  // Sender display name per client instruction: "MSK Website"
+  const senderEmail = `"MSK Website" <${smtpUser}>`;
+  const resendFromEmail = (process.env.CONTACT_FROM_EMAIL || `"MSK Website" <${smtpUser}>`).trim();
   const resendApiKey = (process.env.RESEND_API_KEY || '').trim();
 
   // Validate customer email for Reply-To
@@ -196,19 +197,20 @@ export async function dispatchEnquiryEmail(payload: EmailPayload): Promise<Email
   const hasValidCustomerEmail = isValidEmail(rawCustomerEmail);
   const replyTo = hasValidCustomerEmail ? rawCustomerEmail : undefined;
 
-  // Build subject and body
+  // Build subject and body per client specification:
+  // Contact Form Internal Subject: "Website Request — {Customer Name}"
+  // Quote Form Internal Subject: "New Quote Request — {Company Name} — {Reference ID}"
   const isQuote = payload.enquiryType === 'quote';
+  const companyPart = payload.companyName?.trim() || payload.customerName?.trim() || 'Direct Request';
   const internalSubject = isQuote
-    ? (payload.quoteName
-        ? `New Quote Request: [${payload.quoteName}] — ${payload.customerName} — [${referenceId}]`
-        : `New Quote Request — ${payload.customerName} — [${referenceId}]`)
-    : `New Contact Enquiry — ${payload.customerName} — [${referenceId}]`;
+    ? `New Quote Request — ${companyPart} — ${referenceId}`
+    : `Website Request — ${payload.customerName}`;
 
   const internalHtml = generateInternalEmailHtml(payload);
   const internalText = htmlToPlainText(internalHtml);
 
   const customerSubject = isQuote
-    ? 'We Have Received Your Quote Request | MSK Logistics'
+    ? 'Quote Request Acknowledgement | MSK Logistics'
     : 'We Have Received Your Enquiry | MSK Logistics';
   const customerHtml = generateCustomerConfirmationEmailHtml(payload);
   const customerText = htmlToPlainText(customerHtml);
@@ -225,7 +227,7 @@ export async function dispatchEnquiryEmail(payload: EmailPayload): Promise<Email
   // ---------------------------------------------------------------------------
   if (transporter) {
     try {
-      // 1. Send Internal Notification to info@msklogisticsolution.com
+      // 1. Send Internal Notification to info@msklogisticsolution.com ONLY
       const internalInfo = await transporter.sendMail({
         from: senderEmail,
         to: toEmail,
@@ -233,23 +235,32 @@ export async function dispatchEnquiryEmail(payload: EmailPayload): Promise<Email
         subject: internalSubject,
         text: internalText,
         html: internalHtml,
+        // Strictly no CC or BCC to avoid duplicate deliveries
+        cc: undefined,
+        bcc: undefined,
       });
 
       messageId = internalInfo.messageId;
 
-      console.log(`[MSK Mailer] Successfully dispatched via Gmail SMTP [${referenceId}] MessageID: ${messageId}`);
+      console.log(`[MSK Mailer] Internal notification dispatched via Gmail SMTP [${referenceId}] MessageID: ${messageId}`);
 
-      // 2. Send Customer Confirmation Email (if customer provided a valid email)
+      // 2. Send Customer Confirmation Email separately to the customer's submitted address ONLY
+      // Do not CC or BCC the customer acknowledgement to the MSK inbox
       if (hasValidCustomerEmail && rawCustomerEmail) {
         try {
           await transporter.sendMail({
             from: senderEmail,
             to: rawCustomerEmail,
+            replyTo: toEmail, // Customer replies directly to MSK Commercial Desk
             subject: customerSubject,
             text: customerText,
             html: customerHtml,
+            // Strictly no CC or BCC to MSK inbox
+            cc: undefined,
+            bcc: undefined,
           });
           customerDelivered = true;
+          console.log(`[MSK Mailer] Customer acknowledgement dispatched via Gmail SMTP to: ${rawCustomerEmail}`);
         } catch (custErr: any) {
           console.warn(`[MSK Mailer] SMTP Customer confirmation notice [${referenceId}]:`, custErr?.message);
           customerNotice = 'Customer confirmation copy could not be delivered to the recipient address.';
@@ -292,12 +303,12 @@ export async function dispatchEnquiryEmail(payload: EmailPayload): Promise<Email
     if (resendResult.ok) {
       messageId = resendResult.id;
 
-      // Customer acknowledgement via Resend
+      // Customer acknowledgement via Resend separately to customer's submitted address ONLY
       if (hasValidCustomerEmail && rawCustomerEmail) {
         const custResend = await sendViaResend(
           resendFromEmail,
           rawCustomerEmail,
-          undefined,
+          toEmail,
           customerSubject,
           customerHtml,
           resendApiKey

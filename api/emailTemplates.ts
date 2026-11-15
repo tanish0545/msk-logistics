@@ -69,14 +69,8 @@ export function getFormattedDateIST(dateInput?: Date | string): string {
   }
 }
 
-const DEFAULT_SITE_URL = 'https://msklogistic.com';
-
-function getSiteUrl(): string {
-  if (typeof process !== 'undefined' && process.env?.VITE_SITE_URL) {
-    return process.env.VITE_SITE_URL.replace(/\/+$/, '');
-  }
-  return DEFAULT_SITE_URL;
-}
+export const MSK_PRODUCTION_SITE_URL = 'https://msklogisticsolution.vercel.app/';
+export const MSK_OFFICIAL_LOGO_URL = 'https://msklogisticsolution.vercel.app/images/logo/msk-logistics-logo.png';
 
 /**
  * -----------------------------------------------------------------------------
@@ -86,7 +80,6 @@ function getSiteUrl(): string {
  * -----------------------------------------------------------------------------
  */
 export function generateInternalEmailHtml(data: EmailPayload): string {
-  const siteUrl = getSiteUrl();
   const submissionTime = data.submissionDate || getFormattedDateIST();
   const isQuote = data.enquiryType === 'quote';
 
@@ -154,8 +147,8 @@ export function generateInternalEmailHtml(data: EmailPayload): string {
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
                 <tr>
                   <td valign="middle" align="left" style="padding-bottom: 12px;">
-                    <a href="${siteUrl}" target="_blank" style="text-decoration: none; display: inline-block;">
-                      <img src="${siteUrl}/images/logo/msk-logistics-logo.png" alt="MSK Logistics Solution" width="155" height="auto" style="display: block; max-width: 165px; height: auto;" />
+                    <a href="${MSK_PRODUCTION_SITE_URL}" target="_blank" style="text-decoration: none; display: inline-block;">
+                      <img src="${MSK_OFFICIAL_LOGO_URL}" alt="MSK Logistics Solution" width="155" height="auto" style="display: block; max-width: 165px; height: auto;" />
                     </a>
                   </td>
                   <td valign="middle" align="right" style="padding-bottom: 12px;">
@@ -434,10 +427,11 @@ export function generateInternalEmailHtml(data: EmailPayload): string {
  * -----------------------------------------------------------------------------
  */
 export function generateCustomerConfirmationEmailHtml(data: EmailPayload): string {
-  const siteUrl = getSiteUrl();
   const submissionTime = data.submissionDate || getFormattedDateIST();
   const isQuote = data.enquiryType === 'quote';
   const badgeText = isQuote ? 'QUOTE REQUEST ACKNOWLEDGEMENT' : 'ENQUIRY ACKNOWLEDGEMENT';
+  const headingTitle = isQuote ? 'Quote Request Acknowledgement | MSK Logistics' : 'We Have Received Your Enquiry | MSK Logistics';
+  const headingText = isQuote ? 'Quote Request Acknowledgement' : 'We Have Received Your Enquiry';
 
   const cleanName = sanitizeHtml(data.customerName || 'Valued Client');
   const cleanService = sanitizeHtml(data.selectedService || 'Industrial Logistics & Freight Services');
@@ -453,7 +447,7 @@ export function generateCustomerConfirmationEmailHtml(data: EmailPayload): strin
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>We Have Received Your Enquiry | MSK Logistics</title>
+  <title>${headingTitle}</title>
   <style type="text/css">
     body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
     table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
@@ -483,8 +477,8 @@ export function generateCustomerConfirmationEmailHtml(data: EmailPayload): strin
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
                 <tr>
                   <td valign="middle" align="left" style="padding-bottom: 12px;">
-                    <a href="${siteUrl}" target="_blank" style="text-decoration: none; display: inline-block;">
-                      <img src="${siteUrl}/images/logo/msk-logistics-logo.png" alt="MSK Logistics Solution" width="155" height="auto" style="display: block; max-width: 165px; height: auto;" />
+                    <a href="${MSK_PRODUCTION_SITE_URL}" target="_blank" style="text-decoration: none; display: inline-block;">
+                      <img src="${MSK_OFFICIAL_LOGO_URL}" alt="MSK Logistics Solution" width="155" height="auto" style="display: block; max-width: 165px; height: auto;" />
                     </a>
                   </td>
                   <td valign="middle" align="right" style="padding-bottom: 12px;">
@@ -514,13 +508,16 @@ export function generateCustomerConfirmationEmailHtml(data: EmailPayload): strin
                       ${badgeText}
                     </span>
                     <h1 style="margin: 6px 0 12px 0; font-size: 24px; font-weight: 800; color: #0B0B0D; letter-spacing: -0.02em; line-height: 1.25;">
-                      We Have Received Your Enquiry
+                      ${headingText}
                     </h1>
                     <p style="margin: 0 0 16px 0; font-size: 15px; color: #334155; line-height: 1.6;">
                       Dear <strong>${cleanName}</strong>,
                     </p>
                     <p style="margin: 0; font-size: 14px; color: #475569; line-height: 1.6;">
-                      Thank you for contacting <strong>MSK Logistics Solution</strong>. We have registered your inquiry regarding <strong style="color: #B62825;">${cleanService}</strong>. Our commercial and operations team at Nhava Sheva (JNPT) has received your submission and is reviewing the requirements.
+                      ${isQuote
+                        ? `Thank you for requesting an industrial quotation with <strong>MSK Logistics Solution</strong>. We have registered your consignment specification regarding <strong style="color: #B62825;">${cleanService}</strong>. Our commercial and operations team at Nhava Sheva (JNPT) has logged your request and is preparing your formal quotation.`
+                        : `Thank you for contacting <strong>MSK Logistics Solution</strong>. We have registered your inquiry regarding <strong style="color: #B62825;">${cleanService}</strong>. Our commercial and operations team at Nhava Sheva (JNPT) has received your submission and is reviewing the requirements.`
+                      }
                     </p>
                   </td>
                 </tr>
