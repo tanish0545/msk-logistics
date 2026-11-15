@@ -1,14 +1,13 @@
+/// <reference types="node" />
+
 // Serverless API endpoint for Vercel: /api/contact
 // Receives contact enquiries, validates payload, and dispatches:
 // 1. Internal MSK notification to info@msklogisticsolution.com (with customer Reply-To)
 // 2. Customer confirmation email to the user's submitted email address
 
 import type { EmailPayload } from './emailTemplates.js';
-import { 
-  generateInternalEmailHtml, 
-  generateCustomerConfirmationEmailHtml, 
-  getFormattedDateIST 
-} from './emailTemplates.js';
+import { getFormattedDateIST } from './emailTemplates.js';
+import { dispatchEnquiryEmail } from './mailer.js';
 
 const rateLimitMap = new Map<string, { count: number; expiresAt: number }>();
 
@@ -116,19 +115,6 @@ export default async function handler(req: any, res: any) {
     });
   }
 
-  // Check Resend API configuration
-  const apiKey = process.env.RESEND_API_KEY;
-  const toEmail = process.env.CONTACT_TO_EMAIL || 'info@msklogisticsolution.com';
-  const fromEmail = process.env.CONTACT_FROM_EMAIL || 'MSK Logistics Enquiries <onboarding@resend.dev>';
-
-  if (!apiKey) {
-    return res.status(503).json({
-      success: false,
-      error: 'Service Unconfigured',
-      message: 'Email delivery service is currently awaiting RESEND_API_KEY configuration on the server. Please contact info@msklogisticsolution.com directly via email or telephone at +91 81086 72929.',
-    });
-  }
-
   const referenceId = `MSK-ENQ-${Date.now().toString().slice(-6)}`;
 
   const emailPayload: EmailPayload = {
@@ -143,106 +129,26 @@ export default async function handler(req: any, res: any) {
     submissionDate: getFormattedDateIST(),
   };
 
-  const internalSubject = `New Contact Enquiry — ${emailPayload.customerName} — [${referenceId}]`;
-  const internalHtml = generateInternalEmailHtml(emailPayload);
+  const dispatchResult = await dispatchEnquiryEmail(emailPayload);
 
-  // 1. Send Email 1 — Internal Notification
-  let internalResponse: Response;
-  let internalData: any = {};
-
-  try {
-    internalResponse = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${apiKey}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        from: fromEmail,
-        to: [toEmail],
-        reply_to: emailPayload.email,
-        subject: internalSubject,
-        html: internalHtml,
-      }),
-    });
-
-    internalData = (await internalResponse.json().catch(() => ({}))) as any;
-  } catch (err: any) {
-    console.error('[MSK Contact API] Network error during internal email dispatch:', {
-      referenceId,
-      error: err?.message,
-    });
-    return res.status(500).json({
+  if (!dispatchResult.success) {
+    return res.status(503).json({
       success: false,
-      error: 'Internal Server Error',
-      message: 'A network error occurred while transmitting your enquiry to MSK Logistics. Please email info@msklogisticsolution.com directly or call +91 81086 72929.',
+      error: dispatchResult.error || 'Delivery Error',
+      message: dispatchResult.message || 'Unable to deliver message through email service provider. Please reach out directly to info@msklogisticsolution.com.',
     });
-  }
-
-  if (!internalResponse.ok) {
-    console.error('[MSK Contact API] Resend API Error on internal dispatch:', {
-      referenceId,
-      status: internalResponse.status,
-      error: internalData?.message || internalData,
-    });
-    return res.status(internalResponse.status).json({
-      success: false,
-      error: 'Delivery Error',
-      message: internalData?.message || 'Unable to deliver message through email service provider. Please reach out directly to info@msklogisticsolution.com.',
-    });
-  }
-
-  // 2. Send Email 2 — Customer Confirmation (Handled with partial failure tolerance)
-  const customerSubject = 'We Have Received Your Enquiry | MSK Logistics';
-  const customerHtml = generateCustomerConfirmationEmailHtml(emailPayload);
-  let customerDelivered = false;
-  let customerNotice: string | null = null;
-
-  try {
-    const customerResponse = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${apiKey}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        from: fromEmail,
-        to: [emailPayload.email],
-        subject: customerSubject,
-        html: customerHtml,
-      }),
-    });
-
-    const custData = (await customerResponse.json().catch(() => ({}))) as any;
-    if (customerResponse.ok) {
-      customerDelivered = true;
-    } else {
-      console.warn('[MSK Contact API] Customer confirmation email notice:', {
-        referenceId,
-        status: customerResponse.status,
-        message: custData?.message,
-      });
-      customerNotice = custData?.message || 'Customer confirmation awaiting domain verification.';
-    }
-  } catch (custErr: any) {
-    console.warn('[MSK Contact API] Customer confirmation network error:', {
-      referenceId,
-      error: custErr?.message,
-    });
-    customerNotice = 'Network error sending customer confirmation copy.';
   }
 
   return res.status(200).json({
     success: true,
     referenceId,
-    message: customerDelivered
-      ? 'Thank you! Your enquiry has been delivered successfully to info@msklogisticsolution.com, and an acknowledgement has been sent to your inbox.'
-      : 'Thank you! Your enquiry has been delivered successfully to our operations desk at info@msklogisticsolution.com.',
-    id: internalData?.id || referenceId,
+    message: dispatchResult.message || 'Thank you! Your enquiry has been delivered successfully to info@msklogisticsolution.com.',
+    id: dispatchResult.messageId || referenceId,
     delivery: {
-      internal: true,
-      customer: customerDelivered,
-      notice: customerNotice,
+      method: dispatchResult.method,
+      internal: dispatchResult.internalDelivered,
+      customer: dispatchResult.customerDelivered,
+      notice: dispatchResult.customerNotice,
     },
   });
 }

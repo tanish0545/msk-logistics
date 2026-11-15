@@ -1,5 +1,7 @@
+/// <reference types="node" />
+
 // Serverless API endpoint for Vercel: /api/orbit-chat
-import { ORBIT_SYSTEM_INSTRUCTION, getLocalGroundedResponse } from '../src/data/orbitKnowledge';
+import { ORBIT_SYSTEM_INSTRUCTION, getLocalGroundedResponse } from '../src/data/orbitKnowledge.js';
 
 export default async function handler(req: any, res: any) {
   if (req.method !== 'POST') {
@@ -80,7 +82,7 @@ export default async function handler(req: any, res: any) {
       });
     }
 
-    const geminiJson = await geminiRes.json();
+    const geminiJson: any = await geminiRes.json();
     const candidate = geminiJson.candidates?.[0];
     const text = candidate?.content?.parts?.[0]?.text || '';
 

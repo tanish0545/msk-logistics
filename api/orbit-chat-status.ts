@@ -1,6 +1,8 @@
+/// <reference types="node" />
+
 // Serverless API endpoint for Vercel: /api/orbit-chat-status (or /api/orbit-chat/status via rewrites)
 
-export default async function handler(req: any, res: any) {
+export default async function handler(_req: any, res: any) {
   const apiKey = process.env.GEMINI_API_KEY || '';
 
   if (!apiKey) {
